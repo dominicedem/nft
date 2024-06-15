@@ -12,10 +12,10 @@ const GlobalStyle = createGlobalStyle`
     --profile_text: #666666cc;
     --subnav_background: #ffffff30;
     --box_shadow: #0001;
-    --light_faint: #f6f6f6;
+    --light_faint: #f4f4f4;
     --blue_btn: #3b82f6;
     --blue_btn_hover: #2563eb;
-    --btn_hover: #eeea;
+    --btn_hover: #ececec;
     --nav_background: #444444bb;
     --nav_background_hover: #444444;
     --secondary_text_faint: #3333335e;

@@ -41,9 +41,9 @@ function SliderCon({ datas, right, font }) {
       <Text
         style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
       >
-        {datas.types}
+        {datas?.types}
         {right?.text && (
-          <Link style={linkStyle} to="viewall">
+          <Link style={linkStyle} to="/viewall">
             <Button
               padding={
                 right?.text

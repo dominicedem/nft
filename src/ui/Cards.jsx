@@ -67,6 +67,7 @@ const linkStyle = {
   padding: 0,
   margin: 0,
 };
+
 function Cards({ data, all, profile }) {
   function handleBuy() {}
   return (

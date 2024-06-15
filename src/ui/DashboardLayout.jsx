@@ -1,28 +1,17 @@
 import styled from "styled-components";
 import { Outlet } from "react-router-dom";
-import SideBar from "../SideBar/SideBar";
-import Nav from "../navigation/Nav";
-import Partners from "../Partners/Partners";
-import MenuBar from "../MenuBar/MenuBar";
+// import MenuBar from "../MenuBar/MenuBar";
+import SideBar from "./SideBar";
+import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: 17vw auto;
-  grid-template-rows: 10vh auto 5vh;
+  grid-template-columns: 20vw auto 20vw;
   height: 100vh;
   position: relative;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 `;
 
-const NavStyle = styled.div`
-  grid-column: 1/-1;
-  background: var(--background_color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.5rem;
-  border-bottom: 0.1rem solid #444;
-`;
 // const OverlayBox = styled.div`
 //   display: flex;
 //   align-items: center;
@@ -50,29 +39,25 @@ const NavStyle = styled.div`
 //   }
 // `;
 const SideBarStyle = styled.div`
-  background: var(--background_color);
+  background: var(--light_faint);
   @media (max-width: 800px) {
     display: none;
   }
 `;
 const MainStyle = styled.div`
   overflow-y: scroll;
-  background: var(--background_color);
+  background: var(--appbackgroundcolor);
   @media (max-width: 500px) {
     height: 90vh;
   }
 `;
-const Partnersstyle = styled.div`
-  grid-column: 1/-1;
-  background: var(--background_color);
+const ProfileStyle = styled.div`
+  background: var(--light_faint);
 `;
 
 function DashboardLayout() {
   return (
     <DashboardLayoutStyle>
-      <NavStyle>
-        <Nav />
-      </NavStyle>
       <SideBarStyle>
         <SideBar />
       </SideBarStyle>
@@ -82,9 +67,9 @@ function DashboardLayout() {
       <MainStyle>
         <Outlet />
       </MainStyle>
-      <Partnersstyle>
-        <Partners />
-      </Partnersstyle>
+      <ProfileStyle>
+        <Profile />
+      </ProfileStyle>
     </DashboardLayoutStyle>
   );
 }
