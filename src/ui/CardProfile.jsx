@@ -7,11 +7,14 @@ const CardBox = styled.div`
   border: 0.1rem solid var(--inputField_border);
   width: 100%;
   cursor: pointer;
-  background: #4c4c4c53;
+  background: var(--btn_hover);
   border-radius: 1rem;
   padding: 0.5rem 0;
   font-size: 1.8rem;
   color: var(--black_text);
+  &:hover {
+    background-color: var(--tertiary_text_faint);
+  }
 `;
 
 function CardProfile() {

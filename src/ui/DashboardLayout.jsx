@@ -6,7 +6,7 @@ import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: 20vw auto 20vw;
+  grid-template-columns: 17vw auto 19vw;
   height: 100vh;
   position: relative;
   /* overflow-x: hidden; */
@@ -47,6 +47,7 @@ const SideBarStyle = styled.div`
 const MainStyle = styled.div`
   overflow-y: scroll;
   background: var(--appbackgroundcolor);
+  padding-top: 2.7rem;
   @media (max-width: 500px) {
     height: 90vh;
   }

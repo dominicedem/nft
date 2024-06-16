@@ -3,13 +3,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import GlobalStyle from "./styles/Styles";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import homeReducer from "./Slices/homeSlice";
-// import mapReducer from "./Slices/MapSlice";
+import transactionReducer from "./Slices/TransactionSlice";
 // import filterReducer from "./Slices/FilterSlice";
 // import searchReducer from "./Slices/SearchSlice";
 // import ErrorRoute from "./pages/ErrorRoute";
 // import Loading from "./ui/Loading";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // const MoreLodgeDetails = lazy(() => import("./pages/MoreLodgeDetails"));
 // const LodgeDetails = lazy(() => import("./pages/LodgeDetails"));
@@ -30,7 +30,7 @@ const Loading = lazy(() => import("./ui/Loading"));
 const store = configureStore({
   reducer: {
     homeData: homeReducer,
-    // mapData: mapReducer,
+    transactionData: transactionReducer,
     // filterData: filterReducer,
     // searchData: searchReducer,
   },

@@ -6,7 +6,7 @@ const DashCardsStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1.5rem;
+  gap: 0.5rem;
   width: 100%;
   overflow: hidden;
 `;
@@ -15,11 +15,13 @@ const Flex = styled.div`
   align-items: center;
   gap: 0.5rem;
   width: 120rem;
+  padding-bottom: 1.2rem;
 `;
 
 const Text = styled.div`
   font-size: 2rem;
   color: var(--black_text);
+  font-weight: 600;
 `;
 const data = [
   {
@@ -37,17 +39,29 @@ const data = [
     id: 3,
     sub: "Plutonics",
   },
+  {
+    image_url: `/fly.webp`,
+    id: 4,
+    sub: "Plutonics",
+  },
 ];
-function DashCards() {
+function DashCards({ header, defaultCard, Exhibition, profile, Edit }) {
   return (
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>
-        <Text>NFT</Text>
+        <Text>{header}</Text>
         <Button padding={"var(--padding_btn_small)"}>See all</Button>
       </Flex>
       <Flex>
         {data.map((val, ind) => (
-          <Cards key={ind} data={val} profile="true" />
+          <Cards
+            defaultCard={defaultCard}
+            key={ind}
+            data={val}
+            profile={profile}
+            Exhibition={Exhibition}
+            Edit={Edit}
+          />
         ))}
       </Flex>
     </DashCardsStyle>

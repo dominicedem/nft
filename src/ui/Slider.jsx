@@ -59,7 +59,7 @@ const InnerBox = styled.div`
   }
 `;
 
-function Slider({ type }) {
+function Slider({ type, defaultCard }) {
   const [enter, setEnter] = useState(false);
   return (
     <DescriptionBox
@@ -93,7 +93,12 @@ function Slider({ type }) {
         >
           {data.map((val, _) => (
             <SwiperSlide key={val.id}>
-              <Cards all={type && "true"} key={val.id} data={val} />
+              <Cards
+                defaultCard={defaultCard}
+                all={type && "true"}
+                key={val.id}
+                data={val}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

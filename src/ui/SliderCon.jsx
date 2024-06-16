@@ -56,7 +56,7 @@ function SliderCon({ datas, right, font }) {
           </Link>
         )}
       </Text>
-      <Slider />
+      <Slider defaultCard="true" />
     </SliderBoxStyle>
   );
 }

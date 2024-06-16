@@ -33,7 +33,7 @@ html {
     font-size: 62.5%;
 }
 body {
-    font-family: sans-serif;
+    font-family: "IBM PLe?x Sans", sans-serif;
     line-height: 1.2;
 }
 *,*::before,*::after {
@@ -171,6 +171,9 @@ body {
 .paginationStop {
     background: inherit;
     color: var(--secondary_text_faint) !important;
+}
+.activeTransaction {
+  background: var(--appbackgroundcolor);
 }
 
 `;

@@ -11,7 +11,7 @@ const BalanceOverview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1rem;
+  gap: 3.5rem;
   padding: 2rem;
   background: var(--light_faint);
   border-radius: 1rem;
@@ -35,7 +35,7 @@ const Flex = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 100%;
 `;
 const Span = styled.span`

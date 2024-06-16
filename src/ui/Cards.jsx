@@ -56,6 +56,10 @@ const PriceBox = styled.div`
     props.type === "outer" ? "space-between" : "start"};
   width: ${(props) => (props.type === "outer" ? "100%" : "fit-content")};
 `;
+const EditBox = styled.div`
+  align-self: center;
+  width: 89.5%;
+`;
 
 const iconStyle = {
   width: "1.7rem",
@@ -68,7 +72,7 @@ const linkStyle = {
   margin: 0,
 };
 
-function Cards({ data, all, profile }) {
+function Cards({ data, all, profile, Exhibition, defaultCard, Edit }) {
   function handleBuy() {}
   return (
     <CardsStyle onClick={handleBuy} style={all && { width: "30rem" }}>
@@ -80,7 +84,6 @@ function Cards({ data, all, profile }) {
           <Text
             type="head"
             style={{
-              fontFamily: "IBM Plex Sans",
               fontWeight: "600",
               color: "#333",
             }}
@@ -93,7 +96,7 @@ function Cards({ data, all, profile }) {
               style={{
                 fontSize: "1.6rem",
                 marginTop: "-.5rem",
-                fontFamily: "IBM Plex Sans",
+
                 fontWeight: "500",
                 color: "#333",
               }}
@@ -101,55 +104,80 @@ function Cards({ data, all, profile }) {
               Volga{data.sub}
             </Text>
           )}
-          <PriceBox type="outer">
-            <PriceBox type="inner">
-              <Text
-                style={{
-                  color: "var(--faint_text_black)",
-                  fontFamily: "IBM Plex Sans",
-                  fontWeight: "500",
-                }}
-              >
-                Floor Price
-              </Text>
-              <span
-                style={{
-                  fontFamily: "IBM Plex Sans",
-                  fontWeight: "400",
-                  fontSize: "1rem",
-                  color: "#555",
-                }}
-              >
-                USDT
-              </span>
+          {defaultCard && (
+            <PriceBox type="outer">
+              <PriceBox type="inner">
+                <Text
+                  style={{
+                    color: "var(--faint_text_black)",
+
+                    fontWeight: "500",
+                  }}
+                >
+                  Floor Price
+                </Text>
+                <span
+                  style={{
+                    fontWeight: "400",
+                    fontSize: "1rem",
+                    color: "#555",
+                  }}
+                >
+                  USDT
+                </span>
+              </PriceBox>
+              <PriceBox type="inner" style={{ width: "20%" }}>
+                <Text
+                  style={{
+                    fontWeight: "700",
+                    alignSelf: "end",
+                    color: "#333",
+                  }}
+                >
+                  3 ETH
+                </Text>{" "}
+                <span
+                  style={{
+                    fontWeight: "400",
+                    alignSelf: "end",
+                    fontSize: "1rem",
+                    color: "#555",
+                  }}
+                >
+                  $4700
+                </span>
+              </PriceBox>
             </PriceBox>
-            <PriceBox type="inner" style={{ width: "20%" }}>
+          )}
+          {Exhibition && (
+            <PriceBox type="outer">
               <Text
                 style={{
-                  fontFamily: "IBM Plex Sans",
-                  fontWeight: "900",
+                  fontWeight: "600",
+                  // alignSelf: "end",
+                  color: "#333",
+                }}
+              >
+                Total NFT
+              </Text>
+              <Text
+                style={{
+                  fontWeight: "600",
                   alignSelf: "end",
                   color: "#333",
                 }}
               >
-                3 ETH
-              </Text>{" "}
-              <span
-                style={{
-                  fontFamily: "IBM Plex Sans",
-                  fontWeight: "400",
-                  alignSelf: "end",
-                  fontSize: "1rem",
-                  color: "#555",
-                }}
-              >
-                $4700
-              </span>
+                50
+              </Text>
             </PriceBox>
-          </PriceBox>
-          {profile && <CardProfile />}
+          )}
         </CardDetailBox>
       </Link>
+      {Edit && (
+        <EditBox>
+          <CardProfile />
+        </EditBox>
+      )}
     </CardsStyle>
   );
 }

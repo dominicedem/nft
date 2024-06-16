@@ -32,13 +32,13 @@ const List = styled.span`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 2rem;
+  font-size: 1.9rem;
   padding: 1rem 0 1rem 2rem;
   width: 100%;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   &:hover {
-    color: #3334;
+    color: #29292948;
   }
 `;
 const linkStyle = {
