@@ -50,7 +50,7 @@ const AllCards = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(4, 1fr);
   column-gap: 2rem;
-  row-gap: 2rem;
+  row-gap: 4rem;
   padding: 0 1rem;
   @media (max-width: 1280px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
