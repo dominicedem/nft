@@ -6,10 +6,9 @@ import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: 17vw auto 19vw;
+  grid-template-columns: auto 64vw auto;
   height: 100vh;
   position: relative;
-  /* overflow-x: hidden; */
 `;
 
 // const OverlayBox = styled.div`
@@ -40,6 +39,7 @@ const DashboardLayoutStyle = styled.div`
 // `;
 const SideBarStyle = styled.div`
   background: var(--light_faint);
+  padding-right: 1rem;
   @media (max-width: 800px) {
     display: none;
   }
@@ -47,13 +47,15 @@ const SideBarStyle = styled.div`
 const MainStyle = styled.div`
   overflow-y: scroll;
   background: var(--appbackgroundcolor);
-  padding-top: 2.7rem;
+  padding-top: 2.4rem;
   @media (max-width: 500px) {
     height: 90vh;
   }
 `;
 const ProfileStyle = styled.div`
-  background: var(--light_faint);
+  background: var(--appbackgroundcolor);
+  padding: 2rem 0.5rem 1rem 0.5rem;
+  overflow-y: scroll;
 `;
 
 function DashboardLayout() {

@@ -95,7 +95,7 @@ function Cards({ data, all, profile, Exhibition, defaultCard, Edit }) {
               type="head"
               style={{
                 fontSize: "1.6rem",
-                marginTop: "-.5rem",
+                marginTop: "-.1rem",
 
                 fontWeight: "500",
                 color: "#333",

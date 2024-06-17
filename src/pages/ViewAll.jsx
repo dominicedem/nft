@@ -138,7 +138,7 @@ function viewAll() {
       </DetailsBox>
       <AllCards>
         {data.map((val, _) => (
-          <Cards all="true" key={val.id} data={val} />
+          <Cards defaultCard="true" all="true" key={val.id} data={val} />
         ))}
       </AllCards>
       <PagBox>

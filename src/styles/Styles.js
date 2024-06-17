@@ -10,6 +10,8 @@ const GlobalStyle = createGlobalStyle`
     --white_text: #efefef;
     --secondary_text: #333;
     --profile_text: #666666cc;
+    --bios_background: #eaeaea;
+    --sideBar_text: #555;
     --subnav_background: #ffffff30;
     --box_shadow: #0001;
     --light_faint: #f4f4f4;

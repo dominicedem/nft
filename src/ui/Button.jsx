@@ -31,6 +31,7 @@ function Button({
   arrow,
   border,
   type,
+  background,
 }) {
   return (
     <>
@@ -42,6 +43,7 @@ function Button({
             fontSize: `${font}`,
             color: `${color}`,
             border: `${border}`,
+            background: `${background || background}`,
           }}
           className={border ? "withBorder" : "withoutBorder"}
         >
