@@ -6,14 +6,14 @@ const DashCardsStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 100%;
   overflow: hidden;
 `;
 const Flex = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 2rem;
   width: 120rem;
   padding-bottom: 1.2rem;
 `;

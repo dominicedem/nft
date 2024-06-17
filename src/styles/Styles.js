@@ -46,13 +46,12 @@ body {
     /* outline: 2px solid #f00; */
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--black_text);
+    background-color: var(--nav_background);
     border-radius: 1rem;
 }        
 ::-webkit-scrollbar {
     background-color:transparent;
     width: 0.5vw;
-    display: none;
 }
 
 .swiper {

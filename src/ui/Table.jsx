@@ -11,20 +11,31 @@ const TableBox = styled.div`
   align-items: start;
   height: 30vh;
   overflow-y: scroll;
+  background: #f4f4f4b0;
+  border-radius: 0.5rem;
+  /* &::-webkit-scrollbar-thumb {
+    background-color: var(--black_text);
+    border-radius: 1rem;
+  }
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: 1vw;
+    display: none;
+  } */
 `;
 const HeadBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding-bottom: 1rem;
+  padding-bottom: 3rem;
 `;
 const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 0 1rem 4rem;
+  padding: 1.5rem 0 1.5rem 4rem;
   border-bottom: 0.1rem solid var(--tertiary_text_faint);
 `;
 const Text = styled.span`
@@ -101,7 +112,7 @@ function Table({ tableHead, transaction, header }) {
       </HeadBox>
       <Row
         style={{
-          background: "var(--light_faint)",
+          background: "var(--bios_background)",
           borderBottom: "none",
           borderRadius: ".5rem",
         }}

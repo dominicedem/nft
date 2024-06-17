@@ -24,7 +24,7 @@ const Logo = styled.div`
   align-items: center;
   gap: 0.5rem;
   font-size: 2.5rem;
-  padding: 2rem 0 0 1rem;
+  padding: 2rem 0 0 3rem;
   background-clip: text;
   background: -webkit-linear-gradient(60deg, #0ff, #ea56ef);
   -webkit-background-clip: text;
@@ -36,9 +36,9 @@ const Img = styled.img`
 const List = styled.span`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 3rem;
   font-size: 1.9rem;
-  padding: 1rem 0 1rem 1rem;
+  padding: 1rem 0 1rem 3rem;
   width: 100%;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;

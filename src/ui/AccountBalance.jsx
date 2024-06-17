@@ -12,7 +12,7 @@ const BalanceOverview = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 3.5rem;
-  padding: 2rem;
+  padding: 4rem;
   background: var(--light_faint);
   border-radius: 1rem;
   width: 100%;
@@ -54,9 +54,9 @@ function AccountBalance() {
       <Text style={{ fontSize: "2.2rem", fontWeight: "500" }}>
         Account Overview
       </Text>
-      <BalanceOverview style={{ width: "fit-content" }}>
-        <Text>Account Balance</Text>
-        <Text style={{ fontSize: "2rem", fontWeight: "500" }}>$45,000.00</Text>
+      <BalanceOverview style={{ width: "50%" }}>
+        <Text style={{ fontSize: "2rem" }}>Account Balance</Text>
+        <Text style={{ fontSize: "3rem", fontWeight: "500" }}>$45,000.00</Text>
       </BalanceOverview>
       <BalanceOverview>
         <Flex style={{ alignItems: "start" }}>

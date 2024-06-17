@@ -5,11 +5,11 @@ import Table from "../ui/Table";
 
 const DashboardStyle = styled.div`
   height: 100%;
-  padding: 0 1.5rem 8rem 1.5rem;
+  padding: 0 3rem 8rem 3rem;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
-  gap: 5rem;
+  gap: 6rem;
 `;
 const DashCardBox = styled.div`
   display: flex;
