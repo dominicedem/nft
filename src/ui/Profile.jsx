@@ -125,7 +125,9 @@ function Profile() {
           </Text>
         </Column>
       </Description>
-      <Column style={{ alignItems: "center", gap: "1.5rem" }}>
+      <Column
+        style={{ alignItems: "center", gap: "1.5rem", justifySelf: "end" }}
+      >
         <Button
           padding="1rem 1.5rem"
           width="90%"

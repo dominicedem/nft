@@ -14,7 +14,6 @@ const GlobalStyle = createGlobalStyle`
     --sideBar_text: #555;
     --subnav_background: #ffffff30;
     --box_shadow: #0001;
-    /* --light_faint: rgb(217, 217, 217, 20%); */
     --balance_background: rgb(217, 217, 217, 20%);
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;

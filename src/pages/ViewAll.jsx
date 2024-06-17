@@ -47,11 +47,15 @@ const DetailsBox = styled.div`
 `;
 const AllCards = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
   column-gap: 2rem;
   row-gap: 2rem;
   padding: 0 1rem;
+  @media (max-width: 1280px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
 `;
 const PagBox = styled.div`
   display: flex;

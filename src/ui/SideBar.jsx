@@ -43,7 +43,7 @@ const List = styled.span`
   border-bottom-right-radius: 0.5rem;
   color: var(--sideBar_text);
   &:hover {
-    color: #29292948;
+    color: #5555559a;
   }
 `;
 const linkStyle = {

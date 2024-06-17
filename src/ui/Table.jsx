@@ -11,17 +11,8 @@ const TableBox = styled.div`
   align-items: start;
   height: 30vh;
   overflow-y: scroll;
-  background: #f4f4f4b0;
+  background: var(--balance_background);
   border-radius: 0.5rem;
-  /* &::-webkit-scrollbar-thumb {
-    background-color: var(--black_text);
-    border-radius: 1rem;
-  }
-  &::-webkit-scrollbar {
-    background-color: transparent;
-    width: 1vw;
-    display: none;
-  } */
 `;
 const HeadBox = styled.div`
   display: flex;
