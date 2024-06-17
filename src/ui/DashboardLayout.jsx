@@ -6,7 +6,7 @@ import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: auto 70vw auto;
+  grid-template-columns: auto 60vw auto;
   height: 100vh;
   position: relative;
   @media (max-width: 1220px) {
