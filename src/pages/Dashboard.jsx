@@ -47,13 +47,6 @@ function Dashboard() {
           header={["Type", "Amount", "Date", "Status"]}
         />
       </TableBox>
-      <TableBox>
-        <Table
-          tableHead="NFT Transactions"
-          transaction="true"
-          header={["Type", "Amount", "Date", "Status"]}
-        />
-      </TableBox>
     </DashboardStyle>
   );
 }

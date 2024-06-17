@@ -6,7 +6,6 @@ import CardProfile from "./CardProfile";
 const CardsStyle = styled.div`
   display: flex;
   flex-direction: column;
-  width: 26rem;
   height: fit-content;
   border-radius: 1.5rem;
   padding: 0 0 1rem 0;
@@ -16,6 +15,7 @@ const CardsStyle = styled.div`
   &:hover {
     transform: translateY(1.1%) scale(1.01);
   }
+  width: 26rem;
 `;
 
 const CardDetailBox = styled.div`

@@ -6,11 +6,14 @@ import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: auto 60vw auto;
+  grid-template-columns: 18vw 63vw auto;
   height: 100vh;
   position: relative;
-  @media (max-width: 1220px) {
+  @media (max-width: 1250px) {
     grid-template-columns: auto 64vw auto;
+  }
+  @media (max-width: 1100px) {
+    grid-template-columns: auto 80vw;
   }
 `;
 
