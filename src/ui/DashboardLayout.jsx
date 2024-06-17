@@ -45,7 +45,7 @@ const DashboardLayoutStyle = styled.div`
 //   }
 // `;
 const SideBarStyle = styled.div`
-  background: var(--light_faint);
+  background: var(--balance_background);
   padding-right: 1rem;
   @media (max-width: 800px) {
     display: none;
@@ -61,7 +61,7 @@ const MainStyle = styled.div`
 `;
 const ProfileStyle = styled.div`
   background: var(--appbackgroundcolor);
-  padding: 2rem 0.5rem 0 0.5rem;
+  padding: 2rem 0.1rem 0 0.1rem;
   overflow-y: scroll;
 `;
 

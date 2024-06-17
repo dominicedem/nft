@@ -5,7 +5,7 @@ const AccountBalanceStyle = styled.div`
   flex-direction: column;
   align-items: start;
   width: 100%;
-  gap: 2rem;
+  gap: 1rem;
 `;
 const BalanceOverview = styled.div`
   display: flex;
@@ -13,7 +13,8 @@ const BalanceOverview = styled.div`
   align-items: start;
   gap: 3.5rem;
   padding: 4rem;
-  background: var(--light_faint);
+  background: var(--balance_background);
+  border: 1px solid rgb(217, 217, 217, 50%);
   border-radius: 1rem;
   width: 100%;
 `;
@@ -22,7 +23,7 @@ const Text = styled.span`
   align-items: center;
   gap: 0.5rem;
   font-size: 1.8rem;
-  color: var(--black_text);
+  color: var(--sideBar_text);
   font-family: "IBM Plex Sans", sans-serif;
 `;
 
@@ -43,30 +44,37 @@ const Span = styled.span`
   color: var(--blue_btn);
 `;
 const Line = styled.div`
-  background: var(--black_text);
+  background: var(--tertiary_text_faint);
   width: 75%;
-  height: 0.01rem;
-  text-decoration: dashed;
+  border-bottom: 1px dashed var(--tertiary_text_faint);
 `;
 function AccountBalance() {
   return (
     <AccountBalanceStyle>
-      <Text style={{ fontSize: "2.2rem", fontWeight: "500" }}>
+      <Text
+        style={{
+          fontSize: "2.4rem",
+          fontWeight: "700",
+          marginBottom: "1.5rem",
+        }}
+      >
         Account Overview
       </Text>
-      <BalanceOverview style={{ width: "50%" }}>
+      <BalanceOverview
+        style={{ width: "50%", gap: "1rem", padding: "1rem 0 3rem 4rem" }}
+      >
         <Text style={{ fontSize: "2rem" }}>Account Balance</Text>
-        <Text style={{ fontSize: "3rem", fontWeight: "500" }}>$45,000.00</Text>
+        <Text style={{ fontSize: "3rem", fontWeight: "600" }}>$45,000.00</Text>
       </BalanceOverview>
       <BalanceOverview>
         <Flex style={{ alignItems: "start" }}>
           <Img src="/img1.webp" alt="profileImage" />
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
-              <Text style={{ fontWeight: "500", fontSize: "2rem" }}>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
                 ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
-              <Text style={{ fontWeight: "500", fontSize: "2rem" }}>9</Text>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>9</Text>
             </Flex>
             <Flex>
               <Text style={{ fontWeight: "300", fontSize: "1.4rem" }}>
@@ -83,10 +91,10 @@ function AccountBalance() {
           <Img src="/img1.webp" alt="profileImage" />
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
-              <Text style={{ fontWeight: "500", fontSize: "2rem" }}>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
                 ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
-              <Text style={{ fontWeight: "500", fontSize: "2rem" }}>9</Text>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>9</Text>
             </Flex>
             <Flex>
               <Text style={{ fontWeight: "300", fontSize: "1.4rem" }}>

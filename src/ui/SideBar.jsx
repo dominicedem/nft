@@ -10,7 +10,6 @@ import { GiCardExchange } from "react-icons/gi";
 const SideBarStyle = styled.div`
   width: 100%;
   height: 100vh;
-  background: inherit;
 `;
 const ListBox = styled.div`
   display: flex;

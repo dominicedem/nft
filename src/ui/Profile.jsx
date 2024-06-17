@@ -9,28 +9,28 @@ const ProfileStyle = styled.div`
   flex-direction: column;
   height: fit-content;
   overflow-y: scroll;
-  gap: 3rem;
+  gap: 1rem;
   width: 100%;
   height: 100%;
   padding-bottom: 1.5rem;
-  background: var(--light_faint);
+  background: var(--balance_background);
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
 `;
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
-  height: 15rem;
+  height: 10rem;
 `;
 const Description = styled.div`
-  padding: 2rem 1rem;
+  padding: 2rem;
   display: inherit;
   flex-direction: inherit;
   gap: 4rem;
 `;
 const DpbBox = styled.div`
   position: absolute;
-  left: 1rem;
+  left: 2rem;
   bottom: 0;
   border-radius: 0.6rem;
   transform: translateY(42%);
@@ -51,7 +51,7 @@ const Column = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1.5rem;
+  gap: 0.8rem;
   width: 100%;
 `;
 const Text = styled.span`
@@ -63,18 +63,19 @@ const Text = styled.span`
 `;
 const Bio = styled.span`
   font-size: 1.2rem;
-  padding: 2rem 0.5rem 2rem 1rem;
+  padding: 2rem 1rem 2rem 1.8rem;
   background: var(--bios_background);
   border-radius: 1rem;
   margin-top: -0.5rem;
-  line-height: 1.3;
+  line-height: 1.4;
   letter-spacing: 0.3px;
+  color: var(--sideBar_text);
 `;
 
 const iconStyle = {
-  width: "2.4rem",
-  height: "2.4rem",
-  color: "var(--black_text)",
+  width: "2.2rem",
+  height: "2.2rem",
+  color: "var(--sideBar_text)",
 };
 function Profile() {
   return (
@@ -105,16 +106,14 @@ function Profile() {
             Edemdominic@gmail.com
           </Text>
         </Column>
-        <Column>
+        <Column style={{ marginTop: "-1.5rem" }}>
           <Text style={{ fontWeight: "500" }}>Bio</Text>
           <Bio>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
             consectetur corporis aliquid quo ea sunt fuga asperiores, similique
-            unde esse, laborum reprehenderit vel at iure enim saepe repudiandae
-            aut atque!
           </Bio>
         </Column>
-        <Column>
+        <Column style={{ marginTop: "-1.5rem", gap: "1.5rem" }}>
           <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
             <CiFacebook style={iconStyle} /> Username
           </Text>
@@ -126,11 +125,12 @@ function Profile() {
           </Text>
         </Column>
       </Description>
-      <Column style={{ alignItems: "center" }}>
+      <Column style={{ alignItems: "center", gap: "1.5rem" }}>
         <Button
           padding="1rem 1.5rem"
           width="90%"
           background="true"
+          font="1.6rem"
           color="var(--white_text)"
         >
           Edit Profile
@@ -139,6 +139,7 @@ function Profile() {
           border="1px solid var(--inputField_border)"
           padding="1rem 1.5rem"
           width="90%"
+          font="1.6rem"
           color="var(--black_text)"
         >
           Change Password
