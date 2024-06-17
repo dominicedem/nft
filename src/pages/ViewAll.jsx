@@ -49,7 +49,7 @@ const AllCards = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: repeat(3, 1fr);
-  column-gap: 0.5rem;
+  column-gap: 2rem;
   row-gap: 2rem;
   padding-left: 1rem;
 `;
@@ -138,7 +138,7 @@ function viewAll() {
       </DetailsBox>
       <AllCards>
         {data.map((val, _) => (
-          <Cards defaultCard="true" key={val.id} data={val} />
+          <Cards defaultCard="true" all="true" key={val.id} data={val} />
         ))}
       </AllCards>
       <PagBox>

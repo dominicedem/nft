@@ -75,7 +75,7 @@ const linkStyle = {
 function Cards({ data, all, profile, Exhibition, defaultCard, Edit }) {
   function handleBuy() {}
   return (
-    <CardsStyle onClick={handleBuy} style={all && { width: "30rem" }}>
+    <CardsStyle onClick={handleBuy} style={all && { width: "100%" }}>
       <Link style={linkStyle} to="/buynft">
         <ImgBox>
           <Img src={data.image_url} />
