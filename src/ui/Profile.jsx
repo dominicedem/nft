@@ -12,6 +12,7 @@ const ProfileStyle = styled.div`
   gap: 3rem;
   width: 100%;
   height: 100%;
+  padding-bottom: 1.5rem;
   background: var(--light_faint);
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
@@ -19,7 +20,7 @@ const ProfileStyle = styled.div`
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
-  height: 20rem;
+  height: 15rem;
 `;
 const Description = styled.div`
   padding: 2rem 1rem;
@@ -32,19 +33,19 @@ const DpbBox = styled.div`
   left: 1rem;
   bottom: 0;
   border-radius: 0.6rem;
-  transform: translateY(40%);
+  transform: translateY(42%);
   padding: 0.2rem;
+  height: 6rem;
   background: var(--appbackgroundcolor);
 `;
 const Img = styled.img`
   width: 100%;
-  height: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
   width: ${(props) => (props.type === "dp" ? "6rem" : "")};
-  height: ${(props) => (props.type === "dp" ? "6rem" : "static")};
+  height: ${(props) => (props.type === "dp" ? "100%" : "100%")};
 `;
 const Column = styled.div`
   display: flex;

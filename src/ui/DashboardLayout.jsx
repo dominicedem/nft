@@ -6,9 +6,12 @@ import Profile from "./Profile";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  grid-template-columns: auto 64vw auto;
+  grid-template-columns: auto 70vw auto;
   height: 100vh;
   position: relative;
+  @media (max-width: 1220px) {
+    grid-template-columns: auto 64vw auto;
+  }
 `;
 
 // const OverlayBox = styled.div`
@@ -54,7 +57,7 @@ const MainStyle = styled.div`
 `;
 const ProfileStyle = styled.div`
   background: var(--appbackgroundcolor);
-  padding: 2rem 0.5rem 1rem 0.5rem;
+  padding: 2rem 0.5rem 0 0.5rem;
   overflow-y: scroll;
 `;
 
