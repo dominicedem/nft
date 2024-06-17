@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { setBought, setSold } from "../Slices/TransactionSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 const TransactionStatusStyle = styled.div`
   display: flex;
@@ -14,7 +12,7 @@ const Box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.4rem 1rem;
+  padding: 0.4rem 0.8rem;
   color: var(--black_text);
   border-radius: 0.5rem;
   width: 100%;

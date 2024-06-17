@@ -27,11 +27,6 @@ const Column = styled.div`
   width: 100%;
   margin-top: -5rem;
 `;
-const data = [
-  {
-    types: "Nft",
-  },
-];
 function Dashboard() {
   return (
     <DashboardStyle>
@@ -78,11 +73,7 @@ function Dashboard() {
         <DashCards header="Exhibition" profile="true" Exhibition="true" />
       </DashCardBox>
       <TableBox>
-        <Table
-          tableHead="NFT Transactions"
-          transaction="true"
-          header={["Type", "Amount", "Date", "Status"]}
-        />
+        <Table tableHead="NFT Transactions" transaction="true" />
       </TableBox>
     </DashboardStyle>
   );

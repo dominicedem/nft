@@ -38,7 +38,7 @@ const List = styled.span`
   font-size: 1.55rem;
   color: var(--black_text);
   font-weight: 300;
-  width: 25%;
+  width: ${(props) => (props.type === "sold" ? "25%" : "30%")};
 `;
 
 const data = [
@@ -85,9 +85,49 @@ const data = [
     status: "notCompleted",
   },
 ];
-function Table({ tableHead, transaction, header }) {
+const datas = [
+  {
+    Nftname: "Deposit",
+    amount: "2 ETH",
+    seller: "D Dom 😎",
+  },
+  {
+    Nftname: "Withdrawal",
+    amount: "4 ETH",
+    seller: "Agbara",
+  },
+  {
+    Nftname: "Withdrawal",
+    amount: "6 ETH",
+    seller: "Augustin",
+  },
+  {
+    Nftname: "Deposit",
+    amount: "5 ETH",
+    seller: "Izundu",
+  },
+  {
+    Nftname: "withdrawal",
+    amount: "1 ETH",
+    seller: "Okomodu",
+  },
+  {
+    Nftname: "Deposit",
+    amount: "9 ETH",
+    seller: "Chukwueze",
+  },
+  {
+    Nftname: "withdrawal",
+    amount: "8 ETH",
+    seller: "Anything",
+  },
+];
+function Table({ tableHead, transaction }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
+  const header = sold
+    ? ["Type", "Amount", "Date", "Status"]
+    : ["Type", "Amount", "Seller"];
   return (
     <TableStyle>
       <HeadBox>
@@ -114,22 +154,31 @@ function Table({ tableHead, transaction, header }) {
           </List>
         ))}
       </Row>
-      <TableRow />
+      <TableRow sold={sold} bought={bought} />
     </TableStyle>
   );
 }
 
-function TableRow() {
+function TableRow({ sold, bought }) {
   return (
     <TableBox>
-      {data.map((val, ind) => (
-        <Row key={ind}>
-          <List>{val.Nftname}</List>
-          <List>{val.amount}</List>
-          <List>{val.date}</List>
-          <List>{val.status}</List>
-        </Row>
-      ))}
+      {sold &&
+        data.map((val, ind) => (
+          <Row key={ind}>
+            <List type="sold">{val.Nftname}</List>
+            <List type="sold">{val.amount}</List>
+            <List type="sold">{val.date}</List>
+            <List type="sold">{val.status}</List>
+          </Row>
+        ))}
+      {bought &&
+        datas.map((val, ind) => (
+          <Row key={ind}>
+            <List type="bought">{val.Nftname}</List>
+            <List type="bought">{val.amount}</List>
+            <List type="bought">{val.seller}</List>
+          </Row>
+        ))}
     </TableBox>
   );
 }
