@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import Navigation from "../ui/Navigation";
-import { Link } from "react-router-dom";
-import Button from "../ui/Button";
 import NftProfile from "../ui/NftProfile";
 import SliderCon from "../ui/SliderCon";
 

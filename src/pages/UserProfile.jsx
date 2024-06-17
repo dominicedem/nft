@@ -141,16 +141,42 @@ const datas = [
   },
   {
     image_url: `/img1.webp`,
-    id: 4,
+    id: 3,
     sub: "Plutonics",
   },
   {
     image_url: `/robot.webp`,
-    id: 3,
+    id: 4,
+    sub: "Azra-alpha",
+  },
+  {
+    image_url: `/img1.webp`,
+    id: 5,
+    sub: "Azra-alpha",
+  },
+  {
+    image_url: `/light.webp`,
+    id: 6,
+    sub: "Azra-alpha",
+  },
+  {
+    image_url: `/degods.webp`,
+    id: 7,
+    sub: "Azra-alpha",
+  },
+  {
+    image_url: `/robot.webp`,
+    id: 8,
+    sub: "Azra-alpha",
+  },
+  {
+    image_url: `/fly.webp`,
+    id: 9,
     sub: "Azra-alpha",
   },
 ];
-function UserProfile({ exhibition }) {
+function UserProfile({ exhibition, isExhibition }) {
+  console.log(isExhibition);
   return (
     <NftProfileStyle>
       <ImageBox>
@@ -243,30 +269,30 @@ function UserProfile({ exhibition }) {
             </SocialBox>
           )}
         </Row>
-        <NftBox style={{ marginTop: "-2rem" }}>
-          <Text style={{ fontWeight: "600" }}>NFT</Text>
-          <AllCards>
-            {data.map((val, _) => (
-              <Cards defaultCard="true" all="true" key={val.id} data={val} />
-            ))}
-          </AllCards>
-        </NftBox>
         {!exhibition && (
-          <NftBox style={{ marginTop: "6rem" }}>
-            <Text style={{ fontWeight: "600" }}>Exhibition</Text>
+          <NftBox style={{ marginTop: "-2rem" }}>
+            <Text style={{ fontWeight: "600" }}>NFT</Text>
             <AllCards>
-              {datas.map((val, _) => (
-                <Cards
-                  Exhibition="true"
-                  profile="true"
-                  all="true"
-                  key={val.id}
-                  data={val}
-                />
+              {data.map((val, _) => (
+                <Cards defaultCard="true" all="true" key={val.id} data={val} />
               ))}
             </AllCards>
           </NftBox>
         )}
+        <NftBox style={{ marginTop: "6rem" }}>
+          <Text style={{ fontWeight: "600" }}>Exhibition</Text>
+          <AllCards>
+            {datas.map((val, _) => (
+              <Cards
+                Exhibition="true"
+                profile="true"
+                all="true"
+                key={val.id}
+                data={val}
+              />
+            ))}
+          </AllCards>
+        </NftBox>
       </Container>
     </NftProfileStyle>
   );

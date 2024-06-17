@@ -7,7 +7,7 @@ const UserNftProfile1Style = styled.div`
 function UserNftProfile() {
   return (
     <UserNftProfile1Style>
-      <UserProfile />
+      <UserProfile isExhibition="true" />
     </UserNftProfile1Style>
   );
 }

@@ -7,7 +7,7 @@ import { HiOutlineArrowLongRight } from "react-icons/hi2";
 const ColumnBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 44rem;
+  height: 42rem;
   margin-bottom: 3rem;
   gap: ${(props) => (props.type === "card" ? "3rem" : "2rem")};
   border-radius: ${(props) => (props.type === "card" ? "1rem" : "")};
@@ -30,7 +30,7 @@ const Text = styled.span`
 `;
 const ImgBox = styled.div`
   width: 34%;
-  height: 44rem;
+  height: 42rem;
   border-radius: 1.5rem;
 `;
 const Img = styled.img`
@@ -99,7 +99,7 @@ const arrowIconStyle = {
   fontSize: "3rem",
   color: "var(--profile_text)",
 };
-function NftProfile({ logedIn }) {
+function NftProfile() {
   return (
     <div>
       <Contianer>
@@ -112,65 +112,35 @@ function NftProfile({ logedIn }) {
           <ImgBox>
             <Img src="/degods.webp" />
           </ImgBox>
-          {logedIn ? (
-            <>
-              <ColumnBox style={{ width: "66%" }}>
-                <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-                  DeGods Ozai
-                </Text>
-                <Text style={{ fontSize: "1.8rem", marginTop: "-1.8rem" }}>
-                  Owned by{" "}
-                  <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                    Odin
-                  </Text>
-                </Text>
-                <Text style={{ fontSize: "1.6rem", marginTop: "1rem" }}>
-                  Beast
-                </Text>
-                <ColumnBox
-                  type="card"
+
+          <>
+            <ColumnBox style={{ width: "66%" }}>
+              <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
+                DeGods Ozai
+              </Text>
+              <Box style={{ textDecoration: "none" }}>
+                <Text
                   style={{
-                    background: "var(--light_faint)",
-                    width: "95%",
-                    marginTop: "2rem",
+                    fontSize: "1.8rem",
                   }}
                 >
-                  <Text style={{ fontSize: "1.85rem" }}>
-                    You need to login to buy this NFT
-                  </Text>
-                  <Buy>Login</Buy>
-                </ColumnBox>
-              </ColumnBox>
-            </>
-          ) : (
-            <>
-              <ColumnBox style={{ width: "66%" }}>
-                <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-                  DeGods Ozai
+                  Owned by:{" "}
                 </Text>
-                <Box style={{ textDecoration: "none" }}>
-                  <Text
-                    style={{
-                      fontSize: "1.8rem",
-                    }}
-                  >
-                    Owned by:{" "}
-                  </Text>
-                  <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                    Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />{" "}
-                  </Text>
-                  <Box
-                    style={{
-                      fontSize: "2rem",
-                      marginLeft: "20%",
-                      width: "fit-content",
-                      color: "var(--profile_text)",
-                    }}
-                  >
-                    Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-                  </Box>
+                <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
+                  Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />{" "}
+                </Text>
+                <Box
+                  style={{
+                    fontSize: "2rem",
+                    marginLeft: "5%",
+                    width: "fit-content",
+                    color: "var(--profile_text)",
+                  }}
+                >
+                  Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
                 </Box>
-                {/* <Text
+              </Box>
+              {/* <Text
                   style={{
                     fontSize: "1.8rem",
                     marginTop: "-1.8rem",
@@ -193,86 +163,85 @@ function NftProfile({ logedIn }) {
                     Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
                   </Text>
                 </Text> */}
-                <Text
-                  style={{
-                    fontSize: "1.8rem",
-                    marginTop: "1rem",
-                    fontWeight: "500",
-                  }}
-                >
-                  Description (Gamining)
+              <Text
+                style={{
+                  fontSize: "1.8rem",
+                  marginTop: "1rem",
+                  fontWeight: "500",
+                }}
+              >
+                Description (Gamining)
+              </Text>
+              <ColumnBox
+                type="card"
+                style={{
+                  background: "var(--light_faint)",
+                  width: "95%",
+                  marginTop: "-1rem",
+                  padding: "2.5rem",
+                  height: "14rem",
+                  overflow: "scroll",
+                }}
+              >
+                <Text style={{ fontSize: "1.65rem" }}>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                  fugiat architecto expedita natus culpa vitae aperiam dolorum
+                  nisi maiores at. Temporibus, nam eveniet? Unde, culpa harum
+                  reiciendis quam qui a! Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Optio fugiat architecto expedita natus culpa
+                  vitae aperiam dolorum nisi maiores at. Temporibus, nam
                 </Text>
-                <ColumnBox
-                  type="card"
+              </ColumnBox>
+              <PayBox>
+                <RowBox
                   style={{
-                    background: "var(--light_faint)",
-                    width: "95%",
-                    marginTop: "-1rem",
-                    padding: "2.5rem",
+                    gap: "1rem",
+                    alignItems: "end",
                   }}
                 >
-                  <Text style={{ fontSize: "1.65rem" }}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Optio fugiat architecto expedita natus culpa vitae aperiam
-                    dolorum nisi maiores at. Temporibus, nam eveniet? Unde,
-                    culpa harum reiciendis quam qui a! Lorem ipsum dolor sit
-                    amet consectetur adipisicing elit. Optio fugiat architecto
-                    expedita natus culpa vitae aperiam dolorum nisi maiores at.
-                    Temporibus, nam eveniet? Unde, culpa harum reiciendis quam
-                    qui a!
+                  <Text
+                    style={{
+                      fontSize: "1.8rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "400",
+                    }}
+                  >
+                    Floor Price:
                   </Text>
-                </ColumnBox>
-                <PayBox>
-                  <RowBox
+                  <Text
                     style={{
-                      gap: "1rem",
-                      alignItems: "end",
+                      fontSize: "2rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "500",
                     }}
                   >
-                    <Text
-                      style={{
-                        fontSize: "1.8rem",
-                        color: "var(--black_text)",
-                        fontFamily: "IBM Plex Sans, sans-serif",
-                        fontWeight: "400",
-                      }}
-                    >
-                      Floor Price:
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: "2rem",
-                        color: "var(--black_text)",
-                        fontFamily: "IBM Plex Sans, sans-serif",
-                        fontWeight: "500",
-                      }}
-                    >
-                      4 ETH
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: "1.4rem",
-                        color: "var(--black_text)",
-                        fontFamily: "IBM Plex Sans, sans-serif",
-                        fontWeight: "400",
-                        alignSelf: "center",
-                        paddingTop: ".2rem",
-                      }}
-                    >
-                      ($4,900)
-                    </Text>
-                  </RowBox>
-                  <Buy
+                    4 ETH
+                  </Text>
+                  <Text
                     style={{
-                      width: "100%",
+                      fontSize: "1.4rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "400",
+                      alignSelf: "center",
+                      paddingTop: ".2rem",
                     }}
                   >
-                    Login
-                  </Buy>
-                </PayBox>
-              </ColumnBox>
-            </>
-          )}
+                    ($4,900)
+                  </Text>
+                </RowBox>
+                <Buy
+                  style={{
+                    width: "100%",
+                  }}
+                >
+                  Login
+                </Buy>
+              </PayBox>
+            </ColumnBox>
+          </>
         </RowBox>
       </Contianer>
     </div>
