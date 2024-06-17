@@ -15,6 +15,7 @@ const BtnBox = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
+  width: 100%;
 `;
 const Text = styled.span`
   font-size: 1.4rem;
@@ -33,7 +34,7 @@ function Exhibtion() {
           background="true"
           font="1.8rem"
           color="var(--white_text)"
-          width="100%"
+          width="20%"
           padding="var(--padding_btn_big)"
         >
           Join Exhibition
