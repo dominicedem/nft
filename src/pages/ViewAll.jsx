@@ -51,13 +51,14 @@ const AllCards = styled.div`
   grid-template-rows: repeat(3, 1fr);
   column-gap: 2rem;
   row-gap: 2rem;
-  padding-left: 1rem;
+  padding: 0 1rem;
 `;
 const PagBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
   width: 100%;
+  padding-right: 1rem;
 `;
 const data = [
   {

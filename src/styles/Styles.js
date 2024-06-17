@@ -157,6 +157,12 @@ body {
         background: var(--tertiary_text_faint);
     }
 }
+.blue {
+    background: var(--blue_btn);
+    &:hover {
+        background: var(--blue_btn_hover);
+    }
+}
 .nav {
     background: var(--nav_background);
     &:hover {

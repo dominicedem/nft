@@ -130,7 +130,7 @@ function Profile() {
         <Button
           padding="1rem 1.5rem"
           width="90%"
-          background="var(--blue_btn)"
+          background="true"
           color="var(--white_text)"
         >
           Edit Profile

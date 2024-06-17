@@ -43,9 +43,10 @@ function Button({
             fontSize: `${font}`,
             color: `${color}`,
             border: `${border}`,
-            background: `${background || background}`,
           }}
-          className={border ? "withBorder" : "withoutBorder"}
+          className={
+            border ? "withBorder" : background ? "blue" : "withoutBorder"
+          }
         >
           {children} {arrow === "right" && <IoArrowForward style={iconStyle} />}
         </ButtonStyle>
