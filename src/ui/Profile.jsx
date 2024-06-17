@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { CiFacebook } from "react-icons/ci";
-import { FaXTwitter } from "react-icons/fa6";
-import { IoLogoInstagram } from "react-icons/io5";
 import Button from "./Button";
+import Socials from "./Socials";
 
 const ProfileStyle = styled.div`
   display: flex;
@@ -72,11 +70,6 @@ const Bio = styled.span`
   color: var(--sideBar_text);
 `;
 
-const iconStyle = {
-  width: "2.2rem",
-  height: "2.2rem",
-  color: "var(--sideBar_text)",
-};
 function Profile() {
   return (
     <ProfileStyle>
@@ -113,17 +106,7 @@ function Profile() {
             consectetur corporis aliquid quo ea sunt fuga asperiores, similique
           </Bio>
         </Column>
-        <Column style={{ marginTop: "-1.5rem", gap: "1.5rem" }}>
-          <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-            <CiFacebook style={iconStyle} /> Username
-          </Text>
-          <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-            <FaXTwitter style={iconStyle} /> Twitter
-          </Text>
-          <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-            <IoLogoInstagram style={iconStyle} /> Instagram
-          </Text>
-        </Column>
+        <Socials />
       </Description>
       <Column
         style={{ alignItems: "center", gap: "1.5rem", justifySelf: "end" }}
