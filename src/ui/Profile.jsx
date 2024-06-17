@@ -67,6 +67,8 @@ const Bio = styled.span`
   background: var(--bios_background);
   border-radius: 1rem;
   margin-top: -0.5rem;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
 `;
 
 const iconStyle = {
