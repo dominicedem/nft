@@ -45,7 +45,7 @@ const data = [
     sub: "Plutonics",
   },
 ];
-function DashCards({ header, defaultCard, Exhibition, profile, Edit }) {
+function DashCards({ all, header, defaultCard, Exhibition, profile, Edit }) {
   return (
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>
@@ -55,6 +55,7 @@ function DashCards({ header, defaultCard, Exhibition, profile, Edit }) {
       <Flex>
         {data.map((val, ind) => (
           <Cards
+            all={all}
             defaultCard={defaultCard}
             key={ind}
             data={val}

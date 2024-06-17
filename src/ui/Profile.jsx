@@ -17,16 +17,16 @@ const ProfileStyle = styled.div`
   border-top-right-radius: 1.5rem;
   border-top-left-radius: 1.5rem;
 `;
-const ImageBox = styled.div`
-  position: relative;
-  width: 100%;
-  height: 10rem;
-`;
 const Description = styled.div`
   padding: 2rem;
   display: inherit;
   flex-direction: inherit;
   gap: 4rem;
+`;
+const ImageBox = styled.div`
+  position: relative;
+  width: 100%;
+  height: 10rem;
 `;
 const DpbBox = styled.div`
   position: absolute;

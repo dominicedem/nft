@@ -77,7 +77,9 @@ function SideBar() {
           </List>
           <List>
             <CgProfile style={iconStyle} />
-            <Link style={linkStyle}>My Nft profile</Link>
+            <Link style={linkStyle} to="/ownNftProfile">
+              My Nft profile
+            </Link>
           </List>
           <List>
             <GiCardExchange style={iconStyle} />
@@ -95,7 +97,9 @@ function SideBar() {
           </List>
           <List>
             <BsCollection style={iconStyle} />
-            <Link style={linkStyle}>Exhibition</Link>
+            <Link style={linkStyle} to="/exhibition">
+              Exhibition
+            </Link>
           </List>
         </ListBox>
       </ListBox>

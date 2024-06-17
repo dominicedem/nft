@@ -18,6 +18,8 @@ import transactionReducer from "./Slices/TransactionSlice";
 // const SignIn = lazy(() => import("./features/Authentication/SignIn"));
 // const SignUp = lazy(() => import("./features/Authentication/SignUpForm"));
 // const Applayout = lazy(() => import("./ui/Applayout"));
+const Exhibtion = lazy(() => import("./pages/Exhibition"));
+const UserNftProfile = lazy(() => import("./pages/UserProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const DashboardLayout = lazy(() => import("./ui/DashboardLayout"));
 const ErrorRoute = lazy(() => import("./pages/ErrorRoute"));
@@ -60,6 +62,8 @@ function App() {
                   <Route path="/all" element={<Home />} />
                   <Route path="/viewall" element={<ViewAll />} />
                   <Route path="/buynft" element={<BuyNft />} />
+                  <Route path="/ownNftProfile" element={<UserNftProfile />} />
+                  <Route path="/exhibition" element={<Exhibtion />} />
                   {/* <Route path="/signin" element={<SignIn />} /> */}
                   {/* <Route path="/signup" element={<SignUp />} /> */}
                   {/* <Route path="/profile" element={<Profile />} /> */}
