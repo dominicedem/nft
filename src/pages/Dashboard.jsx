@@ -4,6 +4,9 @@ import DashCards from "../ui/DashCards";
 import Table from "../ui/Table";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
+import EditNft from "../ui/EditNft";
+import { useDispatch, useSelector } from "react-redux";
+import { setOverlay } from "../Slices/overLaySlice";
 
 const DashboardStyle = styled.div`
   height: 100%;
@@ -28,12 +31,31 @@ const Column = styled.div`
   width: 100%;
   margin-top: -5rem;
 `;
+const Overlay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay_background);
+  position: fixed;
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+`;
 const linkStyle = {
   color: " var(--sideBar_text)",
   textDecoration: "none",
   width: "90%",
 };
 function Dashboard() {
+  const dispatch = useDispatch();
+  const { overlay } = useSelector((state) => state.overlayData);
+  function handleOverlay(e) {
+    e.target.className.split(" ").includes("overlay") &&
+      dispatch(setOverlay(false));
+  }
   return (
     <DashboardStyle>
       <AccountBalance />
@@ -87,6 +109,11 @@ function Dashboard() {
       <TableBox>
         <Table tableHead="NFT Transactions" transaction="true" />
       </TableBox>
+      {overlay && (
+        <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>
+          <EditNft />
+        </Overlay>
+      )}
     </DashboardStyle>
   );
 }

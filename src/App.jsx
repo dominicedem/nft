@@ -5,7 +5,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import homeReducer from "./Slices/homeSlice";
-import transactionReducer from "./Slices/TransactionSlice";
+import overlayReducer from "./Slices/overLaySlice";
 import Deposit from "./pages/Deposit";
 // import filterReducer from "./Slices/FilterSlice";
 // import searchReducer from "./Slices/SearchSlice";
@@ -36,7 +36,7 @@ const Loading = lazy(() => import("./ui/Loading"));
 const store = configureStore({
   reducer: {
     homeData: homeReducer,
-    transactionData: transactionReducer,
+    overlayData: overlayReducer,
     // filterData: filterReducer,
     // searchData: searchReducer,
   },

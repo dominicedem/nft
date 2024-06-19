@@ -47,7 +47,7 @@ function TransactionStatus({
         className={sold && "activeTransaction"}
         onClick={() => handleSold()}
       >
-        {text.first}
+        {text?.first}
       </Box>
       <Box
         style={
@@ -56,7 +56,7 @@ function TransactionStatus({
         className={bought && "activeTransaction"}
         onClick={() => handleBought()}
       >
-        {text.second}
+        {text?.second}
       </Box>
     </TransactionStatusStyle>
   );

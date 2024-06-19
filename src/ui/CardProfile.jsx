@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setOverlay } from "../Slices/overLaySlice";
 
 const CardBox = styled.div`
   display: flex;
@@ -18,7 +20,8 @@ const CardBox = styled.div`
 `;
 
 function CardProfile() {
-  return <CardBox>Edit</CardBox>;
+  const dispatch = useDispatch();
+  return <CardBox onClick={() => dispatch(setOverlay(true))}>Edit</CardBox>;
 }
 
 export default CardProfile;

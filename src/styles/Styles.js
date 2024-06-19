@@ -186,6 +186,9 @@ body {
 .activeTransaction {
   background: var(--appbackgroundcolor);
 }
+.activeToggle {
+  transform: translateX(100%);
+}
 
 `;
 export default GlobalStyle;
