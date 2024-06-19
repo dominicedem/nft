@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import homeReducer from "./Slices/homeSlice";
 import transactionReducer from "./Slices/TransactionSlice";
+import Deposit from "./pages/Deposit";
 // import filterReducer from "./Slices/FilterSlice";
 // import searchReducer from "./Slices/SearchSlice";
 // import ErrorRoute from "./pages/ErrorRoute";
@@ -18,6 +19,9 @@ import transactionReducer from "./Slices/TransactionSlice";
 // const SignIn = lazy(() => import("./features/Authentication/SignIn"));
 // const SignUp = lazy(() => import("./features/Authentication/SignUpForm"));
 // const Applayout = lazy(() => import("./ui/Applayout"));
+const Withdrawal = lazy(() => import("./pages/Withdrawal"));
+const EditProfile = lazy(() => import("./pages/EditProfile"));
+const Mint = lazy(() => import("./pages/Mint"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
 const UserNftProfile = lazy(() => import("./pages/UserProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -58,6 +62,10 @@ function App() {
                 <Routes>
                   <Route element={<DashboardLayout />}>
                     <Route index element={<Dashboard />} />
+                    <Route path="mint" element={<Mint />} />
+                    <Route path="editProfile" element={<EditProfile />} />
+                    <Route path="Deposit" element={<Deposit />} />
+                    <Route path="withdraw" element={<Withdrawal />} />
                   </Route>
                   <Route path="/all" element={<Home />} />
                   <Route path="/viewall" element={<ViewAll />} />

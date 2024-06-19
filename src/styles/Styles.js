@@ -15,11 +15,13 @@ const GlobalStyle = createGlobalStyle`
     --subnav_background: #ffffff30;
     --box_shadow: #0001;
     --balance_background: rgb(217, 217, 217, 20%);
+    --border: rgb(217, 217, 217, 50%);
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;
-    --blue_btn: #3b82f6;
-    --blue_btn_hover: #2563eb;
+    --blue_btn: #217FD7;
+    --blue_btn_hover: rgb(33, 127, 215,90%);
     --btn_hover: #ececec;
+    --overlay_background: #0003;
     --nav_background: #444444bb;
     --nav_background_hover: #444444;
     --secondary_text_faint: #3333335e;

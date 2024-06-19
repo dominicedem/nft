@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Socials from "./Socials";
+import { Link } from "react-router-dom";
 
 const ProfileStyle = styled.div`
   display: flex;
@@ -69,7 +70,11 @@ const Bio = styled.span`
   letter-spacing: 0.3px;
   color: var(--sideBar_text);
 `;
-
+const linkStyle = {
+  color: "inherit",
+  textDecoration: "none",
+  width: "90%",
+};
 function Profile() {
   return (
     <ProfileStyle>
@@ -108,27 +113,29 @@ function Profile() {
         </Column>
         <Socials />
       </Description>
-      <Column
-        style={{ alignItems: "center", gap: "1.5rem", justifySelf: "end" }}
-      >
-        <Button
-          padding="1rem 1.5rem"
-          width="90%"
-          background="true"
-          font="1.6rem"
-          color="var(--white_text)"
-        >
-          Edit Profile
-        </Button>
-        <Button
-          border="1px solid var(--inputField_border)"
-          padding="1rem 1.5rem"
-          width="90%"
-          font="1.6rem"
-          color="var(--black_text)"
-        >
-          Change Password
-        </Button>
+      <Column style={{ alignItems: "end", gap: "1.5rem", justifySelf: "end" }}>
+        <Link style={linkStyle} to="editProfile">
+          <Button
+            padding="1rem 1.5rem"
+            width="90%"
+            background="true"
+            font="1.6rem"
+            color="var(--white_text)"
+          >
+            Edit Profile
+          </Button>
+        </Link>
+        <Link style={linkStyle}>
+          <Button
+            border="1px solid var(--inputField_border)"
+            padding="1rem 1.5rem"
+            width="90%"
+            font="1.6rem"
+            color="var(--black_text)"
+          >
+            Change Password
+          </Button>
+        </Link>
       </Column>
     </ProfileStyle>
   );

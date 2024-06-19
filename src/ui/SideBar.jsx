@@ -69,11 +69,15 @@ function SideBar() {
         <ListBox style={{ gap: "1.5rem" }}>
           <List>
             <MdOutlineAccountBalanceWallet style={iconStyle} />
-            <Link style={linkStyle}>Account overview</Link>
+            <Link style={linkStyle} to="/">
+              Account overview
+            </Link>
           </List>
           <List>
             <PiNotePencilLight style={iconStyle} />
-            <Link style={linkStyle}>Mint Nft</Link>
+            <Link style={linkStyle} to="/mint">
+              Mint Nft
+            </Link>
           </List>
           <List>
             <CgProfile style={iconStyle} />

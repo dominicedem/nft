@@ -7,6 +7,7 @@ const LoadingStyle = styled.div`
   width: 99.5vw;
   height: 100vw;
   font-size: 4rem;
+  color: var(--black_text);
 `;
 function Loading() {
   return <LoadingStyle>Loading</LoadingStyle>;

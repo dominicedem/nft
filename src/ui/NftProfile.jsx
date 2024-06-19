@@ -29,7 +29,7 @@ const Text = styled.span`
   font-family: "IBM Plex Sans", sans-serif;
 `;
 const ImgBox = styled.div`
-  width: 34%;
+  width: 30%;
   height: 42rem;
   border-radius: 1.5rem;
 `;
@@ -112,136 +112,110 @@ function NftProfile() {
           <ImgBox>
             <Img src="/degods.webp" />
           </ImgBox>
-
-          <>
-            <ColumnBox style={{ width: "66%" }}>
-              <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-                DeGods Ozai
-              </Text>
-              <Box style={{ textDecoration: "none" }}>
-                <Text
-                  style={{
-                    fontSize: "1.8rem",
-                  }}
-                >
-                  Owned by:{" "}
-                </Text>
-                <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                  Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />{" "}
-                </Text>
-                <Box
-                  style={{
-                    fontSize: "2rem",
-                    marginLeft: "5%",
-                    width: "fit-content",
-                    color: "var(--profile_text)",
-                  }}
-                >
-                  Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-                </Box>
-              </Box>
-              {/* <Text
-                  style={{
-                    fontSize: "1.8rem",
-                    marginTop: "-1.8rem",
-                    width: "95%",
-                    gap: "1rem",
-                    alignItems: "start",
-                    height: "fit-content",
-                  }}
-                >
-                  Owned by:{" "}
-                  <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                    Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "2rem",
-                      marginLeft: "20%",
-                    }}
-                  >
-                    Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-                  </Text>
-                </Text> */}
+          <ColumnBox style={{ width: "50%" }}>
+            <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
+              DeGods Ozai
+            </Text>
+            <Box style={{ textDecoration: "none" }}>
               <Text
                 style={{
                   fontSize: "1.8rem",
-                  marginTop: "1rem",
-                  fontWeight: "500",
                 }}
               >
-                Description (Gamining)
+                Owned by:{" "}
               </Text>
-              <ColumnBox
-                type="card"
+              <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
+                Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />{" "}
+              </Text>
+              <Box
                 style={{
-                  background: "var(--light_faint)",
-                  width: "95%",
-                  marginTop: "-1rem",
-                  padding: "2.5rem",
-                  height: "14rem",
-                  overflow: "scroll",
+                  fontSize: "2rem",
+                  marginLeft: "5%",
+                  width: "fit-content",
+                  color: "var(--profile_text)",
                 }}
               >
-                <Text style={{ fontSize: "1.65rem" }}>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                  fugiat architecto expedita natus culpa vitae aperiam dolorum
-                  nisi maiores at. Temporibus, nam eveniet? Unde, culpa harum
-                  reiciendis quam qui a! Lorem ipsum dolor sit amet consectetur
-                  adipisicing elit. Optio fugiat architecto expedita natus culpa
-                  vitae aperiam dolorum nisi maiores at. Temporibus, nam
-                </Text>
-              </ColumnBox>
-              <PayBox>
-                <RowBox
-                  style={{
-                    gap: "1rem",
-                    alignItems: "end",
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: "1.8rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "400",
-                    }}
-                  >
-                    Floor Price:
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "2rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "500",
-                    }}
-                  >
-                    4 ETH
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "1.4rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "400",
-                      alignSelf: "center",
-                      paddingTop: ".2rem",
-                    }}
-                  >
-                    ($4,900)
-                  </Text>
-                </RowBox>
-                <Buy
-                  style={{
-                    width: "100%",
-                  }}
-                >
-                  Login
-                </Buy>
-              </PayBox>
+                Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
+              </Box>
+            </Box>
+            <Text
+              style={{
+                fontSize: "1.8rem",
+                marginTop: "1rem",
+                fontWeight: "500",
+              }}
+            >
+              Description (Gamining)
+            </Text>
+            <ColumnBox
+              type="card"
+              style={{
+                background: "var(--light_faint)",
+                width: "95%",
+                marginTop: "-1rem",
+                padding: "2.5rem",
+                height: "14rem",
+                overflow: "scroll",
+              }}
+            >
+              <Text style={{ fontSize: "1.65rem" }}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
+                fugiat architecto expedita natus culpa vitae aperiam dolorum
+                nisi maiores at. Temporibus, nam eveniet? Unde, culpa harum
+                reiciendis quam qui a! Lorem ipsum dolor sit amet consectetur
+                adipisicing elit. Optio fugiat architecto expedita natus culpa
+                vitae aperiam dolorum nisi maiores at. Temporibus, nam
+              </Text>
             </ColumnBox>
-          </>
+            <PayBox>
+              <RowBox
+                style={{
+                  gap: "1rem",
+                  alignItems: "end",
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: "1.8rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Floor Price:
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "2rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "500",
+                  }}
+                >
+                  4 ETH
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "1.4rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "400",
+                    alignSelf: "center",
+                    paddingTop: ".2rem",
+                  }}
+                >
+                  ($4,900)
+                </Text>
+              </RowBox>
+              <Buy
+                style={{
+                  width: "100%",
+                }}
+              >
+                Login
+              </Buy>
+            </PayBox>
+          </ColumnBox>
         </RowBox>
       </Contianer>
     </div>
