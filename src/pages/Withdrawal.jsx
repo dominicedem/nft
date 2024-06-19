@@ -168,7 +168,7 @@ function Withdrawal() {
               </Text>
             </Row>
           ) : (
-            <Row>
+            <Row style={{ marginTop: "-1rem" }}>
               <Select onChange={(e) => setNetwork(e.target.value)}>
                 <Option value="WETH">WETH</Option>
                 <Option value="SOL">SOL</Option>
