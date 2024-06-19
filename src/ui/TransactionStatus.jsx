@@ -6,7 +6,7 @@ const TransactionStatusStyle = styled.div`
   padding: 0.4rem;
   border-radius: 0.5rem;
   background: var(--btn_hover);
-  width: 20%;
+  width: 100%;
 `;
 const Box = styled.div`
   display: flex;
@@ -20,7 +20,16 @@ const Box = styled.div`
   transition: all 0.3s;
   font-size: 1.6rem;
 `;
-function TransactionStatus({ sold, setSold, bought, setBought }) {
+function TransactionStatus({
+  sold,
+  setSold,
+  bought,
+  setBought,
+  width,
+  text,
+  padding,
+  font,
+}) {
   function handleSold() {
     setSold(true);
     setBought(false);
@@ -30,15 +39,24 @@ function TransactionStatus({ sold, setSold, bought, setBought }) {
     setSold(false);
   }
   return (
-    <TransactionStatusStyle>
-      <Box className={sold && "activeTransaction"} onClick={() => handleSold()}>
-        Sold
+    <TransactionStatusStyle style={{ width: `${width}` }}>
+      <Box
+        style={
+          padding && font && { padding: `${padding}`, fontWeight: `${font}` }
+        }
+        className={sold && "activeTransaction"}
+        onClick={() => handleSold()}
+      >
+        {text.first}
       </Box>
       <Box
+        style={
+          padding && font && { padding: `${padding}`, fontWeight: `${font}` }
+        }
         className={bought && "activeTransaction"}
         onClick={() => handleBought()}
       >
-        Bought
+        {text.second}
       </Box>
     </TransactionStatusStyle>
   );

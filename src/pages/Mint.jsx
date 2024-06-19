@@ -9,7 +9,7 @@ const MintBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 75%;
+  width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const MintModalStyle = styled.div`

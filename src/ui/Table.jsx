@@ -138,6 +138,8 @@ function Table({ tableHead, transaction }) {
             setSold={setSold}
             bought={bought}
             setBought={setBought}
+            width="20%"
+            text={{ first: "Sold", second: "Bought" }}
           />
         )}
       </HeadBox>
