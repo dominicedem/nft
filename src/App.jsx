@@ -4,6 +4,7 @@ import GlobalStyle from "./styles/Styles";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SkeletonTheme } from "react-loading-skeleton";
 import homeReducer from "./Slices/homeSlice";
 import overlayReducer from "./Slices/overLaySlice";
 import Deposit from "./pages/Deposit";
@@ -53,36 +54,38 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
-          <GlobalStyle />
-          <BrowserRouter>
-            <Suspense fallback={<Loading />}>
-              <Suspense>
-                <Routes>
-                  <Route element={<DashboardLayout />}>
-                    <Route index element={<Dashboard />} />
-                    <Route path="mint" element={<Mint />} />
-                    <Route path="editProfile" element={<EditProfile />} />
-                    <Route path="Deposit" element={<Deposit />} />
-                    <Route path="withdraw" element={<Withdrawal />} />
-                  </Route>
-                  <Route path="/all" element={<Home />} />
-                  <Route path="/viewall" element={<ViewAll />} />
-                  <Route path="/buynft" element={<BuyNft />} />
-                  <Route path="/ownNftProfile" element={<UserNftProfile />} />
-                  <Route path="/exhibition" element={<Exhibtion />} />
-                  {/* <Route path="/signin" element={<SignIn />} /> */}
-                  {/* <Route path="/signup" element={<SignUp />} /> */}
-                  {/* <Route path="/profile" element={<Profile />} /> */}
-                  {/* <Route path="/verifyemail" element={<VerifyEmail />} /> */}
-                  <Route path="*" element={<ErrorRoute />} />
-                </Routes>
+      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+        <QueryClientProvider client={queryClient}>
+          <Provider store={store}>
+            <GlobalStyle />
+            <BrowserRouter>
+              <Suspense fallback={<Loading />}>
+                <Suspense>
+                  <Routes>
+                    <Route element={<DashboardLayout />}>
+                      <Route index element={<Dashboard />} />
+                      <Route path="mint" element={<Mint />} />
+                      <Route path="editProfile" element={<EditProfile />} />
+                      <Route path="Deposit" element={<Deposit />} />
+                      <Route path="withdraw" element={<Withdrawal />} />
+                    </Route>
+                    <Route path="/all" element={<Home />} />
+                    <Route path="/viewall" element={<ViewAll />} />
+                    <Route path="/buynft" element={<BuyNft />} />
+                    <Route path="/ownNftProfile" element={<UserNftProfile />} />
+                    <Route path="/exhibition" element={<Exhibtion />} />
+                    {/* <Route path="/signin" element={<SignIn />} /> */}
+                    {/* <Route path="/signup" element={<SignUp />} /> */}
+                    {/* <Route path="/profile" element={<Profile />} /> */}
+                    {/* <Route path="/verifyemail" element={<VerifyEmail />} /> */}
+                    <Route path="*" element={<ErrorRoute />} />
+                  </Routes>
+                </Suspense>
               </Suspense>
-            </Suspense>
-          </BrowserRouter>
-        </Provider>
-      </QueryClientProvider>
+            </BrowserRouter>
+          </Provider>
+        </QueryClientProvider>
+      </SkeletonTheme>
     </>
   );
 }

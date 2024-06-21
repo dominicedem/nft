@@ -117,6 +117,24 @@ body {
     width: 90vw !important;
 }
 
+.vertical {
+    animation: verticalSlide 20s linear infinite;
+}
+.vertical1 {
+    animation: verticalSlide1 20s linear infinite;
+}
+
+@keyframes verticalSlide {
+    100% {
+        transform: translateY(-33%);
+    }
+}
+@keyframes verticalSlide1 {
+    100% {
+        transform: translateY(33%);
+    }
+}
+
 .profileActive {
     border: 0.1rem solid var(--faint_text_black) !important;
 }
