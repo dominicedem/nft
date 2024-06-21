@@ -15,7 +15,6 @@ const NavStyle = styled.div`
   width: 99.5vw;
   position: fixed;
   z-index: 100;
-  /* display: none; */
 `;
 const Landing = styled.div`
   display: flex;
@@ -23,7 +22,7 @@ const Landing = styled.div`
   justify-content: center;
   width: 99.5vw;
   height: 80vh;
-  background: linear-gradient(#0001 20%, #ffff), url("/hero_background.jpg");
+  background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
   margin-bottom: 7rem;

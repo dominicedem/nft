@@ -33,7 +33,7 @@ const data = [
     sub: "instagram",
   },
   {
-    image_url: `/hero_background.jpg`,
+    image_url: `/hero.jpg`,
     id: 7,
     sub: "facebook",
   },

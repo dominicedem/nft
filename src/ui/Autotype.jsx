@@ -16,7 +16,7 @@ export default function Autotype() {
           fontSize: "7rem",
           height: "100%",
           fontWeight: "700",
-          padding: "3rem 0",
+          padding: "2rem 0",
           display: "inline-block",
           color: "#var(sideBar_text)",
         }}
