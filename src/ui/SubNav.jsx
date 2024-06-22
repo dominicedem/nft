@@ -16,6 +16,7 @@ const List = styled.span`
   font-size: 1.7rem;
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 500;
+  cursor: pointer;
   &:hover {
     background: var(--subnav_background);
   }

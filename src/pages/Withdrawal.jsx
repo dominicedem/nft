@@ -13,7 +13,6 @@ const WithdrawalStyle = styled.div`
   gap: 1rem;
   width: 50rem;
   margin: 0 auto 2rem auto;
-  background: var(--subtle_background);
 `;
 const WithdrawalBox = styled.div`
   display: flex;
@@ -23,6 +22,7 @@ const WithdrawalBox = styled.div`
   width: 100%;
   padding: 2rem 3rem 5rem 3rem;
   border-radius: 1rem;
+  background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
 `;

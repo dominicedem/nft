@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import Cards from "./Cards";
+import { Link } from "react-router-dom";
 
 const DashCardsStyle = styled.div`
   display: flex;
@@ -23,6 +24,10 @@ const Text = styled.div`
   color: var(--black_text);
   font-weight: 600;
 `;
+const linkStyle = {
+  // color: "var(--)",
+  textDecoration: "none",
+};
 const data = [
   {
     image_url: `/degods.webp`,
@@ -50,7 +55,9 @@ function DashCards({ all, header, defaultCard, Exhibition, profile, Edit }) {
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>
         <Text>{header}</Text>
-        <Button padding={"var(--padding_btn_small)"}>See all</Button>
+        <Link style={linkStyle} to="allUserNft">
+          <Button padding={"var(--padding_btn_small)"}>See all</Button>
+        </Link>
       </Flex>
       <Flex>
         {data.map((val, ind) => (

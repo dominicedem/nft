@@ -7,22 +7,12 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SkeletonTheme } from "react-loading-skeleton";
 import homeReducer from "./Slices/homeSlice";
 import overlayReducer from "./Slices/overLaySlice";
-import Deposit from "./pages/Deposit";
-// import filterReducer from "./Slices/FilterSlice";
-// import searchReducer from "./Slices/SearchSlice";
-// import ErrorRoute from "./pages/ErrorRoute";
-// import Loading from "./ui/Loading";
 
-// const MoreLodgeDetails = lazy(() => import("./pages/MoreLodgeDetails"));
-// const LodgeDetails = lazy(() => import("./pages/LodgeDetails"));
-// const Profile = lazy(() => import("./pages/Profile"));
-// const VerifyEmail = lazy(() => import("./features/Authentication/VerifyEmail"));
-// const SignIn = lazy(() => import("./features/Authentication/SignIn"));
-// const SignUp = lazy(() => import("./features/Authentication/SignUpForm"));
-// const Applayout = lazy(() => import("./ui/Applayout"));
-const Withdrawal = lazy(() => import("./pages/Withdrawal"));
+import Deposit from "./pages/Deposit";
+import AllUserNfts from "./pages/AllUserNfts";
+import Mint from "./pages/Mint";
+import Withdrawal from "./pages/Withdrawal";
 const EditProfile = lazy(() => import("./pages/EditProfile"));
-const Mint = lazy(() => import("./pages/Mint"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
 const UserNftProfile = lazy(() => import("./pages/UserProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -68,6 +58,7 @@ function App() {
                       <Route path="editProfile" element={<EditProfile />} />
                       <Route path="Deposit" element={<Deposit />} />
                       <Route path="withdraw" element={<Withdrawal />} />
+                      <Route path="/allUserNft" element={<AllUserNfts />} />
                     </Route>
                     <Route path="/all" element={<Home />} />
                     <Route path="/viewall" element={<ViewAll />} />

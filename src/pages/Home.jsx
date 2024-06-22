@@ -6,6 +6,7 @@ import SliderCon from "../ui/SliderCon";
 import Autotype from "../ui/Autotype";
 import Slider from "../ui/Slider";
 import VerticalSlider from "../ui/VerticalSlider";
+import SubNav from "../ui/SubNav";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
@@ -20,14 +21,25 @@ const NavStyle = styled.div`
 `;
 const Landing = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 99.5vw;
-  height: 80vh;
+  height: 90vh;
+  gap: 5rem;
   background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
   margin-bottom: 7rem;
+  padding-top: 8rem;
+`;
+const SubNavBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+  width: 100%;
+  padding-left: 2rem;
 `;
 const VerticalBox = styled.div`
   display: flex;
@@ -51,14 +63,14 @@ const AnimationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10rem;
-  width: 95%;
+  width: 120rem;
   height: 75%;
   background: #ffffff46;
   backdrop-filter: blur(5px);
-  padding: 2.5rem 1rem 1rem 7rem;
+  padding: 0 1rem 1rem 7rem;
   border: 1px solid var(--inputField_border);
   border-radius: 1rem;
-  transform: translateY(23%);
+  /* transform: translateY(20%); */
 `;
 
 const data = [
@@ -95,6 +107,9 @@ function Home() {
         <Navigation scroll={offset} home="true" />
       </NavStyle>
       <Landing>
+        <SubNavBox>
+          <SubNav />
+        </SubNavBox>
         <AnimationBox>
           <AutoBox>
             <Autotype />

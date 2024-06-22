@@ -11,7 +11,6 @@ const MintBox = styled.div`
   gap: 1rem;
   width: 50rem;
   margin: 0 auto 2rem auto;
-  background: var(--subtle_background);
 `;
 const MintModalStyle = styled.div`
   display: flex;
@@ -21,6 +20,7 @@ const MintModalStyle = styled.div`
   width: 100%;
   padding: 2rem 4rem;
   border-radius: 1rem;
+  background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
 `;
