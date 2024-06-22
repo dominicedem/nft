@@ -70,6 +70,7 @@ body {
         width: 145rem !important;
     }
 }
+
 .swiper-button-prev {
     background: none;
     top: 6% !important;
@@ -117,21 +118,43 @@ body {
     width: 90vw !important;
 }
 
-.vertical {
+.verticalSlide .swiper-wrapper {
+    width: fit-content !important;
+    height: 30rem !important;
+}
+.verticalSlide {
+    display: inline !important;
+    width: 100% !important;
+    height: 100% !important;
+    @media (min-width: 1300px) {
+        width: fit-content !important;
+    }
+    @media (min-width: 1400px) {
+        width: fit-content !important;
+    }
+}
+
+/* .vertical {
     animation: verticalSlide 20s linear infinite;
 }
 .vertical1 {
     animation: verticalSlide1 20s linear infinite;
-}
+} */
 
 @keyframes verticalSlide {
+    0% {
+        transform: translateY(0);
+    }
     100% {
-        transform: translateY(-33%);
+        transform: translateY(-45%);
     }
 }
 @keyframes verticalSlide1 {
+    0% {
+        transform: translateY(0);
+    }
     100% {
-        transform: translateY(33%);
+        transform: translateY(45%);
     }
 }
 

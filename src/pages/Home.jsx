@@ -4,6 +4,8 @@ import SliderVertical from "../ui/SliderVertical";
 import useScroll from "../hooks/handleScroll";
 import SliderCon from "../ui/SliderCon";
 import Autotype from "../ui/Autotype";
+import Slider from "../ui/Slider";
+import VerticalSlider from "../ui/VerticalSlider";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
@@ -31,7 +33,6 @@ const VerticalBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   width: auto;
   overflow-y: hidden;
   height: 100%;
@@ -49,7 +50,7 @@ const AnimationBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 15rem;
+  gap: 10rem;
   width: 95%;
   height: 75%;
   background: #ffffff46;
@@ -59,6 +60,7 @@ const AnimationBox = styled.div`
   border-radius: 1rem;
   transform: translateY(23%);
 `;
+
 const data = [
   {
     types: "Art",
@@ -98,9 +100,9 @@ function Home() {
             <Autotype />
           </AutoBox>
           <VerticalBox>
-            <SliderVertical type="true" />
-            <SliderVertical />
-            <SliderVertical type="true" />
+            <VerticalSlider type="" />
+            <VerticalSlider type="true" />
+            <VerticalSlider type="" />
           </VerticalBox>
         </AnimationBox>
       </Landing>

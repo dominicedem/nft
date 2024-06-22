@@ -42,12 +42,15 @@ const data = [
 const InnerBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: start;
   gap: 0.5rem;
   @media (min-width: 980px) {
     width: 90%;
   }
 `;
 const Img = styled.img`
+  /* width: 18rem;
+  height: 25rem; */
   object-fit: cover;
   aspect-ratio: 1/2;
   border-radius: 1rem;
