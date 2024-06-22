@@ -11,6 +11,7 @@ const MintBox = styled.div`
   gap: 1rem;
   width: 50rem;
   margin: 0 auto 2rem auto;
+  background: var(--subtle_background);
 `;
 const MintModalStyle = styled.div`
   display: flex;
@@ -106,6 +107,13 @@ const Overlay = styled.div`
   width: 100%;
   height: 100%;
 `;
+const Img = styled.img`
+  width: 15rem;
+  height: 20rem;
+  object-fit: cover;
+  aspect-ratio: 1/2;
+  border-radius: 1rem;
+`;
 
 const iconStyle = {
   width: "5rem",
@@ -119,6 +127,7 @@ function Mint() {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [overlay, setOverlay] = useState(true);
+  const [file, setFile] = useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -131,11 +140,25 @@ function Mint() {
     <MintBox>
       <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Mint</Text>
       <MintModalStyle>
-        <ImageBox>
-          <Text>Upload file</Text>
-          <CiFileOn style={iconStyle} />
-        </ImageBox>
         <Form onSubmit={(e) => handleSubmit(e)}>
+          <Column style={{ alignItems: "center" }}>
+            <Label>
+              {file?.name ? (
+                <Img src={`/${file.name}`} />
+              ) : (
+                <ImageBox>
+                  <Text>Upload file</Text>
+                  <CiFileOn style={iconStyle} />
+                </ImageBox>
+              )}
+              <Input
+                style={{ width: "inherit" }}
+                onChange={(e) => setFile(e.target.files[0])}
+                type="file"
+                className="hideFileUpload"
+              />
+            </Label>
+          </Column>
           <Column>
             <Label htmlFor="name">Name</Label>
             <Input

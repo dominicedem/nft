@@ -9,11 +9,13 @@ const GlobalStyle = createGlobalStyle`
     --faint_text_black: #1212129d;
     --white_text: #efefef;
     --secondary_text: #333;
+    --black_bacground: #555;
     --profile_text: #666666cc;
     --bios_background: #eaeaea;
     --sideBar_text: #555;
     --subnav_background: #ffffff30;
     --box_shadow: #0001;
+    --subtle_background: rgb(217, 217, 217, 10%);
     --balance_background: rgb(217, 217, 217, 20%);
     --border: rgb(217, 217, 217, 50%);
     --light_faint: #f4f4f4;
@@ -126,6 +128,7 @@ body {
     display: inline !important;
     width: 100% !important;
     height: 100% !important;
+    padding: 0;
     @media (min-width: 1300px) {
         width: fit-content !important;
     }
@@ -228,7 +231,15 @@ body {
   background: var(--appbackgroundcolor);
 }
 .activeToggle {
-  transform: translateX(100%);
+    background: var(--blue_btn);
+    transform: translateX(100%);
+}
+.notToggle {
+    background: var(--black_bacground);
+}
+
+.hideFileUpload {
+  display: none;
 }
 
 `;

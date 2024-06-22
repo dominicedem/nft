@@ -17,7 +17,7 @@ const Logo = styled.div`
   gap: 0.5rem;
   font-size: 3rem;
   background-clip: text;
-  background: -webkit-linear-gradient(60deg, #0ff, #ea56ef);
+  background: -webkit-linear-gradient(60deg, #fcec41, #ea56ef);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 `;

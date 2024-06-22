@@ -13,6 +13,7 @@ const WithdrawalStyle = styled.div`
   gap: 1rem;
   width: 50rem;
   margin: 0 auto 2rem auto;
+  background: var(--subtle_background);
 `;
 const WithdrawalBox = styled.div`
   display: flex;

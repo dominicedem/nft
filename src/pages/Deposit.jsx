@@ -9,6 +9,7 @@ const MintBox = styled.div`
   gap: 1rem;
   width: 50rem;
   margin: 0 auto 2rem auto;
+  background: var(--subtle_background);
 `;
 const MintModalStyle = styled.div`
   display: flex;
@@ -69,7 +70,7 @@ const warningStyle = {
 function Deposit() {
   return (
     <MintBox>
-      <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Edit Profile</Text>
+      <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Deposit</Text>
       <MintModalStyle>
         <ImageBox></ImageBox>
         <Text style={{ color: "#ee0000", fontSize: "1rem" }}>

@@ -74,6 +74,7 @@ function VerticalSlider({ type }) {
         spaceBetween={type ? 175 : 140}
         slidesPerView={type ? 2 : 3}
         loop={true}
+        centeredSlides={!type && true}
         speed={2000}
         direction="vertical"
         autoplay={

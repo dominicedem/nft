@@ -54,7 +54,8 @@ const SideBarStyle = styled.div`
 const MainStyle = styled.div`
   overflow-y: scroll;
   background: var(--appbackgroundcolor);
-  padding-top: 2.4rem;
+  /* padding-top: 2.4rem; */
+  margin-top: 2.4rem;
   @media (max-width: 500px) {
     height: 90vh;
   }

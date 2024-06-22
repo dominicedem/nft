@@ -55,7 +55,7 @@ const Textarea = styled.textarea`
   font-size: 1.6rem;
 `;
 const Select = styled.select`
-  width: fit-content;
+  width: 40%;
   padding: 0.5rem;
   border-radius: 0.5rem;
   font-size: 1.6rem;
@@ -68,7 +68,7 @@ const Option = styled.option`
 const Row = styled.span`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 2rem;
   background: var(--light_faint);
   width: 100%;
   border-radius: 0.5rem;
@@ -79,7 +79,7 @@ const Row = styled.span`
 function EditNft() {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [on, setOn] = useState(true);
+  const [on, setOn] = useState(false);
   const [category, setCategory] = useState("");
 
   function handleSubmit(e) {
@@ -113,7 +113,7 @@ function EditNft() {
           />
           <Text style={{ alignSelf: "end" }}>Min: 0.02 ETH</Text>
         </Column>
-        <Column>
+        <Column style={{ marginTop: "-2.2rem" }}>
           <Label>Category</Label>
           <Select onChange={(e) => setCategory(e.target.value)}>
             <Option value="gaming">Gaming</Option>
