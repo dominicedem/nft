@@ -108,7 +108,7 @@ const Overlay = styled.div`
   height: 100%;
 `;
 const Img = styled.img`
-  width: 15rem;
+  width: 18rem;
   height: 20rem;
   object-fit: cover;
   aspect-ratio: 1/2;
@@ -142,7 +142,7 @@ function Mint() {
       <MintModalStyle>
         <Form onSubmit={(e) => handleSubmit(e)}>
           <Column style={{ alignItems: "center" }}>
-            <Label>
+            <Label htmlFor="file">
               {file?.name ? (
                 <Img src={`/${file.name}`} />
               ) : (
@@ -152,7 +152,8 @@ function Mint() {
                 </ImageBox>
               )}
               <Input
-                style={{ width: "inherit" }}
+                id="file"
+                // style={{ width: "inherit" }}
                 onChange={(e) => setFile(e.target.files[0])}
                 type="file"
                 className="hideFileUpload"
