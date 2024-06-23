@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import Button from "./Button";
 import Slider from "./Slider";
 import styled from "styled-components";
@@ -25,6 +25,7 @@ const Text = styled.span`
   font-weight: 700;
   padding-right: 1rem;
   transform: translateX(6%);
+  text-transform: capitalize;
   @media (max-width: 980px) {
     padding-right: 0;
     transform: translateX(4%);
@@ -35,15 +36,20 @@ const linkStyle = {
   textDecoration: "none",
 };
 
-function SliderCon({ datas, right, font }) {
+function SliderCon({ title, right, font }) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  let paramCategory = searchParams?.get("category");
   return (
     <SliderBoxStyle>
       <Text
         style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
       >
-        {datas?.types}
+        {title?.types}
         {right?.text && (
-          <Link style={linkStyle} to="/viewall">
+          <Link
+            style={linkStyle}
+            to={`/category/${paramCategory || title.category}`}
+          >
             <Button
               padding={
                 right?.text
@@ -56,7 +62,7 @@ function SliderCon({ datas, right, font }) {
           </Link>
         )}
       </Text>
-      <Slider defaultCard="true" />
+      <Slider category={paramCategory || title.category} defaultCard="true" />
     </SliderBoxStyle>
   );
 }

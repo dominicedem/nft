@@ -6,6 +6,7 @@ import { MdOutlineStore } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { BsCollection } from "react-icons/bs";
 import { GiCardExchange } from "react-icons/gi";
+import { HashLink } from "react-router-hash-link";
 
 const SideBarStyle = styled.div`
   width: 100%;
@@ -51,11 +52,13 @@ const linkStyle = {
   textDecoration: "none",
   width: "100%",
 };
+
 const iconStyle = {
   width: "2.5rem",
   height: "2.5rem",
   color: "var(--black_text)",
 };
+
 function SideBar() {
   return (
     <SideBarStyle>
@@ -69,13 +72,13 @@ function SideBar() {
         <ListBox style={{ gap: "1.5rem" }}>
           <List>
             <MdOutlineAccountBalanceWallet style={iconStyle} />
-            <Link style={linkStyle} to="/">
+            <Link style={linkStyle} to="/dashboard">
               Account overview
             </Link>
           </List>
           <List>
             <PiNotePencilLight style={iconStyle} />
-            <Link style={linkStyle} to="/mint">
+            <Link style={linkStyle} to="mint">
               Mint Nft
             </Link>
           </List>
@@ -87,17 +90,21 @@ function SideBar() {
           </List>
           <List>
             <GiCardExchange style={iconStyle} />
-            <Link style={linkStyle}>Transaction</Link>
+            <HashLink smooth style={linkStyle} to="/dashboard#transaction">
+              Transaction
+            </HashLink>
           </List>
           <List>
             <MdOutlineStore style={iconStyle} fill="" />
-            <Link style={linkStyle} to="all">
+            <Link style={linkStyle} to="/">
               Market-place
             </Link>
           </List>
           <List>
             <GiCardExchange style={iconStyle} fill="" />
-            <Link style={linkStyle}>Nft transactions</Link>
+            <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
+              Nft transactions
+            </HashLink>
           </List>
           <List>
             <BsCollection style={iconStyle} />

@@ -55,7 +55,10 @@ function DashCards({ all, header, defaultCard, Exhibition, profile, Edit }) {
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>
         <Text>{header}</Text>
-        <Link style={linkStyle} to="allUserNft">
+        <Link
+          style={linkStyle}
+          to={header === "NFT" ? "allUserNft" : "allUserExhibition"}
+        >
           <Button padding={"var(--padding_btn_small)"}>See all</Button>
         </Link>
       </Flex>

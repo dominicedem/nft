@@ -7,12 +7,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SkeletonTheme } from "react-loading-skeleton";
 import homeReducer from "./Slices/homeSlice";
 import overlayReducer from "./Slices/overLaySlice";
+import navigationReducer from "./Slices/navSlice";
 
-import Deposit from "./pages/Deposit";
-import AllUserNfts from "./pages/AllUserNfts";
-import Mint from "./pages/Mint";
-import Withdrawal from "./pages/Withdrawal";
-const EditProfile = lazy(() => import("./pages/EditProfile"));
+import Deposit from "./ui/Deposit";
+import AllUserNfts from "./ui/AllUserNfts";
+import Mint from "./ui/Mint";
+import Withdrawal from "./ui/Withdrawal";
+import AllUserExhibition from "./ui/AllUserExhibition";
+import EditProfile from "./ui/EditProfile";
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
 const UserNftProfile = lazy(() => import("./pages/UserProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
@@ -20,7 +22,7 @@ const DashboardLayout = lazy(() => import("./ui/DashboardLayout"));
 const ErrorRoute = lazy(() => import("./pages/ErrorRoute"));
 const BuyNft = lazy(() => import("./pages/BuyNft"));
 const Home = lazy(() => import("./pages/Home"));
-const ViewAll = lazy(() => import("./pages/ViewAll"));
+const Category = lazy(() => import("./pages/Category"));
 const Loading = lazy(() => import("./ui/Loading"));
 // const ProtecteRoute = lazy(() => import("./ui/ProtectRoute"));
 
@@ -28,6 +30,7 @@ const store = configureStore({
   reducer: {
     homeData: homeReducer,
     overlayData: overlayReducer,
+    navData: navigationReducer,
     // filterData: filterReducer,
     // searchData: searchReducer,
   },
@@ -52,16 +55,29 @@ function App() {
               <Suspense fallback={<Loading />}>
                 <Suspense>
                   <Routes>
-                    <Route element={<DashboardLayout />}>
+                    <Route path="/dashboard" element={<DashboardLayout />}>
                       <Route index element={<Dashboard />} />
-                      <Route path="mint" element={<Mint />} />
-                      <Route path="editProfile" element={<EditProfile />} />
-                      <Route path="Deposit" element={<Deposit />} />
-                      <Route path="withdraw" element={<Withdrawal />} />
-                      <Route path="/allUserNft" element={<AllUserNfts />} />
+                      <Route path="/dashboard/mint" element={<Mint />} />
+                      <Route
+                        path="/dashboard/editProfile"
+                        element={<EditProfile />}
+                      />
+                      <Route path="/dashboard/Deposit" element={<Deposit />} />
+                      <Route
+                        path="/dashboard/withdraw"
+                        element={<Withdrawal />}
+                      />
+                      <Route
+                        path="/dashboard/allUserNft"
+                        element={<AllUserNfts />}
+                      />
+                      <Route
+                        path="/dashboard/allUserExhibition"
+                        element={<AllUserExhibition />}
+                      />
                     </Route>
-                    <Route path="/all" element={<Home />} />
-                    <Route path="/viewall" element={<ViewAll />} />
+                    <Route index element={<Home />} />
+                    <Route path="/category/:type" element={<Category />} />
                     <Route path="/buynft" element={<BuyNft />} />
                     <Route path="/ownNftProfile" element={<UserNftProfile />} />
                     <Route path="/exhibition" element={<Exhibtion />} />

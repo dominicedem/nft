@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     --white_text: #efefef;
     --secondary_text: #333;
     --black_bacground: #555;
+    --black_bacground_hover: #555e;
     --profile_text: #666666cc;
     --bios_background: #eaeaea;
     --sideBar_text: #555;
@@ -122,13 +123,13 @@ body {
 
 .verticalSlide .swiper-wrapper {
     width: fit-content !important;
-    height: 30rem !important;
+    height: 34rem !important;
 }
 .verticalSlide {
     display: inline !important;
     width: 100% !important;
     height: 100% !important;
-    padding: 0;
+    padding: 0  !important;;
     @media (min-width: 1300px) {
         width: fit-content !important;
     }
@@ -186,13 +187,13 @@ body {
     background-color:inherit;
 
 }
-.head {
+/* .head {
     width: 1500px !important;
     height: fit-content !important;
     overflow-x: hidden;
     position: static !important;
     margin: 0 !important;
-}
+} */
 .withBorder {
     background: inherit;
     &:hover {
@@ -240,6 +241,10 @@ body {
 
 .hideFileUpload {
   display: none;
+}
+
+.activeSubNav {
+    background: var(--subnav_background);
 }
 
 `;

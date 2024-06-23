@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 
@@ -100,6 +100,8 @@ const arrowIconStyle = {
   color: "var(--profile_text)",
 };
 function NftProfile() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  let product = searchParams?.get("product");
   return (
     <div>
       <Contianer>
@@ -110,7 +112,7 @@ function NftProfile() {
         </Link>
         <RowBox>
           <ImgBox>
-            <Img src="/degods.webp" />
+            <Img src={product} />
           </ImgBox>
           <ColumnBox style={{ width: "50%" }}>
             <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>

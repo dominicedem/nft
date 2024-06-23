@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardProfile from "./CardProfile";
 
 const CardsStyle = styled.div`
@@ -72,11 +72,25 @@ const linkStyle = {
   margin: 0,
 };
 
-function Cards({ data, all, profile, Exhibition, defaultCard, Edit }) {
+function Cards({
+  data,
+  all,
+  profile,
+  Exhibition,
+  defaultCard,
+  Edit,
+  category,
+}) {
+  const params = useParams();
   function handleBuy() {}
   return (
     <CardsStyle onClick={handleBuy} style={all && { width: "100%" }}>
-      <Link style={linkStyle} to="/buynft">
+      <Link
+        style={linkStyle}
+        to={`/buynft/?product=${data.image_url}&category=${
+          params?.type || category
+        }`}
+      >
         <ImgBox>
           <Img src={data.image_url} />
         </ImgBox>
@@ -126,7 +140,7 @@ function Cards({ data, all, profile, Exhibition, defaultCard, Edit }) {
                   USDT
                 </span>
               </PriceBox>
-              <PriceBox type="inner" style={{ width: "20%" }}>
+              <PriceBox type="inner" style={{ width: "50%" }}>
                 <Text
                   style={{
                     fontWeight: "700",

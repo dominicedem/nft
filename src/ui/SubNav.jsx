@@ -1,3 +1,4 @@
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const SubNavStyle = styled.div`
@@ -21,16 +22,43 @@ const List = styled.span`
     background: var(--subnav_background);
   }
 `;
+const linkStyle = {
+  textDecoration: "none",
+  // color:""
+};
 function SubNav() {
+  const params = useParams();
   return (
     <SubNavStyle>
-      <List>All</List>
-      <List>Art</List>
-      <List>Gaming</List>
-      <List>Membership</List>
-      <List>PFPs</List>
-      <List>Photography</List>
-      <List>Others</List>
+      <Link style={linkStyle} to="/">
+        <List className={!params?.type && "activeSubNav"}>All</List>
+      </Link>
+      <Link style={linkStyle} to="/category/art">
+        <List className={params?.type === "art" && "activeSubNav"}>Art</List>
+      </Link>
+      <Link style={linkStyle} to="/category/gaming">
+        <List className={params?.type === "gaming" && "activeSubNav"}>
+          Gaming
+        </List>
+      </Link>
+      <Link style={linkStyle} to="/category/membership">
+        <List className={params?.type === "membership" && "activeSubNav"}>
+          Membership
+        </List>
+      </Link>
+      <Link style={linkStyle} to="/category/pfp">
+        <List className={params?.type === "pfp" && "activeSubNav"}>PFPs</List>
+      </Link>
+      <Link style={linkStyle} to="/category/photography">
+        <List className={params?.type === "photography" && "activeSubNav"}>
+          Photography
+        </List>
+      </Link>
+      <Link style={linkStyle} to="/category/exhibition">
+        <List className={params?.type === "exhibition" && "activeSubNav"}>
+          Exhibition
+        </List>
+      </Link>
     </SubNavStyle>
   );
 }

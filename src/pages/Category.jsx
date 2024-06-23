@@ -126,7 +126,7 @@ const data = [
     sub: "facebook",
   },
 ];
-function viewAll() {
+function Category() {
   return (
     <ViewallStyle>
       <NavStyle className="adapt">
@@ -153,4 +153,4 @@ function viewAll() {
   );
 }
 
-export default viewAll;
+export default Category;

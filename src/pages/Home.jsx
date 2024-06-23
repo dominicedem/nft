@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Navigation from "../ui/Navigation";
-import SliderVertical from "../ui/SliderVertical";
-import useScroll from "../hooks/handleScroll";
+import useScroll from "../hooks/useScroll";
 import SliderCon from "../ui/SliderCon";
 import Autotype from "../ui/Autotype";
-import Slider from "../ui/Slider";
 import VerticalSlider from "../ui/VerticalSlider";
 import SubNav from "../ui/SubNav";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setAll } from "../Slices/navSlice";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
@@ -47,7 +48,9 @@ const VerticalBox = styled.div`
   justify-content: center;
   width: auto;
   overflow-y: hidden;
+  gap: 0.8rem;
   height: 100%;
+  transform: translateY(1.5%);
 `;
 
 const AutoBox = styled.div`
@@ -70,37 +73,46 @@ const AnimationBox = styled.div`
   padding: 0 1rem 1rem 7rem;
   border: 1px solid var(--inputField_border);
   border-radius: 1rem;
-  /* transform: translateY(20%); */
 `;
 
 const data = [
   {
-    types: "Art",
+    types: "art",
+    category: "art",
     id: 1,
   },
   {
-    types: "Gaming",
+    types: "gaming",
+    category: "gaming",
     id: 2,
   },
   {
-    types: "Membership",
-    id: 2,
+    types: "membership",
+    category: "membership",
+    id: 3,
   },
   {
-    types: "PFPs",
-    id: 2,
-  },
-  {
-    types: "Photography",
+    types: "pfp",
+    category: "pfp",
     id: 4,
   },
   {
-    types: "Others",
-    id: 3,
+    types: "photography",
+    category: "photography",
+    id: 5,
+  },
+  {
+    types: "exhibition",
+    category: "exhibition",
+    id: 6,
   },
 ];
 function Home() {
   const { offset } = useScroll();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setAll(true));
+  });
   return (
     <HomeStyle>
       <NavStyle className={offset === 0 ? "default" : "adapt"}>
@@ -122,7 +134,7 @@ function Home() {
         </AnimationBox>
       </Landing>
       {data.map((datas) => (
-        <SliderCon datas={datas} right={{ text: "See all" }} />
+        <SliderCon key={datas.id} title={datas} right={{ text: "See all" }} />
       ))}
     </HomeStyle>
   );

@@ -60,7 +60,7 @@ function Dashboard() {
     <DashboardStyle>
       <AccountBalance />
       <Column style={{ alignItems: "center", gap: "1.5rem" }}>
-        <Link style={linkStyle} to="/Deposit">
+        <Link style={linkStyle} to="Deposit">
           <Button
             padding="1.2rem 1.5rem"
             width="90%"
@@ -71,7 +71,7 @@ function Dashboard() {
             Deposit
           </Button>
         </Link>
-        <Link style={linkStyle} to="/mint">
+        <Link style={linkStyle} to="mint">
           <Button
             border="1px solid var(--inputField_border)"
             padding="1.2rem 1.5rem"
@@ -82,7 +82,7 @@ function Dashboard() {
             Mint
           </Button>
         </Link>
-        <Link style={linkStyle} to="/withdraw">
+        <Link style={linkStyle} to="withdraw">
           <Button
             border="1px solid var(--inputField_border)"
             padding="1.2rem 1.5rem"
@@ -97,7 +97,7 @@ function Dashboard() {
       <DashCardBox style={{ marginTop: "" }}>
         <DashCards header="NFT" Edit="true" profile="true" defaultCard="true" />
       </DashCardBox>
-      <TableBox>
+      <TableBox id="transaction">
         <Table
           tableHead="Transaction"
           header={["Type", "Amount", "Date", "Status"]}
@@ -106,7 +106,7 @@ function Dashboard() {
       <DashCardBox>
         <DashCards header="Exhibition" profile="true" Exhibition="true" />
       </DashCardBox>
-      <TableBox>
+      <TableBox id="nftTransaction">
         <Table tableHead="NFT Transactions" transaction="true" />
       </TableBox>
       {overlay && (

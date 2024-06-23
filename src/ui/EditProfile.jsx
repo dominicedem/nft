@@ -10,19 +10,20 @@ const EditProfileBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 75%;
+  width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const EditProfileStyle = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  position: relative;
   gap: 2rem;
   width: 100%;
   padding: 2rem 4rem;
   border-radius: 1rem;
+  background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
-  position: relative;
 `;
 const ImageBox = styled.div`
   display: flex;
