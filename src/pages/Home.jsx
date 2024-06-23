@@ -40,7 +40,7 @@ const SubNavBox = styled.div`
   justify-content: center;
   justify-self: end;
   width: 100%;
-  padding-left: 2rem;
+  padding-left: 2.5%;
 `;
 const VerticalBox = styled.div`
   display: flex;
