@@ -27,7 +27,7 @@ const data = [
 ];
 function BuyNft() {
   return (
-    <BuyNftStyle>
+    <BuyNftStyle id="top">
       <NavStyle className="adapt">
         <Navigation />
       </NavStyle>

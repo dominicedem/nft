@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import CardProfile from "./CardProfile";
+import { HashLink } from "react-router-hash-link";
 
 const CardsStyle = styled.div`
   display: flex;
@@ -85,11 +86,12 @@ function Cards({
   function handleBuy() {}
   return (
     <CardsStyle onClick={handleBuy} style={all && { width: "100%" }}>
-      <Link
+      <HashLink
+        smooth
         style={linkStyle}
         to={`/buynft/?product=${data.image_url}&category=${
           params?.type || category
-        }`}
+        }#top`}
       >
         <ImgBox>
           <Img src={data.image_url} />
@@ -186,7 +188,7 @@ function Cards({
             </PriceBox>
           )}
         </CardDetailBox>
-      </Link>
+      </HashLink>
       {Edit && (
         <EditBox>
           <CardProfile />
