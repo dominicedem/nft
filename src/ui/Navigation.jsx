@@ -67,15 +67,19 @@ function Navigation({ scroll, home }) {
                 fill={!scroll ? "var(--white_text)" : "var(--faint_text_black)"}
               />
             </Search>
-            <Button
-              type="nav"
-              font="2rem"
-              color={!scroll ? "var(--white_text)" : "var(--faint_text_black)"}
-              border={!scroll ? "" : "1px solid var(--inputField_border)"}
-              padding="1.1rem 2rem"
-            >
-              Login
-            </Button>
+            <Link style={linkStyle} to="/dashboard">
+              <Button
+                type="nav"
+                font="2rem"
+                color={
+                  !scroll ? "var(--white_text)" : "var(--faint_text_black)"
+                }
+                border={!scroll ? "" : "1px solid var(--inputField_border)"}
+                padding="1.1rem 2rem"
+              >
+                Login
+              </Button>
+            </Link>
           </CtaBox>
         </>
       ) : (
