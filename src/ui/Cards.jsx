@@ -3,6 +3,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useParams } from "react-router-dom";
 import CardProfile from "./CardProfile";
 import { HashLink } from "react-router-hash-link";
+import useFetchEthPrice from "../hooks/useFetchEthPrice";
 
 const CardsStyle = styled.div`
   display: flex;
@@ -88,8 +89,11 @@ function Cards({
   Edit,
   category,
 }) {
+  const { data: ethPrice, isLoading } = useFetchEthPrice();
   const params = useParams();
   function handleBuy() {}
+  let ethToUsdPrice =
+    Number(ethPrice?.ethereum?.usd) * Number(data?.priceInEtherium);
   return (
     <CardsStyle onClick={() => handleBuy()} style={all && { width: "100%" }}>
       <HashLink
@@ -179,7 +183,7 @@ function Cards({
                     color: "#555",
                   }}
                 >
-                  $4700
+                  ${Math.ceil(ethToUsdPrice)}
                 </span>
               </PriceBox>
             </PriceBox>
