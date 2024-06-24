@@ -71,7 +71,7 @@ function VerticalSlider({ type }) {
   return (
     <TestStyle>
       <Swiper
-        spaceBetween={type ? 155 : 70}
+        spaceBetween={type ? -5 : -90}
         slidesPerView={type ? 2 : 3}
         loop={true}
         centeredSlides={!type && true}

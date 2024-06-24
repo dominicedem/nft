@@ -123,7 +123,7 @@ body {
 
 .verticalSlide .swiper-wrapper {
     width: fit-content !important;
-    height: 60vh !important;
+    height: 50rem !important;
 }
 .verticalSlide {
     display: inline !important;
