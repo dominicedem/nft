@@ -5,6 +5,8 @@ import styled from "styled-components";
 import Cards from "./Cards";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 // const data = [
 //   {
@@ -58,9 +60,14 @@ const InnerBox = styled.div`
     width: 90%;
   }
 `;
+const Img = styled.img`
+  width: 10rem;
+  height: 10rem;
+`;
 
-function Slider({ type, defaultCard, data, category }) {
+function Slider({ type, defaultCard, data, category, isLoading }) {
   const [enter, setEnter] = useState(false);
+  console.log(isLoading);
   return (
     <DescriptionBox
       onMouseEnter={() => setEnter(true)}
@@ -93,13 +100,17 @@ function Slider({ type, defaultCard, data, category }) {
         >
           {data?.map((val, _) => (
             <SwiperSlide key={val.id}>
-              <Cards
-                category={category}
-                defaultCard={defaultCard}
-                all={type && "true"}
-                key={val._id}
-                data={val}
-              />
+              {isLoading ? (
+                <Img src="/hero.jpg" />
+              ) : (
+                <Cards
+                  category={category}
+                  defaultCard={defaultCard}
+                  all={type && "true"}
+                  key={val._id}
+                  data={val}
+                />
+              )}
             </SwiperSlide>
           ))}
         </Swiper>

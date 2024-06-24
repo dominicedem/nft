@@ -137,26 +137,31 @@ function Home() {
         </AnimationBox>
       </Landing>
       <SliderCon
+        isLoading={isLoading}
         data={categoryData?.data.arts}
         title="arts"
         right={{ text: "See all" }}
       />
       <SliderCon
+        isLoading={isLoading}
         data={categoryData?.data.gaming}
         title="gaming"
         right={{ text: "See all" }}
       />
       <SliderCon
+        isLoading={isLoading}
         data={categoryData?.data.membership}
         title="membership"
         right={{ text: "See all" }}
       />
       <SliderCon
+        isLoading={isLoading}
         data={categoryData?.data.pfps}
         title="pfps"
         right={{ text: "See all" }}
       />
       <SliderCon
+        isLoading={isLoading}
         data={categoryData?.data.photography}
         title="photography"
         right={{ text: "See all" }}
