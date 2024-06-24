@@ -8,6 +8,7 @@ import useFetchCategory from "../hooks/useFetchCategory";
 import usePagination from "../hooks/usePagination";
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
+import useFetchExhibition from "../hooks/useFetchExhibition";
 
 const ViewallStyle = styled.div`
   width: 99.5vw;
@@ -67,10 +68,17 @@ const PagBox = styled.div`
   padding-right: 1rem;
 `;
 function Category() {
-  const { data: categoryData, isLoading } = useFetchCategory();
   const params = useParams();
   const reftop = useRef();
-  const { paginatedData } = usePagination(categoryData?.data);
+
+  const { data: categoryData, isLoading } = useFetchCategory();
+  const { data: exhibitionData, isLoading: exhibitionIsLoading } =
+    useFetchExhibition();
+  const { paginatedData } = usePagination(
+    params.type !== "exhibition" ? categoryData?.data : exhibitionData?.data
+  );
+
+  console.log(exhibitionData);
   return (
     <ViewallStyle id="Category_top" ref={reftop}>
       <NavStyle className="adapt">

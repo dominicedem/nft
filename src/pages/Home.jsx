@@ -92,7 +92,6 @@ function Home() {
   useEffect(() => {
     dispatch(setAll(true));
   });
-  console.log(landingData);
   return (
     <HomeStyle>
       <NavStyle className={offset === 0 ? "default" : "adapt"}>
