@@ -59,7 +59,7 @@ const AutoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48%;
+  width: 47%;
   height: 100%;
 `;
 
@@ -68,47 +68,15 @@ const AnimationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10rem;
-  width: 120rem;
+  width: 95%;
   height: 75%;
   background: #ffffff46;
   backdrop-filter: blur(5px);
-  padding: 0 1rem 1rem 7rem;
+  padding: 0 1% 1% 5%;
   border: 1px solid var(--inputField_border);
   border-radius: 1rem;
 `;
 
-const data = [
-  {
-    types: "art",
-    category: "art",
-    id: 1,
-  },
-  {
-    types: "gaming",
-    category: "gaming",
-    id: 2,
-  },
-  {
-    types: "membership",
-    category: "membership",
-    id: 3,
-  },
-  {
-    types: "pfp",
-    category: "pfp",
-    id: 4,
-  },
-  {
-    types: "photography",
-    category: "photography",
-    id: 5,
-  },
-  {
-    types: "exhibition",
-    category: "exhibition",
-    id: 6,
-  },
-];
 function Home() {
   const { offset } = useScroll();
   const dispatch = useDispatch();
