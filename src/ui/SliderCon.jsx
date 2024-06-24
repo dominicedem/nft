@@ -36,20 +36,18 @@ const linkStyle = {
   textDecoration: "none",
 };
 
-function SliderCon({ title, right, font }) {
+function SliderCon({ data, title, right, font }) {
   const [searchParams, setSearchParams] = useSearchParams();
   let paramCategory = searchParams?.get("category");
+  const category = data && data[0].category;
   return (
     <SliderBoxStyle>
       <Text
         style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
       >
-        {title?.types}
+        {title}
         {right?.text && (
-          <Link
-            style={linkStyle}
-            to={`/category/${paramCategory || title.category}`}
-          >
+          <Link style={linkStyle} to={`/category/${paramCategory || category}`}>
             <Button
               padding={
                 right?.text
@@ -62,7 +60,11 @@ function SliderCon({ title, right, font }) {
           </Link>
         )}
       </Text>
-      <Slider category={paramCategory || title.category} defaultCard="true" />
+      <Slider
+        data={data}
+        category={paramCategory || category}
+        defaultCard="true"
+      />
     </SliderBoxStyle>
   );
 }

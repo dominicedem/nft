@@ -34,7 +34,7 @@ function BuyNft() {
       <NftProfile />
       <More>
         <SliderCon
-          title={data[0]}
+          title="More from this category"
           right={{ text: "See Entire Category" }}
           font={{ size: "2.2rem", weight: "300" }}
         />

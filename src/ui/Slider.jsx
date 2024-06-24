@@ -6,43 +6,43 @@ import Cards from "./Cards";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useState } from "react";
 
-const data = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/robot.webp`,
-    id: 3,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 5,
-    sub: "Twitter",
-  },
-  {
-    image_url: `/newNft.webp`,
-    id: 6,
-    sub: "instagram",
-  },
-  {
-    image_url: `/nft3.png`,
-    id: 7,
-    sub: "facebook",
-  },
-];
+// const data = [
+//   {
+//     image_url: `/degods.webp`,
+//     id: 1,
+//     sub: "Space-star",
+//   },
+//   {
+//     image_url: `/light.webp`,
+//     id: 2,
+//     sub: "Boom",
+//   },
+//   {
+//     image_url: `/img1.webp`,
+//     id: 4,
+//     sub: "Plutonics",
+//   },
+//   {
+//     image_url: `/robot.webp`,
+//     id: 3,
+//     sub: "Azra-alpha",
+//   },
+//   {
+//     image_url: `/fly.webp`,
+//     id: 5,
+//     sub: "Twitter",
+//   },
+//   {
+//     image_url: `/newNft.webp`,
+//     id: 6,
+//     sub: "instagram",
+//   },
+//   {
+//     image_url: `/nft3.png`,
+//     id: 7,
+//     sub: "facebook",
+//   },
+// ];
 
 const DescriptionBox = styled.div`
   margin: 0 auto;
@@ -59,7 +59,7 @@ const InnerBox = styled.div`
   }
 `;
 
-function Slider({ type, defaultCard, category }) {
+function Slider({ type, defaultCard, data, category }) {
   const [enter, setEnter] = useState(false);
   return (
     <DescriptionBox
@@ -91,13 +91,13 @@ function Slider({ type, defaultCard, category }) {
           }}
           className={type ? "head" : "mySwiper"}
         >
-          {data.map((val, _) => (
+          {data?.map((val, _) => (
             <SwiperSlide key={val.id}>
               <Cards
                 category={category}
                 defaultCard={defaultCard}
                 all={type && "true"}
-                key={val.id}
+                key={val._id}
                 data={val}
               />
             </SwiperSlide>

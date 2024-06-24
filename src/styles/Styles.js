@@ -138,30 +138,6 @@ body {
     }
 }
 
-/* .vertical {
-    animation: verticalSlide 20s linear infinite;
-}
-.vertical1 {
-    animation: verticalSlide1 20s linear infinite;
-} */
-
-@keyframes verticalSlide {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(-45%);
-    }
-}
-@keyframes verticalSlide1 {
-    0% {
-        transform: translateY(0);
-    }
-    100% {
-        transform: translateY(45%);
-    }
-}
-
 .profileActive {
     border: 0.1rem solid var(--faint_text_black) !important;
 }

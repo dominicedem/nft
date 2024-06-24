@@ -8,6 +8,8 @@ import SubNav from "../ui/SubNav";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAll } from "../Slices/navSlice";
+import useFetchCategory from "../hooks/useFetchCategory";
+import FetchCategory from "../services/FetchCategory";
 // import Skeleton from "react-loading-skeleton";
 // import "react-loading-skeleton/dist/skeleton.css";
 
@@ -110,6 +112,7 @@ const data = [
 function Home() {
   const { offset } = useScroll();
   const dispatch = useDispatch();
+  const { data: categoryData, isLoading, isFetched } = useFetchCategory();
   useEffect(() => {
     dispatch(setAll(true));
   });
@@ -133,9 +136,31 @@ function Home() {
           </VerticalBox>
         </AnimationBox>
       </Landing>
-      {data.map((datas) => (
-        <SliderCon key={datas.id} title={datas} right={{ text: "See all" }} />
-      ))}
+      <SliderCon
+        data={categoryData?.data.arts}
+        title="arts"
+        right={{ text: "See all" }}
+      />
+      <SliderCon
+        data={categoryData?.data.gaming}
+        title="gaming"
+        right={{ text: "See all" }}
+      />
+      <SliderCon
+        data={categoryData?.data.membership}
+        title="membership"
+        right={{ text: "See all" }}
+      />
+      <SliderCon
+        data={categoryData?.data.pfps}
+        title="pfps"
+        right={{ text: "See all" }}
+      />
+      <SliderCon
+        data={categoryData?.data.photography}
+        title="photography"
+        right={{ text: "See all" }}
+      />
     </HomeStyle>
   );
 }

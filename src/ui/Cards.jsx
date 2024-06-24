@@ -3,6 +3,8 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { Link, useParams } from "react-router-dom";
 import CardProfile from "./CardProfile";
 import { HashLink } from "react-router-hash-link";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const CardsStyle = styled.div`
   display: flex;
@@ -84,17 +86,22 @@ function Cards({
 }) {
   const params = useParams();
   function handleBuy() {}
+  console.log(data?.photo);
   return (
     <CardsStyle onClick={handleBuy} style={all && { width: "100%" }}>
       <HashLink
         smooth
         style={linkStyle}
-        to={`/buynft/?product=${data.image_url}&category=${
+        to={`/buynft/?product=${data?.photo}&category=${
           params?.type || category
         }#top`}
       >
         <ImgBox>
-          <Img src={data.image_url} />
+          {!data ? (
+            <Skeleton />
+          ) : (
+            <Img src={`https://artcity.site/${data?.photo}`} />
+          )}
         </ImgBox>
         <CardDetailBox>
           <Text
@@ -102,9 +109,17 @@ function Cards({
             style={{
               fontWeight: "600",
               color: "#333",
+              display: "inline-block",
+              maxWidth: "160px",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
             }}
           >
-            {data.sub} <RiVerifiedBadgeFill style={iconStyle} />
+            {data?.name}
+            {data?.nftOwner?.userVerified && (
+              <RiVerifiedBadgeFill style={iconStyle} />
+            )}
           </Text>
           {!profile && (
             <Text
@@ -117,7 +132,7 @@ function Cards({
                 color: "#333",
               }}
             >
-              Volga{data.sub}
+              {data?.nftOwner?.username}
             </Text>
           )}
           {defaultCard && (
@@ -150,7 +165,7 @@ function Cards({
                     color: "#333",
                   }}
                 >
-                  3 ETH
+                  {data?.priceInEtherium} ETH
                 </Text>{" "}
                 <span
                   style={{
