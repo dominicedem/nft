@@ -59,7 +59,7 @@ const AutoBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 47%;
+  width: 48%;
   height: 100%;
 `;
 
@@ -68,13 +68,24 @@ const AnimationBox = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10rem;
-  width: 95%;
+  width: 88%;
   height: 75%;
   background: #ffffff46;
   backdrop-filter: blur(5px);
   padding: 0 1% 1% 5%;
   border: 1px solid var(--inputField_border);
   border-radius: 1rem;
+  @media (max-width: 1290px) {
+    width: 95%;
+  }
+`;
+const MobileBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media (max-width: 1290px) {
+    display: none;
+  }
 `;
 
 function Home() {
@@ -98,6 +109,9 @@ function Home() {
             <Autotype />
           </AutoBox>
           <VerticalBox>
+            <MobileBox>
+              <VerticalSlider type="true" />
+            </MobileBox>
             <VerticalSlider type="" />
             <VerticalSlider type="true" />
             <VerticalSlider type="" />

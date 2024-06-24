@@ -71,7 +71,7 @@ function VerticalSlider({ type }) {
   return (
     <TestStyle>
       <Swiper
-        spaceBetween={type ? -5 : -90}
+        spaceBetween={type ? -5 : -60}
         slidesPerView={type ? 2 : 3}
         loop={true}
         centeredSlides={!type && true}
@@ -97,7 +97,7 @@ function VerticalSlider({ type }) {
             <Img
               src={val.image_url}
               alt="logo"
-              height={type ? "240" : "130"}
+              height={type ? "240" : "140"}
               width={type ? "150" : "110"}
             />
           </SwiperSlide>
