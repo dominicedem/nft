@@ -62,6 +62,12 @@ const EditBox = styled.div`
   width: 89.5%;
 `;
 
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
 const iconStyle = {
   width: "1.7rem",
   height: "1.7rem",
@@ -85,11 +91,11 @@ function Cards({
   const params = useParams();
   function handleBuy() {}
   return (
-    <CardsStyle onClick={handleBuy} style={all && { width: "100%" }}>
+    <CardsStyle onClick={() => handleBuy()} style={all && { width: "100%" }}>
       <HashLink
         smooth
         style={linkStyle}
-        to={`/buynft/?product=${data?.photo}&category=${
+        to={`/buynft/?productId=${data?.id}&category=${
           params?.type || category
         }#top`}
       >
@@ -100,23 +106,25 @@ function Cards({
           />
         </ImgBox>
         <CardDetailBox>
-          <Text
-            type="head"
-            style={{
-              fontWeight: "600",
-              color: "#333",
-              display: "inline-block",
-              maxWidth: "160px",
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-            {data?.name}
+          <Row>
+            <Text
+              type="head"
+              style={{
+                fontWeight: "600",
+                color: "#333",
+                display: "inline-block",
+                maxWidth: "160px",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {data?.name}
+            </Text>
             {data?.nftOwner?.userVerified && (
               <RiVerifiedBadgeFill style={iconStyle} />
             )}
-          </Text>
+          </Row>
           {!profile && (
             <Text
               type="head"
@@ -194,7 +202,7 @@ function Cards({
                   color: "#333",
                 }}
               >
-                50
+                {data?.totalNft}
               </Text>
             </PriceBox>
           )}

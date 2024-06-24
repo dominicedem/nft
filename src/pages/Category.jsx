@@ -4,6 +4,10 @@ import SubNav from "../ui/SubNav";
 import ViewAllDetails from "../ui/ViewAllDetails";
 import Cards from "../ui/Cards";
 import Pagination from "../ui/Pagination";
+import useFetchCategory from "../hooks/useFetchCategory";
+import usePagination from "../hooks/usePagination";
+import { useRef } from "react";
+import { useParams } from "react-router-dom";
 
 const ViewallStyle = styled.div`
   width: 99.5vw;
@@ -16,7 +20,7 @@ const NavStyle = styled.div`
 `;
 const Header = styled.div`
   width: 100%;
-  background-image: url("/degods.webp");
+  /* background-image: url("/degods.webp"); */
   background-size: cover;
   background-position: 50% 30%;
   height: 51vh;
@@ -48,13 +52,11 @@ const DetailsBox = styled.div`
 const AllCards = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: repeat(4, 1fr);
   column-gap: 2rem;
   row-gap: 4rem;
   padding: 0 1rem;
   @media (max-width: 1280px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: repeat(3, 1fr);
   }
 `;
 const PagBox = styled.div`
@@ -64,90 +66,55 @@ const PagBox = styled.div`
   width: 100%;
   padding-right: 1rem;
 `;
-const data = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/robot.webp`,
-    id: 3,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 5,
-    sub: "Twitter",
-  },
-  {
-    image_url: `/newNft.webp`,
-    id: 6,
-    sub: "instagram",
-  },
-  {
-    image_url: `/nft3.png`,
-    id: 7,
-    sub: "facebook",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 8,
-    sub: "facebook",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 9,
-    sub: "facebook",
-  },
-  {
-    image_url: `/nft2.png`,
-    id: 10,
-    sub: "facebook",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 11,
-    sub: "facebook",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 12,
-    sub: "facebook",
-  },
-];
 function Category() {
+  const { data: categoryData, isLoading } = useFetchCategory();
+  const params = useParams();
+  const reftop = useRef();
+  const { paginatedData } = usePagination(categoryData?.data);
   return (
-    <ViewallStyle>
+    <ViewallStyle id="Category_top" ref={reftop}>
       <NavStyle className="adapt">
         <Navigation />
       </NavStyle>
-      <Header>
+      <Header
+        style={{
+          backgroundImage: `url(${
+            params.type === "arts"
+              ? "/hero.jpg"
+              : params.type === "gaming"
+              ? "/pirate.jpeg"
+              : params.type === "photography"
+              ? "/suit.jpeg"
+              : params.type === "pfps"
+              ? "/old.jpeg"
+              : params.type === "exhibition"
+              ? "/elephant.jpeg"
+              : params.type === "membership"
+              ? "/bat.png"
+              : ""
+          })`,
+        }}
+      >
         <SubNav />
         <NftProImg>
-          <Img src="/img1.webp" />
+          {params.type === "arts" && <Img src="/pirate.jpeg" />}
+          {params.type === "gaming" && <Img src="/hero.jpg" />}
+          {params.type === "photography" && <Img src="/elephant.jpeg" />}
+          {params.type === "pfps" && <Img src="/suit.jpeg" />}
+          {params.type === "membership" && <Img src="/old.jpeg" />}
+          {params.type === "exhibition" && <Img src="/bat.png" />}
         </NftProImg>
       </Header>
       <DetailsBox>
-        <ViewAllDetails />
+        <ViewAllDetails category={params?.type} />
       </DetailsBox>
       <AllCards>
-        {data.map((val, _) => (
-          <Cards defaultCard="true" all="true" key={val.id} data={val} />
+        {paginatedData?.map((val, _) => (
+          <Cards defaultCard="true" key={val?.id} all="true" data={val} />
         ))}
       </AllCards>
       <PagBox>
-        <Pagination />
+        <Pagination reftop={reftop} dataLenght={categoryData?.data?.length} />
       </PagBox>
     </ViewallStyle>
   );

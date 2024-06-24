@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useSearchParams } from "react-router-dom";
 import { PAGE_SIZE } from "../utils/Constants";
-import Button from "./Button";
+import { useEffect, useRef } from "react";
 
 const PaginationStyle = styled.div`
   display: flex;
@@ -26,25 +26,29 @@ const Page = styled.button`
   font-size: 1.6rem;
   border: none;
 `;
-
-const dataSize = 200;
-function Pagination() {
+const linkStyle = {
+  textDecoration: "none",
+};
+function Pagination({ dataLenght, reftop }) {
   const [searchParam, setSearchParam] = useSearchParams();
 
   const current_page = !searchParam.get("page")
     ? 1
     : Number(searchParam.get("page"));
-  const totalPages = Math.ceil(dataSize / PAGE_SIZE);
+  const totalPages = Math.ceil(dataLenght / PAGE_SIZE);
   function handleNext() {
     const next = current_page !== totalPages ? current_page + 1 : current_page;
     searchParam.set("page", next);
     setSearchParam(searchParam);
+    reftop.current.scrollIntoView({ behavior: "smooth" });
   }
   function handlePrev() {
     const Prev = current_page === 1 ? current_page : current_page - 1;
     searchParam.set("page", Prev);
     setSearchParam(searchParam);
+    reftop.current.scrollIntoView({ behavior: "smooth" });
   }
+
   return (
     <PaginationStyle>
       <PaginationBox>

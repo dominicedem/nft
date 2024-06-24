@@ -25,7 +25,7 @@ const Text = styled.span`
   color: var(--black_text);
   font-family: "IBM Plex Sans", sans-serif;
 `;
-function ViewAllDetails() {
+function ViewAllDetails({ category }) {
   return (
     <ViewAllDetailsStyle>
       <ColumnBox>
@@ -33,11 +33,13 @@ function ViewAllDetails() {
           style={{
             fontSize: "3.5rem",
             fontWeight: 500,
+            textTransform: "capitalize",
+            // marginTop: "-.5rem",
           }}
         >
-          Art
+          {category}
         </Text>
-        <RowBox style={{ marginTop: "-2rem" }}>
+        <RowBox style={{ marginTop: "-1.5rem" }}>
           <Text>
             Items <Text type="head">2346</Text>
           </Text>

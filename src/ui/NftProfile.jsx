@@ -99,7 +99,7 @@ const arrowIconStyle = {
   fontSize: "3rem",
   color: "var(--profile_text)",
 };
-function NftProfile() {
+function NftProfile({ data }) {
   const [searchParams, setSearchParams] = useSearchParams();
   let product = searchParams?.get("product");
   return (
@@ -112,11 +112,14 @@ function NftProfile() {
         </Link>
         <RowBox>
           <ImgBox>
-            <Img src={product} />
+            <Img
+              crossOrigin="anonymous"
+              src={`https://artcity.site/${data?.photo}`}
+            />
           </ImgBox>
           <ColumnBox style={{ width: "50%" }}>
             <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-              DeGods Ozai
+              {data?.name}
             </Text>
             <Box style={{ textDecoration: "none" }}>
               <Text
@@ -127,7 +130,10 @@ function NftProfile() {
                 Owned by:{" "}
               </Text>
               <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                Son Of Odin <RiVerifiedBadgeFill style={iconStyle} />{" "}
+                {data?.nftOwner.username}{" "}
+                {data?.nftOwner?.userVerified && (
+                  <RiVerifiedBadgeFill style={iconStyle} />
+                )}{" "}
               </Text>
               <Box
                 style={{
@@ -147,7 +153,7 @@ function NftProfile() {
                 fontWeight: "500",
               }}
             >
-              Description (Gamining)
+              Description ({data?.category})
             </Text>
             <ColumnBox
               type="card"
@@ -158,16 +164,10 @@ function NftProfile() {
                 padding: "2.5rem",
                 height: "14rem",
                 overflow: "scroll",
+                alignItems: "start",
               }}
             >
-              <Text style={{ fontSize: "1.65rem" }}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                fugiat architecto expedita natus culpa vitae aperiam dolorum
-                nisi maiores at. Temporibus, nam eveniet? Unde, culpa harum
-                reiciendis quam qui a! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Optio fugiat architecto expedita natus culpa
-                vitae aperiam dolorum nisi maiores at. Temporibus, nam
-              </Text>
+              <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
             </ColumnBox>
             <PayBox>
               <RowBox
@@ -194,7 +194,7 @@ function NftProfile() {
                     fontWeight: "500",
                   }}
                 >
-                  4 ETH
+                  {data?.priceInEtherium} ETH
                 </Text>
                 <Text
                   style={{
@@ -212,9 +212,10 @@ function NftProfile() {
               <Buy
                 style={{
                   width: "100%",
+                  cursor: "pointer",
                 }}
               >
-                Login
+                Buy
               </Buy>
             </PayBox>
           </ColumnBox>

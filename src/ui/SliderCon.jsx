@@ -36,7 +36,15 @@ const linkStyle = {
   textDecoration: "none",
 };
 
-function SliderCon({ data, title, right, font, isLoading }) {
+function SliderCon({
+  data,
+  title,
+  right,
+  font,
+  isLoading,
+  Exhibition,
+  defaultCard,
+}) {
   const [searchParams, setSearchParams] = useSearchParams();
   let paramCategory = searchParams?.get("category");
   const category = data && data[0].category;
@@ -61,10 +69,11 @@ function SliderCon({ data, title, right, font, isLoading }) {
         )}
       </Text>
       <Slider
+        Exhibition={Exhibition}
         isLoading={isLoading}
         data={data}
         category={paramCategory || category}
-        defaultCard="true"
+        defaultCard={defaultCard}
       />
     </SliderBoxStyle>
   );

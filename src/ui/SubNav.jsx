@@ -33,8 +33,8 @@ function SubNav() {
       <Link style={linkStyle} to="/">
         <List className={!params?.type && "activeSubNav"}>All</List>
       </Link>
-      <Link style={linkStyle} to="/category/art">
-        <List className={params?.type === "art" && "activeSubNav"}>Art</List>
+      <Link style={linkStyle} to="/category/arts">
+        <List className={params?.type === "arts" && "activeSubNav"}>Art</List>
       </Link>
       <Link style={linkStyle} to="/category/gaming">
         <List className={params?.type === "gaming" && "activeSubNav"}>
@@ -46,8 +46,8 @@ function SubNav() {
           Membership
         </List>
       </Link>
-      <Link style={linkStyle} to="/category/pfp">
-        <List className={params?.type === "pfp" && "activeSubNav"}>PFPs</List>
+      <Link style={linkStyle} to="/category/pfps">
+        <List className={params?.type === "pfps" && "activeSubNav"}>PFPs</List>
       </Link>
       <Link style={linkStyle} to="/category/photography">
         <List className={params?.type === "photography" && "activeSubNav"}>

@@ -61,13 +61,13 @@ const InnerBox = styled.div`
   }
 `;
 const Img = styled.img`
-  width: 10rem;
-  height: 10rem;
+  width: 40rem;
+  height: 40rem;
 `;
 
-function Slider({ type, defaultCard, data, category, isLoading }) {
+function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
   const [enter, setEnter] = useState(false);
-  console.log(isLoading);
+  // console.log(isLoading);
   return (
     <DescriptionBox
       onMouseEnter={() => setEnter(true)}
@@ -101,9 +101,10 @@ function Slider({ type, defaultCard, data, category, isLoading }) {
           {data?.map((val, _) => (
             <SwiperSlide key={val.id}>
               {isLoading ? (
-                <Img src="/hero.jpg" />
+                <Img src="/hero.jpg" alt="Nft images" />
               ) : (
                 <Cards
+                  Exhibition={Exhibition}
                   category={category}
                   defaultCard={defaultCard}
                   all={type && "true"}

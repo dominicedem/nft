@@ -8,10 +8,7 @@ import SubNav from "../ui/SubNav";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setAll } from "../Slices/navSlice";
-import useFetchCategory from "../hooks/useFetchCategory";
-import FetchCategory from "../services/FetchCategory";
-// import Skeleton from "react-loading-skeleton";
-// import "react-loading-skeleton/dist/skeleton.css";
+import useFetchLanding from "../hooks/useFetchLanding";
 
 const HomeStyle = styled.div`
   width: 99.5vw;
@@ -29,12 +26,12 @@ const Landing = styled.div`
   justify-content: center;
   width: 99.5vw;
   height: 90vh;
-  gap: 5rem;
+  gap: 4rem;
   background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
-  margin-bottom: 7rem;
-  padding-top: 8rem;
+  /* margin-bottom: 1rem; */
+  padding-top: 7rem;
 `;
 const SubNavBox = styled.div`
   display: flex;
@@ -91,10 +88,11 @@ const MobileBox = styled.div`
 function Home() {
   const { offset } = useScroll();
   const dispatch = useDispatch();
-  const { data: categoryData, isLoading, isFetched } = useFetchCategory();
+  const { data: landingData, isLoading } = useFetchLanding();
   useEffect(() => {
     dispatch(setAll(true));
   });
+  console.log(landingData);
   return (
     <HomeStyle>
       <NavStyle className={offset === 0 ? "default" : "adapt"}>
@@ -119,34 +117,46 @@ function Home() {
         </AnimationBox>
       </Landing>
       <SliderCon
+        defaultCard="true"
         isLoading={isLoading}
-        data={categoryData?.data.arts}
+        data={landingData?.data.arts}
         title="arts"
-        right={{ text: "See all" }}
+        right={{ text: "view all" }}
       />
       <SliderCon
+        defaultCard="true"
         isLoading={isLoading}
-        data={categoryData?.data.gaming}
+        data={landingData?.data.gaming}
         title="gaming"
-        right={{ text: "See all" }}
+        right={{ text: "view all" }}
       />
       <SliderCon
+        defaultCard="true"
         isLoading={isLoading}
-        data={categoryData?.data.membership}
+        data={landingData?.data.membership}
         title="membership"
-        right={{ text: "See all" }}
+        right={{ text: "view all" }}
       />
       <SliderCon
+        defaultCard="true"
         isLoading={isLoading}
-        data={categoryData?.data.pfps}
+        data={landingData?.data.pfps}
         title="pfps"
-        right={{ text: "See all" }}
+        right={{ text: "view all" }}
       />
       <SliderCon
+        defaultCard="true"
         isLoading={isLoading}
-        data={categoryData?.data.photography}
+        data={landingData?.data.photography}
         title="photography"
-        right={{ text: "See all" }}
+        right={{ text: "view all" }}
+      />
+      <SliderCon
+        Exhibition="true"
+        isLoading={isLoading}
+        data={landingData?.data.exhibition}
+        title="exhibition"
+        right={{ text: "view all" }}
       />
     </HomeStyle>
   );
