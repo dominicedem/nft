@@ -45,9 +45,9 @@ function SliderCon({
   Exhibition,
   defaultCard,
 }) {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, _] = useSearchParams();
   let paramCategory = searchParams?.get("category");
-  const category = data && data[0].category;
+  const category = (data && data[0].category) || "exhibition";
   return (
     <SliderBoxStyle>
       <Text
