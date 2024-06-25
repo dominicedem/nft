@@ -100,7 +100,7 @@ function Navigation({ scroll, home }) {
             </Logo>
           </Link>
           <CtaBox>
-            <Search className={"adaptSearch"}>
+            <Search onClick={() => handleSearch()} className={"adaptSearch"}>
               <IoSearch style={iconStyle} fill={"var(--faint_text_black)"} />
             </Search>
             <Button

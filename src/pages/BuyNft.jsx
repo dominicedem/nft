@@ -5,6 +5,9 @@ import SliderCon from "../ui/SliderCon";
 import useFetchBuyNft from "../hooks/useFetchBuyNft";
 import useFetchLanding from "../hooks/useFetchLanding";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchModal } from "../Slices/SearchSlice";
+import SearchBar from "../ui/SearchBar";
 
 const BuyNftStyle = styled.div`
   width: 99.5vw;
@@ -22,17 +25,32 @@ const More = styled.div`
   padding: 1rem 0;
   background-color: var(--light_faint);
 `;
-const data = [
-  {
-    types: "More from this category",
-    id: 1,
-  },
-];
+const Overlay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay_background);
+  position: fixed;
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+`;
 function BuyNft() {
   const [searchParams, _] = useSearchParams();
   let category = searchParams?.get("category");
   const { data } = useFetchBuyNft();
+  const dispatch = useDispatch();
   const { data: landingData, isLoading } = useFetchLanding();
+  const { searchModal } = useSelector((state) => state.searchData);
+
+  function handleOverlay(e) {
+    e.target.className.split(" ").includes("overlay") &&
+      dispatch(setSearchModal(false));
+  }
+  console.log(searchModal);
   return (
     <BuyNftStyle id="top">
       <NavStyle className="adapt">
@@ -47,6 +65,15 @@ function BuyNft() {
           font={{ size: "2.2rem", weight: "300" }}
         />
       </More>
+      {searchModal && (
+        <Overlay
+          tabIndex="-1"
+          className="overlay"
+          onClick={(e) => handleOverlay(e)}
+        >
+          <SearchBar />
+        </Overlay>
+      )}
     </BuyNftStyle>
   );
 }

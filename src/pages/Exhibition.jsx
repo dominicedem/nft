@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import UserProfile from "./UserProfile";
 import Button from "../ui/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchModal } from "../Slices/SearchSlice";
+import SearchBar from "../ui/SearchBar";
 
 const ExhibtionStyle = styled.div`
   width: 100%;
@@ -25,7 +28,27 @@ const Text = styled.span`
   background: var(--balance_background);
   backdrop-filter: blur(5px);
 `;
+const Overlay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay_background);
+  position: fixed;
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+`;
 function Exhibtion() {
+  const dispatch = useDispatch();
+  const { searchModal } = useSelector((state) => state.searchData);
+
+  function handleOverlay(e) {
+    e.target.className.split(" ").includes("overlay") &&
+      dispatch(setSearchModal(false));
+  }
   return (
     <ExhibtionStyle>
       <UserProfile exhibition="true" isExhibition="true" />
@@ -41,6 +64,15 @@ function Exhibtion() {
         </Button>
         <Text>Fee: 0.02 ETH</Text>
       </BtnBox>
+      {searchModal && (
+        <Overlay
+          tabIndex="-1"
+          className="overlay"
+          onClick={(e) => handleOverlay(e)}
+        >
+          <SearchBar />
+        </Overlay>
+      )}
     </ExhibtionStyle>
   );
 }

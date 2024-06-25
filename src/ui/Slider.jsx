@@ -8,44 +8,6 @@ import { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-// const data = [
-//   {
-//     image_url: `/degods.webp`,
-//     id: 1,
-//     sub: "Space-star",
-//   },
-//   {
-//     image_url: `/light.webp`,
-//     id: 2,
-//     sub: "Boom",
-//   },
-//   {
-//     image_url: `/img1.webp`,
-//     id: 4,
-//     sub: "Plutonics",
-//   },
-//   {
-//     image_url: `/robot.webp`,
-//     id: 3,
-//     sub: "Azra-alpha",
-//   },
-//   {
-//     image_url: `/fly.webp`,
-//     id: 5,
-//     sub: "Twitter",
-//   },
-//   {
-//     image_url: `/newNft.webp`,
-//     id: 6,
-//     sub: "instagram",
-//   },
-//   {
-//     image_url: `/nft3.png`,
-//     id: 7,
-//     sub: "facebook",
-//   },
-// ];
-
 const DescriptionBox = styled.div`
   margin: 0 auto;
   width: 100%;

@@ -9,6 +9,9 @@ import usePagination from "../hooks/usePagination";
 import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import useFetchExhibition from "../hooks/useFetchExhibition";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchModal } from "../Slices/SearchSlice";
+import SearchBar from "../ui/SearchBar";
 
 const ViewallStyle = styled.div`
   width: 99.5vw;
@@ -67,9 +70,23 @@ const PagBox = styled.div`
   width: 100%;
   padding-right: 1rem;
 `;
+const Overlay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay_background);
+  position: fixed;
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+`;
 function Category() {
   const params = useParams();
   const reftop = useRef();
+  const dispatch = useDispatch();
 
   const { data: categoryData, isLoading } = useFetchCategory();
   const { data: exhibitionData, isLoading: exhibitionIsLoading } =
@@ -78,7 +95,12 @@ function Category() {
     params.type !== "exhibition" ? categoryData?.data : exhibitionData?.data
   );
 
-  console.log(exhibitionData);
+  const { searchModal } = useSelector((state) => state.searchData);
+
+  function handleOverlay(e) {
+    e.target.className.split(" ").includes("overlay") &&
+      dispatch(setSearchModal(false));
+  }
   return (
     <ViewallStyle id="Category_top" ref={reftop}>
       <NavStyle className="adapt">
@@ -124,6 +146,15 @@ function Category() {
       <PagBox>
         <Pagination reftop={reftop} dataLenght={categoryData?.data?.length} />
       </PagBox>
+      {searchModal && (
+        <Overlay
+          tabIndex="-1"
+          className="overlay"
+          onClick={(e) => handleOverlay(e)}
+        >
+          <SearchBar />
+        </Overlay>
+      )}
     </ViewallStyle>
   );
 }
