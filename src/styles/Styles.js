@@ -13,6 +13,8 @@ const GlobalStyle = createGlobalStyle`
     --black_bacground_hover: #555e;
     --profile_text: #666666cc;
     --bios_background: #eaeaea;
+    --search_background:#d5d5d55c;
+    --search_background_hover: #d5d5d5cc;
     --sideBar_text: #555;
     --subnav_background: #ffffff30;
     --box_shadow: #0001;

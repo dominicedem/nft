@@ -40,6 +40,12 @@ const Row = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  background: ${(props) =>
+    props.type === "hover" ? "var(--search_background)" : ""};
+  &:hover {
+    background: ${(props) =>
+      props.type === "hover" ? "var(--search_background_hover)" : ""};
+  }
 `;
 const Column = styled.div`
   display: flex;
@@ -111,13 +117,15 @@ function SearchBar() {
         >
           {filteredNft.map((val) => (
             <Row
+              type="hover"
+              tabIndex="-1"
               style={{
-                background: "var(--bios_background)",
                 borderRadius: "1rem",
                 padding: ".5rem",
                 gap: "1rem",
                 justifyContent: "start",
                 width: "100%",
+                cursor: "pointer",
               }}
             >
               <Img

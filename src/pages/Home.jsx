@@ -32,7 +32,6 @@ const Landing = styled.div`
   background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
-  /* margin-bottom: 1rem; */
   padding-top: 7rem;
 `;
 const SubNavBox = styled.div`
@@ -178,7 +177,11 @@ function Home() {
         right={{ text: "view all" }}
       />
       {searchModal && (
-        <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>
+        <Overlay
+          tabIndex="-1"
+          className="overlay"
+          onClick={(e) => handleOverlay(e)}
+        >
           <SearchBar />
         </Overlay>
       )}
