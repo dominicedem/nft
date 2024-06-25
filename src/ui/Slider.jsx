@@ -100,18 +100,14 @@ function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
         >
           {data?.map((val, _) => (
             <SwiperSlide key={val.id}>
-              {isLoading ? (
-                <Img src="/hero.jpg" alt="Nft images" />
-              ) : (
-                <Cards
-                  Exhibition={Exhibition}
-                  category={category}
-                  defaultCard={defaultCard}
-                  all={type && "true"}
-                  key={val._id}
-                  data={val}
-                />
-              )}
+              <Cards
+                Exhibition={Exhibition}
+                category={category}
+                defaultCard={defaultCard}
+                all={type && "true"}
+                key={val._id}
+                data={val}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

@@ -163,13 +163,20 @@ body {
     background-color:inherit;
 
 }
-/* .head {
-    width: 1500px !important;
-    height: fit-content !important;
-    overflow-x: hidden;
-    position: static !important;
-    margin: 0 !important;
-} */
+
+.skeleton {
+    animation: skeletonAnimate all 2s linear infinite;
+}
+
+@keyframes skeletonAnimate {
+    0% {
+        background: #ff0;
+    }
+    100% {
+        background: #f00;
+    }
+}
+
 .withBorder {
     background: inherit;
     &:hover {

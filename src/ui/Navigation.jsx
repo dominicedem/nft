@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import { setSearchModal } from "../Slices/SearchSlice";
+import { useDispatch } from "react-redux";
 
 const NavigationStyle = styled.div`
   display: flex;
@@ -50,6 +52,10 @@ const linkStyle = {
   textDecoration: "none",
 };
 function Navigation({ scroll, home }) {
+  const dispatch = useDispatch();
+  function handleSearch() {
+    dispatch(setSearchModal(true));
+  }
   return (
     <NavigationStyle>
       {home ? (
@@ -61,7 +67,10 @@ function Navigation({ scroll, home }) {
             </Logo>
           </Link>
           <CtaBox>
-            <Search className={!scroll ? "defaultSearch" : "adaptSearch"}>
+            <Search
+              onClick={() => handleSearch()}
+              className={!scroll ? "defaultSearch" : "adaptSearch"}
+            >
               <IoSearch
                 style={iconStyle}
                 fill={!scroll ? "var(--white_text)" : "var(--faint_text_black)"}

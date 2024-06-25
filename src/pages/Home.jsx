@@ -6,9 +6,11 @@ import Autotype from "../ui/Autotype";
 import VerticalSlider from "../ui/VerticalSlider";
 import SubNav from "../ui/SubNav";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAll } from "../Slices/navSlice";
 import useFetchLanding from "../hooks/useFetchLanding";
+import SearchBar from "../ui/SearchBar";
+import { setSearchModal } from "../Slices/SearchSlice";
 
 const HomeStyle = styled.div`
   width: 99.5vw;
@@ -84,11 +86,29 @@ const MobileBox = styled.div`
     display: none;
   }
 `;
-
+const Overlay = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--overlay_background);
+  position: fixed;
+  backdrop-filter: blur(5px);
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+`;
 function Home() {
   const { offset } = useScroll();
   const dispatch = useDispatch();
   const { data: landingData, isLoading } = useFetchLanding();
+  const { searchModal } = useSelector((state) => state.searchData);
+
+  function handleOverlay(e) {
+    e.target.className.split(" ").includes("overlay") &&
+      dispatch(setSearchModal(false));
+  }
   useEffect(() => {
     dispatch(setAll(true));
   });
@@ -157,6 +177,11 @@ function Home() {
         title="exhibition"
         right={{ text: "view all" }}
       />
+      {searchModal && (
+        <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>
+          <SearchBar />
+        </Overlay>
+      )}
     </HomeStyle>
   );
 }

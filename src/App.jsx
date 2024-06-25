@@ -8,6 +8,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import homeReducer from "./Slices/homeSlice";
 import overlayReducer from "./Slices/overLaySlice";
 import navigationReducer from "./Slices/navSlice";
+import searchReducer from "./Slices/SearchSlice";
 
 import Deposit from "./ui/Deposit";
 import AllUserNfts from "./ui/AllUserNfts";
@@ -31,7 +32,7 @@ const store = configureStore({
     homeData: homeReducer,
     overlayData: overlayReducer,
     navData: navigationReducer,
-    // filterData: filterReducer,
+    searchData: searchReducer,
     // searchData: searchReducer,
   },
 });

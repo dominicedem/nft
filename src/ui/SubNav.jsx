@@ -18,6 +18,7 @@ const List = styled.span`
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s;
   &:hover {
     background: var(--subnav_background);
   }
@@ -34,7 +35,7 @@ function SubNav() {
         <List className={!params?.type && "activeSubNav"}>All</List>
       </Link>
       <Link style={linkStyle} to="/category/arts">
-        <List className={params?.type === "arts" && "activeSubNav"}>Art</List>
+        <List className={params?.type === "arts" && "activeSubNav"}>Arts</List>
       </Link>
       <Link style={linkStyle} to="/category/gaming">
         <List className={params?.type === "gaming" && "activeSubNav"}>

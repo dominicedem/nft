@@ -5,6 +5,9 @@ import CardProfile from "./CardProfile";
 import { HashLink } from "react-router-hash-link";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
 
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 const CardsStyle = styled.div`
   display: flex;
   flex-direction: column;
@@ -89,7 +92,7 @@ function Cards({
   Edit,
   category,
 }) {
-  const { data: ethPrice, isLoading } = useFetchEthPrice();
+  const { data: ethPrice, isLoading: priceLoading } = useFetchEthPrice();
   const params = useParams();
   function handleBuy() {}
   let ethToUsdPrice =
