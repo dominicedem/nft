@@ -102,9 +102,13 @@ function Cards({
       <HashLink
         smooth
         style={linkStyle}
-        to={`/buynft/?productId=${data?.id}&category=${
-          params?.type || category
-        }#top`}
+        to={
+          !Exhibition
+            ? `/buynft/?productId=${data?.id}&category=${
+                params?.type || category
+              }#top`
+            : `/exhibition?productId=${data?.id}`
+        }
       >
         <ImgBox>
           <Img
@@ -196,7 +200,6 @@ function Cards({
               <Text
                 style={{
                   fontWeight: "600",
-                  // alignSelf: "end",
                   color: "#333",
                 }}
               >

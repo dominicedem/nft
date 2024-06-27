@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   searchModal: false,
   filteredNft: "",
+  filteredExhibition: "",
 };
 
 const searchSlice = createSlice({
@@ -14,8 +15,12 @@ const searchSlice = createSlice({
     setFilteredNft(state, action) {
       state.filteredNft = action.payload;
     },
+    setFilteredExhibition(state, action) {
+      state.filteredExhibition = action.payload;
+    },
   },
 });
 
-export const { setSearchModal, setFilteredNft } = searchSlice.actions;
+export const { setSearchModal, setFilteredNft, setFilteredExhibition } =
+  searchSlice.actions;
 export default searchSlice.reducer;

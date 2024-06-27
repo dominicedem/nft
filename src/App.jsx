@@ -16,8 +16,10 @@ import Mint from "./ui/Mint";
 import Withdrawal from "./ui/Withdrawal";
 import AllUserExhibition from "./ui/AllUserExhibition";
 import EditProfile from "./ui/EditProfile";
+import VerifyEmail from "./pages/VerifyEmail";
+import SignIn from "./pages/SignIn";
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
-const UserNftProfile = lazy(() => import("./pages/UserProfile"));
+const UserNftProfile = lazy(() => import("./pages/UserNftProfile"));
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const DashboardLayout = lazy(() => import("./ui/DashboardLayout"));
 const ErrorRoute = lazy(() => import("./pages/ErrorRoute"));
@@ -85,7 +87,8 @@ function App() {
                     {/* <Route path="/signin" element={<SignIn />} /> */}
                     {/* <Route path="/signup" element={<SignUp />} /> */}
                     {/* <Route path="/profile" element={<Profile />} /> */}
-                    {/* <Route path="/verifyemail" element={<VerifyEmail />} /> */}
+                    <Route path="/verifyemail" element={<VerifyEmail />} />
+                    <Route path="/signIn" element={<SignIn />} />
                     <Route path="*" element={<ErrorRoute />} />
                   </Routes>
                 </Suspense>

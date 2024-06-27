@@ -112,6 +112,7 @@ function Home() {
   useEffect(() => {
     dispatch(setAll(true));
   });
+  console.log(landingData?.data.photography);
   return (
     <HomeStyle>
       <NavStyle className={offset === 0 ? "default" : "adapt"}>

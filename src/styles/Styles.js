@@ -38,6 +38,7 @@ const GlobalStyle = createGlobalStyle`
     --inputField_border: #12121238;
     --feature_background: #eef7ff;
     --padding_btn_small: 0.5rem 1.5rem;
+    --padding_btn_medium: .8rem 1.8rem;
     --padding_btn_big: 1rem 2rem;
 }
 html {
@@ -230,6 +231,14 @@ body {
 
 .activeSubNav {
     background: var(--subnav_background);
+}
+
+.signUpActive {
+    z-index: -1;
+}
+
+.loginInActive {
+    z-index: 100;
 }
 
 `;

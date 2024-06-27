@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Socials from "../ui/Socials";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Cards from "../ui/Cards";
+import Exhibtion from "./Exhibition";
+import useFetchUserProfile from "../hooks/useFetchUserProfile";
 
 const NftProfileStyle = styled.div`
   width: 100%;
@@ -86,7 +88,7 @@ const NftBox = styled.div`
   align-items: start;
   gap: 2rem;
 `;
-const data = [
+const datass = [
   {
     image_url: `/degods.webp`,
     id: 1,
@@ -175,8 +177,10 @@ const datas = [
     sub: "Azra-alpha",
   },
 ];
-function UserProfile({ exhibition, isExhibition }) {
-  console.log(isExhibition);
+function UserProfile({ exhibition, displayNft, isExhibition }) {
+  const { data: userProfileData } = useFetchUserProfile(
+    "667664c092f7de0f69ea0b88"
+  );
   return (
     <NftProfileStyle>
       <ImageBox>
@@ -195,9 +199,9 @@ function UserProfile({ exhibition, isExhibition }) {
           <Column style={{ width: "fit-content" }}>
             <Text style={{ fontWeight: "700" }}>
               Edem Dominic{" "}
-              {!exhibition && <RiVerifiedBadgeFill style={iconStyle} />}
+              {!isExhibition && <RiVerifiedBadgeFill style={iconStyle} />}
             </Text>
-            {!exhibition && (
+            {!isExhibition && (
               <Text
                 style={{
                   fontSize: "1.3rem",
@@ -210,7 +214,7 @@ function UserProfile({ exhibition, isExhibition }) {
                 Edemdominic@gmail.com
               </Text>
             )}
-            {exhibition && (
+            {isExhibition && (
               <Row
                 style={{
                   marginTop: ".5rem",
@@ -239,7 +243,7 @@ function UserProfile({ exhibition, isExhibition }) {
               </Row>
             )}
           </Column>
-          {exhibition && (
+          {isExhibition && (
             <>
               <Text>56 NFTs</Text>
               <Text>Sales bonus: 10%</Text>
@@ -247,52 +251,83 @@ function UserProfile({ exhibition, isExhibition }) {
           )}
         </Row>
         <Row style={{ alignItems: "stretch", height: "15rem" }}>
-          <Column style={{ width: "40%" }}>
-            <Text style={{ fontWeight: "700" }}>Bio</Text>
-            <Text style={{ fontSize: "1.6rem" }}>
-              on chain transaction is the type of transaction that makes use of
-              the block chain t0 transfer coins from one wallet to the other ,
-            </Text>
-            <Text
-              style={{
-                fontSize: "1.6rem",
-                textDecoration: "underline",
-                marginTop: "-1rem",
-              }}
-            >
-              learn more
-            </Text>
-          </Column>
-          {!exhibition && (
+          {!isExhibition ? (
+            <Column style={{ width: "40%" }}>
+              <Text style={{ fontWeight: "700" }}>Bio</Text>
+              <Text style={{ fontSize: "1.6rem" }}>
+                on chain transaction is the type of transaction that makes use
+                of the block chain t0 transfer coins from one wallet to the
+                other ,
+              </Text>
+              <Text
+                style={{
+                  fontSize: "1.6rem",
+                  textDecoration: "underline",
+                  marginTop: "-1rem",
+                }}
+              >
+                learn more
+              </Text>
+            </Column>
+          ) : (
+            <Column style={{ width: "45%" }}>
+              <Text style={{ fontWeight: "700" }}>About Exhibition</Text>
+              <Text style={{ fontSize: "1.6rem" }}>
+                on chain transaction is the type of that makes use of the block
+                chain ti transfer coins from one wallet to the other , learn
+                moreon chain transaction is the type of that makes use of the
+                block chain ti transfer coins from one wallet to the other ,
+                learn more
+              </Text>
+              <Text
+                style={{
+                  fontSize: "1.6rem",
+                  textDecoration: "underline",
+                  marginTop: "-1rem",
+                }}
+              >
+                learn more
+              </Text>
+            </Column>
+          )}
+          {!isExhibition && (
             <SocialBox>
               <Socials />
             </SocialBox>
           )}
         </Row>
-        {!exhibition && (
+        {displayNft && (
           <NftBox style={{ marginTop: "-2rem" }}>
             <Text style={{ fontWeight: "600" }}>NFT</Text>
             <AllCards>
-              {data.map((val, _) => (
-                <Cards defaultCard="true" all="true" key={val.id} data={val} />
+              {userProfileData?.data?.myNft.map((val, _) => (
+                <Cards
+                  defaultCard="true"
+                  all="true"
+                  key={val.id}
+                  data={val}
+                  profile=""
+                />
               ))}
             </AllCards>
           </NftBox>
         )}
-        <NftBox style={{ marginTop: "6rem" }}>
-          <Text style={{ fontWeight: "600" }}>Exhibition</Text>
-          <AllCards>
-            {datas.map((val, _) => (
-              <Cards
-                Exhibition="true"
-                profile="true"
-                all="true"
-                key={val.id}
-                data={val}
-              />
-            ))}
-          </AllCards>
-        </NftBox>
+        {exhibition && (
+          <NftBox style={{ marginTop: "6rem" }}>
+            <Text style={{ fontWeight: "600" }}>Exhibition</Text>
+            <AllCards>
+              {userProfileData?.data?.myExhibition.map((val, _) => (
+                <Cards
+                  Exhibition="true"
+                  profile=""
+                  all="true"
+                  key={val.id}
+                  data={val}
+                />
+              ))}
+            </AllCards>
+          </NftBox>
+        )}
       </Container>
     </NftProfileStyle>
   );

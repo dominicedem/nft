@@ -140,7 +140,13 @@ function Category() {
       </DetailsBox>
       <AllCards>
         {paginatedData?.map((val, _) => (
-          <Cards defaultCard="true" key={val?.id} all="true" data={val} />
+          <Cards
+            defaultCard={params.type !== "exhibition" ? "true" : ""}
+            key={val?.id}
+            all="true"
+            data={val}
+            Exhibition={params.type === "exhibition" && "true"}
+          />
         ))}
       </AllCards>
       <PagBox>

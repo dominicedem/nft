@@ -4,6 +4,8 @@ import Button from "../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import SearchBar from "../ui/SearchBar";
+import useFetchExhibition from "../hooks/useFetchExhibition";
+import { useSearchParams } from "react-router-dom";
 
 const ExhibtionStyle = styled.div`
   width: 100%;
@@ -44,14 +46,23 @@ const Overlay = styled.div`
 function Exhibtion() {
   const dispatch = useDispatch();
   const { searchModal } = useSelector((state) => state.searchData);
+  const [searchParams, _] = useSearchParams();
+  const { exhNfts } = useFetchExhibition(searchParams?.get("productId"));
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
+
+  console.log(exhNfts);
   return (
     <ExhibtionStyle>
-      <UserProfile exhibition="true" isExhibition="true" />
+      <UserProfile
+        defaultCard="true"
+        data={exhNfts?.data?.exhibitionNft}
+        isExhibition="true"
+        displayNft="true"
+      />
       <BtnBox>
         <Button
           background="true"

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import useSearchNft from "../hooks/useSearchNft";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { HashLink } from "react-router-hash-link";
+import { useInView } from "react-intersection-observer";
 
 const SearchBarStyle = styled.div`
   display: flex;
@@ -71,13 +73,21 @@ const iconStyles = {
   height: "1.4rem",
   color: "#333",
 };
+const linkStyle = {
+  textDecoration: "none",
+  padding: 0,
+  margin: 0,
+  width: "100%",
+};
 function SearchBar() {
-  const { searchedNft, handleSearch, isLoading } = useSearchNft();
-  const { filteredNft } = useSelector((state) => state.searchData);
+  const { searchedNft, handleSearch } = useSearchNft();
+  const { filteredNft, filteredExhibition } = useSelector(
+    (state) => state.searchData
+  );
+  const { ref: exhibitionRef, inView: exhibitionInVeiw } = useInView();
   const dispatch = useDispatch();
-  console.log(filteredNft);
   return (
-    <SearchBarStyle tabIndex="-1">
+    <SearchBarStyle role="dialog" aria-modal="true" tabIndex="-1">
       <Row>
         <Text style={{ fontSize: "2rem" }}>Search</Text>
         <RxCross2
@@ -90,7 +100,6 @@ function SearchBar() {
         onChange={(e) => handleSearch(e)}
         type="text"
         placeholder="search for nfts"
-        disabled={isLoading}
       />
       {!filteredNft && (
         <Text
@@ -105,6 +114,16 @@ function SearchBar() {
         </Text>
       )}
       {filteredNft && (
+        <Text
+          style={{
+            fontSize: "1.8rem",
+            fontWeight: "500",
+          }}
+        >
+          {!exhibitionInVeiw ? "NFTs" : "Exhibition"}
+        </Text>
+      )}
+      {filteredNft && (
         <Column
           style={{
             height: "30rem",
@@ -112,57 +131,136 @@ function SearchBar() {
             justifyContent: "start",
             overflow: "scroll",
             gap: ".5rem",
-            marginTop: "1rem",
+            marginTop: "-.5rem",
           }}
         >
           {filteredNft.map((val) => (
-            <Row
-              type="hover"
-              tabIndex="-1"
-              style={{
-                borderRadius: "1rem",
-                padding: ".5rem",
-                gap: "1rem",
-                justifyContent: "start",
-                width: "100%",
-                cursor: "pointer",
-              }}
+            <HashLink
+              smooth
+              style={linkStyle}
+              to={`/buynft/?productId=${val?.id}&category=${val?.category}#top`}
             >
-              <Img
-                crossOrigin="anonymous"
-                src={`https://artcity.site/${val.photo}`}
-                alt="serachedNfts"
-              />
-              <Column
+              <Row
+                onClick={() => dispatch(setSearchModal(false))}
+                type="hover"
+                tabIndex="-1"
                 style={{
-                  justifyContent: "space-between",
-                  height: "100%",
-                  padding: ".25rem 0",
+                  borderRadius: "1rem",
+                  padding: ".5rem",
+                  gap: "1rem",
+                  justifyContent: "start",
+                  width: "100%",
+                  cursor: "pointer",
                 }}
               >
-                <Text
-                  style={{ fontSize: "1.6rem", color: "var(--sideBar_text)" }}
-                >
-                  {val.name}
-                </Text>
-                <Text
+                <Img
+                  crossOrigin="anonymous"
+                  src={`https://artcity.site/${val.photo}`}
+                  alt="serachedNfts"
+                />
+                <Column
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "1rem",
-                    fontSize: "1.4rem",
-                    color: "var(--profile_text)",
-                    fontWeight: "200",
+                    justifyContent: "space-between",
+                    height: "100%",
+                    padding: ".25rem 0",
                   }}
                 >
-                  {val.nftOwner.username}{" "}
-                  {val.nftOwner.userVerified && (
-                    <RiVerifiedBadgeFill style={iconStyles} />
-                  )}
-                </Text>
-              </Column>
-            </Row>
+                  <Text
+                    style={{ fontSize: "1.6rem", color: "var(--sideBar_text)" }}
+                  >
+                    {val.name}
+                  </Text>
+                  <Text
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "1rem",
+                      fontSize: "1.4rem",
+                      color: "var(--profile_text)",
+                      fontWeight: "200",
+                    }}
+                  >
+                    {val.nftOwner.username}{" "}
+                    {val.nftOwner.userVerified && (
+                      <RiVerifiedBadgeFill style={iconStyles} />
+                    )}
+                  </Text>
+                </Column>
+              </Row>
+            </HashLink>
           ))}
+          {filteredExhibition && (
+            <Column
+              ref={exhibitionRef}
+              style={{ width: "100%", margin: "3rem 0", gap: ".5rem" }}
+            >
+              <Text
+                style={{
+                  fontSize: "1.8rem",
+                  fontWeight: "500",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Exhibition
+              </Text>
+
+              {filteredExhibition.map((val) => (
+                <HashLink
+                  smooth
+                  style={linkStyle}
+                  to={`/exhibition?productId=${val?.id}`}
+                >
+                  <Row
+                    onClick={() => dispatch(setSearchModal(false))}
+                    type="hover"
+                    tabIndex="-1"
+                    style={{
+                      borderRadius: "1rem",
+                      padding: ".5rem",
+                      gap: "1rem",
+                      justifyContent: "start",
+                      width: "100%",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <Img
+                      crossOrigin="anonymous"
+                      src={`https://artcity.site/${val.photo}`}
+                      alt="serachedNfts"
+                    />
+                    <Column
+                      style={{
+                        justifyContent: "space-between",
+                        height: "100%",
+                        padding: ".25rem 0",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: "1.6rem",
+                          color: "var(--sideBar_text)",
+                        }}
+                      >
+                        {val.name}
+                      </Text>
+                      <Text
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "1rem",
+                          fontSize: "1.4rem",
+                          color: "var(--profile_text)",
+                          fontWeight: "200",
+                        }}
+                      >
+                        Total Nfts: {val.totalNft}
+                      </Text>
+                    </Column>
+                  </Row>
+                </HashLink>
+              ))}
+            </Column>
+          )}
         </Column>
       )}
     </SearchBarStyle>
