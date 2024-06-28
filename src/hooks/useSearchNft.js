@@ -10,12 +10,12 @@ export default function useSearchNft() {
   const dispatch = useDispatch();
 
   const { data, isLoading } = useQuery({
-    queryKey: ["search", searchedNft],
+    queryKey: ["search"],
     queryFn: () => FetchSearchNfts(),
   });
 
   const { data: exhibitionData, isLoading: ExhibitionIsLoading } = useQuery({
-    queryKey: ["exhibition", searchedNft],
+    queryKey: ["exhibition"],
     queryFn: () => FetchExhibition(),
   });
 

@@ -100,8 +100,8 @@ function SignIn() {
         <Description
           style={{
             transform: `${active ? "translateX(0)" : "translateX(-100%)"}`,
-            borderTopLeftRadius: "1rem",
-            borderBottomLeftRadius: `1rem`,
+            // borderTopLeftRadius: "1rem",
+            // borderBottomLeftRadius: `1rem`,
           }}
           className={active && "signUpActive"}
         >
@@ -132,8 +132,8 @@ function SignIn() {
         <Description
           style={{
             transform: `${active ? "translateX(0)" : "translateX(-100%)"}`,
-            borderTopRightRadius: "1rem",
-            borderBottomRightRadius: `1rem`,
+            // borderTopRightRadius: "1rem",
+            // borderBottomRightRadius: `1rem`,
           }}
           type="login"
           className={active && "loginInActive"}

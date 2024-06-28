@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --black_bacground: #555;
     --black_bacground_hover: #555e;
     --profile_text: #666666cc;
+    --sigin_placeholder_text: #66666688;
     --bios_background: #eaeaea;
     --search_background:#d5d5d55c;
     --search_background_hover: #d5d5d5cc;
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --border: rgb(217, 217, 217, 50%);
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;
+    --error_text: #f33;
     --blue_btn: #217FD7;
     --blue_background_hover:#2273beaa;
     --blue_btn_hover: rgb(33, 127, 215,90%);
