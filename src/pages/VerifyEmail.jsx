@@ -77,7 +77,7 @@ function VerifyEmail() {
         <Row style={{ marginTop: "3rem" }}>
           <Text style={{ fontSize: "1.4rem" }}>didn’t receive email?</Text>
           {time > 0 && <Text style={{ fontSize: "1.4rem" }}>{time}s</Text>}
-          <BtnBox onClick={() => startTimer()}>
+          <BtnBox onClick={() => time === 0 && startTimer()}>
             <Button
               padding=".8rem 1.5rem"
               width="100%"
