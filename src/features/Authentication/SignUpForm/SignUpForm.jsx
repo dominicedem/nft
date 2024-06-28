@@ -15,10 +15,10 @@ const Btn = styled.span`
   color: var(--sideBar_text);
   cursor: pointer;
 `;
-function SignUpForm({ setActive }) {
+function SignUpForm() {
   return (
     <SignUpFormStyle>
-      <Btn onClick={() => setActive(true)}>SignUp</Btn>
+      <Btn>SignUp</Btn>
     </SignUpFormStyle>
   );
 }

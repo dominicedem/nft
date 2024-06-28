@@ -15,10 +15,10 @@ const Btn = styled.span`
   color: var(--sideBar_text);
   cursor: pointer;
 `;
-function LoginForm({ setActive }) {
+function LoginForm() {
   return (
     <LoginFormStyle>
-      <Btn onClick={() => setActive(false)}>Login</Btn>
+      <Btn>Login</Btn>
     </LoginFormStyle>
   );
 }

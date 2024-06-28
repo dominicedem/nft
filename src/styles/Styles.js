@@ -8,6 +8,7 @@ const GlobalStyle = createGlobalStyle`
     --black_text: #444444;
     --faint_text_black: #1212129d;
     --white_text: #efefef;
+    --white_text_faint: #efefefcd;
     --secondary_text: #333;
     --black_bacground: #555;
     --black_bacground_hover: #555e;
@@ -24,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;
     --blue_btn: #217FD7;
+    --blue_background_hover:#2273beaa;
     --blue_btn_hover: rgb(33, 127, 215,90%);
     --btn_hover: #ececec;
     --overlay_background: #0003;
