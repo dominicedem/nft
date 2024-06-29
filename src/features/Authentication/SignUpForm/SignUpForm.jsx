@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import { RiUserLine } from "react-icons/ri";
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { PiEyeSlash } from "react-icons/pi";
-import { Link, useNavigate } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../../../ui/Button";
@@ -27,7 +23,7 @@ const SignUpPage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1rem;
   align-self: center;
   width: 100%;
   @media (min-width: 600px) {
@@ -55,7 +51,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: inherit;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 const Label = styled.label`
@@ -72,10 +68,6 @@ const InputField = styled.div`
   background-color: inherit;
   border: 1.34px solid var(--inputField_border);
   padding: 0.5rem 1rem;
-  &:hover,
-  &:focus {
-    border: 1.34px solid var(--blue_btn);
-  }
 `;
 const Input = styled.input`
   display: flex;
@@ -159,78 +151,99 @@ const closeIcon = {
 };
 function SignUpForm({ setActive }) {
   const {
-    name,
-    setName,
-    email,
-    setEmail,
-    password,
-    setPassword,
-    confirmPassword,
-    setConfirmPassword,
     reveal,
     setReveal,
-    error,
+    revealConfirmPasswor,
+    setRevealConfirmPasswor,
+    filteredEmail,
+    filteredName,
+    usernameError,
+    emailError,
     navigate,
+    handleSubmits,
+    handleError,
+    register,
     handleSubmit,
+    getValues,
+    errors,
   } = useSignUp();
+  console.log(emailError);
   return (
     <SignUpFormStyle>
       <SignUpPage>
         <HeadBox>
           <Header type="head">Create Account</Header>
         </HeadBox>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit(handleSubmits, handleError)}>
           <Box>
-            <Label htmlFor="id">Name</Label>
+            <Label htmlFor="name">Username</Label>
             <InputField
-              style={{
-                border: `${
-                  error
-                    ? "1.34px solid var(--error_text)"
-                    : "1.34px solid var(--inputField_border)"
-                }`,
-              }}
+              className={
+                usernameError ? "errorField" : errors?.name ? "errorField" : ""
+              }
             >
               <Input
-                id="id"
+                id="name"
                 type="text"
-                value={name}
                 placeholder="johnson-art"
-                onChange={(e) => setName(e.target.value)}
+                {...register("name", {
+                  required: "This field is required",
+                  validate: (val) =>
+                    !filteredName.includes(String(val)) ||
+                    "Username has been taken",
+                })}
               />
               <RiUserLine style={IconStyle} />
             </InputField>
           </Box>
+          <ErrorText style={{ marginTop: "-1rem" }}>
+            {errors?.name
+              ? errors?.name?.message
+              : usernameError
+              ? "Username has been taken"
+              : ""}
+          </ErrorText>
           <Box>
-            <Label htmlFor="id">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <InputField
-              style={{
-                border: `${
-                  error
-                    ? "1.34px solid var(--error_text)"
-                    : "1.34px solid var(--inputField_border)"
-                }`,
-              }}
+              className={
+                emailError ? "errorField" : errors?.email ? "errorField" : ""
+              }
             >
               <Input
-                id="id"
+                id="email"
                 type="email"
                 placeholder="example...@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email", {
+                  required: "This field is required",
+                  validate: (val) =>
+                    !filteredEmail.includes(String(val)) ||
+                    "Email has been taken",
+                })}
               />
               <MdOutlineEmail style={IconStyle} />
             </InputField>
           </Box>
+          <ErrorText style={{ marginTop: "-1rem" }}>
+            {errors?.email
+              ? errors?.email?.message
+              : emailError
+              ? "Email has been taken"
+              : ""}
+          </ErrorText>
           <Box>
             <Label htmlFor="pass">Password</Label>
             <InputField>
               <Input
                 id="pass"
                 type={!reveal ? "password" : "text"}
-                // minLength={8}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("pass", {
+                  required: "This field is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password should be more than eight digit",
+                  },
+                })}
               />
               {!reveal ? (
                 <PiEyeSlash
@@ -245,24 +258,34 @@ function SignUpForm({ setActive }) {
               )}
             </InputField>
           </Box>
+          <ErrorText style={{ marginTop: "-1rem" }}>
+            {errors?.pass?.message}
+          </ErrorText>
           <Box>
-            <Label htmlFor="pass">Confirm password</Label>
+            <Label htmlFor="confirmPass">Confirm password</Label>
             <InputField>
               <Input
-                id="pass"
-                type={!reveal ? "password" : "text"}
-                value={confirmPassword}
-                // minLength={8}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                id="confirmPass"
+                type={!revealConfirmPasswor ? "password" : "text"}
+                {...register("confirmPass", {
+                  required: "This field is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password should be more than eight digit",
+                  },
+                  validate: (val) =>
+                    val.toLowerCase() === getValues().pass.toLowerCase() ||
+                    "Passwords doesn't match",
+                })}
               />
-              {!reveal ? (
+              {!revealConfirmPasswor ? (
                 <PiEyeSlash
-                  onClick={() => setReveal((el) => !el)}
+                  onClick={() => setRevealConfirmPasswor((el) => !el)}
                   style={IconStyle}
                 />
               ) : (
                 <PiEyeLight
-                  onClick={() => setReveal((el) => !el)}
+                  onClick={() => setRevealConfirmPasswor((el) => !el)}
                   style={IconStyle}
                 />
               )}
@@ -275,7 +298,7 @@ function SignUpForm({ setActive }) {
               )} */}
           </Box>
           <ErrorText style={{ marginTop: "-1rem" }}>
-            {error ? error?.message : ""}
+            {errors?.confirmPass?.message}
           </ErrorText>
           <BtnBox style={{ marginTop: "1rem" }}>
             <Button

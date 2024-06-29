@@ -2,8 +2,6 @@ import styled from "styled-components";
 import Socials from "../ui/Socials";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Cards from "../ui/Cards";
-import Exhibtion from "./Exhibition";
-import useFetchUserProfile from "../hooks/useFetchUserProfile";
 
 const NftProfileStyle = styled.div`
   width: 100%;
@@ -88,99 +86,14 @@ const NftBox = styled.div`
   align-items: start;
   gap: 2rem;
 `;
-const datass = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/robot.webp`,
-    id: 3,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 5,
-    sub: "Twitter",
-  },
-  {
-    image_url: `/newNft.webp`,
-    id: 6,
-    sub: "instagram",
-  },
-  {
-    image_url: `/nft3.png`,
-    id: 7,
-    sub: "facebook",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 8,
-    sub: "facebook",
-  },
-];
-const datas = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 3,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/robot.webp`,
-    id: 4,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 5,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 6,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 7,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/robot.webp`,
-    id: 8,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 9,
-    sub: "Azra-alpha",
-  },
-];
-function UserProfile({ exhibition, displayNft, isExhibition }) {
-  const { data: userProfileData } = useFetchUserProfile(
-    "667664c092f7de0f69ea0b88"
-  );
+
+function UserProfile({
+  exhibition,
+  displayNft,
+  isExhibition,
+  userProfileData,
+  data,
+}) {
   return (
     <NftProfileStyle>
       <ImageBox>
@@ -299,32 +212,74 @@ function UserProfile({ exhibition, displayNft, isExhibition }) {
         {displayNft && (
           <NftBox style={{ marginTop: "-2rem" }}>
             <Text style={{ fontWeight: "600" }}>NFT</Text>
-            <AllCards>
-              {userProfileData?.data?.myNft.map((val, _) => (
-                <Cards
-                  defaultCard="true"
-                  all="true"
-                  key={val.id}
-                  data={val}
-                  profile=""
-                />
-              ))}
+            <AllCards
+              style={
+                !data && !userProfileData
+                  ? { columnGap: "5rem" }
+                  : { columnGap: "2rem" }
+              }
+            >
+              {data || userProfileData
+                ? data
+                  ? data?.map((val, ind) => (
+                      <Cards
+                        defaultCard="true"
+                        all="true"
+                        key={val ? val?.id : ind}
+                        data={val}
+                        profile=""
+                      />
+                    ))
+                  : userProfileData?.data?.myNft.map((val, ind) => (
+                      <Cards
+                        defaultCard="true"
+                        all="true"
+                        data={val}
+                        profile=""
+                        key={val ? val?.id : ind}
+                      />
+                    ))
+                : Array.from({ length: 10 }).map((val) => (
+                    <Cards
+                      defaultCard="true"
+                      all="true"
+                      profile=""
+                      key={val}
+                      width="30rem"
+                    />
+                  ))}
             </AllCards>
           </NftBox>
         )}
         {exhibition && (
           <NftBox style={{ marginTop: "6rem" }}>
             <Text style={{ fontWeight: "600" }}>Exhibition</Text>
-            <AllCards>
-              {userProfileData?.data?.myExhibition.map((val, _) => (
-                <Cards
-                  Exhibition="true"
-                  profile=""
-                  all="true"
-                  key={val.id}
-                  data={val}
-                />
-              ))}
+            <AllCards
+              style={
+                !data && !userProfileData
+                  ? { columnGap: "5rem" }
+                  : { columnGap: "2rem" }
+              }
+            >
+              {userProfileData
+                ? userProfileData?.data?.myExhibition.map((val, ind) => (
+                    <Cards
+                      Exhibition="true"
+                      profile=""
+                      all="true"
+                      key={val ? val?.id : ind}
+                      data={val}
+                    />
+                  ))
+                : Array.from({ length: 5 }).map((val) => (
+                    <Cards
+                      Exhibition="true"
+                      profile=""
+                      all="true"
+                      key={val + 16}
+                      width="30rem"
+                    />
+                  ))}
             </AllCards>
           </NftBox>
         )}

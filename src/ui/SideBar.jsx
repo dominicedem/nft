@@ -108,7 +108,7 @@ function SideBar() {
           </List>
           <List>
             <BsCollection style={iconStyle} />
-            <Link style={linkStyle} to="/exhibition">
+            <Link style={linkStyle} to="/category/exhibition">
               Exhibition
             </Link>
           </List>

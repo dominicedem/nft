@@ -1,10 +1,6 @@
 import styled from "styled-components";
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
 import { PiEyeLight } from "react-icons/pi";
 import { PiEyeSlash } from "react-icons/pi";
-import { Link, useNavigate } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../../../ui/Button";
@@ -157,85 +153,69 @@ const closeIcon = {
 };
 function LoginForm({ setActive }) {
   const {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    reveal,
-    setReveal,
-    error,
+    revealLoginPassword,
+    setRevealLoginPassword,
     navigate,
+    handleLoginSubmit,
+    handleError,
+    register,
     handleSubmit,
+    errors,
   } = useSignUp();
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
-  // const [reveal, setReveal] = useState();
-
-  // // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
-  // function handleSubmit(e) {
-  //   // e.preventDefault();
-  //   // setData(id, password);
-  //   // if (isFetched) {
-  //   //   setId("");
-  //   //   setPassword("");
-  //   //   setTimeout(() => dispatch(setInitail(false)), [4000]);
-  //   // }
-  // }
-
-  // useEffect(() => {
-  //   data?.status === "success" && dispatch(setIsAuth(true));
-  //   data?.status === "success" && dispatch(setToken(data.token));
-  // }, [data, dispatch]);
-
-  // useEffect(() => {
-  //   isAuth && navigate("/");
-  // }, [isAuth, navigate]);
+  console.log(errors);
   return (
     <LoginFormStyle>
       <SignUpPage>
         <HeadBox>
           <Header type="head">Sign In</Header>
         </HeadBox>
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form onSubmit={handleSubmit(handleLoginSubmit, handleError)}>
           <Box>
-            <Label htmlFor="id">Email</Label>
+            <Label htmlFor="signInEmail">Email</Label>
             <InputField>
               <Input
-                id="id"
+                id="signInEmail"
                 type="email"
                 placeholder="example...@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("signInEmail", {
+                  required: "This field is required",
+                })}
               />
               <MdOutlineEmail style={IconStyle} />
             </InputField>
           </Box>
+          <ErrorText style={{ marginTop: "-1.5rem" }}>
+            {errors.signInEmail && errors?.signInEmail.message}
+          </ErrorText>
           <Box>
-            <Label htmlFor="pass">Password</Label>
+            <Label htmlFor="password">Password</Label>
             <InputField>
               <Input
-                id="pass"
-                type={!reveal ? "password" : "text"}
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                type={!revealLoginPassword ? "password" : "text"}
+                {...register("password", {
+                  required: "This field is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password should be more than eight digit",
+                  },
+                })}
               />
-              {!reveal ? (
+              {!revealLoginPassword ? (
                 <PiEyeSlash
-                  onClick={() => setReveal((el) => !el)}
+                  onClick={() => setRevealLoginPassword((el) => !el)}
                   style={IconStyle}
                 />
               ) : (
                 <PiEyeLight
-                  onClick={() => setReveal((el) => !el)}
+                  onClick={() => setRevealLoginPassword((el) => !el)}
                   style={IconStyle}
                 />
               )}
             </InputField>
           </Box>
-          <ErrorText style={{ marginTop: "-1rem" }}>
-            {error ? error?.message : ""}
+          <ErrorText style={{ marginTop: "-1.5rem" }}>
+            {errors.password && errors?.password.message}
           </ErrorText>
           <BtnBox style={{ marginTop: "1rem" }}>
             <Button

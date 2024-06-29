@@ -53,8 +53,6 @@ function Exhibtion() {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
-
-  console.log(exhNfts);
   return (
     <ExhibtionStyle>
       <UserProfile

@@ -9,6 +9,7 @@ import homeReducer from "./Slices/homeSlice";
 import overlayReducer from "./Slices/overLaySlice";
 import navigationReducer from "./Slices/navSlice";
 import searchReducer from "./Slices/SearchSlice";
+import AllEmailNameReducer from "./Slices/AllEmailNameSlice";
 
 import Deposit from "./ui/Deposit";
 import AllUserNfts from "./ui/AllUserNfts";
@@ -35,7 +36,7 @@ const store = configureStore({
     overlayData: overlayReducer,
     navData: navigationReducer,
     searchData: searchReducer,
-    // searchData: searchReducer,
+    AllEmailNameData: AllEmailNameReducer,
   },
 });
 
@@ -50,7 +51,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <SkeletonTheme baseColor="#202020" highlightColor="#444">
+      <SkeletonTheme baseColor="#c1c1c1" highlightColor="#a6a6a6b7">
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
             <GlobalStyle />

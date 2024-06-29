@@ -29,7 +29,10 @@ function UserNftProfile() {
   const dispatch = useDispatch();
   const { searchModal } = useSelector((state) => state.searchData);
   const [searchParams, _] = useSearchParams();
-  const { exhNfts } = useFetchExhibition(searchParams?.get("productId"));
+  const { data: userProfileData } = useFetchUserProfile(
+    "667664c092f7de0f69ea0b88"
+  );
+  // const { exhNfts } = useFetchExhibition(searchParams?.get("productId"));
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
@@ -37,7 +40,12 @@ function UserNftProfile() {
   }
   return (
     <UserNftProfile1Style>
-      <UserProfile isExhibition="" exhibition="true" displayNft="true" />
+      <UserProfile
+        isExhibition=""
+        exhibition="true"
+        displayNft="true"
+        userProfileData={userProfileData}
+      />
       {searchModal && (
         <Overlay
           tabIndex="-1"

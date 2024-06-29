@@ -25,7 +25,7 @@ const GlobalStyle = createGlobalStyle`
     --border: rgb(217, 217, 217, 50%);
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;
-    --error_text: #f33;
+    --error_text: #f66;
     --blue_btn: #217FD7;
     --blue_background_hover:#2273beaa;
     --blue_btn_hover: rgb(33, 127, 215,90%);
@@ -244,6 +244,18 @@ body {
 .loginInActive {
     z-index: 100;
 }
+
+.errorField {
+    border: 1.34px solid var(--error_text);
+}
+.dummy {
+    border-radius: 1.5rem;
+}
+.buyImage {
+    border-radius: 1.5rem;
+    height: 42rem;
+}
+
 
 `;
 export default GlobalStyle;

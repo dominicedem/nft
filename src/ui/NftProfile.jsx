@@ -3,6 +3,8 @@ import Button from "./Button";
 import { Link, useSearchParams } from "react-router-dom";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
+import Skeleton from "react-loading-skeleton";
+import useFetchEthPrice from "../hooks/useFetchEthPrice";
 
 const ColumnBox = styled.div`
   display: flex;
@@ -100,8 +102,9 @@ const arrowIconStyle = {
   color: "var(--profile_text)",
 };
 function NftProfile({ data }) {
-  const [searchParams, setSearchParams] = useSearchParams();
-  let product = searchParams?.get("product");
+  // const [searchParams, _] = useSearchParams();
+  const { data: ethPrice } = useFetchEthPrice();
+  // let product = searchParams?.get("product");
   return (
     <div>
       <Contianer>
@@ -112,112 +115,140 @@ function NftProfile({ data }) {
         </Link>
         <RowBox>
           <ImgBox>
-            <Img
-              crossOrigin="anonymous"
-              src={`https://artcity.site/${data?.photo}`}
-            />
+            {data ? (
+              <Img
+                crossOrigin="anonymous"
+                src={`https://artcity.site/${data?.photo}`}
+              />
+            ) : (
+              <Skeleton className="buyImage" />
+            )}
           </ImgBox>
           <ColumnBox style={{ width: "50%" }}>
-            <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-              {data?.name}
-            </Text>
-            <Box style={{ textDecoration: "none" }}>
+            {data ? (
+              <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
+                {data?.name}
+              </Text>
+            ) : (
+              <Skeleton width={250} height={30} />
+            )}
+            {data ? (
+              <>
+                <Box style={{ textDecoration: "none" }}>
+                  <Text
+                    style={{
+                      fontSize: "1.8rem",
+                    }}
+                  >
+                    Owned by:{" "}
+                  </Text>
+                  <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
+                    {data?.nftOwner.username}{" "}
+                    {data?.nftOwner?.userVerified && (
+                      <RiVerifiedBadgeFill style={iconStyle} />
+                    )}{" "}
+                  </Text>
+                  <Box
+                    style={{
+                      fontSize: "2rem",
+                      marginLeft: "5%",
+                      width: "fit-content",
+                      color: "var(--profile_text)",
+                    }}
+                  >
+                    Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
+                  </Box>
+                </Box>
+              </>
+            ) : (
+              <Skeleton width={400} height={30} />
+            )}
+
+            {data ? (
               <Text
                 style={{
                   fontSize: "1.8rem",
+                  marginTop: "1rem",
+                  fontWeight: "500",
                 }}
               >
-                Owned by:{" "}
+                Description ({data?.category})
               </Text>
-              <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                {data?.nftOwner.username}{" "}
-                {data?.nftOwner?.userVerified && (
-                  <RiVerifiedBadgeFill style={iconStyle} />
-                )}{" "}
-              </Text>
-              <Box
+            ) : (
+              <Skeleton width={200} height={30} />
+            )}
+            {data ? (
+              <ColumnBox
+                type="card"
                 style={{
-                  fontSize: "2rem",
-                  marginLeft: "5%",
-                  width: "fit-content",
-                  color: "var(--profile_text)",
+                  background: "var(--light_faint)",
+                  width: "95%",
+                  marginTop: "-1rem",
+                  padding: "2.5rem",
+                  height: "14rem",
+                  overflow: "scroll",
+                  alignItems: "start",
                 }}
               >
-                Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-              </Box>
-            </Box>
-            <Text
-              style={{
-                fontSize: "1.8rem",
-                marginTop: "1rem",
-                fontWeight: "500",
-              }}
-            >
-              Description ({data?.category})
-            </Text>
-            <ColumnBox
-              type="card"
-              style={{
-                background: "var(--light_faint)",
-                width: "95%",
-                marginTop: "-1rem",
-                padding: "2.5rem",
-                height: "14rem",
-                overflow: "scroll",
-                alignItems: "start",
-              }}
-            >
-              <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
-            </ColumnBox>
-            <PayBox>
-              <RowBox
-                style={{
-                  gap: "1rem",
-                  alignItems: "end",
-                }}
-              >
-                <Text
+                <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
+              </ColumnBox>
+            ) : (
+              <Skeleton width={600} height={145} />
+            )}
+            {data ? (
+              <PayBox>
+                <RowBox
                   style={{
-                    fontSize: "1.8rem",
-                    color: "var(--black_text)",
-                    fontFamily: "IBM Plex Sans, sans-serif",
-                    fontWeight: "400",
+                    gap: "1rem",
+                    alignItems: "end",
                   }}
                 >
-                  Floor Price:
-                </Text>
-                <Text
+                  <Text
+                    style={{
+                      fontSize: "1.8rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "400",
+                    }}
+                  >
+                    Floor Price:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "2rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {data?.priceInEtherium} ETH
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: "1.4rem",
+                      color: "var(--black_text)",
+                      fontFamily: "IBM Plex Sans, sans-serif",
+                      fontWeight: "400",
+                      alignSelf: "center",
+                      paddingTop: ".2rem",
+                    }}
+                  >
+                    $
+                    {Math.ceil(data?.priceInEtherium * ethPrice?.ethereum?.usd)}
+                  </Text>
+                </RowBox>
+                <Buy
                   style={{
-                    fontSize: "2rem",
-                    color: "var(--black_text)",
-                    fontFamily: "IBM Plex Sans, sans-serif",
-                    fontWeight: "500",
+                    width: "100%",
+                    cursor: "pointer",
                   }}
                 >
-                  {data?.priceInEtherium} ETH
-                </Text>
-                <Text
-                  style={{
-                    fontSize: "1.4rem",
-                    color: "var(--black_text)",
-                    fontFamily: "IBM Plex Sans, sans-serif",
-                    fontWeight: "400",
-                    alignSelf: "center",
-                    paddingTop: ".2rem",
-                  }}
-                >
-                  ($4,900)
-                </Text>
-              </RowBox>
-              <Buy
-                style={{
-                  width: "100%",
-                  cursor: "pointer",
-                }}
-              >
-                Buy
-              </Buy>
-            </PayBox>
+                  Buy
+                </Buy>
+              </PayBox>
+            ) : (
+              <Skeleton width={600} height={100} />
+            )}
           </ColumnBox>
         </RowBox>
       </Contianer>

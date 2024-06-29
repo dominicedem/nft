@@ -27,9 +27,10 @@ const Img = styled.img`
   height: 40rem;
 `;
 
+const dummyData = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
+
 function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
   const [enter, setEnter] = useState(false);
-  // console.log(isLoading);
   return (
     <DescriptionBox
       onMouseEnter={() => setEnter(true)}
@@ -60,18 +61,31 @@ function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
           }}
           className={type ? "head" : "mySwiper"}
         >
-          {data?.map((val, _) => (
-            <SwiperSlide key={val.id}>
-              <Cards
-                Exhibition={Exhibition}
-                category={category}
-                defaultCard={defaultCard}
-                all={type && "true"}
-                key={val._id}
-                data={val}
-              />
-            </SwiperSlide>
-          ))}
+          {data
+            ? data?.map((val, _) => (
+                <SwiperSlide key={val.id}>
+                  <Cards
+                    Exhibition={Exhibition}
+                    category={category}
+                    defaultCard={defaultCard}
+                    all={type && "true"}
+                    key={val._id}
+                    data={val}
+                  />
+                </SwiperSlide>
+              ))
+            : Array.from({ length: 10 }).map((val, ind) => (
+                <SwiperSlide key={ind}>
+                  <Cards
+                    Exhibition={Exhibition}
+                    category={category}
+                    defaultCard={defaultCard}
+                    all={type && "true"}
+                    key={ind}
+                    dummyData="true"
+                  />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </InnerBox>
     </DescriptionBox>

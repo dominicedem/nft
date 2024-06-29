@@ -91,139 +91,152 @@ function Cards({
   defaultCard,
   Edit,
   category,
+  width,
 }) {
-  const { data: ethPrice, isLoading: priceLoading } = useFetchEthPrice();
+  const { data: ethPrice } = useFetchEthPrice();
   const params = useParams();
   function handleBuy() {}
   let ethToUsdPrice =
     Number(ethPrice?.ethereum?.usd) * Number(data?.priceInEtherium);
   return (
-    <CardsStyle onClick={() => handleBuy()} style={all && { width: "100%" }}>
-      <HashLink
-        smooth
-        style={linkStyle}
-        to={
-          !Exhibition
-            ? `/buynft/?productId=${data?.id}&category=${
-                params?.type || category
-              }#top`
-            : `/exhibition?productId=${data?.id}`
-        }
-      >
-        <ImgBox>
-          <Img
-            crossOrigin="anonymous"
-            src={`https://artcity.site/${data?.photo}`}
-          />
-        </ImgBox>
-        <CardDetailBox>
-          <Row>
-            <Text
-              type="head"
-              style={{
-                fontWeight: "600",
-                color: "#333",
-                display: "inline-block",
-                maxWidth: "160px",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {data?.name}
-            </Text>
-            {data?.nftOwner?.userVerified && (
-              <RiVerifiedBadgeFill style={iconStyle} />
-            )}
-          </Row>
-          {!profile && (
-            <Text
-              type="head"
-              style={{
-                fontSize: "1.6rem",
-                marginTop: "-.1rem",
-
-                fontWeight: "500",
-                color: "#333",
-              }}
-            >
-              {data?.nftOwner?.username}
-            </Text>
-          )}
-          {defaultCard && (
-            <PriceBox type="outer">
-              <PriceBox type="inner">
+    <>
+      {data ? (
+        <CardsStyle
+          onClick={() => handleBuy()}
+          style={all && { width: "100%" }}
+        >
+          <HashLink
+            smooth
+            style={linkStyle}
+            to={
+              !Exhibition
+                ? `/buynft/?productId=${data?.id}&category=${
+                    params?.type || category
+                  }#top`
+                : `/exhibition?productId=${data?.id}`
+            }
+          >
+            <ImgBox>
+              <Img
+                crossOrigin="anonymous"
+                src={`https://artcity.site/${data?.photo}`}
+              />
+            </ImgBox>
+            <CardDetailBox>
+              <Row>
                 <Text
+                  type="head"
                   style={{
-                    color: "var(--faint_text_black)",
+                    fontWeight: "600",
+                    color: "#333",
+                    display: "inline-block",
+                    maxWidth: "160px",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {data?.name}
+                </Text>
+                {data?.nftOwner?.userVerified && (
+                  <RiVerifiedBadgeFill style={iconStyle} />
+                )}
+              </Row>
+              {!profile && (
+                <Text
+                  type="head"
+                  style={{
+                    fontSize: "1.6rem",
+                    marginTop: "-.1rem",
 
                     fontWeight: "500",
-                  }}
-                >
-                  Floor Price
-                </Text>
-                <span
-                  style={{
-                    fontWeight: "400",
-                    fontSize: "1rem",
-                    color: "#555",
-                  }}
-                >
-                  USDT
-                </span>
-              </PriceBox>
-              <PriceBox type="inner" style={{ width: "50%" }}>
-                <Text
-                  style={{
-                    fontWeight: "700",
-                    alignSelf: "end",
                     color: "#333",
                   }}
                 >
-                  {data?.priceInEtherium} ETH
-                </Text>{" "}
-                <span
-                  style={{
-                    fontWeight: "400",
-                    alignSelf: "end",
-                    fontSize: "1rem",
-                    color: "#555",
-                  }}
-                >
-                  ${Math.ceil(ethToUsdPrice)}
-                </span>
-              </PriceBox>
-            </PriceBox>
+                  {data?.nftOwner?.username}
+                </Text>
+              )}
+              {defaultCard && (
+                <PriceBox type="outer">
+                  <PriceBox type="inner">
+                    <Text
+                      style={{
+                        color: "var(--faint_text_black)",
+
+                        fontWeight: "500",
+                      }}
+                    >
+                      Floor Price
+                    </Text>
+                    <span
+                      style={{
+                        fontWeight: "400",
+                        fontSize: "1rem",
+                        color: "#555",
+                      }}
+                    >
+                      USDT
+                    </span>
+                  </PriceBox>
+                  <PriceBox type="inner" style={{ width: "50%" }}>
+                    <Text
+                      style={{
+                        fontWeight: "700",
+                        alignSelf: "end",
+                        color: "#333",
+                      }}
+                    >
+                      {data?.priceInEtherium} ETH
+                    </Text>{" "}
+                    <span
+                      style={{
+                        fontWeight: "400",
+                        alignSelf: "end",
+                        fontSize: "1rem",
+                        color: "#555",
+                      }}
+                    >
+                      ${Math.ceil(ethToUsdPrice)}
+                    </span>
+                  </PriceBox>
+                </PriceBox>
+              )}
+              {Exhibition && (
+                <PriceBox type="outer">
+                  <Text
+                    style={{
+                      fontWeight: "600",
+                      color: "#333",
+                    }}
+                  >
+                    Total NFT
+                  </Text>
+                  <Text
+                    style={{
+                      fontWeight: "600",
+                      alignSelf: "end",
+                      color: "#333",
+                    }}
+                  >
+                    {data?.totalNft}
+                  </Text>
+                </PriceBox>
+              )}
+            </CardDetailBox>
+          </HashLink>
+          {Edit && (
+            <EditBox>
+              <CardProfile />
+            </EditBox>
           )}
-          {Exhibition && (
-            <PriceBox type="outer">
-              <Text
-                style={{
-                  fontWeight: "600",
-                  color: "#333",
-                }}
-              >
-                Total NFT
-              </Text>
-              <Text
-                style={{
-                  fontWeight: "600",
-                  alignSelf: "end",
-                  color: "#333",
-                }}
-              >
-                {data?.totalNft}
-              </Text>
-            </PriceBox>
-          )}
-        </CardDetailBox>
-      </HashLink>
-      {Edit && (
-        <EditBox>
-          <CardProfile />
-        </EditBox>
+        </CardsStyle>
+      ) : (
+        <CardsStyle style={{ padding: "0" }} className="">
+          {" "}
+          {data || <Skeleton height={300} width={width} className="dummy" />}
+        </CardsStyle>
       )}
-    </CardsStyle>
+    </>
   );
 }
 

@@ -50,7 +50,6 @@ function BuyNft() {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
-  console.log(searchModal);
   return (
     <BuyNftStyle id="top">
       <NavStyle className="adapt">

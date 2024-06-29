@@ -139,15 +139,25 @@ function Category() {
         <ViewAllDetails category={params?.type} />
       </DetailsBox>
       <AllCards>
-        {paginatedData?.map((val, _) => (
-          <Cards
-            defaultCard={params.type !== "exhibition" ? "true" : ""}
-            key={val?.id}
-            all="true"
-            data={val}
-            Exhibition={params.type === "exhibition" && "true"}
-          />
-        ))}
+        {paginatedData
+          ? paginatedData?.map((val, _) => (
+              <Cards
+                defaultCard={params.type !== "exhibition" ? "true" : ""}
+                key={val?.id}
+                all="true"
+                data={val}
+                Exhibition={params.type === "exhibition" && "true"}
+              />
+            ))
+          : Array.from({ length: 16 }).map((val, ind) => (
+              <Cards
+                defaultCard={params.type !== "exhibition" ? "true" : ""}
+                key={ind}
+                all="true"
+                width="30rem"
+                Exhibition={params.type === "exhibition" && "true"}
+              />
+            ))}
       </AllCards>
       <PagBox>
         <Pagination reftop={reftop} dataLenght={categoryData?.data?.length} />
