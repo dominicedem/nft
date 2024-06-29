@@ -65,7 +65,7 @@ const AllUserNftsStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding: 0 1rem;
+  padding: 0 1rem 3rem 1rem;
 `;
 const Text = styled.span`
   font-size: 2rem;
@@ -75,9 +75,13 @@ const Text = styled.span`
 `;
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   row-gap: 2rem;
-  column-gap: 1rem;
+  column-gap: 3rem;
+  padding: 0 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  @media (max-width: 1290px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `;
 
 function AllUserNfts() {
@@ -85,16 +89,27 @@ function AllUserNfts() {
     <AllUserNftsStyle>
       <Text>NFTs</Text>
       <Grid>
-        {data.map((val, ind) => (
-          <Cards
-            defaultCard="true"
-            key={ind}
-            data={val}
-            profile="true"
-            Edit="true"
-            all="true"
-          />
-        ))}
+        {data
+          ? data.map((val, ind) => (
+              <Cards
+                defaultCard="true"
+                key={ind}
+                data={val}
+                profile="true"
+                Edit="true"
+                all="true"
+              />
+            ))
+          : Array.from({ length: 10 }).map((_, ind) => (
+              <Cards
+                defaultCard="true"
+                key={ind}
+                profile="true"
+                Edit="true"
+                all="true"
+                width="26rem"
+              />
+            ))}
       </Grid>
     </AllUserNftsStyle>
   );
