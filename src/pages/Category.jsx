@@ -154,7 +154,7 @@ function Category() {
                 defaultCard={params.type !== "exhibition" ? "true" : ""}
                 key={ind}
                 all="true"
-                width="30rem"
+                width="28.7rem"
                 Exhibition={params.type === "exhibition" && "true"}
               />
             ))}
