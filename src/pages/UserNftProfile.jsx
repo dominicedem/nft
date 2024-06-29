@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import UserProfile from "./UserProfile";
+import UserProfile from "../ui/UserProfile";
 import useFetchUserProfile from "../hooks/useFetchUserProfile";
-import { useEffect } from "react";
-import FetchUserProfile from "../services/FetchUserProfile";
 import SearchBar from "../ui/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
-import useFetchExhibition from "../hooks/useFetchExhibition";
 import { setSearchModal } from "../Slices/SearchSlice";
 
 const UserNftProfile1Style = styled.div`
@@ -28,11 +24,9 @@ const Overlay = styled.div`
 function UserNftProfile() {
   const dispatch = useDispatch();
   const { searchModal } = useSelector((state) => state.searchData);
-  const [searchParams, _] = useSearchParams();
   const { data: userProfileData } = useFetchUserProfile(
     "667664c092f7de0f69ea0b88"
   );
-  // const { exhNfts } = useFetchExhibition(searchParams?.get("productId"));
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&

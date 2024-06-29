@@ -212,13 +212,7 @@ function UserProfile({
         {displayNft && (
           <NftBox style={{ marginTop: "-2rem" }}>
             <Text style={{ fontWeight: "600" }}>NFT</Text>
-            <AllCards
-              style={
-                !data && !userProfileData
-                  ? { columnGap: "5rem" }
-                  : { columnGap: "2rem" }
-              }
-            >
+            <AllCards>
               {data || userProfileData
                 ? data
                   ? data?.map((val, ind) => (
@@ -245,7 +239,7 @@ function UserProfile({
                       all="true"
                       profile=""
                       key={val}
-                      width="30rem"
+                      width="28.7rem"
                     />
                   ))}
             </AllCards>
@@ -254,13 +248,7 @@ function UserProfile({
         {exhibition && (
           <NftBox style={{ marginTop: "6rem" }}>
             <Text style={{ fontWeight: "600" }}>Exhibition</Text>
-            <AllCards
-              style={
-                !data && !userProfileData
-                  ? { columnGap: "5rem" }
-                  : { columnGap: "2rem" }
-              }
-            >
+            <AllCards>
               {userProfileData
                 ? userProfileData?.data?.myExhibition.map((val, ind) => (
                     <Cards
@@ -277,7 +265,7 @@ function UserProfile({
                       profile=""
                       all="true"
                       key={val + 16}
-                      width="30rem"
+                      width="28.7rem"
                     />
                   ))}
             </AllCards>

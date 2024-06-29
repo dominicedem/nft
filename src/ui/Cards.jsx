@@ -231,7 +231,10 @@ function Cards({
           )}
         </CardsStyle>
       ) : (
-        <CardsStyle style={{ padding: "0" }} className="">
+        <CardsStyle
+          style={all ? { width: "100%", padding: "0" } : { padding: "0" }}
+          className=""
+        >
           {" "}
           {data || <Skeleton height={300} width={width} className="dummy" />}
         </CardsStyle>

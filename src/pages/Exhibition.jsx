@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import UserProfile from "./UserProfile";
+import UserProfile from "../ui/UserProfile";
 import Button from "../ui/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
