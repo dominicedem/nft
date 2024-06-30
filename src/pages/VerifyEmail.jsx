@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Button from "../ui/Button";
 import useCountDown from "../hooks/useCountDown";
+import { useSelector } from "react-redux";
+import useResendEmailLink from "../hooks/useResendEmailLink";
 
 const VerifyEmailStyle = styled.div`
   display: flex;
@@ -43,7 +45,15 @@ const BtnBox = styled.div`
   width: 25%;
 `;
 function VerifyEmail() {
-  const { time, setResendLink, startTimer } = useCountDown();
+  const { time, startTimer } = useCountDown();
+  const { data, mutate } = useResendEmailLink();
+  const { userEmail } = useSelector((state) => state.AllEmailNameData);
+  console.log(data);
+
+  function handleResendLink() {
+    time === 0 && mutate();
+    time === 0 && startTimer();
+  }
   return (
     <VerifyEmailStyle>
       <Column style={{ background: "var(--blue_btn)", fontWeight: "600" }}>
@@ -72,12 +82,12 @@ function VerifyEmail() {
           Email verification link has been sent to :
         </Text>
         <Text style={{ fontSize: "1.6rem", marginTop: "-2rem" }}>
-          edem...33@gmail.com
+          {userEmail}
         </Text>
         <Row style={{ marginTop: "3rem" }}>
           <Text style={{ fontSize: "1.4rem" }}>didn’t receive email?</Text>
           {time > 0 && <Text style={{ fontSize: "1.4rem" }}>{time}s</Text>}
-          <BtnBox onClick={() => time === 0 && startTimer()}>
+          <BtnBox onClick={() => handleResendLink()}>
             <Button
               padding=".8rem 1.5rem"
               width="100%"

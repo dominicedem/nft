@@ -162,7 +162,6 @@ function LoginForm({ setActive }) {
     handleSubmit,
     errors,
   } = useSignUp();
-  console.log(errors);
   return (
     <LoginFormStyle>
       <SignUpPage>
@@ -171,22 +170,20 @@ function LoginForm({ setActive }) {
         </HeadBox>
         <Form onSubmit={handleSubmit(handleLoginSubmit, handleError)}>
           <Box>
-            <Label htmlFor="signInEmail">Email</Label>
+            <Label htmlFor="email">Email</Label>
             <InputField>
               <Input
-                id="signInEmail"
+                id="email"
                 type="email"
                 placeholder="example...@gmail.com"
-                {...register("signInEmail", {
+                {...register("email", {
                   required: "This field is required",
                 })}
               />
               <MdOutlineEmail style={IconStyle} />
             </InputField>
           </Box>
-          <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors.signInEmail && errors?.signInEmail.message}
-          </ErrorText>
+
           <Box>
             <Label htmlFor="password">Password</Label>
             <InputField>

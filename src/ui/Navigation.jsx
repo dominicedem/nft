@@ -76,7 +76,7 @@ function Navigation({ scroll, home }) {
                 fill={!scroll ? "var(--white_text)" : "var(--faint_text_black)"}
               />
             </Search>
-            <Link style={linkStyle} to="/dashboard">
+            <Link style={linkStyle} to="/signin">
               <Button
                 type="nav"
                 font="2rem"
@@ -103,15 +103,17 @@ function Navigation({ scroll, home }) {
             <Search onClick={() => handleSearch()} className={"adaptSearch"}>
               <IoSearch style={iconStyle} fill={"var(--faint_text_black)"} />
             </Search>
-            <Button
-              type="nav"
-              font="2rem"
-              color={"var(--faint_text_black)"}
-              border={"1px solid var(--inputField_border)"}
-              padding="1.1rem 2rem"
-            >
-              Login
-            </Button>
+            <Link style={linkStyle} to="/signin">
+              <Button
+                type="nav"
+                font="2rem"
+                color={"var(--faint_text_black)"}
+                border={"1px solid var(--inputField_border)"}
+                padding="1.1rem 2rem"
+              >
+                Login
+              </Button>
+            </Link>
           </CtaBox>
         </>
       )}

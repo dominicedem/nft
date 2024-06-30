@@ -167,7 +167,6 @@ function SignUpForm({ setActive }) {
     getValues,
     errors,
   } = useSignUp();
-  console.log(emailError);
   return (
     <SignUpFormStyle>
       <SignUpPage>
@@ -176,17 +175,17 @@ function SignUpForm({ setActive }) {
         </HeadBox>
         <Form onSubmit={handleSubmit(handleSubmits, handleError)}>
           <Box>
-            <Label htmlFor="name">Username</Label>
+            <Label htmlFor="username">Username</Label>
             <InputField
               className={
                 usernameError ? "errorField" : errors?.name ? "errorField" : ""
               }
             >
               <Input
-                id="name"
+                id="username"
                 type="text"
                 placeholder="johnson-art"
-                {...register("name", {
+                {...register("username", {
                   required: "This field is required",
                   validate: (val) =>
                     !filteredName.includes(String(val)) ||
@@ -197,8 +196,8 @@ function SignUpForm({ setActive }) {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1rem" }}>
-            {errors?.name
-              ? errors?.name?.message
+            {errors?.username
+              ? errors?.username?.message
               : usernameError
               ? "Username has been taken"
               : ""}
@@ -232,12 +231,12 @@ function SignUpForm({ setActive }) {
               : ""}
           </ErrorText>
           <Box>
-            <Label htmlFor="pass">Password</Label>
+            <Label htmlFor="password">Password</Label>
             <InputField>
               <Input
-                id="pass"
+                id="password"
                 type={!reveal ? "password" : "text"}
-                {...register("pass", {
+                {...register("password", {
                   required: "This field is required",
                   minLength: {
                     value: 8,
@@ -259,22 +258,23 @@ function SignUpForm({ setActive }) {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1rem" }}>
-            {errors?.pass?.message}
+            {errors?.password?.message}
           </ErrorText>
           <Box>
-            <Label htmlFor="confirmPass">Confirm password</Label>
+            <Label htmlFor="passwordConfirm">Confirm password</Label>
             <InputField>
               <Input
-                id="confirmPass"
+                id="passwordConfirm"
                 type={!revealConfirmPasswor ? "password" : "text"}
-                {...register("confirmPass", {
+                {...register("passwordConfirm", {
                   required: "This field is required",
                   minLength: {
                     value: 8,
                     message: "Password should be more than eight digit",
                   },
                   validate: (val) =>
-                    val.toLowerCase() === getValues().pass.toLowerCase() ||
+                    val?.toLowerCase() ===
+                      getValues().passwordConfirm?.toLowerCase() ||
                     "Passwords doesn't match",
                 })}
               />
@@ -298,7 +298,7 @@ function SignUpForm({ setActive }) {
               )} */}
           </Box>
           <ErrorText style={{ marginTop: "-1rem" }}>
-            {errors?.confirmPass?.message}
+            {errors?.passwordConfirm?.message}
           </ErrorText>
           <BtnBox style={{ marginTop: "1rem" }}>
             <Button

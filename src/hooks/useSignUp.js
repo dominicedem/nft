@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import FetchEmailName from "../services/FetchEmailName";
 import { useForm } from "react-hook-form";
+import FetchSignup from "../services/FetchSignup";
+import { setUserEmail } from "../Slices/AllEmailNameSlice";
+import { useDispatch } from "react-redux";
+import FetchLogin from "../services/FetchLogin";
 
 export default function useSignUp() {
   const [reveal, setReveal] = useState(false);
@@ -11,6 +15,7 @@ export default function useSignUp() {
   const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -28,29 +33,14 @@ export default function useSignUp() {
     queryFn: () => FetchEmailName(),
   });
 
-  console.log(data?.data);
-
   data?.data?.forEach((val) => filteredName.push(val.username));
   data?.data?.forEach((val) => filteredEmail.push(val.email));
 
-  // useEffect(() => {
-  //   filteredName.includes(String(name))
-  //     ? setUsernameError(name)
-  //     : setUsernameError("");
-  // }, [name]);
-
-  // useEffect(() => {
-  //   filteredEmail.includes(String(email))
-  //     ? setEmailError(name)
-  //     : setEmailError("");
-  // }, [email]);
-
-  const watchFields = watch(["name", "email"]);
+  const watchFields = watch(["username", "email"]);
 
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
-      console.log(value, name);
-      name === "name" && filteredName.includes(value?.name)
+      name === "username" && filteredName.includes(value?.username)
         ? setUsernameError(true)
         : setUsernameError(false);
       name === "email" && filteredEmail.includes(value?.email)
@@ -60,33 +50,21 @@ export default function useSignUp() {
     return () => subscription.unsubscribe();
   }, [watchFields, watch]);
 
-  function handleSubmits(formData) {
-    // console.log(formData);
-    reset();
+  async function handleSubmits(formData) {
+    const result = await FetchSignup(formData);
+    result.status === "success" && reset();
+    result.status === "success" && navigate("/verifyemail", { replace: true });
+    result.status === "success" && dispatch(setUserEmail(formData.email));
   }
-  function handleLoginSubmit(formData) {
-    // console.log(formData);
-    reset();
+  async function handleLoginSubmit(formData) {
+    const result = await FetchLogin(formData);
+    result.status === "success" && reset();
   }
 
   function handleError(errors) {
     // console.log(errors);
   }
-  // setData(id, password);
-  // if (isFetched) {
-  //   setId("");
-  //   setPassword("");
-  //   setTimeout(() => dispatch(setInitail(false)), [4000]);
-  // }
 
-  // useEffect(() => {
-  //   data?.status === "success" && dispatch(setIsAuth(true));
-  //   data?.status === "success" && dispatch(setToken(data.token));
-  // }, [data, dispatch]);
-
-  // useEffect(() => {
-  //   isAuth && navigate("/");
-  // }, [isAuth, navigate]);
   return {
     reveal,
     setReveal,
