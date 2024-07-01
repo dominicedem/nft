@@ -245,10 +245,10 @@ body {
 }
 
 .loginInActive {
-    z-index: -1;
+    z-index: -10;
 }
 .loginActive {
-    z-index: 1;
+    z-index: 10;
 }
 
 .errorField {
