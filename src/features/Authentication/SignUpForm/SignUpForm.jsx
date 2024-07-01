@@ -163,7 +163,7 @@ const closeIcon = {
   width: "2.5rem",
   height: "2.5rem",
 };
-function SignUpForm({ setActive }) {
+function SignUpForm({ setToggleSigin }) {
   const {
     reveal,
     setReveal,
@@ -328,7 +328,7 @@ function SignUpForm({ setActive }) {
           </BtnBox>
           <ResetTextBox type="signup">
             Already have an account?
-            <Span onClick={() => setActive(true)}>SignIn</Span>
+            <Span onClick={() => setToggleSigin(true)}>SignIn</Span>
           </ResetTextBox>
         </Form>
       </SignUpPage>

@@ -84,25 +84,25 @@ const Text = styled.span`
   color: var(--white_text_faint);
 `;
 function SignIn() {
-  const [active, setActive] = useState(false);
+  const [toggleSigin, setToggleSigin] = useState(false);
   return (
     <SignInStyle>
       <Row>
         <SignUpBox
           style={{
-            transform: `${active ? "translateX(0)" : "translateX(100%)"}`,
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
           }}
-          className={active && "signUpActive"}
+          className={toggleSigin && "signUpActive"}
         >
-          <SignUpForm setActive={setActive} />
+          <SignUpForm setToggleSigin={setToggleSigin} />
         </SignUpBox>
         <Description
           style={{
-            transform: `${active ? "translateX(0)" : "translateX(-100%)"}`,
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(-100%)"}`,
             // borderTopLeftRadius: "1rem",
             // borderBottomLeftRadius: `1rem`,
           }}
-          className={active && "signUpActive"}
+          className={toggleSigin && "signUpActive"}
         >
           <Text
             style={{
@@ -117,25 +117,25 @@ function SignIn() {
           <Text style={{ margin: "-1rem 0 2rem 0" }}>
             with your personal info
           </Text>
-          <BtnBox onClick={() => setActive(true)}>SIGN IN</BtnBox>
+          <BtnBox onClick={() => setToggleSigin(true)}>SIGN IN</BtnBox>
         </Description>
         <LoginBox
           style={{
-            transform: `${active ? "translateX(0)" : "translateX(100%)"}`,
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
           }}
           type="login"
-          className={active && "loginInActive"}
+          className={toggleSigin && "loginInActive"}
         >
-          <LoginForm setActive={setActive} />
+          <LoginForm setToggleSigin={setToggleSigin} />
         </LoginBox>
         <Description
           style={{
-            transform: `${active ? "translateX(0)" : "translateX(-100%)"}`,
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(-100%)"}`,
             // borderTopRightRadius: "1rem",
             // borderBottomRightRadius: `1rem`,
           }}
           type="login"
-          className={active && "loginInActive"}
+          className={toggleSigin && "loginInActive"}
         >
           <Text
             style={{
@@ -148,7 +148,7 @@ function SignIn() {
           </Text>
           <Text>Enter your personal details and take</Text>
           <Text style={{ margin: "-1rem 0 2rem 0" }}>a journey with us</Text>
-          <BtnBox onClick={() => setActive(false)}>SIGN UP</BtnBox>
+          <BtnBox onClick={() => setToggleSigin(false)}>SIGN UP</BtnBox>
         </Description>
       </Row>
     </SignInStyle>

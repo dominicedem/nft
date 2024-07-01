@@ -163,7 +163,7 @@ const closeIcon = {
   width: "2.5rem",
   height: "2.5rem",
 };
-function LoginForm({ setActive }) {
+function LoginForm({ setToggleSigin }) {
   const {
     revealLoginPassword,
     setRevealLoginPassword,
@@ -240,7 +240,7 @@ function LoginForm({ setActive }) {
           </BtnBox>
           <ResetTextBox type="signup">
             Already have an account?
-            <Span onClick={() => setActive(false)}>SignUp</Span>
+            <Span onClick={() => setToggleSigin(false)}>SignUp</Span>
           </ResetTextBox>
         </Form>
       </SignUpPage>
