@@ -238,7 +238,7 @@ body {
 }
 
 .signUpActive {
-    z-index: -100;
+    z-index: -10;
 }
 
 .loginInActive {
