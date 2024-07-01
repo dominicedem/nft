@@ -51,7 +51,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <SkeletonTheme baseColor="#c1c1c1" highlightColor="#a6a6a6b7">
+      <SkeletonTheme baseColor="#dcdcdc" highlightColor="#bababab7">
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
             <GlobalStyle />

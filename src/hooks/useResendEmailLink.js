@@ -1,9 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import FetchResendLink from "../services/FetchResendLink";
 
-export default function useResendEmailLink() {
+export default function useResendEmailLink(bearer) {
   const { data, mutate, isLoading } = useMutation({
-    mutationFn: () => FetchResendLink(),
+    mutationKey: ["resenLink"],
+    mutationFn: () => FetchResendLink(bearer),
   });
 
   return { data, isLoading, mutate };

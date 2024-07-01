@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import FetchEmailName from "../services/FetchEmailName";
 import { useForm } from "react-hook-form";
 import FetchSignup from "../services/FetchSignup";
-import { setUserEmail } from "../Slices/AllEmailNameSlice";
+import { setUserEmail, setUserToken } from "../Slices/AllEmailNameSlice";
 import { useDispatch } from "react-redux";
 import FetchLogin from "../services/FetchLogin";
 
@@ -55,9 +55,11 @@ export default function useSignUp() {
     result.status === "success" && reset();
     result.status === "success" && navigate("/verifyemail", { replace: true });
     result.status === "success" && dispatch(setUserEmail(formData.email));
+    result.status === "success" && dispatch(setUserToken(result.token));
   }
   async function handleLoginSubmit(formData) {
     const result = await FetchLogin(formData);
+    console.log(result);
     result.status === "success" && reset();
   }
 

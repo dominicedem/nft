@@ -3,6 +3,7 @@ const initialState = {
   filteredName: [],
   filteredEmail: [],
   userEmail: "",
+  token: "",
 };
 
 const AllEmailNameSlice = createSlice({
@@ -18,9 +19,12 @@ const AllEmailNameSlice = createSlice({
     setUserEmail(state, action) {
       state.userEmail = action.payload;
     },
+    setUserToken(state, action) {
+      state.token = action.payload;
+    },
   },
 });
 
-export const { setFilteredName, setFilteredEmail, setUserEmail } =
+export const { setFilteredName, setUserToken, setFilteredEmail, setUserEmail } =
   AllEmailNameSlice.actions;
 export default AllEmailNameSlice.reducer;

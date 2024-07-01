@@ -46,9 +46,8 @@ const BtnBox = styled.div`
 `;
 function VerifyEmail() {
   const { time, startTimer } = useCountDown();
-  const { data, mutate } = useResendEmailLink();
-  const { userEmail } = useSelector((state) => state.AllEmailNameData);
-  console.log(data);
+  const { userEmail, token } = useSelector((state) => state.AllEmailNameData);
+  const { data, mutate } = useResendEmailLink(token);
 
   function handleResendLink() {
     time === 0 && mutate();
