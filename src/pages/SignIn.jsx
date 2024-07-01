@@ -36,7 +36,7 @@ const Description = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   right: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: ${(props) => (props.type === "login" ? "-1" : "auto")};
+  /* z-index: ${(props) => (props.type === "login" ? "-1" : "auto")}; */
 `;
 const SignUpBox = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ const LoginBox = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   left: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: -1;
+  /* z-index: -1; */
 `;
 const BtnBox = styled.div`
   display: flex;
@@ -93,7 +93,7 @@ function SignIn() {
           style={{
             transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
           }}
-          // className={toggleSigin && "signUpActive"}
+          className={toggleSigin ? "signUpInActive" : "signUpActive"}
         >
           <SignUpForm setToggleSigin={setToggleSigin} />
         </SignUpBox>
@@ -103,7 +103,7 @@ function SignIn() {
             // borderTopLeftRadius: "1rem",
             // borderBottomLeftRadius: `1rem`,
           }}
-          // className={toggleSigin && "signUpActive"}
+          className={toggleSigin ? "signUpInActive" : "signUpActive"}
         >
           <Text
             style={{
@@ -125,7 +125,7 @@ function SignIn() {
           style={{
             transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
           }}
-          className={toggleSigin && "loginInActive"}
+          className={toggleSigin ? "loginActive" : "loginInActive"}
         >
           <LoginForm setToggleSigin={setToggleSigin} />
         </LoginBox>
@@ -136,7 +136,7 @@ function SignIn() {
             // borderTopRightRadius: "1rem",
             // borderBottomRightRadius: `1rem`,
           }}
-          className={toggleSigin && "loginInActive"}
+          className={toggleSigin ? "loginActive" : "loginInActive"}
         >
           <Text
             style={{

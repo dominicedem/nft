@@ -238,10 +238,16 @@ body {
 }
 
 .signUpActive {
-    z-index: -10;
+    z-index: 1;
+}
+.signUpInActive {
+    z-index: -1;
 }
 
 .loginInActive {
+    z-index: -1;
+}
+.loginActive {
     z-index: 1;
 }
 
