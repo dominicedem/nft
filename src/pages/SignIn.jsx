@@ -85,7 +85,7 @@ const Text = styled.span`
 `;
 function SignIn() {
   const [toggleSigin, setToggleSigin] = useState(false);
-  console.log(toggleSigin);
+  // console.log(toggleSigin);
   return (
     <SignInStyle>
       <Row>
