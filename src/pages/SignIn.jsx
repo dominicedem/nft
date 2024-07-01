@@ -36,7 +36,7 @@ const Description = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   right: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: ${(props) => (props.type === "login" ? "-1" : "100")};
+  z-index: ${(props) => (props.type === "login" ? "-1" : "auto")};
 `;
 const SignUpBox = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const SignUpBox = styled.div`
   height: 100%;
   width: 100%;
   transition: all 0.8s;
-  z-index: 100;
+  /* z-index: 100; */
 `;
 const LoginBox = styled.div`
   display: flex;
@@ -93,7 +93,7 @@ function SignIn() {
           style={{
             transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
           }}
-          className={toggleSigin && "signUpActive"}
+          // className={toggleSigin && "signUpActive"}
         >
           <SignUpForm setToggleSigin={setToggleSigin} />
         </SignUpBox>
@@ -103,7 +103,7 @@ function SignIn() {
             // borderTopLeftRadius: "1rem",
             // borderBottomLeftRadius: `1rem`,
           }}
-          className={toggleSigin && "signUpActive"}
+          // className={toggleSigin && "signUpActive"}
         >
           <Text
             style={{
