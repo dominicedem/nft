@@ -36,7 +36,7 @@ const Description = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   right: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: ${(props) => (props.type === "login" ? "-1" : "100")};
+  z-index: ${(props) => (props.type === "login" ? "-100" : "100")};
 `;
 const SignUpBox = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ const LoginBox = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   left: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: -1;
+  z-index: -100;
 `;
 const BtnBox = styled.div`
   display: flex;
@@ -85,6 +85,7 @@ const Text = styled.span`
 `;
 function SignIn() {
   const [toggleSigin, setToggleSigin] = useState(false);
+  console.log(toggleSigin);
   return (
     <SignInStyle>
       <Row>
@@ -156,3 +157,72 @@ function SignIn() {
 }
 
 export default SignIn;
+
+{
+  /* <SignInStyle>
+      <Row>
+        <SignUpBox
+          style={{
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
+          }}
+          className={toggleSigin && "signUpActive"}
+        >
+          <SignUpForm setToggleSigin={setToggleSigin} />
+        </SignUpBox>
+        <Description
+          style={{
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(-100%)"}`,
+            // borderTopLeftRadius: "1rem",
+            // borderBottomLeftRadius: `1rem`,
+          }}
+          className={toggleSigin && "signUpActive"}
+        >
+          <Text
+            style={{
+              fontSize: "4rem",
+              fontWeight: "600",
+              color: "var(--white_text)",
+            }}
+          >
+            Welcome Back!
+          </Text>
+          <Text>To stay connected with us, please login</Text>
+          <Text style={{ margin: "-1rem 0 2rem 0" }}>
+            with your personal info
+          </Text>
+          <BtnBox onClick={() => setToggleSigin(true)}>SIGN IN</BtnBox>
+        </Description>
+        <LoginBox
+          style={{
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(100%)"}`,
+          }}
+          type="login"
+          className={toggleSigin && "loginInActive"}
+        >
+          <LoginForm setToggleSigin={setToggleSigin} />
+        </LoginBox>
+        <Description
+          style={{
+            transform: `${toggleSigin ? "translateX(0)" : "translateX(-100%)"}`,
+            // borderTopRightRadius: "1rem",
+            // borderBottomRightRadius: `1rem`,
+          }}
+          type="login"
+          className={toggleSigin && "loginInActive"}
+        >
+          <Text
+            style={{
+              fontSize: "4rem",
+              fontWeight: "600",
+              color: "var(--white_text)",
+            }}
+          >
+            Hello, Friend!
+          </Text>
+          <Text>Enter your personal details and take</Text>
+          <Text style={{ margin: "-1rem 0 2rem 0" }}>a journey with us</Text>
+          <BtnBox onClick={() => setToggleSigin(false)}>SIGN UP</BtnBox>
+        </Description>
+      </Row>
+    </SignInStyle> */
+}
