@@ -2,7 +2,6 @@ import styled from "styled-components";
 import SignUpForm from "../features/Authentication/SignUpForm/SignUpForm";
 import LoginForm from "../features/Authentication/LoginForm/LoginForm";
 import { useState } from "react";
-import Button from "../ui/Button";
 
 const SignInStyle = styled.div`
   display: flex;

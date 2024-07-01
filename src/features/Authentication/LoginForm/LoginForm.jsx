@@ -5,6 +5,7 @@ import { RxCross1 } from "react-icons/rx";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../../../ui/Button";
 import useSignUp from "../../../hooks/useSignUp";
+import Loading from "../../../ui/Loading";
 const LoginFormStyle = styled.div`
   background: var(--light_faint);
   display: flex;
@@ -136,7 +137,18 @@ const ErrorText = styled.span`
   width: 100%;
   height: 1.5rem;
 `;
-
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: var(--overlay_background);
+  z-index: 100;
+`;
 const IconStyle = {
   fontSize: "2rem",
   color: "var(--input_Icon_color)",
@@ -161,6 +173,7 @@ function LoginForm({ setActive }) {
     register,
     handleSubmit,
     errors,
+    isBlur,
   } = useSignUp();
   return (
     <LoginFormStyle>
@@ -234,6 +247,11 @@ function LoginForm({ setActive }) {
       <CloseMenu onClick={() => navigate("/")}>
         <RxCross1 style={closeIcon} />
       </CloseMenu>
+      {isBlur && (
+        <LoadingBox>
+          <Loading />
+        </LoadingBox>
+      )}
     </LoginFormStyle>
   );
 }

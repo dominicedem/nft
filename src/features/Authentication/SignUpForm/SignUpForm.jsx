@@ -6,6 +6,7 @@ import { RxCross1 } from "react-icons/rx";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../../../ui/Button";
 import useSignUp from "../../../hooks/useSignUp";
+import Loading from "../../../ui/Loading";
 
 const SignUpFormStyle = styled.div`
   display: flex;
@@ -14,6 +15,7 @@ const SignUpFormStyle = styled.div`
   background: var(--light_faint);
   width: 100%;
   height: 100vh;
+  position: relative;
   /* border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem; */
 `;
@@ -134,12 +136,24 @@ const ErrorText = styled.span`
   width: 100%;
   height: 1.5rem;
 `;
-
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: var(--overlay_background);
+  z-index: 100;
+`;
 const IconStyle = {
   fontSize: "2rem",
   color: "var(--input_Icon_color)",
   cursor: "pointer",
 };
+
 // const linkStyle = {
 //   textDecoration: "none",
 //   color: "var(--sideBar_text)",
@@ -166,6 +180,7 @@ function SignUpForm({ setActive }) {
     handleSubmit,
     getValues,
     errors,
+    isBlur,
   } = useSignUp();
   return (
     <SignUpFormStyle>
@@ -320,6 +335,11 @@ function SignUpForm({ setActive }) {
       <CloseMenu onClick={() => navigate("/")}>
         <RxCross1 style={closeIcon} />
       </CloseMenu>
+      {isBlur && (
+        <LoadingBox>
+          <Loading />
+        </LoadingBox>
+      )}
     </SignUpFormStyle>
   );
 }

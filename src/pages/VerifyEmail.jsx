@@ -47,7 +47,7 @@ const BtnBox = styled.div`
 function VerifyEmail() {
   const { time, startTimer } = useCountDown();
   const { userEmail, token } = useSelector((state) => state.AllEmailNameData);
-  const { data, mutate } = useResendEmailLink(token);
+  const { mutate } = useResendEmailLink(token);
 
   function handleResendLink() {
     time === 0 && mutate();
@@ -91,6 +91,7 @@ function VerifyEmail() {
               padding=".8rem 1.5rem"
               width="100%"
               background={time === 0 && "var(--blue_btn)"}
+              color={time === 0 ? "var(--white_text)" : "var(--sideBar_text)"}
             >
               Resend link
             </Button>
