@@ -3,6 +3,8 @@ import Button from "../ui/Button";
 import useCountDown from "../hooks/useCountDown";
 import { useSelector } from "react-redux";
 import useResendEmailLink from "../hooks/useResendEmailLink";
+import { Link } from "react-router-dom";
+import Loading from "../ui/Loading";
 
 const VerifyEmailStyle = styled.div`
   display: flex;
@@ -44,14 +46,33 @@ const BtnBox = styled.div`
   justify-content: center;
   width: 25%;
 `;
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: var(--overlay_background);
+  z-index: 100;
+`;
+const linkStyle = {
+  textDecoration: "none",
+  width: "20%",
+};
+
 function VerifyEmail() {
   const { time, startTimer } = useCountDown();
   const { userEmail, token } = useSelector((state) => state.AllEmailNameData);
-  const { mutate } = useResendEmailLink(token);
+  const { data, mutate, isLoading } = useResendEmailLink(token);
+
+  console.log(data);
 
   function handleResendLink() {
     time === 0 && mutate();
-    time === 0 && startTimer();
+    time === 0 && !isLoading && startTimer();
   }
   return (
     <VerifyEmailStyle>
@@ -72,7 +93,7 @@ function VerifyEmail() {
           similique.
         </Text>
       </Column>
-      <Column>
+      <Column style={{ position: "relative" }}>
         <Img src="/emailPics.png" />
         <Text style={{ color: "var(--blue_btn)", fontWeight: "600" }}>
           Verify Email
@@ -84,7 +105,7 @@ function VerifyEmail() {
           {userEmail}
         </Text>
         <Row style={{ marginTop: "3rem" }}>
-          <Text style={{ fontSize: "1.4rem" }}>didn’t receive email?</Text>
+          <Text style={{ fontSize: "1.45rem" }}>Didn’t receive email?</Text>
           {time > 0 && <Text style={{ fontSize: "1.4rem" }}>{time}s</Text>}
           <BtnBox onClick={() => handleResendLink()}>
             <Button
@@ -97,6 +118,19 @@ function VerifyEmail() {
             </Button>
           </BtnBox>
         </Row>
+        <Row style={{ marginTop: "-1rem" }}>
+          <Text style={{ fontSize: "1.45rem" }}>Already verified?</Text>
+          <Link style={linkStyle} to="/signin">
+            <Text style={{ fontSize: "1.45rem", textDecoration: "underline" }}>
+              Login
+            </Text>
+          </Link>
+        </Row>
+        {isLoading && (
+          <LoadingBox>
+            <Loading />
+          </LoadingBox>
+        )}
       </Column>
     </VerifyEmailStyle>
   );

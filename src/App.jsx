@@ -10,6 +10,7 @@ import overlayReducer from "./Slices/overLaySlice";
 import navigationReducer from "./Slices/navSlice";
 import searchReducer from "./Slices/SearchSlice";
 import AllEmailNameReducer from "./Slices/AllEmailNameSlice";
+import { Toaster } from "react-hot-toast";
 
 import Deposit from "./ui/Deposit";
 import AllUserNfts from "./ui/AllUserNfts";
@@ -99,6 +100,26 @@ function App() {
                 </Routes>
               </Suspense>
             </BrowserRouter>
+            <Toaster
+              position="top-center"
+              gutter={12}
+              containerStyle={{ margin: "8px" }}
+              toastOptions={{
+                success: {
+                  duration: 3000,
+                },
+                error: {
+                  duration: 4000,
+                },
+                style: {
+                  fontSize: "16px",
+                  color: "var(--sideBar_text)",
+                  padding: "16px 24px",
+                  background: "var(--bios_background)",
+                  maxWidth: "500px",
+                },
+              }}
+            />
           </Provider>
         </QueryClientProvider>
       </SkeletonTheme>
