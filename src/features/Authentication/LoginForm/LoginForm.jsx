@@ -13,6 +13,7 @@ const LoginFormStyle = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+  position: relative;
   /* border-top-left-radius: 1rem;
   border-bottom-left-radius: 1rem; */
 `;
@@ -147,7 +148,7 @@ const LoadingBox = styled.div`
   width: 100%;
   backdrop-filter: blur(4px);
   background: var(--overlay_background);
-  z-index: 100;
+  z-index: 10000;
 `;
 const IconStyle = {
   fontSize: "2rem",
