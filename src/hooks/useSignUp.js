@@ -15,6 +15,7 @@ export default function useSignUp() {
   const [revealLoginPassword, setRevealLoginPassword] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const [feedBackError, setFeedBackError] = useState("");
   const [isBlur, setIsBlur] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,12 +67,19 @@ export default function useSignUp() {
   async function handleLoginSubmit(formData) {
     setIsBlur(true);
     const result = await FetchLogin(formData);
+    console.log(result);
     if (result.status === "success") {
       reset();
       setIsBlur(false);
       dispatch(setIsAuthenticated(true));
       dispatch(setUser(result.data.userDetails));
       navigate("/dashboard");
+    } else if (
+      result.status === "fail" &&
+      result.message.trim() === "invalid email or password"
+    ) {
+      setIsBlur(false);
+      setFeedBackError("Incorrect email or password");
     }
   }
 
