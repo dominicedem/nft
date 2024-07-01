@@ -36,7 +36,7 @@ const Description = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   right: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: ${(props) => (props.type === "login" ? "100" : "-10")};
+  z-index: ${(props) => (props.type === "login" ? "-1" : "100")};
 `;
 const SignUpBox = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const SignUpBox = styled.div`
   height: 100%;
   width: 100%;
   transition: all 0.8s;
-  z-index: -10;
+  z-index: 100;
 `;
 const LoginBox = styled.div`
   display: flex;
@@ -57,7 +57,7 @@ const LoginBox = styled.div`
   position: ${(props) => (props.type === "login" ? "absolute" : "")};
   top: ${(props) => (props.type === "login" ? "0" : "")};
   left: ${(props) => (props.type === "login" ? "0" : "")};
-  z-index: 100;
+  z-index: -1;
 `;
 const BtnBox = styled.div`
   display: flex;
