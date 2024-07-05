@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import Button from "./Button";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import Skeleton from "react-loading-skeleton";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
+import useFetchBuyNft from "../hooks/useFetchBuyNft";
+import FetchBuyProduct from "../services/FetchBuyProduct";
 
 const ColumnBox = styled.div`
   display: flex;
@@ -102,9 +104,20 @@ const arrowIconStyle = {
   color: "var(--profile_text)",
 };
 function NftProfile({ data }) {
-  // const [searchParams, _] = useSearchParams();
   const { data: ethPrice } = useFetchEthPrice();
-  // let product = searchParams?.get("product");
+  const { BuyResponse, mutate } = useFetchBuyNft();
+  const [searchParams, _] = useSearchParams();
+  const id = searchParams?.get("productId");
+  const navigate = useNavigate();
+
+  function handleBuy() {
+    const storage = JSON.parse(localStorage.getItem("userData"));
+    !storage.isAuthenticated
+      ? navigate("/signin", { replace: true })
+      : FetchBuyProduct(id);
+  }
+
+  console.log(BuyResponse);
   return (
     <div>
       <Contianer>
@@ -242,6 +255,7 @@ function NftProfile({ data }) {
                     width: "100%",
                     cursor: "pointer",
                   }}
+                  onClick={() => handleBuy()}
                 >
                   Buy
                 </Buy>

@@ -24,9 +24,9 @@ const Overlay = styled.div`
 function UserNftProfile() {
   const dispatch = useDispatch();
   const { searchModal } = useSelector((state) => state.searchData);
-  const { data: userProfileData } = useFetchUserProfile(
-    "667664c092f7de0f69ea0b88"
-  );
+  const { userData } = useSelector((state) => state.authData);
+  const { data: userProfileData } = useFetchUserProfile(userData?.id);
+  console.log(userData);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&

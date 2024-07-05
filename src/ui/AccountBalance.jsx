@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import useFetchEthPrice from "../hooks/useFetchEthPrice";
 
 const AccountBalanceStyle = styled.div`
   display: flex;
@@ -49,6 +51,15 @@ const Line = styled.div`
   border-bottom: 1px dashed var(--tertiary_text_faint);
 `;
 function AccountBalance() {
+  const { userData } = useSelector((state) => state.authData);
+  const { data } = useFetchEthPrice();
+
+  const balancePrice = (
+    userData?.wallet?.accountBallance * data?.ethereum?.usd
+  ).toFixed(2);
+  const ethPrice = Math.ceil(userData?.wallet?.eth * data?.ethereum?.usd);
+  const wethPrice = Math.ceil(userData?.wallet?.weth * data?.ethereum?.usd);
+
   return (
     <AccountBalanceStyle>
       <Text
@@ -64,7 +75,9 @@ function AccountBalance() {
         style={{ width: "50%", gap: "1rem", padding: "1rem 0 3rem 4rem" }}
       >
         <Text style={{ fontSize: "2rem" }}>Account Balance</Text>
-        <Text style={{ fontSize: "3rem", fontWeight: "600" }}>$45,000.00</Text>
+        <Text style={{ fontSize: "3rem", fontWeight: "600" }}>
+          ${balancePrice}
+        </Text>
       </BalanceOverview>
       <BalanceOverview>
         <Flex style={{ alignItems: "start" }}>
@@ -74,7 +87,9 @@ function AccountBalance() {
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
                 ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
-              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>9</Text>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
+                {userData?.wallet?.eth?.toFixed(2)}
+              </Text>
             </Flex>
             <Flex>
               <Text style={{ fontWeight: "300", fontSize: "1.4rem" }}>
@@ -82,7 +97,7 @@ function AccountBalance() {
               </Text>
               <Line></Line>
               <Text style={{ fontWeight: "300", fontSize: "1.45rem" }}>
-                $5,000
+                ${ethPrice}
               </Text>
             </Flex>
           </Flex>
@@ -92,9 +107,11 @@ function AccountBalance() {
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
-                ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
+                WETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
-              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>9</Text>
+              <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
+                {userData?.wallet?.weth?.toFixed(2)}
+              </Text>
             </Flex>
             <Flex>
               <Text style={{ fontWeight: "300", fontSize: "1.4rem" }}>
@@ -102,7 +119,7 @@ function AccountBalance() {
               </Text>
               <Line></Line>
               <Text style={{ fontWeight: "300", fontSize: "1.45rem" }}>
-                $5,000
+                ${wethPrice}
               </Text>
             </Flex>
           </Flex>

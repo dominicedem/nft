@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "./Button";
 import Socials from "./Socials";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const ProfileStyle = styled.div`
   display: flex;
@@ -62,13 +63,20 @@ const Text = styled.span`
 `;
 const Bio = styled.span`
   font-size: 1.2rem;
-  padding: 2rem 1rem 2rem 1.8rem;
+  padding: 2rem 1.8rem 2rem 1.8rem;
   background: var(--bios_background);
   border-radius: 1rem;
   margin-top: -0.5rem;
   line-height: 1.4;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   color: var(--sideBar_text);
+  width: 100%;
+  text-align: justify;
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
+  }
 `;
 const linkStyle = {
   color: "inherit",
@@ -76,14 +84,16 @@ const linkStyle = {
   width: "90%",
 };
 function Profile() {
+  const { userData } = useSelector((state) => state.authData);
   return (
     <ProfileStyle>
       <ImageBox>
         <Img src="/light.webp" alt="coverprofile" />
         <DpbBox>
           <Img
+            crossOrigin="anonymous"
             type="dp"
-            src="/robot.webp"
+            src={`https://artcity.site/${userData?.photo}`}
             alt="profileimage"
             style={{ borderRadius: "inherit" }}
           />
@@ -91,7 +101,7 @@ function Profile() {
       </ImageBox>
       <Description>
         <Column>
-          <Text style={{ fontWeight: "500" }}>Edem Dominic</Text>
+          <Text style={{ fontWeight: "500" }}>{userData?.username}</Text>
           <Text
             style={{
               fontSize: "1.3rem",
@@ -101,7 +111,7 @@ function Profile() {
               cursor: "pointer",
             }}
           >
-            Edemdominic@gmail.com
+            {userData?.email}
           </Text>
         </Column>
         <Column style={{ marginTop: "-1.5rem" }}>

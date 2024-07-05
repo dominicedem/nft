@@ -24,7 +24,7 @@ const NavStyle = styled.div`
 const Landing = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   width: 99.5vw;
   height: 90vh;
@@ -38,8 +38,8 @@ const SubNavBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-self: end;
-  width: 100%;
+  justify-self: start;
+  width: fit-content;
   padding-left: 2.5%;
 `;
 const VerticalBox = styled.div`
@@ -65,6 +65,7 @@ const AnimationBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  align-self: center;
   gap: 10rem;
   width: 88%;
   height: 75%;

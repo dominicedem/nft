@@ -106,12 +106,12 @@ function SideBar() {
               Nft transactions
             </HashLink>
           </List>
-          <List>
+          {/* <List>
             <BsCollection style={iconStyle} />
             <Link style={linkStyle} to="/category/exhibition">
               Exhibition
             </Link>
-          </List>
+          </List> */}
         </ListBox>
       </ListBox>
     </SideBarStyle>

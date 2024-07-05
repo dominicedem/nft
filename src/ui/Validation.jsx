@@ -6,6 +6,7 @@ import MintStatus from "../ui/MintStatus";
 import { useSelector } from "react-redux";
 import useSignUp from "../hooks/useSignUp";
 import Loading from "./Loading";
+import ValidationStatus from "./ValidationStatus";
 
 const MintBox = styled.div`
   display: flex;
@@ -41,6 +42,16 @@ const ImageBox = styled.div`
 const Text = styled.span`
   font-size: 1.4rem;
   color: var(--sideBar_text);
+  line-height: ${(props) => (props.type === "description" ? "1.3" : "1.2")};
+  letter-spacing: ${(props) => (props.type === "description" ? ".07rem" : "")};
+  width: ${(props) => (props.type === "description" ? "100%" : "")};
+  text-align: ${(props) => (props.type === "description" ? "justify" : "")};
+  &::after {
+    content: "";
+    display: ${(props) =>
+      props.type === "description" ? "inline-block" : "block"};
+    width: ${(props) => (props.type === "description" ? "100%" : "")};
+  }
 `;
 const Form = styled.form`
   width: 100%;
@@ -51,8 +62,9 @@ const Form = styled.form`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 `;
 const Label = styled.label`
   font-size: 1.8rem;
@@ -72,7 +84,7 @@ const Textarea = styled.textarea`
   width: 100%;
   border-radius: 0.5rem;
   border: 1px solid var(--light_faint);
-  padding: 1rem 1rem;
+  padding: 2rem;
   color: var(--sideBar_text);
   font-size: 1.6rem;
 `;
@@ -143,30 +155,47 @@ const iconStyle = {
   color: "var(--sideBar_text)",
   cursor: "pointer",
 };
-function Mint() {
+function Validation() {
   const [overlay, setOverlay] = useState(false);
 
   const {
-    // navigate,
     handleError,
+    errors,
+    getValues,
     register,
     handleSubmit,
-    handleMintSubmit,
-    getValues,
-    errors,
     isBlur,
+    handleValidateSubmit,
+    setValidSuccessOverlay,
+    setValidFailOverlay,
+    validSuccessOverlay,
+    validFailOverlay,
   } = useSignUp();
 
   const { userData } = useSelector((state) => state.authData);
 
   function handleOverlay(e) {
-    e.target.className.split(" ").includes("overlay") && setOverlay(false);
+    e.target.className.split(" ").includes("validSuccessOverlay") &&
+      setValidSuccessOverlay(false);
+    e.target.className.split(" ").includes("validFailOverlay") &&
+      setValidFailOverlay(false);
   }
   return (
     <MintBox>
-      <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Mint</Text>
+      <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Validate Nft</Text>
       <MintModalStyle>
-        <Form onSubmit={handleSubmit(handleMintSubmit, handleError)}>
+        <Column>
+          <Img
+            crossOrigin="anonymous"
+            src={`https://artcity.site/${userData?.wallet?.validationNft?.photo}`}
+          />
+          <Text>{userData?.wallet?.validationNft?.name}</Text>
+          <Text style={{ marginTop: "3rem" }}>
+            Fill the form below to validate nft
+          </Text>
+          <Text>Upload a document or picture to validate the artwork</Text>
+        </Column>
+        <Form onSubmit={handleSubmit(handleValidateSubmit, handleError)}>
           <Column style={{ alignItems: "center" }}>
             <Label htmlFor="file">
               {getValues().file?.[0]?.name ? (
@@ -192,84 +221,56 @@ function Mint() {
             {errors?.file?.message && errors?.file.message}
           </ErrorText>
           <Column>
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="text"
-              {...register("name", {
+            <Label htmlFor="textarea">
+              Make a brief statement about the uploaded artwork to validate it
+            </Label>
+            <Textarea
+              id="textarea"
+              {...register("textarea", {
                 required: "This field is required",
               })}
+              rows={6}
+              cols={4}
             />
           </Column>
-          <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors?.name?.message && errors?.name.message}
+          <ErrorText style={{ marginTop: "-1.5rem", textAlign: "center" }}>
+            {errors?.textarea?.message && errors?.textarea.message}
           </ErrorText>
-          <Column>
-            <Label htmlFor="description">Description</Label>
-            <Textarea
-              id="description"
-              rows="5"
-              type="text"
-              {...register("description")}
-            />
-          </Column>
-          <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors?.description?.message && errors?.description.message}
-          </ErrorText>
-          <Column>
-            <Label htmlFor="category">Category</Label>
-            <Select {...register("category")}>
-              <Option value="Gaming">Gaming</Option>
-              <Option value="Membership">Membership</Option>
-              <Option value="Arts">Arts</Option>
-              <Option value="Photography">Photography</Option>
-              <Option value="Pfps">Pfps</Option>
-            </Select>
-          </Column>
-          <Column>
-            <Label htmlFor="priceInEtherium">Floor Price</Label>
-            <Row>
-              <Input
-                style={{ fontWeight: "700" }}
-                id="priceInEtherium"
-                type="text"
-                {...register("priceInEtherium", {
-                  required: "This field is required",
-                  min: {
-                    value: 0.02,
-                    message: "Minimum floor price is 0.02 ETH",
-                  },
-                })}
-              />
-              <Text style={{ fontWeight: "700", fontSize: "1.6rem" }}>ETH</Text>
-            </Row>
-          </Column>
-          <Text style={{ margin: "-2rem 0 2rem 0" }}>min 0.02 ETH</Text>
-          <ErrorText style={{ marginTop: "-3rem" }}>
-            {errors?.priceInEtherium?.message &&
-              errors?.priceInEtherium.message}
-          </ErrorText>
+          <Text type="description" style={{ marginTop: "2rem" }}>
+            validation involves verifying the creator's identity, tracking
+            provenance, using digital watermarks, employing content comparison
+            tools, and conducting manual reviews to ensure the originality of
+            the artwork, thereby maintaining market integrity and protecting
+            artists' rights , it requires a certain fee on your ETH (fee
+            account) to initiate the process which would be refunded after the
+            process has been completed, the process could take up to 6 hours
+            before completion.
+          </Text>
           <Button
-            onSubmit={handleSubmit(handleMintSubmit, handleError)}
+            onSubmit={handleSubmit(handleValidateSubmit, handleError)}
             padding=".8rem 1.5rem"
             width="100%"
             background="true"
             font="2rem"
             color="var(--white_text)"
           >
-            Mint
+            Validate
           </Button>
         </Form>
-        <Text>
-          Minting fee of {userData?.wallet?.mintFee} ETH is required to mint an
-          Nft
-        </Text>
-        {overlay && (
-          <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>
-            <MintStatus status="true" />
-          </Overlay>
-        )}
       </MintModalStyle>
+      {validSuccessOverlay && (
+        <Overlay
+          className="validSuccessOverlay"
+          onClick={(e) => handleOverlay(e)}
+        >
+          <ValidationStatus status="true" />
+        </Overlay>
+      )}
+      {validFailOverlay && (
+        <Overlay className="validFailOverlay" onClick={(e) => handleOverlay(e)}>
+          <ValidationStatus status="false" />
+        </Overlay>
+      )}
       {isBlur && (
         <LoadingBox>
           <Loading />
@@ -279,4 +280,4 @@ function Mint() {
   );
 }
 
-export default Mint;
+export default Validation;

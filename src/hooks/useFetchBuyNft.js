@@ -1,7 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import FetchBuyNft from "../services/FetchBuyNft";
-import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import FetchBuyProduct from "../services/FetchBuyProduct";
 function useFetchBuyNft() {
   const [searchParams, _] = useSearchParams();
   let nftId = searchParams?.get("productId");
@@ -9,7 +9,16 @@ function useFetchBuyNft() {
     queryKey: ["buynft", nftId],
     queryFn: () => FetchBuyNft(nftId),
   });
-  return { data, isLoading };
+
+  const {
+    data: BuyResponse,
+    isLoading: NftIsLoading,
+    mutate,
+  } = useMutation({
+    mutationFn: () => FetchBuyProduct(),
+  });
+
+  return { data, isLoading, mutate, BuyResponse };
 }
 
 export default useFetchBuyNft;

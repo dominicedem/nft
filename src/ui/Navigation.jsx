@@ -3,7 +3,8 @@ import { IoSearch } from "react-icons/io5";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 import { setSearchModal } from "../Slices/SearchSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const NavigationStyle = styled.div`
   display: flex;
@@ -41,6 +42,25 @@ const Img = styled.img`
   width: 3.5rem;
 `;
 
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  background: var(appbackgroundcolor);
+  border: 1px solid var(--inputField_border);
+`;
+const UserImage = styled.img`
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+`;
+const Text = styled.span`
+  font-size: 1.8rem;
+  color: var(--white_text);
+`;
+
 const iconStyle = {
   color: "var(--appbackgroundcolor)",
   width: "2.8rem",
@@ -53,12 +73,16 @@ const linkStyle = {
 };
 function Navigation({ scroll, home }) {
   const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.authData);
+
   function handleSearch() {
     dispatch(setSearchModal(true));
   }
+  const storage = JSON.parse(localStorage.getItem("userData"));
+  console.log(userData);
   return (
     <NavigationStyle>
-      {home ? (
+      {home && (
         <>
           <Link style={linkStyle} to="/">
             <Logo>
@@ -76,22 +100,38 @@ function Navigation({ scroll, home }) {
                 fill={!scroll ? "var(--white_text)" : "var(--faint_text_black)"}
               />
             </Search>
-            <Link style={linkStyle} to="/signin">
-              <Button
-                type="nav"
-                font="2rem"
-                color={
-                  !scroll ? "var(--white_text)" : "var(--faint_text_black)"
-                }
-                border={!scroll ? "" : "1px solid var(--inputField_border)"}
-                padding="1.1rem 2rem"
-              >
-                Login
-              </Button>
-            </Link>
+            {!storage?.isAuthenticated ? (
+              <Link style={linkStyle} to="/signin">
+                <Button
+                  type="nav"
+                  font="2rem"
+                  color={
+                    !scroll ? "var(--white_text)" : "var(--faint_text_black)"
+                  }
+                  border={!scroll ? "" : "1px solid var(--inputField_border)"}
+                  padding="1.1rem 2rem"
+                >
+                  Login
+                </Button>
+              </Link>
+            ) : (
+              <Link style={linkStyle} to="/dashboard">
+                <Row>
+                  <UserImage
+                    crossOrigin="anonymous"
+                    src={`https://artcity.site/${userData?.photo}`}
+                    alt="profile Picture"
+                  />
+                  <Text className={scroll && "adaptSearch"}>
+                    {userData.username}
+                  </Text>
+                </Row>
+              </Link>
+            )}
           </CtaBox>
         </>
-      ) : (
+      )}
+      {!home && (
         <>
           <Link style={linkStyle} to="/">
             <Logo>
@@ -103,17 +143,26 @@ function Navigation({ scroll, home }) {
             <Search onClick={() => handleSearch()} className={"adaptSearch"}>
               <IoSearch style={iconStyle} fill={"var(--faint_text_black)"} />
             </Search>
-            <Link style={linkStyle} to="/signin">
-              <Button
-                type="nav"
-                font="2rem"
-                color={"var(--faint_text_black)"}
-                border={"1px solid var(--inputField_border)"}
-                padding="1.1rem 2rem"
-              >
-                Login
-              </Button>
-            </Link>
+            {!storage?.isAuthenticated ? (
+              <Link style={linkStyle} to="/signin">
+                <Button
+                  type="nav"
+                  font="2rem"
+                  color={"var(--faint_text_black)"}
+                  border={"1px solid var(--inputField_border)"}
+                  padding="1.1rem 2rem"
+                >
+                  Login
+                </Button>
+              </Link>
+            ) : (
+              <Link style={linkStyle} to="/dashboard">
+                <Row>
+                  <UserImage src="/light.webp" alt="profile Picture" />
+                  <Text className={scroll && "adaptSearch"}>Dominic</Text>
+                </Row>
+              </Link>
+            )}
           </CtaBox>
         </>
       )}

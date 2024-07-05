@@ -68,8 +68,6 @@ function VerifyEmail() {
   const { userEmail, token } = useSelector((state) => state.AllEmailNameData);
   const { data, mutate, isLoading } = useResendEmailLink(token);
 
-  console.log(data);
-
   function handleResendLink() {
     time === 0 && mutate();
     time === 0 && !isLoading && startTimer();

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Cards from "./Cards";
+import { useSelector } from "react-redux";
 
 const data = [
   {
@@ -85,12 +86,14 @@ const Grid = styled.div`
 `;
 
 function AllUserNfts() {
+  const { userData } = useSelector((state) => state.authData);
+
   return (
     <AllUserNftsStyle>
       <Text>NFTs</Text>
       <Grid>
-        {data
-          ? data.map((val, ind) => (
+        {userData
+          ? userData?.myNft?.map((val, ind) => (
               <Cards
                 defaultCard="true"
                 key={ind}

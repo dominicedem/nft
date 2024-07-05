@@ -21,6 +21,7 @@ import EditProfile from "./ui/EditProfile";
 import VerifyEmail from "./pages/VerifyEmail";
 import SignIn from "./pages/SignIn";
 import Loading from "./ui/Loading";
+import Validation from "./ui/Validation";
 
 const ProtectRoute = lazy(() => import("./ui/ProtectRoute"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
@@ -53,7 +54,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <>
-      <SkeletonTheme baseColor="#dcdcdc" highlightColor="#bababab7">
+      <SkeletonTheme baseColor="#dcdcdc" highlightColor="#c1c1c1c5">
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
             <GlobalStyle />
@@ -78,6 +79,10 @@ function App() {
                     <Route
                       path="/dashboard/withdraw"
                       element={<Withdrawal />}
+                    />
+                    <Route
+                      path="/dashboard/validation"
+                      element={<Validation />}
                     />
                     <Route
                       path="/dashboard/allUserNft"

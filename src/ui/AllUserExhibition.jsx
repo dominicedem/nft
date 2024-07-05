@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Cards from "./Cards";
 import { IoMdAdd } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 const data = [
   {
@@ -106,19 +107,22 @@ const iconStyle = {
   color: "var(--white_text)",
 };
 function AllUserExhibition() {
+  const { userData } = useSelector((state) => state.authData);
+
   return (
     <AllUserExhibitionStyle>
       <Text>Exhibition</Text>
       <Grid>
-        {data.map((val, ind) => (
-          <Cards
-            key={ind}
-            data={val}
-            profile="true"
-            Exhibition="true"
-            all="true"
-          />
-        ))}
+        {userData &&
+          userData?.myExhibition?.map((val, ind) => (
+            <Cards
+              key={ind}
+              data={val}
+              profile="true"
+              Exhibition="true"
+              all="true"
+            />
+          ))}
       </Grid>
       <Add>
         <IoMdAdd style={iconStyle} />

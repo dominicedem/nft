@@ -79,13 +79,18 @@ const linkStyle = {
   margin: 0,
   width: "100%",
 };
+
 function SearchBar() {
   const { searchedNft, handleSearch } = useSearchNft();
+  const dispatch = useDispatch();
   const { filteredNft, filteredExhibition } = useSelector(
     (state) => state.searchData
   );
   const { ref: exhibitionRef, inView: exhibitionInVeiw } = useInView();
-  const dispatch = useDispatch();
+  function test(val) {
+    dispatch(setSearchModal(false));
+    console.log(val);
+  }
   return (
     <SearchBarStyle role="dialog" aria-modal="true" tabIndex="-1">
       <Row>
@@ -141,7 +146,7 @@ function SearchBar() {
               to={`/buynft/?productId=${val?.id}&category=${val?.category}#top`}
             >
               <Row
-                onClick={() => dispatch(setSearchModal(false))}
+                onClick={() => test(val)}
                 type="hover"
                 tabIndex="-1"
                 style={{

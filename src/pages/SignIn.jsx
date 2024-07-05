@@ -2,6 +2,7 @@ import styled from "styled-components";
 import SignUpForm from "../features/Authentication/SignUpForm/SignUpForm";
 import LoginForm from "../features/Authentication/LoginForm/LoginForm";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const SignInStyle = styled.div`
   display: flex;
@@ -85,7 +86,9 @@ const Text = styled.span`
 `;
 function SignIn() {
   const [toggleSigin, setToggleSigin] = useState(false);
-  console.log(toggleSigin);
+  const { userData, isAuthenticated } = useSelector((state) => state.authData);
+  const { token } = useSelector((state) => state.AllEmailNameData);
+
   return (
     <SignInStyle>
       <Row>

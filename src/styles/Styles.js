@@ -128,6 +128,7 @@ body {
     width: 90vw !important;
 }
 
+
 .verticalSlide .swiper-wrapper {
     width: fit-content !important;
     height: 50rem !important;
@@ -168,7 +169,10 @@ body {
     transition: all .25s;
     border: 1px solid var(--inputField_border);
     background-color:inherit;
+}
 
+.adaptColor {
+    color: var(--sideBar_text);
 }
 
 .skeleton {

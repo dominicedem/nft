@@ -175,6 +175,7 @@ function LoginForm({ setToggleSigin }) {
     handleSubmit,
     errors,
     isBlur,
+    feedBackError,
   } = useSignUp();
   return (
     <LoginFormStyle>
@@ -197,7 +198,9 @@ function LoginForm({ setToggleSigin }) {
               <MdOutlineEmail style={IconStyle} />
             </InputField>
           </Box>
-
+          <ErrorText style={{ marginTop: "-1.5rem" }}>
+            {errors.email && errors.email.message}
+          </ErrorText>
           <Box>
             <Label htmlFor="password">Password</Label>
             <InputField>
@@ -226,7 +229,12 @@ function LoginForm({ setToggleSigin }) {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors.password && errors?.password.message}
+            {/* feedBackError */}
+            {errors.password
+              ? errors?.password.message
+              : feedBackError
+              ? "Incorrect email or password"
+              : ""}
           </ErrorText>
           <BtnBox style={{ marginTop: "1rem" }}>
             <Button

@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 import EditNft from "../ui/EditNft";
 import { useDispatch, useSelector } from "react-redux";
 import { setOverlay } from "../Slices/overLaySlice";
+import useReloadPage from "../hooks/useReloadPage";
+import { useEffect } from "react";
+import { setUser } from "../Slices/AuthUserSlice";
+import FetchNewUserData from "../services/FetchNewUserData";
 
 const DashboardStyle = styled.div`
   height: 100%;
@@ -52,10 +56,29 @@ const linkStyle = {
 function Dashboard() {
   const dispatch = useDispatch();
   const { overlay } = useSelector((state) => state.overlayData);
+  const { userData } = useSelector((state) => state.authData);
+  const { isLoading } = useReloadPage();
+
+  console.log(userData);
+
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setOverlay(false));
   }
+
+  // useEffect(() => {
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
+  //   const storage = JSON.parse(localStorage.getItem("userData"));
+
+  //   const fetchReload = async () => {
+  //     const reloadData = await FetchNewUserData(storage.token);
+  //     dispatch(setUser(reloadData.data));
+  //   };
+  //   fetchReload();
+
+  //   return controller.abort();
+  // }, [dispatch]);
   return (
     <DashboardStyle>
       <AccountBalance />
@@ -95,7 +118,17 @@ function Dashboard() {
         </Link>
       </Column>
       <DashCardBox style={{ marginTop: "" }}>
-        <DashCards header="NFT" Edit="true" profile="true" defaultCard="true" />
+        <DashCards
+          data={userData?.myNft?.slice(0, 4)}
+          header="NFT"
+          Edit="true"
+          profile="true"
+          defaultCard="true"
+          move="translateX(-230%)"
+          textdata={
+            userData?.myNft?.slice(0, 4).length < 1 && "No nft available"
+          }
+        />
       </DashCardBox>
       <TableBox id="transaction">
         <Table
@@ -104,7 +137,17 @@ function Dashboard() {
         />
       </TableBox>
       <DashCardBox>
-        <DashCards header="Exhibition" profile="true" Exhibition="true" />
+        <DashCards
+          data={userData?.myExhibition?.slice(0, 4)}
+          header="Exhibition"
+          profile="true"
+          Exhibition="true"
+          move="translateX(120%)"
+          textdata={
+            userData?.myExhibition?.slice(0, 4).length < 1 &&
+            "No Exhibition available"
+          }
+        />
       </DashCardBox>
       <TableBox id="nftTransaction">
         <Table tableHead="NFT Transactions" transaction="true" />

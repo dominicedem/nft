@@ -249,25 +249,26 @@ function UserProfile({
           <NftBox style={{ marginTop: "6rem" }}>
             <Text style={{ fontWeight: "600" }}>Exhibition</Text>
             <AllCards>
-              {userProfileData
-                ? userProfileData?.data?.myExhibition.map((val, ind) => (
-                    <Cards
-                      Exhibition="true"
-                      profile=""
-                      all="true"
-                      key={val ? val?.id : ind}
-                      data={val}
-                    />
-                  ))
-                : Array.from({ length: 5 }).map((val) => (
-                    <Cards
-                      Exhibition="true"
-                      profile=""
-                      all="true"
-                      key={val + 16}
-                      width="28.7rem"
-                    />
-                  ))}
+              {userProfileData &&
+                userProfileData?.data?.myExhibition.map((val, ind) => (
+                  <Cards
+                    Exhibition="true"
+                    profile=""
+                    all="true"
+                    key={val ? val?.id : ind}
+                    data={val}
+                  />
+                ))}
+              {!userProfileData &&
+                Array.from({ length: 5 }).map((val) => (
+                  <Cards
+                    Exhibition="true"
+                    profile=""
+                    all="true"
+                    key={val + 16}
+                    width="28.7rem"
+                  />
+                ))}
             </AllCards>
           </NftBox>
         )}
