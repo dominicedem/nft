@@ -36,12 +36,14 @@ function Pagination({ dataLenght, reftop }) {
     ? 1
     : Number(searchParam.get("page"));
   const totalPages = Math.ceil(dataLenght / PAGE_SIZE);
+
   function handleNext() {
     const next = current_page !== totalPages ? current_page + 1 : current_page;
     searchParam.set("page", next);
     setSearchParam(searchParam);
     reftop.current.scrollIntoView({ behavior: "smooth" });
   }
+
   function handlePrev() {
     const Prev = current_page === 1 ? current_page : current_page - 1;
     searchParam.set("page", Prev);

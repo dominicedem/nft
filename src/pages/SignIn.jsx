@@ -85,9 +85,7 @@ const Text = styled.span`
   color: var(--white_text_faint);
 `;
 function SignIn() {
-  const [toggleSigin, setToggleSigin] = useState(false);
-  const { userData, isAuthenticated } = useSelector((state) => state.authData);
-  const { token } = useSelector((state) => state.AllEmailNameData);
+  const [toggleSigin, setToggleSigin] = useState(true);
 
   return (
     <SignInStyle>

@@ -7,6 +7,8 @@ import Skeleton from "react-loading-skeleton";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
 import useFetchBuyNft from "../hooks/useFetchBuyNft";
 import FetchBuyProduct from "../services/FetchBuyProduct";
+import useAuthenticate from "../hooks/useAuthenticate";
+import Loading from "./Loading";
 
 const ColumnBox = styled.div`
   display: flex;
@@ -53,6 +55,7 @@ const Buy = styled.span`
   border-radius: 0.7rem;
   padding: 1.5rem 0;
   font-size: 2rem;
+  transition: all 0.3s;
   color: var(--white_text);
   &:hover {
     background-color: var(--blue_btn_hover);
@@ -90,6 +93,7 @@ const Box = styled.div`
     cursor: pointer;
   }
 `;
+
 const linkStyle = {
   color: "inherit",
   textDecoration: "none",
@@ -103,170 +107,163 @@ const arrowIconStyle = {
   fontSize: "3rem",
   color: "var(--profile_text)",
 };
-function NftProfile({ data }) {
+function NftProfile({ data, id, mutate, setIsBlur }) {
   const { data: ethPrice } = useFetchEthPrice();
-  const { BuyResponse, mutate } = useFetchBuyNft();
-  const [searchParams, _] = useSearchParams();
-  const id = searchParams?.get("productId");
   const navigate = useNavigate();
+  const { storage } = useAuthenticate();
 
   function handleBuy() {
-    const storage = JSON.parse(localStorage.getItem("userData"));
-    !storage.isAuthenticated
-      ? navigate("/signin", { replace: true })
-      : FetchBuyProduct(id);
+    setIsBlur(true);
+    storage?.isAuthenticated
+      ? mutate(id)
+      : navigate("/signin", { replace: true });
   }
-
-  console.log(BuyResponse);
   return (
-    <div>
-      <Contianer>
-        <Link style={linkStyle} to="/">
-          <BtnBox>
-            <Button padding="var(--padding_btn_small)">Back</Button>
-          </BtnBox>
-        </Link>
-        <RowBox>
-          <ImgBox>
-            {data ? (
-              <Img
-                crossOrigin="anonymous"
-                src={`https://artcity.site/${data?.photo}`}
-              />
-            ) : (
-              <Skeleton className="buyImage" />
-            )}
-          </ImgBox>
-          <ColumnBox style={{ width: "50%" }}>
-            {data ? (
-              <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
-                {data?.name}
-              </Text>
-            ) : (
-              <Skeleton width={250} height={30} />
-            )}
-            {data ? (
-              <>
-                <Box style={{ textDecoration: "none" }}>
-                  <Text
-                    style={{
-                      fontSize: "1.8rem",
-                    }}
-                  >
-                    Owned by:{" "}
-                  </Text>
-                  <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
-                    {data?.nftOwner.username}{" "}
-                    {data?.nftOwner?.userVerified && (
-                      <RiVerifiedBadgeFill style={iconStyle} />
-                    )}{" "}
-                  </Text>
-                  <Box
-                    style={{
-                      fontSize: "2rem",
-                      marginLeft: "5%",
-                      width: "fit-content",
-                      color: "var(--profile_text)",
-                    }}
-                  >
-                    Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-                  </Box>
+    <Contianer>
+      <Link style={linkStyle} to="/">
+        <BtnBox>
+          <Button padding="var(--padding_btn_small)">Back</Button>
+        </BtnBox>
+      </Link>
+      <RowBox>
+        <ImgBox>
+          {data ? (
+            <Img
+              crossOrigin="anonymous"
+              src={`https://artcity.site/${data?.photo}`}
+            />
+          ) : (
+            <Skeleton className="buyImage" />
+          )}
+        </ImgBox>
+        <ColumnBox style={{ width: "50%" }}>
+          {data ? (
+            <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
+              {data?.name}
+            </Text>
+          ) : (
+            <Skeleton width={250} height={30} />
+          )}
+          {data ? (
+            <>
+              <Box style={{ textDecoration: "none" }}>
+                <Text
+                  style={{
+                    fontSize: "1.8rem",
+                  }}
+                >
+                  Owned by:{" "}
+                </Text>
+                <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
+                  {data?.nftOwner.username}{" "}
+                  {data?.nftOwner?.userVerified && (
+                    <RiVerifiedBadgeFill style={iconStyle} />
+                  )}{" "}
+                </Text>
+                <Box
+                  style={{
+                    fontSize: "2rem",
+                    marginLeft: "5%",
+                    width: "fit-content",
+                    color: "var(--profile_text)",
+                  }}
+                >
+                  Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
                 </Box>
-              </>
-            ) : (
-              <Skeleton width={400} height={30} />
-            )}
+              </Box>
+            </>
+          ) : (
+            <Skeleton width={400} height={30} />
+          )}
 
-            {data ? (
-              <Text
+          {data ? (
+            <Text
+              style={{
+                fontSize: "1.8rem",
+                marginTop: "1rem",
+                fontWeight: "500",
+              }}
+            >
+              Description ({data?.category})
+            </Text>
+          ) : (
+            <Skeleton width={200} height={30} />
+          )}
+          {data ? (
+            <ColumnBox
+              type="card"
+              style={{
+                background: "var(--light_faint)",
+                width: "95%",
+                marginTop: "-1rem",
+                padding: "2.5rem",
+                height: "14rem",
+                overflow: "scroll",
+                alignItems: "start",
+              }}
+            >
+              <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
+            </ColumnBox>
+          ) : (
+            <Skeleton width={600} height={145} />
+          )}
+          {data ? (
+            <PayBox>
+              <RowBox
                 style={{
-                  fontSize: "1.8rem",
-                  marginTop: "1rem",
-                  fontWeight: "500",
+                  gap: "1rem",
+                  alignItems: "end",
                 }}
               >
-                Description ({data?.category})
-              </Text>
-            ) : (
-              <Skeleton width={200} height={30} />
-            )}
-            {data ? (
-              <ColumnBox
-                type="card"
+                <Text
+                  style={{
+                    fontSize: "1.8rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Floor Price:
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "2rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "500",
+                  }}
+                >
+                  {data?.priceInEtherium} ETH
+                </Text>
+                <Text
+                  style={{
+                    fontSize: "1.4rem",
+                    color: "var(--black_text)",
+                    fontFamily: "IBM Plex Sans, sans-serif",
+                    fontWeight: "400",
+                    alignSelf: "center",
+                    paddingTop: ".2rem",
+                  }}
+                >
+                  ${Math.ceil(data?.priceInEtherium * ethPrice?.ethereum?.usd)}
+                </Text>
+              </RowBox>
+              <Buy
                 style={{
-                  background: "var(--light_faint)",
-                  width: "95%",
-                  marginTop: "-1rem",
-                  padding: "2.5rem",
-                  height: "14rem",
-                  overflow: "scroll",
-                  alignItems: "start",
+                  width: "100%",
+                  cursor: "pointer",
                 }}
+                onClick={() => handleBuy()}
               >
-                <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
-              </ColumnBox>
-            ) : (
-              <Skeleton width={600} height={145} />
-            )}
-            {data ? (
-              <PayBox>
-                <RowBox
-                  style={{
-                    gap: "1rem",
-                    alignItems: "end",
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontSize: "1.8rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "400",
-                    }}
-                  >
-                    Floor Price:
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "2rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "500",
-                    }}
-                  >
-                    {data?.priceInEtherium} ETH
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: "1.4rem",
-                      color: "var(--black_text)",
-                      fontFamily: "IBM Plex Sans, sans-serif",
-                      fontWeight: "400",
-                      alignSelf: "center",
-                      paddingTop: ".2rem",
-                    }}
-                  >
-                    $
-                    {Math.ceil(data?.priceInEtherium * ethPrice?.ethereum?.usd)}
-                  </Text>
-                </RowBox>
-                <Buy
-                  style={{
-                    width: "100%",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => handleBuy()}
-                >
-                  Buy
-                </Buy>
-              </PayBox>
-            ) : (
-              <Skeleton width={600} height={100} />
-            )}
-          </ColumnBox>
-        </RowBox>
-      </Contianer>
-    </div>
+                Buy
+              </Buy>
+            </PayBox>
+          ) : (
+            <Skeleton width={600} height={100} />
+          )}
+        </ColumnBox>
+      </RowBox>
+    </Contianer>
   );
 }
 

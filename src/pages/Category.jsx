@@ -88,6 +88,8 @@ function Category() {
   const reftop = useRef();
   const dispatch = useDispatch();
 
+  const { searchModal } = useSelector((state) => state.searchData);
+
   const { data: categoryData, isLoading } = useFetchCategory();
   const { data: exhibitionData, isLoading: exhibitionIsLoading } =
     useFetchExhibition();
@@ -95,14 +97,12 @@ function Category() {
     params.type !== "exhibition" ? categoryData?.data : exhibitionData?.data
   );
 
-  const { searchModal } = useSelector((state) => state.searchData);
-
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
   return (
-    <ViewallStyle id="Category_top" ref={reftop}>
+    <ViewallStyle id="Category_top">
       <NavStyle className="adapt">
         <Navigation />
       </NavStyle>
@@ -138,7 +138,7 @@ function Category() {
       <DetailsBox>
         <ViewAllDetails category={params?.type} />
       </DetailsBox>
-      <AllCards>
+      <AllCards className={`${params.type}`} ref={reftop}>
         {paginatedData
           ? paginatedData?.map((val, _) => (
               <Cards
@@ -159,7 +159,11 @@ function Category() {
             ))}
       </AllCards>
       <PagBox>
-        <Pagination reftop={reftop} dataLenght={categoryData?.data?.length} />
+        <Pagination
+          key={`${params.type}`}
+          reftop={reftop}
+          dataLenght={categoryData?.data?.length}
+        />
       </PagBox>
       {searchModal && (
         <Overlay

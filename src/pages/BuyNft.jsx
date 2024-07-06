@@ -8,10 +8,12 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import SearchBar from "../ui/SearchBar";
+import Loading from "../ui/Loading";
 
 const BuyNftStyle = styled.div`
   width: 99.5vw;
   height: fit-content;
+  position: relative;
 `;
 const NavStyle = styled.div`
   width: 99.5vw;
@@ -34,28 +36,47 @@ const Overlay = styled.div`
   backdrop-filter: blur(5px);
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
   height: 100%;
+`;
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background: var(--overlay_background);
+  z-index: 100;
 `;
 function BuyNft() {
   const [searchParams, _] = useSearchParams();
   let category = searchParams?.get("category");
-  const { data } = useFetchBuyNft();
+  const { data, nftId, mutate, isBlur, setIsBlur } = useFetchBuyNft();
   const dispatch = useDispatch();
-  const { data: landingData, isLoading } = useFetchLanding();
+  const { data: landingData } = useFetchLanding();
   const { searchModal } = useSelector((state) => state.searchData);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
+
   return (
     <BuyNftStyle id="top">
       <NavStyle className="adapt">
         <Navigation />
       </NavStyle>
-      <NftProfile data={data?.data} />
+      <NftProfile
+        setIsBlur={setIsBlur}
+        id={nftId}
+        mutate={mutate}
+        data={data?.data}
+      />
       <More>
         <SliderCon
           data={landingData?.data[`${category}`]}
@@ -72,6 +93,11 @@ function BuyNft() {
         >
           <SearchBar />
         </Overlay>
+      )}
+      {isBlur && (
+        <LoadingBox>
+          <Loading />
+        </LoadingBox>
       )}
     </BuyNftStyle>
   );

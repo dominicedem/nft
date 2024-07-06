@@ -3,58 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
 
-const data = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/elephant.jpeg`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/boy.png`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/pics4.jpeg`,
-    id: 3,
-    sub: "Azra-alpha",
-  },
-  {
-    image_url: `/horse.jpeg`,
-    id: 5,
-    sub: "Twitter",
-  },
-  {
-    image_url: `/pirate.jpeg`,
-    id: 6,
-    sub: "instagram",
-  },
-  {
-    image_url: `/pics1.jpeg`,
-    id: 7,
-    sub: "facebook",
-  },
-  {
-    image_url: `/pics5.jpeg`,
-    id: 8,
-    sub: "facebook",
-  },
-  {
-    image_url: `/pics2.jpeg`,
-    id: 9,
-    sub: "facebook",
-  },
-  {
-    image_url: `/hero.jpg`,
-    id: 10,
-    sub: "facebook",
-  },
-];
 const TestStyle = styled.div`
   width: fit-content;
   height: fit-content;
@@ -67,7 +15,7 @@ const Img = styled.img`
   aspect-ratio: 1/2;
   border-radius: 1rem;
 `;
-function VerticalSlider({ type }) {
+function VerticalSlider({ type, data }) {
   return (
     <TestStyle>
       <Swiper
@@ -92,7 +40,7 @@ function VerticalSlider({ type }) {
         modules={[Autoplay]}
         className={"verticalSlide mySwiper"}
       >
-        {data.map((val, _) => (
+        {data?.map((val, _) => (
           <SwiperSlide key={val.id}>
             <Img
               src={val.image_url}

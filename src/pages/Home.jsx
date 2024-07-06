@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Navigation from "../ui/Navigation";
-import useScroll from "../hooks/useScroll";
 import SliderCon from "../ui/SliderCon";
 import Autotype from "../ui/Autotype";
 import VerticalSlider from "../ui/VerticalSlider";
@@ -11,6 +10,8 @@ import { setAll } from "../Slices/navSlice";
 import useFetchLanding from "../hooks/useFetchLanding";
 import SearchBar from "../ui/SearchBar";
 import { setSearchModal } from "../Slices/SearchSlice";
+import { useInView } from "react-intersection-observer";
+import useVerticalData from "../hooks/useVerticalData";
 
 const HomeStyle = styled.div`
   width: 99.5vw;
@@ -25,15 +26,22 @@ const Landing = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  justify-content: center;
+  justify-content: start;
   width: 99.5vw;
   height: 90vh;
   gap: 4rem;
   background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
-  padding-top: 7rem;
+  /* padding-top: 7rem; */
 `;
+
+const Watch = styled.div`
+  width: 100%;
+  height: 0.5rem;
+  margin-bottom: 6rem;
+`;
+
 const SubNavBox = styled.div`
   display: flex;
   align-items: center;
@@ -68,7 +76,7 @@ const AnimationBox = styled.div`
   align-self: center;
   gap: 10rem;
   width: 88%;
-  height: 75%;
+  height: 65%;
   background: #ffffff46;
   backdrop-filter: blur(5px);
   padding: 0 1% 1% 5%;
@@ -78,7 +86,7 @@ const AnimationBox = styled.div`
     width: 95%;
   }
 `;
-const MobileBox = styled.div`
+const DesktopBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,11 +109,11 @@ const Overlay = styled.div`
 `;
 
 function Home() {
-  const { offset } = useScroll();
   const dispatch = useDispatch();
+  const { ref: watchRef, inView: watchInview } = useInView();
   const { data: landingData, isLoading } = useFetchLanding();
   const { searchModal } = useSelector((state) => state.searchData);
-
+  const { data1, data2, data3 } = useVerticalData();
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
@@ -115,10 +123,11 @@ function Home() {
   });
   return (
     <HomeStyle>
-      <NavStyle className={offset === 0 ? "default" : "adapt"}>
-        <Navigation scroll={offset} home="true" />
+      <NavStyle className={watchInview ? "default" : "adapt"}>
+        <Navigation scroll={watchInview} home="true" />
       </NavStyle>
       <Landing>
+        <Watch ref={watchRef}></Watch>
         <SubNavBox>
           <SubNav />
         </SubNavBox>
@@ -127,12 +136,12 @@ function Home() {
             <Autotype />
           </AutoBox>
           <VerticalBox>
-            <MobileBox>
+            <DesktopBox>
               <VerticalSlider type="true" />
-            </MobileBox>
-            <VerticalSlider type="" />
-            <VerticalSlider type="true" />
-            <VerticalSlider type="" />
+            </DesktopBox>
+            <VerticalSlider data={data1} type="" />
+            <VerticalSlider data={data2} type="true" />
+            <VerticalSlider data={data3} type="" />
           </VerticalBox>
         </AnimationBox>
       </Landing>
