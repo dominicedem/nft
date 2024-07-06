@@ -28,12 +28,11 @@ const Landing = styled.div`
   align-items: start;
   justify-content: start;
   width: 99.5vw;
-  height: 90vh;
+  height: 85vh;
   gap: 4rem;
-  background: linear-gradient(#0001 50%, #ffff), url("/hero.jpg");
+  background: linear-gradient(#0001 60%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
-  /* padding-top: 7rem; */
 `;
 
 const Watch = styled.div`
