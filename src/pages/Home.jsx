@@ -139,8 +139,8 @@ function Home() {
               <VerticalSlider type="true" />
             </DesktopBox>
             <VerticalSlider data={data1} type="" />
-            <VerticalSlider data={data2} type="true" />
-            <VerticalSlider data={data3} type="" />
+            <VerticalSlider data={data3} type="true" />
+            <VerticalSlider data={data2} type="" />
           </VerticalBox>
         </AnimationBox>
       </Landing>

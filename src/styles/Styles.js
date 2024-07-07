@@ -266,6 +266,12 @@ body {
     height: 42rem;
 }
 
+.checked {
+    border: 4px solid var(--blue_btn);
+}
+.unChecked {
+    border: 4px solid var(--sideBar_text);
+}
 
 `;
 export default GlobalStyle;

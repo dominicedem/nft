@@ -22,6 +22,7 @@ import VerifyEmail from "./pages/VerifyEmail";
 import SignIn from "./pages/SignIn";
 import Loading from "./ui/Loading";
 import Validation from "./ui/Validation";
+import CreateExhibition from "./ui/CreateExhibition";
 
 const ProtectRoute = lazy(() => import("./ui/ProtectRoute"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
@@ -91,6 +92,10 @@ function App() {
                     <Route
                       path="/dashboard/allUserExhibition"
                       element={<AllUserExhibition />}
+                    />
+                    <Route
+                      path="/dashboard/createExhibition"
+                      element={<CreateExhibition />}
                     />
                   </Route>
                   <Route index element={<Home />} />

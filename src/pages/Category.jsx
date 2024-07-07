@@ -24,16 +24,15 @@ const NavStyle = styled.div`
 `;
 const Header = styled.div`
   width: 100%;
-  /* background-image: url("/degods.webp"); */
   background-size: cover;
   background-position: 50% 30%;
-  height: 51vh;
+  height: 43vh;
   padding: 8.7rem 1.3rem;
   position: relative;
 `;
 const NftProImg = styled.div`
   position: absolute;
-  bottom: -15.5%;
+  bottom: -20%;
   left: 0.7%;
   width: 12.5rem;
   height: 12.6rem;

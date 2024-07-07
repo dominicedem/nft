@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Cards from "./Cards";
 import { IoMdAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const data = [
   {
@@ -106,6 +107,11 @@ const iconStyle = {
   height: "3rem",
   color: "var(--white_text)",
 };
+const linkStyle = {
+  width: "10%",
+  alignSelf: "center",
+  marginTop: "5rem",
+};
 function AllUserExhibition() {
   const { userData } = useSelector((state) => state.authData);
 
@@ -124,9 +130,11 @@ function AllUserExhibition() {
             />
           ))}
       </Grid>
-      <Add>
-        <IoMdAdd style={iconStyle} />
-      </Add>
+      <Link style={linkStyle} to="/dashboard/createExhibition">
+        <Add>
+          <IoMdAdd style={iconStyle} />
+        </Add>
+      </Link>
       <Text
         style={{ fontSize: "1.6rem", alignSelf: "center", marginTop: "-1rem" }}
       >
