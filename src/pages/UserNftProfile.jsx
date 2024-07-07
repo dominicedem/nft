@@ -4,6 +4,7 @@ import useFetchUserProfile from "../hooks/useFetchUserProfile";
 import SearchBar from "../ui/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
+import { useParams } from "react-router-dom";
 
 const UserNftProfile1Style = styled.div`
   width: 100%;
@@ -23,10 +24,9 @@ const Overlay = styled.div`
 `;
 function UserNftProfile() {
   const dispatch = useDispatch();
+  const params = useParams();
   const { searchModal } = useSelector((state) => state.searchData);
-  const { userData } = useSelector((state) => state.authData);
-  const { data: userProfileData } = useFetchUserProfile(userData?.id);
-  console.log(userData);
+  const { data: userProfileData } = useFetchUserProfile(params?.userId);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&

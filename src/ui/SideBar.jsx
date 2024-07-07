@@ -7,6 +7,7 @@ import { CgProfile } from "react-icons/cg";
 import { BsCollection } from "react-icons/bs";
 import { GiCardExchange } from "react-icons/gi";
 import { HashLink } from "react-router-hash-link";
+import { useSelector } from "react-redux";
 
 const SideBarStyle = styled.div`
   width: 100%;
@@ -60,6 +61,7 @@ const iconStyle = {
 };
 
 function SideBar() {
+  const { userData } = useSelector((state) => state.authData);
   return (
     <SideBarStyle>
       <ListBox>
@@ -84,7 +86,7 @@ function SideBar() {
           </List>
           <List>
             <CgProfile style={iconStyle} />
-            <Link style={linkStyle} to="/ownNftProfile">
+            <Link style={linkStyle} to={`/ownNftProfile/${userData?.id}`}>
               My Nft profile
             </Link>
           </List>

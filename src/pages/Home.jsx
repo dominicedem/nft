@@ -12,6 +12,7 @@ import SearchBar from "../ui/SearchBar";
 import { setSearchModal } from "../Slices/SearchSlice";
 import { useInView } from "react-intersection-observer";
 import useVerticalData from "../hooks/useVerticalData";
+import Footer from "../ui/Footer";
 
 const HomeStyle = styled.div`
   width: 99.5vw;
@@ -186,6 +187,7 @@ function Home() {
         title="exhibition"
         right={{ text: "view all" }}
       />
+      <Footer />
       {searchModal && (
         <Overlay
           tabIndex="-1"

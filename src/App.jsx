@@ -101,7 +101,10 @@ function App() {
                   <Route index element={<Home />} />
                   <Route path="/category/:type" element={<Category />} />
                   <Route path="/buynft" element={<BuyNft />} />
-                  <Route path="/ownNftProfile" element={<UserNftProfile />} />
+                  <Route
+                    path="/ownNftProfile/:userId"
+                    element={<UserNftProfile />}
+                  />
                   <Route path="/exhibition" element={<Exhibtion />} />
                   {/* <Route path="/profile" element={<Profile />} /> */}
                   <Route path="/verifyemail" element={<VerifyEmail />} />

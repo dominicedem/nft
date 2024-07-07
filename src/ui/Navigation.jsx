@@ -24,6 +24,8 @@ const Logo = styled.div`
   background: -webkit-linear-gradient(60deg, #087279, #ffffff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 `;
 const CtaBox = styled.div`
   display: flex;
@@ -40,7 +42,7 @@ const Search = styled.div`
   backdrop-filter: blur(5px);
 `;
 const Img = styled.img`
-  width: 3.5rem;
+  width: 3rem;
 `;
 
 const Row = styled.div`
@@ -86,7 +88,7 @@ function Navigation({ scroll, home }) {
           <Link style={linkStyle} to="/">
             <Logo>
               <Img src="/logo.png" alt="Logo" />
-              SigmaNft
+              ZigmaNft
             </Logo>
           </Link>
           <CtaBox>
