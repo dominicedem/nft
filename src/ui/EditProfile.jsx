@@ -5,6 +5,9 @@ import { useState } from "react";
 import { CiFacebook } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
+import useEditProfile from "../hooks/useEditProfile";
+import Loading from "../ui/Loading";
+import ToggleBtn from "./ToggleBtn";
 const EditProfileBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -113,6 +116,26 @@ const Img = styled.img`
   aspect-ratio: 1/2;
 `;
 
+const ErrorText = styled.span`
+  font-size: 1.4rem;
+  color: var(--error_text);
+  width: 40%;
+  height: 1.5rem;
+`;
+
+const LoadingBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  background: var(--overlay_background);
+  z-index: 10000;
+`;
+
 const iconStyle = {
   width: "5rem",
   height: "5rem",
@@ -126,68 +149,87 @@ const socialStyle = {
   cursor: "pointer",
 };
 function EditProfile() {
-  const [facebook, setFacebook] = useState("");
-  const [description, setDescription] = useState("");
-  const [twitter, setTwitter] = useState("");
-  const [instagram, setInstagram] = useState("");
   const [overlay, setOverlay] = useState(false);
-  const [file, setFile] = useState();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") && setOverlay(false);
     console.log(e.target.className.split(" ").includes("overlay"));
   }
-  console.log(file?.name);
+
+  const {
+    register,
+    handleSubmit,
+    handleError,
+    errors,
+    handleEditProfileSubmit,
+    isBlur,
+    getValues,
+    on,
+    setOn,
+  } = useEditProfile();
+
   return (
     <EditProfileBox>
       <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Edit Profile</Text>
       <EditProfileStyle>
-        <Column style={{ width: "100%" }}>
-          <Label htmlFor="file" style={{ width: "100%" }}>
-            {file?.name ? (
-              <ImgBox>
-                <Img src={`/${file.name}`} />
-              </ImgBox>
-            ) : (
-              <ImageBox>
-                <Text>Upload file</Text>
-                <CiFileOn style={iconStyle} />
-              </ImageBox>
-            )}
-            <Input
-              id="file"
-              onChange={(e) => setFile(e.target.files[0])}
-              type="file"
-              className="hideFileUpload"
-            />
-          </Label>
-        </Column>
-        <Form onSubmit={(e) => handleSubmit(e)}>
-          <Column>
-            <Label htmlFor="des">Bio</Label>
-            <Textarea
-              id="des"
-              rows="5"
-              value={description}
-              type="text"
-              onChange={(e) => setDescription(e.target.value)}
-            />
+        <Form onSubmit={handleSubmit(handleEditProfileSubmit, handleError)}>
+          <Column style={{ alignItems: "center" }}>
+            <Label
+              htmlFor="file"
+              style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              {getValues().file?.[0]?.name ? (
+                <Img src={`/${getValues().file?.[0]?.name}`} />
+              ) : (
+                <ImageBox>
+                  <Text>Upload Photo</Text>
+                  <CiFileOn style={iconStyle} />
+                </ImageBox>
+              )}
+              <Input
+                id="file"
+                type="file"
+                {...register("file")}
+                className="hideFileUpload"
+              />
+            </Label>
+            <Text>{getValues().file?.[0]?.name}</Text>
           </Column>
+          <ErrorText style={{ marginTop: "-1.5rem" }}>
+            {errors?.file?.message && errors?.file.message}
+          </ErrorText>
+          <Column>
+            <Label htmlFor="bio">Bio</Label>
+            <Textarea id="bio" rows="5" type="text" {...register("bio")} />
+          </Column>
+          <ErrorText style={{ marginTop: "-1.5rem" }}>
+            {errors?.description?.message && errors?.description.message}
+          </ErrorText>
+          <Row style={{ background: "none", border: "none" }}>
+            <Text style={{ margin: "0", fontSize: "1.8rem" }}>
+              Make nft profile visible?
+            </Text>
+            <ToggleBtn width="14%" on={on} setOn={setOn} />
+          </Row>
           <Column>
             <Row>
               <Label htmlFor="facebook">
                 <CiFacebook style={socialStyle} />
               </Label>
               <Input
+                // width="50%"
                 id="facebook"
-                value={facebook}
                 placeholder="facebook username"
                 type="text"
-                onChange={(e) => setFacebook(e.target.value)}
+                {...register("facebook")}
               />
+              <ErrorText style={{ marginTop: "-1.5rem", textAlign: "center" }}>
+                {errors?.facebook?.message && errors?.facebook.message}
+              </ErrorText>
             </Row>
             <Row>
               <Label htmlFor="twitter">
@@ -196,10 +238,12 @@ function EditProfile() {
               <Input
                 id="twitter"
                 placeholder="twitter username"
-                value={twitter}
                 type="text"
-                onChange={(e) => setTwitter(e.target.value)}
+                {...register("twitter")}
               />
+              <ErrorText style={{ marginTop: "-1.5rem", textAlign: "center" }}>
+                {errors?.twitter?.message && errors?.twitter.message}
+              </ErrorText>
             </Row>
             <Row>
               <Label htmlFor="instagram">
@@ -207,15 +251,17 @@ function EditProfile() {
               </Label>
               <Input
                 id="instagram"
-                value={instagram}
                 placeholder="instagram username"
                 type="text"
-                onChange={(e) => setInstagram(e.target.value)}
+                {...register("instagram")}
               />
+              <ErrorText style={{ marginTop: "-1.5rem", textAlign: "center" }}>
+                {errors?.instagram?.message && errors?.instagram.message}
+              </ErrorText>
             </Row>
           </Column>
           <Button
-            onSubmit={(e) => handleSubmit(e)}
+            onSubmit={handleSubmit(handleEditProfileSubmit, handleError)}
             padding=".8rem 1.5rem"
             width="100%"
             background="true"
@@ -232,6 +278,11 @@ function EditProfile() {
           ></Overlay>
         )}
       </EditProfileStyle>
+      {isBlur && (
+        <LoadingBox>
+          <Loading />
+        </LoadingBox>
+      )}
     </EditProfileBox>
   );
 }

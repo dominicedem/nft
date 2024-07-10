@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Button from "./Button";
 import TransactionStatus from "./TransactionStatus";
 import ToggleBtn from "./ToggleBtn";
+import useEditNft from "../hooks/useEditNft";
 
 const EditNftStyle = styled.div`
   display: flex;
@@ -77,14 +78,16 @@ const Row = styled.span`
 `;
 
 function EditNft() {
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [on, setOn] = useState(false);
-  const [category, setCategory] = useState("");
+  const {
+    register,
+    handleSubmit,
+    handleError,
+    handleEditNftSubmit,
+    isLoading,
+    on,
+    setOn,
+  } = useEditNft();
 
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
   return (
     <EditNftStyle>
       <Text
@@ -102,34 +105,34 @@ function EditNft() {
       >
         Exhibition King
       </Text>
-      <Form onSubmit={(e) => handleSubmit(e)}>
+      <Form onSubmit={handleSubmit(handleEditNftSubmit, handleError)}>
         <Column>
-          <Label htmlFor="price">Price</Label>
+          <Label htmlFor="priceInEtherium">Price</Label>
           <Input
-            id="price"
-            value={price}
+            id="priceInEtherium"
             type="text"
-            onChange={(e) => setPrice(e.target.value)}
+            {...register("priceInEtherium")}
           />
           <Text style={{ alignSelf: "end" }}>Min: 0.02 ETH</Text>
         </Column>
         <Column style={{ marginTop: "-2.2rem" }}>
-          <Label>Category</Label>
-          <Select onChange={(e) => setCategory(e.target.value)}>
+          <Label htmlFor="category">Category</Label>
+          <Select {...register("category")}>
             <Option value="gaming">Gaming</Option>
-            <Option value="all">All</Option>
-            <Option value="art">Art</Option>
+            <Option value="photography">photography</Option>
+            <Option value="arts">Arts</Option>
             <Option value="exhibition">Exhibition</Option>
+            <Option value="membership">Membership</Option>
+            <Option value="pfps">Pfps</Option>
           </Select>
         </Column>
         <Column>
-          <Label htmlFor="des">Description</Label>
+          <Label htmlFor="description">Description</Label>
           <Textarea
-            id="des"
+            id="description"
             rows="5"
-            value={description}
             type="text"
-            onChange={(e) => setDescription(e.target.value)}
+            {...register("description")}
           />
         </Column>
         <Column>
@@ -146,14 +149,14 @@ function EditNft() {
           </Text>
         </Column>
         <Button
-          onSubmit={(e) => handleSubmit(e)}
+          onSubmit={handleSubmit(handleEditNftSubmit, handleError)}
           padding=".8rem 1.5rem"
           width="100%"
           background="true"
           font="2rem"
           color="var(--white_text)"
         >
-          Mint
+          {isLoading ? "Loading..." : "Edit"}
         </Button>
       </Form>
     </EditNftStyle>

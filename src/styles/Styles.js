@@ -265,6 +265,12 @@ body {
     border-radius: 1.5rem;
     height: 42rem;
 }
+.profileImage {
+  border-radius: 0.6rem;
+  padding: 0.2rem;
+  height: 6rem;
+  width: 7rem;
+}
 
 .checked {
     border: 4px solid var(--blue_btn);

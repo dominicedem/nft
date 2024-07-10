@@ -110,8 +110,8 @@ function Cards({
             style={linkStyle}
             to={
               !Exhibition
-                ? `/buynft/?productId=${data?.id}&category=${
-                    params?.type || category
+                ? `/buynft/?productId=${data?._id}&category=${
+                    params?.type || category || data.category
                   }#top`
                 : `/exhibition?productId=${data?.id}`
             }
@@ -226,7 +226,7 @@ function Cards({
           </HashLink>
           {Edit && (
             <EditBox>
-              <CardProfile />
+              <CardProfile id={data?.id} />
             </EditBox>
           )}
         </CardsStyle>

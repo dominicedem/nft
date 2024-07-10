@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Socials from "../ui/Socials";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Cards from "../ui/Cards";
+import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const NftProfileStyle = styled.div`
   width: 100%;
@@ -76,7 +78,7 @@ const AllCards = styled.div`
   column-gap: 2rem;
   row-gap: 4rem;
   padding: 0 1rem;
-  @media (max-width: 1280px) {
+  @media (max-width: 1290px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 `;
@@ -86,6 +88,25 @@ const NftBox = styled.div`
   align-items: start;
   gap: 2rem;
 `;
+const Back = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 10%;
+  left: 2%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  backdrop-filter: blur(5px);
+  background: var(--subtle_background);
+  cursor: pointer;
+`;
+const backStyle = {
+  width: "2.4rem",
+  height: "2.4rem",
+  color: "var(--white_text)",
+};
 
 function UserProfile({
   exhibition,
@@ -93,25 +114,32 @@ function UserProfile({
   isExhibition,
   userProfileData,
   data,
+  rawData,
 }) {
+  const navigate = useNavigate();
   return (
     <NftProfileStyle>
       <ImageBox>
-        <Img src="/light.webp" alt="coverprofile" />
+        <Img
+          crossOrigin="anonymous"
+          src={`https://artcity.site/${rawData?.data?.photo}`}
+        />
         <DpbBox>
           <Img
-            type="dp"
-            src="/robot.webp"
-            alt="profileimage"
-            style={{ borderRadius: "inherit" }}
+            style={{ borderRadius: "0.7rem" }}
+            crossOrigin="anonymous"
+            src={`https://artcity.site/${rawData?.data?.owner?.photo}`}
           />
         </DpbBox>
+        <Back onClick={() => navigate(-1)}>
+          <IoIosArrowBack style={backStyle} />
+        </Back>
       </ImageBox>
       <Container>
         <Row style={{ alignItems: "start" }}>
           <Column style={{ width: "fit-content" }}>
             <Text style={{ fontWeight: "700" }}>
-              Edem Dominic{" "}
+              {rawData?.data?.name}
               {!isExhibition && <RiVerifiedBadgeFill style={iconStyle} />}
             </Text>
             {!isExhibition && (
@@ -151,15 +179,16 @@ function UserProfile({
                     fontWeight: "600",
                   }}
                 >
-                  Exhibition <RiVerifiedBadgeFill style={iconStyle} />
+                  {rawData?.data?.owner?.username}{" "}
+                  <RiVerifiedBadgeFill style={iconStyle} />
                 </Text>
               </Row>
             )}
           </Column>
           {isExhibition && (
             <>
-              <Text>56 NFTs</Text>
-              <Text>Sales bonus: 10%</Text>
+              <Text>{rawData?.data?.totalNft} NFTs</Text>
+              <Text>Sales bonus: {rawData?.data?.salesBonus}%</Text>
             </>
           )}
         </Row>
@@ -168,11 +197,9 @@ function UserProfile({
             <Column style={{ width: "40%" }}>
               <Text style={{ fontWeight: "700" }}>Bio</Text>
               <Text style={{ fontSize: "1.6rem" }}>
-                on chain transaction is the type of transaction that makes use
-                of the block chain t0 transfer coins from one wallet to the
-                other ,
+                {rawData?.data?.description}
               </Text>
-              <Text
+              {/* <Text
                 style={{
                   fontSize: "1.6rem",
                   textDecoration: "underline",
@@ -180,19 +207,15 @@ function UserProfile({
                 }}
               >
                 learn more
-              </Text>
+              </Text> */}
             </Column>
           ) : (
             <Column style={{ width: "45%" }}>
               <Text style={{ fontWeight: "700" }}>About Exhibition</Text>
               <Text style={{ fontSize: "1.6rem" }}>
-                on chain transaction is the type of that makes use of the block
-                chain ti transfer coins from one wallet to the other , learn
-                moreon chain transaction is the type of that makes use of the
-                block chain ti transfer coins from one wallet to the other ,
-                learn more
+                {rawData?.data?.description}
               </Text>
-              <Text
+              {/* <Text
                 style={{
                   fontSize: "1.6rem",
                   textDecoration: "underline",
@@ -200,7 +223,7 @@ function UserProfile({
                 }}
               >
                 learn more
-              </Text>
+              </Text> */}
             </Column>
           )}
           {!isExhibition && (
@@ -219,7 +242,7 @@ function UserProfile({
                       <Cards
                         defaultCard="true"
                         all="true"
-                        key={val ? val?.id : ind}
+                        key={val?.id}
                         data={val}
                         profile=""
                       />
@@ -230,7 +253,7 @@ function UserProfile({
                         all="true"
                         data={val}
                         profile=""
-                        key={val ? val?.id : ind}
+                        key={val?.id}
                       />
                     ))
                 : Array.from({ length: 10 }).map((val) => (
@@ -239,7 +262,7 @@ function UserProfile({
                       all="true"
                       profile=""
                       key={val}
-                      width="28.7rem"
+                      width="29rem"
                     />
                   ))}
             </AllCards>
@@ -255,7 +278,7 @@ function UserProfile({
                     Exhibition="true"
                     profile=""
                     all="true"
-                    key={val ? val?.id : ind}
+                    key={val?.id}
                     data={val}
                   />
                 ))}
@@ -265,8 +288,9 @@ function UserProfile({
                     Exhibition="true"
                     profile=""
                     all="true"
-                    key={val + 16}
-                    width="28.7rem"
+                    key={val}
+                    width="29rem"
+                    // 28.7
                   />
                 ))}
             </AllCards>

@@ -4,7 +4,7 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import { setSearchModal } from "../Slices/SearchSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import useReloadPage from "../hooks/useReloadPage";
 import useAuthenticate from "../hooks/useAuthenticate";
 
 const NavigationStyle = styled.div`
@@ -77,6 +77,8 @@ function Navigation({ scroll, home }) {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.authData);
   const { storage, revistTime } = useAuthenticate();
+  const { isLoading } = useReloadPage();
+  // console.log(userData);
 
   function handleSearch() {
     dispatch(setSearchModal(true));
@@ -101,7 +103,7 @@ function Navigation({ scroll, home }) {
                 fill={scroll ? "var(--white_text)" : "var(--faint_text_black)"}
               />
             </Search>
-            {storage?.isAuthenticated && revistTime < 2 ? (
+            {userData && !isLoading && storage?.isAuthenticated && (
               <Link style={linkStyle} to="/dashboard">
                 <Row className={scroll ? "defaultSearch" : "adaptSearch"}>
                   <UserImage
@@ -120,7 +122,8 @@ function Navigation({ scroll, home }) {
                   </Text>
                 </Row>
               </Link>
-            ) : (
+            )}
+            {!isLoading && !storage?.isAuthenticated && (
               <Link style={linkStyle} to="/signin">
                 <Button
                   type="nav"
@@ -133,6 +136,21 @@ function Navigation({ scroll, home }) {
                 >
                   Login
                 </Button>
+              </Link>
+            )}
+            {isLoading && (
+              <Link style={linkStyle} to="/dashboard">
+                <Row className={scroll ? "defaultSearch" : "adaptSearch"}>
+                  <Text
+                    style={
+                      scroll
+                        ? { color: "var(--white_text)" }
+                        : { color: "var(--sideBar_text)" }
+                    }
+                  >
+                    Loading...
+                  </Text>
+                </Row>
               </Link>
             )}
           </CtaBox>
@@ -150,7 +168,7 @@ function Navigation({ scroll, home }) {
             <Search onClick={() => handleSearch()} className={"adaptSearch"}>
               <IoSearch style={iconStyle} fill={"var(--faint_text_black)"} />
             </Search>
-            {storage?.isAuthenticated && revistTime < 2 ? (
+            {userData && !isLoading && storage?.isAuthenticated && (
               <Link style={linkStyle} to="/dashboard">
                 <Row style={{ border: "1px solid var(--inputField_border)" }}>
                   <UserImage
@@ -169,7 +187,8 @@ function Navigation({ scroll, home }) {
                   </Text>
                 </Row>
               </Link>
-            ) : (
+            )}
+            {!isLoading && !storage?.isAuthenticated && (
               <Link style={linkStyle} to="/signin">
                 <Button
                   type="nav"
@@ -180,6 +199,21 @@ function Navigation({ scroll, home }) {
                 >
                   Login
                 </Button>
+              </Link>
+            )}
+            {isLoading && (
+              <Link style={linkStyle} to="/dashboard">
+                <Row className={scroll ? "defaultSearch" : "adaptSearch"}>
+                  <Text
+                    style={
+                      scroll
+                        ? { color: "var(--white_text)" }
+                        : { color: "var(--sideBar_text)" }
+                    }
+                  >
+                    Loading...
+                  </Text>
+                </Row>
               </Link>
             )}
           </CtaBox>

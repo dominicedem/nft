@@ -114,13 +114,11 @@ function Home() {
   const { data: landingData, isLoading } = useFetchLanding();
   const { searchModal } = useSelector((state) => state.searchData);
   const { data1, data2, data3 } = useVerticalData();
+
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
   }
-  useEffect(() => {
-    dispatch(setAll(true));
-  });
   return (
     <HomeStyle>
       <NavStyle className={watchInview ? "default" : "adapt"}>

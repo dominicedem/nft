@@ -18,9 +18,9 @@ const Box = styled.div`
   cursor: pointer;
   transition: all 0.3s;
 `;
-function ToggleBtn({ on, setOn }) {
+function ToggleBtn({ on, setOn, width }) {
   return (
-    <TransactionStatusStyle>
+    <TransactionStatusStyle style={width ? { width: `${width}` } : {}}>
       <Box
         className={on ? "activeToggle" : "notToggle"}
         onClick={() => setOn((el) => !el)}

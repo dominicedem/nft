@@ -1,6 +1,8 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setOverlay } from "../Slices/overLaySlice";
+import { useSearchParams } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 const CardBox = styled.div`
   display: flex;
@@ -19,9 +21,13 @@ const CardBox = styled.div`
   }
 `;
 
-function CardProfile() {
+function CardProfile({ id }) {
   const dispatch = useDispatch();
-  return <CardBox onClick={() => dispatch(setOverlay(true))}>Edit</CardBox>;
+  return (
+    <HashLink style={{ textDecoration: "none" }} to={`/dashboard?nftId=${id}`}>
+      <CardBox onClick={() => dispatch(setOverlay(true))}>Edit</CardBox>
+    </HashLink>
+  );
 }
 
 export default CardProfile;

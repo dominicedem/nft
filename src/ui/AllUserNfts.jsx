@@ -103,14 +103,14 @@ function AllUserNfts() {
                 all="true"
               />
             ))
-          : Array.from({ length: 10 }).map((_, ind) => (
+          : Array.from({ length: 3 }).map((_, ind) => (
               <Cards
                 defaultCard="true"
                 key={ind}
                 profile="true"
                 Edit="true"
                 all="true"
-                width="26rem"
+                // width="30rem"
               />
             ))}
       </Grid>

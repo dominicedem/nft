@@ -41,6 +41,7 @@ function DashCards({
   textdata,
   move,
 }) {
+  console.log(data?.length);
   return (
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>
@@ -49,22 +50,34 @@ function DashCards({
           style={linkStyle}
           to={header === "NFT" ? "allUserNft" : "allUserExhibition"}
         >
-          <Button padding={"var(--padding_btn_small)"}>view all</Button>
+          {data?.length > 3 && (
+            <Button padding={"var(--padding_btn_small)"}>view all</Button>
+          )}
         </Link>
       </Flex>
       <Flex>
-        {data &&
-          data?.map((val, ind) => (
-            <Cards
-              all={all}
-              defaultCard={defaultCard}
-              key={ind}
-              data={val}
-              profile={profile}
-              Exhibition={Exhibition}
-              Edit={Edit}
-            />
-          ))}
+        {data
+          ? data?.map((val, ind) => (
+              <Cards
+                all={all}
+                defaultCard={defaultCard}
+                key={ind}
+                data={val}
+                profile={profile}
+                Exhibition={Exhibition}
+                Edit={Edit}
+              />
+            ))
+          : Array.from({ length: 4 }).map((val, ind) => (
+              <Cards
+                all={all}
+                defaultCard={defaultCard}
+                key={ind}
+                profile={profile}
+                Exhibition={Exhibition}
+                Edit={Edit}
+              />
+            ))}
         {textdata && (
           <Text
             style={{

@@ -313,6 +313,40 @@ export default function useSignUp() {
       }, [5000]);
     }
   }
+  async function handleCreateExhibitionSubmit(formdata) {
+    setIsBlur(true);
+    let blur = true;
+    setTimeout(() => {
+      blur && toast.error("Check your network connection");
+      blur && setIsBlur(false);
+      reset();
+    }, [20000]);
+    try {
+      const result = await FetchValidate();
+      reset();
+
+      if (result.status === "error") {
+        reset();
+        setIsBlur(false);
+        blur = false;
+        // setOverlay(true);
+        setValidFailOverlay(true);
+        console.log(result);
+      } else if (result.status === "success") {
+        reset();
+        setIsBlur(false);
+        blur = false;
+        setValidSuccessOverlay(true);
+        console.log(result);
+      }
+    } catch (error) {
+      setTimeout(() => {
+        setIsBlur(false);
+        blur = false;
+        error.message && toast.error(error.message);
+      }, [5000]);
+    }
+  }
 
   function handleError(errors) {
     // console.log(errors);

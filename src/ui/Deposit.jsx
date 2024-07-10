@@ -125,7 +125,7 @@ function Deposit() {
           <Text>Network</Text>
           <Row style={{ padding: "1.3rem" }}>
             <Text style={{ fontSize: "1.6rem", fontWeight: "700" }}>
-              Erhereum (ERC20)
+              Ethereum (ERC20)
             </Text>
           </Row>
         </Column>

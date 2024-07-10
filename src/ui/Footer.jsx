@@ -10,7 +10,7 @@ const Footerbox = styled.div`
   align-items: start;
   gap: 5rem;
   border-top: 0.1rem solid #bbbbbb36;
-  padding: 8rem 2rem;
+  padding: 8rem 5rem;
   height: 60vh;
   margin-top: 10rem;
   background: var(--blue_background_hover);
@@ -82,7 +82,7 @@ const Contacts = styled.a`
 `;
 
 const Copyright = styled.p`
-  padding: 1rem 2rem;
+  padding: 1rem 5rem;
   font-size: 1.4rem;
   color: var(--light_faint);
   background: var(--blue_background_hover);

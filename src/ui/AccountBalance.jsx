@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
+import Skeleton from "react-loading-skeleton";
 
 const AccountBalanceStyle = styled.div`
   display: flex;
@@ -47,7 +48,7 @@ const Span = styled.span`
 `;
 const Line = styled.div`
   background: var(--tertiary_text_faint);
-  width: 75%;
+  width: 68%;
   border-bottom: 1px dashed var(--tertiary_text_faint);
 `;
 function AccountBalance() {
@@ -76,7 +77,7 @@ function AccountBalance() {
       >
         <Text style={{ fontSize: "2rem" }}>Account Balance</Text>
         <Text style={{ fontSize: "3rem", fontWeight: "600" }}>
-          ${balancePrice}
+          ${userData ? balancePrice : <Skeleton width={200} />}
         </Text>
       </BalanceOverview>
       <BalanceOverview>
@@ -88,7 +89,11 @@ function AccountBalance() {
                 ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
-                {userData?.wallet?.eth?.toFixed(2)}
+                {userData ? (
+                  userData?.wallet?.eth?.toFixed(2)
+                ) : (
+                  <Skeleton width={70} />
+                )}
               </Text>
             </Flex>
             <Flex>
@@ -97,7 +102,7 @@ function AccountBalance() {
               </Text>
               <Line></Line>
               <Text style={{ fontWeight: "300", fontSize: "1.45rem" }}>
-                ${ethPrice}
+                ${userData ? ethPrice : <Skeleton width={50} />}
               </Text>
             </Flex>
           </Flex>
@@ -110,7 +115,11 @@ function AccountBalance() {
                 WETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
               </Text>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
-                {userData?.wallet?.weth?.toFixed(2)}
+                {userData ? (
+                  userData?.wallet?.weth?.toFixed(2)
+                ) : (
+                  <Skeleton width={70} />
+                )}
               </Text>
             </Flex>
             <Flex>
@@ -119,7 +128,7 @@ function AccountBalance() {
               </Text>
               <Line></Line>
               <Text style={{ fontWeight: "300", fontSize: "1.45rem" }}>
-                ${wethPrice}
+                ${userData ? wethPrice : <Skeleton width={50} />}
               </Text>
             </Flex>
           </Flex>

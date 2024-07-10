@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import SearchBar from "../ui/SearchBar";
 import useFetchExhibition from "../hooks/useFetchExhibition";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import JoinExhibitionModal from "../ui/JoinExhibitionModal";
+import { setJoinOverLay } from "../Slices/overLaySlice";
+import useAuthenticate from "../hooks/useAuthenticate";
 
 const ExhibtionStyle = styled.div`
   width: 100%;
@@ -48,20 +51,33 @@ function Exhibtion() {
   const { searchModal } = useSelector((state) => state.searchData);
   const [searchParams, _] = useSearchParams();
   const { exhNfts } = useFetchExhibition(searchParams?.get("productId"));
+  const { joinOverLay } = useSelector((state) => state.overlayData);
+  const { storage } = useAuthenticate();
+  const navigate = useNavigate();
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
+    e.target.className.split(" ").includes("joinOverlay") &&
+      dispatch(setJoinOverLay(false));
   }
+
+  function handleJoinExhibition() {
+    storage?.isAuthenticated
+      ? dispatch(setJoinOverLay(true))
+      : navigate("/signin", { replace: true });
+  }
+
   return (
     <ExhibtionStyle>
       <UserProfile
         defaultCard="true"
+        rawData={exhNfts}
         data={exhNfts?.data?.exhibitionNft}
         isExhibition="true"
         displayNft="true"
       />
-      <BtnBox>
+      <BtnBox onClick={() => handleJoinExhibition()}>
         <Button
           background="true"
           font="1.8rem"
@@ -71,7 +87,7 @@ function Exhibtion() {
         >
           Join Exhibition
         </Button>
-        <Text>Fee: 0.02 ETH</Text>
+        <Text>Fee: {exhNfts?.data?.joinFee} ETH</Text>
       </BtnBox>
       {searchModal && (
         <Overlay
@@ -80,6 +96,15 @@ function Exhibtion() {
           onClick={(e) => handleOverlay(e)}
         >
           <SearchBar />
+        </Overlay>
+      )}
+      {joinOverLay && (
+        <Overlay
+          tabIndex="-1"
+          className="joinOverlay"
+          onClick={(e) => handleOverlay(e)}
+        >
+          <JoinExhibitionModal />
         </Overlay>
       )}
     </ExhibtionStyle>

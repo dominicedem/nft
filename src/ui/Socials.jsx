@@ -1,7 +1,10 @@
 import { CiFacebook } from "react-icons/ci";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
+import Skeleton from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
 const Column = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,17 +25,21 @@ const iconStyle = {
   color: "var(--sideBar_text)",
 };
 function Socials() {
+  const { userData } = useSelector((state) => state.authData);
   return (
     <div>
       <Column style={{ marginTop: "-1.5rem", gap: "1.5rem" }}>
         <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-          <CiFacebook style={iconStyle} /> Username
+          <CiFacebook style={iconStyle} />{" "}
+          {userData ? userData?.facebook : <Skeleton width={140} />}
         </Text>
         <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-          <FaXTwitter style={iconStyle} /> Twitter
+          <FaXTwitter style={iconStyle} />{" "}
+          {userData ? userData?.twitter : <Skeleton width={150} />}
         </Text>
         <Text style={{ fontSize: "1.6rem", cursor: "pointer" }}>
-          <IoLogoInstagram style={iconStyle} /> Instagram
+          <IoLogoInstagram style={iconStyle} />{" "}
+          {userData ? userData?.instagram : <Skeleton width={120} />}
         </Text>
       </Column>
     </div>

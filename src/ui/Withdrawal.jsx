@@ -209,9 +209,9 @@ function Withdrawal() {
                 What is on chain transaction ?
               </Text>
               <Text style={{ fontSize: "1.4rem", marginTop: "-1rem" }}>
-                on chain transaction is the type of that makes use of the block
-                chain ti transfer coins from one wallet to the other , learn
-                more
+                On chain transaction is a type of transaction that makes use of
+                the block chain to transfer coins from one wallet to the other ,
+                learn more
               </Text>
             </>
           )}
@@ -293,9 +293,6 @@ function Withdrawal() {
                     style={{ fontWeight: "700" }}
                     id="amount"
                     type="number"
-                    // min={0.02}
-                    // max={userData?.wallet?.weth}
-                    // defaultValue={userData?.wallet?.weth}
                     {...register("amount", {
                       required: "This field is required",
                       min: {
@@ -304,9 +301,6 @@ function Withdrawal() {
                       },
                     })}
                   />
-                  {/* <Text style={{ fontWeight: "700", fontSize: "1.4rem" }}>
-                {getValues().category}
-                </Text> */}
                 </Row>
               </>
             ) : (
@@ -318,7 +312,6 @@ function Withdrawal() {
                     id={category}
                     type="number"
                     step={0.01}
-                    // defaultValue={userData?.wallet?.weth}
                     {...register(`${category}`, {
                       required: "This field is required",
                       min: {
@@ -349,7 +342,6 @@ function Withdrawal() {
               }}
             >
               <Text>Min 0.02</Text>
-              {/* <Text>{userData?.wallet?.weth?.toFixed(2)} WETH</Text> */}
             </Row>
           </Column>
           <Button

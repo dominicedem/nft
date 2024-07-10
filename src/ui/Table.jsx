@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import TransactionStatus from "./TransactionStatus";
 import { useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 const TableStyle = styled.div`
   width: 100%;
@@ -122,7 +123,7 @@ const datas = [
     seller: "Anything",
   },
 ];
-function Table({ tableHead, transaction }) {
+function Table({ tableHead, transaction, data }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
   const header = sold
@@ -143,20 +144,26 @@ function Table({ tableHead, transaction }) {
           />
         )}
       </HeadBox>
-      <Row
-        style={{
-          background: "var(--bios_background)",
-          borderBottom: "none",
-          borderRadius: ".5rem",
-        }}
-      >
-        {header.map((val, ind) => (
-          <List style={{ fontWeight: "500", fontSize: "1.8rem" }} key={ind}>
-            {val}
-          </List>
-        ))}
-      </Row>
-      <TableRow sold={sold} bought={bought} />
+      {data ? (
+        <>
+          <Row
+            style={{
+              background: "var(--bios_background)",
+              borderBottom: "none",
+              borderRadius: ".5rem",
+            }}
+          >
+            {header.map((val, ind) => (
+              <List style={{ fontWeight: "500", fontSize: "1.8rem" }} key={ind}>
+                {val}
+              </List>
+            ))}
+          </Row>
+          <TableRow sold={sold} bought={bought} />
+        </>
+      ) : (
+        <Skeleton height={260} />
+      )}
     </TableStyle>
   );
 }

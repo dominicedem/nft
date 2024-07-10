@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { CiFileOn } from "react-icons/ci";
 import Button from "../ui/Button";
-import { useState } from "react";
-import MintStatus from "../ui/MintStatus";
 import { useSelector } from "react-redux";
-import useSignUp from "../hooks/useSignUp";
 import Loading from "./Loading";
 import CheckBox from "./CheckBox";
+import useCreateExhibition from "../hooks/useCreateExhibition";
 
 const CreateExhibitionBox = styled.div`
   display: flex;
@@ -87,19 +85,6 @@ const Row = styled.span`
   padding: 0 1rem 0 0;
   border: 1px solid var(--light_faint);
 `;
-const Overlay = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--overlay_background);
-  position: fixed;
-  backdrop-filter: blur(5px);
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-`;
 const Img = styled.img`
   width: 18rem;
   height: 20rem;
@@ -143,31 +128,27 @@ const iconStyle = {
   cursor: "pointer",
 };
 function CreateExhibition() {
-  const [overlay, setOverlay] = useState(false);
-
-  const {
-    // navigate,
-    handleError,
-    register,
-    handleSubmit,
-    handleMintSubmit,
-    getValues,
-    errors,
-    isBlur,
-  } = useSignUp();
-
   const { userData } = useSelector((state) => state.authData);
 
-  function handleOverlay(e) {
-    e.target.className.split(" ").includes("overlay") && setOverlay(false);
-  }
+  const {
+    register,
+    handleSubmit,
+    handleError,
+    errors,
+    handleCreateExhibitionSubmit,
+    isBlur,
+    getValues,
+    handleNftList,
+  } = useCreateExhibition();
   return (
     <CreateExhibitionBox>
       <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
         Create-Exhibition
       </Text>
       <CreateExhibitionStyle>
-        <Form onSubmit={handleSubmit(handleMintSubmit, handleError)}>
+        <Form
+          onSubmit={handleSubmit(handleCreateExhibitionSubmit, handleError)}
+        >
           <Text style={{ fontSize: "1.8rem", alignSelf: "center" }}>
             Exhibition Photo
           </Text>
@@ -196,11 +177,11 @@ function CreateExhibition() {
             {errors?.file?.message && errors?.file.message}
           </ErrorText>
           <Column>
-            <Label htmlFor="exhibition">Exhibition Name</Label>
+            <Label htmlFor="name">Exhibition Name</Label>
             <Input
-              id="exhibition"
+              id="name"
               type="text"
-              {...register("exhibition", {
+              {...register("name", {
                 required: "This field is required",
               })}
             />
@@ -208,7 +189,7 @@ function CreateExhibition() {
           <ErrorText style={{ marginTop: "-1.5rem" }}>
             {errors?.name?.message && errors?.name.message}
           </ErrorText>
-          <Label>Select nft [MIN: 6]</Label>
+          <Label>Select nft [MIN: 5]</Label>
           <Column
             style={{
               marginTop: "-1.8rem",
@@ -219,9 +200,9 @@ function CreateExhibition() {
               padding: ".5rem .2rem .5rem .5rem",
             }}
           >
-            {Array.from({ length: 10 }).map((val, ind) => (
+            {userData?.myNft?.map((val) => (
               <Row
-                key={ind}
+                key={val?.id}
                 style={{
                   borderRadius: "1rem",
                   padding: ".5rem 1rem .5rem .5rem",
@@ -243,8 +224,7 @@ function CreateExhibition() {
                 >
                   <NftImg
                     crossOrigin="anonymous"
-                    src={`/crown.jpeg`}
-                    //   src={`https://artcity.site/${val.photo}`}
+                    src={`https://artcity.site/${val?.photo}`}
                     alt="serachedNfts"
                   />
                   <Column
@@ -260,7 +240,7 @@ function CreateExhibition() {
                         color: "var(--sideBar_text)",
                       }}
                     >
-                      Father
+                      {val?.name}
                     </Text>
                     <Text
                       style={{
@@ -272,15 +252,16 @@ function CreateExhibition() {
                         fontWeight: "200",
                       }}
                     >
-                      {/* {val.nftOwner.username}{" "}
-                {val.nftOwner.userVerified && (
-                    <RiVerifiedBadgeFill style={iconStyles} />
-                    )} */}
-                      14 ETH
+                      {val?.priceInEtherium} ETH
                     </Text>
                   </Column>
                 </Row>
-                <CheckBox defaultChecked={ind === 0 && true} key={ind} />
+                <CheckBox
+                  handleNftList={handleNftList}
+                  data={val}
+                  key={val?.id}
+                  reset={isBlur}
+                />
               </Row>
             ))}
           </Column>
@@ -296,15 +277,15 @@ function CreateExhibition() {
           <ErrorText style={{ marginTop: "-1.5rem" }}>
             {errors?.description?.message && errors?.description.message}
           </ErrorText>
-
           <Column>
-            <Label htmlFor="priceInEtherium">Create Fee</Label>
+            <Label htmlFor="joinFee">Join Fee</Label>
             <Row>
               <Input
                 style={{ fontWeight: "700" }}
-                id="priceInEtherium"
-                type="text"
-                {...register("priceInEtherium", {
+                id="joinFee"
+                type="number"
+                step={0.01}
+                {...register("joinFee", {
                   required: "This field is required",
                   min: {
                     value: 0.02,
@@ -317,11 +298,37 @@ function CreateExhibition() {
           </Column>
           <Text style={{ margin: "-2rem 0 2rem 0" }}>min 0.02 ETH</Text>
           <ErrorText style={{ marginTop: "-3rem" }}>
-            {errors?.priceInEtherium?.message &&
-              errors?.priceInEtherium.message}
+            {errors?.joinFee?.message && errors?.joinFee.message}
+          </ErrorText>
+          <Column>
+            <Label htmlFor="salesBonus">Sales bonus</Label>
+            <Row>
+              <Input
+                style={{ fontWeight: "700" }}
+                id="salesBonus"
+                type="number"
+                step={1}
+                {...register("salesBonus", {
+                  required: "This field is required",
+                  min: {
+                    value: 2,
+                    message: "Minimum sales bonus is 2%",
+                  },
+                  max: {
+                    value: 20,
+                    message: "Maximum sales bonus is 20%",
+                  },
+                })}
+              />
+              <Text style={{ fontWeight: "700", fontSize: "1.6rem" }}>%</Text>
+            </Row>
+          </Column>
+          <Text style={{ margin: "-2rem 0 2rem 0" }}>min 2%</Text>
+          <ErrorText style={{ marginTop: "-3rem" }}>
+            {errors?.salesBonus?.message && errors?.salesBonus.message}
           </ErrorText>
           <Button
-            onSubmit={handleSubmit(handleMintSubmit, handleError)}
+            onSubmit={handleSubmit(handleCreateExhibitionSubmit, handleError)}
             padding=".8rem 1.5rem"
             width="100%"
             background="true"
@@ -332,11 +339,6 @@ function CreateExhibition() {
           </Button>
         </Form>
         <Text>Fee reqired: 0.2 ETH</Text>
-        {overlay && (
-          <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>
-            <MintStatus status="true" />
-          </Overlay>
-        )}
       </CreateExhibitionStyle>
       {isBlur && (
         <LoadingBox>

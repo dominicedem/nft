@@ -3,6 +3,7 @@ import Button from "./Button";
 import Socials from "./Socials";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Skeleton from "react-loading-skeleton";
 
 const ProfileStyle = styled.div`
   display: flex;
@@ -32,8 +33,8 @@ const DpbBox = styled.div`
   position: absolute;
   left: 2rem;
   bottom: 0;
-  border-radius: 0.6rem;
   transform: translateY(42%);
+  border-radius: 0.6rem;
   padding: 0.2rem;
   height: 6rem;
   background: var(--appbackgroundcolor);
@@ -68,9 +69,10 @@ const Bio = styled.span`
   border-radius: 1rem;
   margin-top: -0.5rem;
   line-height: 1.4;
-  letter-spacing: 0.5px;
   color: var(--sideBar_text);
   width: 100%;
+  height: 12rem;
+  overflow-y: scroll;
   text-align: justify;
   &::after {
     content: "";
@@ -90,13 +92,17 @@ function Profile() {
       <ImageBox>
         <Img src="/light.webp" alt="coverprofile" />
         <DpbBox>
-          <Img
-            crossOrigin="anonymous"
-            type="dp"
-            src={`https://artcity.site/${userData?.photo}`}
-            alt="profileimage"
-            style={{ borderRadius: "inherit" }}
-          />
+          {userData ? (
+            <Img
+              crossOrigin="anonymous"
+              type="dp"
+              src={`https://artcity.site/${userData?.photo}`}
+              alt="profileimage"
+              style={{ borderRadius: "inherit" }}
+            />
+          ) : (
+            <Skeleton className="profileImage" />
+          )}
         </DpbBox>
       </ImageBox>
       <Description>
@@ -116,10 +122,7 @@ function Profile() {
         </Column>
         <Column style={{ marginTop: "-1.5rem" }}>
           <Text style={{ fontWeight: "500" }}>Bio</Text>
-          <Bio>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-            consectetur corporis aliquid quo ea sunt fuga asperiores, similique
-          </Bio>
+          <Bio>{userData ? userData.bio : <Skeleton height={75} />}</Bio>
         </Column>
         <Socials />
       </Description>

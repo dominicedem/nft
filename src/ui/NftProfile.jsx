@@ -1,14 +1,12 @@
 import styled from "styled-components";
 import Button from "./Button";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import Skeleton from "react-loading-skeleton";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
-import useFetchBuyNft from "../hooks/useFetchBuyNft";
-import FetchBuyProduct from "../services/FetchBuyProduct";
 import useAuthenticate from "../hooks/useAuthenticate";
-import Loading from "./Loading";
+// import Loading from "./Loading";
 
 const ColumnBox = styled.div`
   display: flex;
@@ -94,10 +92,10 @@ const Box = styled.div`
   }
 `;
 
-const linkStyle = {
-  color: "inherit",
-  textDecoration: "none",
-};
+// const linkStyle = {
+//   color: "inherit",
+//   textDecoration: "none",
+// };
 const iconStyle = {
   width: "1.6rem",
   height: "1.6rem",
@@ -118,13 +116,14 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
       ? mutate(id)
       : navigate("/signin", { replace: true });
   }
+
   return (
     <Contianer>
-      <Link style={linkStyle} to="/">
-        <BtnBox>
-          <Button padding="var(--padding_btn_small)">Back</Button>
-        </BtnBox>
-      </Link>
+      {/* <Link style={linkStyle} to="/"> */}
+      <BtnBox onClick={() => navigate(-1)}>
+        <Button padding="var(--padding_btn_small)">Back</Button>
+      </BtnBox>
+      {/* </Link> */}
       <RowBox>
         <ImgBox>
           {data ? (
@@ -160,16 +159,19 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
                     <RiVerifiedBadgeFill style={iconStyle} />
                   )}{" "}
                 </Text>
-                <Box
-                  style={{
-                    fontSize: "2rem",
-                    marginLeft: "5%",
-                    width: "fit-content",
-                    color: "var(--profile_text)",
-                  }}
-                >
-                  Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
-                </Box>
+                {data?.nftOwner?.profileVisible && (
+                  <Box
+                    onClick={() => navigate()}
+                    style={{
+                      fontSize: "2rem",
+                      marginLeft: "5%",
+                      width: "fit-content",
+                      color: "var(--profile_text)",
+                    }}
+                  >
+                    Profile <HiOutlineArrowLongRight style={arrowIconStyle} />
+                  </Box>
+                )}
               </Box>
             </>
           ) : (

@@ -8,9 +8,6 @@ import EditNft from "../ui/EditNft";
 import { useDispatch, useSelector } from "react-redux";
 import { setOverlay } from "../Slices/overLaySlice";
 import useReloadPage from "../hooks/useReloadPage";
-import { useEffect } from "react";
-import { setUser } from "../Slices/AuthUserSlice";
-import FetchNewUserData from "../services/FetchNewUserData";
 
 const DashboardStyle = styled.div`
   height: 100%;
@@ -59,26 +56,13 @@ function Dashboard() {
   const { userData } = useSelector((state) => state.authData);
   const { isLoading } = useReloadPage();
 
-  console.log(userData);
-
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setOverlay(false));
   }
 
-  // useEffect(() => {
-  //   const controller = new AbortController();
-  //   const signal = controller.signal;
-  //   const storage = JSON.parse(localStorage.getItem("userData"));
+  console.log(userData);
 
-  //   const fetchReload = async () => {
-  //     const reloadData = await FetchNewUserData(storage.token);
-  //     dispatch(setUser(reloadData.data));
-  //   };
-  //   fetchReload();
-
-  //   return controller.abort();
-  // }, [dispatch]);
   return (
     <DashboardStyle>
       <AccountBalance />

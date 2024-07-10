@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const Label = styled.label`
@@ -17,12 +17,15 @@ const Check = styled.div`
   border-radius: 50%;
   cursor: pointer;
 `;
-function CheckBox() {
+function CheckBox({ data, handleNftList, reset }) {
   const [check, setCheck] = useState(false);
 
+  useEffect(() => {
+    reset && setCheck(false);
+  }, [reset]);
   return (
-    <Label htmlFor="checkbox">
-      <InputCheck type="checkbox" />
+    <Label htmlFor="check" onClick={() => handleNftList(data?.id)}>
+      <InputCheck id="check" type="checkbox" />
       <Check
         onClick={() => setCheck((el) => !el)}
         className={check ? "checked" : "unChecked"}

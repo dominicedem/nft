@@ -28,5 +28,19 @@ export default function useReloadPage() {
     // return () => window.removeEventListener("beforeunload", reload);
     // localStorage.clear();
   }, [dispatch, data, refetch]);
+
+  // useEffect(() => {
+  //   const controller = new AbortController();
+  //   const signal = controller.signal;
+  //   const storage = JSON.parse(localStorage.getItem("userData"));
+
+  //   const fetchReload = async () => {
+  //     const reloadData = await FetchNewUserData(storage.token);
+  //     dispatch(setUser(reloadData.data));
+  //   };
+  //   fetchReload();
+
+  //   return controller.abort();
+  // }, [dispatch]);
   return { isLoading };
 }
