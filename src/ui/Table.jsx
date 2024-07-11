@@ -86,7 +86,7 @@ const data = [
     status: "notCompleted",
   },
 ];
-const datas = [
+const datass = [
   {
     Nftname: "Deposit",
     amount: "2 ETH",
@@ -123,12 +123,12 @@ const datas = [
     seller: "Anything",
   },
 ];
-function Table({ tableHead, transaction, data }) {
+function Table({ tableHead, transaction, data, tableData }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
   const header = sold
-    ? ["Type", "Amount", "Date", "Status"]
-    : ["Type", "Amount", "Seller"];
+    ? ["Nft Name", "Amount", "Buyer", "Sales Commission"]
+    : ["Nft Name", "Amount", "Seller"];
   return (
     <TableStyle>
       <HeadBox>
@@ -144,7 +144,7 @@ function Table({ tableHead, transaction, data }) {
           />
         )}
       </HeadBox>
-      {data ? (
+      {tableData ? (
         <>
           <Row
             style={{
@@ -154,12 +154,19 @@ function Table({ tableHead, transaction, data }) {
             }}
           >
             {header.map((val, ind) => (
-              <List style={{ fontWeight: "500", fontSize: "1.8rem" }} key={ind}>
+              <List
+                style={{
+                  fontWeight: "500",
+                  fontSize: "1.8rem",
+                  width: `${ind === 3 && "40%"}`,
+                }}
+                key={ind}
+              >
                 {val}
               </List>
             ))}
           </Row>
-          <TableRow sold={sold} bought={bought} />
+          <TableRow datas={tableData} sold={sold} bought={bought} />
         </>
       ) : (
         <Skeleton height={260} />
@@ -168,24 +175,36 @@ function Table({ tableHead, transaction, data }) {
   );
 }
 
-function TableRow({ sold, bought }) {
+function TableRow({ sold, bought, datas }) {
   return (
     <TableBox>
       {sold &&
-        data.map((val, ind) => (
+        datas?.soldNft?.map((val, ind) => (
           <Row key={ind}>
-            <List type="sold">{val.Nftname}</List>
-            <List type="sold">{val.amount}</List>
-            <List type="sold">{val.date}</List>
-            <List type="sold">{val.status}</List>
+            <List type="sold">{val?.nft?.name}</List>
+            <List type="sold">{val?.amount}</List>
+            <List type="sold">{val?.buyer?.username}</List>
+            <List
+              type="sold"
+              style={{
+                width: "32%",
+                color: `${
+                  val.salesCommision === "paid"
+                    ? "var(--paid_text)"
+                    : "var(--error_text)"
+                }`,
+              }}
+            >
+              {val.salesCommision}
+            </List>
           </Row>
         ))}
       {bought &&
-        datas.map((val, ind) => (
+        datas?.boughtNft?.map((val, ind) => (
           <Row key={ind}>
-            <List type="bought">{val.Nftname}</List>
-            <List type="bought">{val.amount}</List>
-            <List type="bought">{val.seller}</List>
+            <List type="bought">{val?.nft?.name}</List>
+            <List type="bought">{val?.amount}</List>
+            <List type="bought">{val?.seller?.username}</List>
           </Row>
         ))}
     </TableBox>

@@ -56,12 +56,12 @@ function Dashboard() {
   const { userData } = useSelector((state) => state.authData);
   const { isLoading } = useReloadPage();
 
+  console.log(userData);
+
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setOverlay(false));
   }
-
-  console.log(userData);
 
   return (
     <DashboardStyle>
@@ -134,7 +134,11 @@ function Dashboard() {
         />
       </DashCardBox>
       <TableBox id="nftTransaction">
-        <Table tableHead="NFT Transactions" transaction="true" />
+        <Table
+          tableHead="NFT Transactions"
+          transaction="true"
+          tableData={userData}
+        />
       </TableBox>
       {overlay && (
         <Overlay className="overlay" onClick={(e) => handleOverlay(e)}>

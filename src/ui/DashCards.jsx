@@ -41,7 +41,6 @@ function DashCards({
   textdata,
   move,
 }) {
-  console.log(data?.length);
   return (
     <DashCardsStyle>
       <Flex style={{ justifyContent: "space-between", width: "100%" }}>

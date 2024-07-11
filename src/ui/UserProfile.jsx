@@ -4,6 +4,7 @@ import { RiVerifiedBadgeFill } from "react-icons/ri";
 import Cards from "../ui/Cards";
 import { IoIosArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 const NftProfileStyle = styled.div`
   width: 100%;
@@ -117,19 +118,34 @@ function UserProfile({
   rawData,
 }) {
   const navigate = useNavigate();
+  console.log(userProfileData);
   return (
     <NftProfileStyle>
       <ImageBox>
-        <Img
-          crossOrigin="anonymous"
-          src={`https://artcity.site/${rawData?.data?.photo}`}
-        />
-        <DpbBox>
+        {rawData ? (
           <Img
-            style={{ borderRadius: "0.7rem" }}
             crossOrigin="anonymous"
-            src={`https://artcity.site/${rawData?.data?.owner?.photo}`}
+            src={`https://artcity.site/${rawData?.data?.photo}`}
           />
+        ) : (
+          <Img src="/light.webp" />
+        )}
+        <DpbBox>
+          {rawData ? (
+            <Img
+              style={{ borderRadius: "0.7rem" }}
+              crossOrigin="anonymous"
+              src={`https://artcity.site/${rawData?.data?.owner?.photo}`}
+            />
+          ) : userProfileData ? (
+            <Img
+              style={{ borderRadius: "0.7rem" }}
+              crossOrigin="anonymous"
+              src={`https://artcity.site/${userProfileData?.data?.photo}`}
+            />
+          ) : (
+            <Skeleton width={116} height={117} />
+          )}
         </DpbBox>
         <Back onClick={() => navigate(-1)}>
           <IoIosArrowBack style={backStyle} />
@@ -138,21 +154,25 @@ function UserProfile({
       <Container>
         <Row style={{ alignItems: "start" }}>
           <Column style={{ width: "fit-content" }}>
-            <Text style={{ fontWeight: "700" }}>
+            <Text style={{ fontWeight: "700", textTransform: "capitalize" }}>
               {rawData?.data?.name}
-              {!isExhibition && <RiVerifiedBadgeFill style={iconStyle} />}
             </Text>
             {!isExhibition && (
               <Text
                 style={{
-                  fontSize: "1.3rem",
+                  fontSize: "1.6rem",
                   textDecoration: "underline",
                   marginTop: "-.5rem",
                   color: "var(--secondary_text_faint)",
                   cursor: "pointer",
+                  textTransform: "capitalize",
                 }}
               >
-                Edemdominic@gmail.com
+                {userProfileData ? (
+                  userProfileData?.data?.username
+                ) : (
+                  <Skeleton width={80} />
+                )}
               </Text>
             )}
             {isExhibition && (
@@ -197,7 +217,11 @@ function UserProfile({
             <Column style={{ width: "40%" }}>
               <Text style={{ fontWeight: "700" }}>Bio</Text>
               <Text style={{ fontSize: "1.6rem" }}>
-                {rawData?.data?.description}
+                {userProfileData ? (
+                  userProfileData?.data?.bio
+                ) : (
+                  <Skeleton count={3} width={300} />
+                )}
               </Text>
               {/* <Text
                 style={{

@@ -83,6 +83,7 @@ function BuyNft() {
           title="More from this category"
           right={{ text: "See Entire Category" }}
           font={{ size: "2.2rem", weight: "300" }}
+          defaultCard="true"
         />
       </More>
       {searchModal && (

@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
     --light_faint: #f4f4f4;
     --profile_faint: #d9d9d9;
     --error_text: #f66;
+    --paid_text: #12dd12be;
     --blue_btn: #217FD7;
     --blue_background_hover:#2273beaa;
     --blue_btn_hover: rgb(33, 127, 215,90%);

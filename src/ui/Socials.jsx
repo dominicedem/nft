@@ -4,6 +4,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import Skeleton from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import useReloadPage from "../hooks/useReloadPage";
 
 const Column = styled.div`
   display: flex;
@@ -26,6 +27,8 @@ const iconStyle = {
 };
 function Socials() {
   const { userData } = useSelector((state) => state.authData);
+  const { isLoading } = useReloadPage();
+
   return (
     <div>
       <Column style={{ marginTop: "-1.5rem", gap: "1.5rem" }}>

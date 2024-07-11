@@ -116,7 +116,6 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
       ? mutate(id)
       : navigate("/signin", { replace: true });
   }
-
   return (
     <Contianer>
       {/* <Link style={linkStyle} to="/"> */}
@@ -161,7 +160,9 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
                 </Text>
                 {data?.nftOwner?.profileVisible && (
                   <Box
-                    onClick={() => navigate()}
+                    onClick={() =>
+                      navigate(`/ownNftProfile/${data?.nftOwner?._id}`)
+                    }
                     style={{
                       fontSize: "2rem",
                       marginLeft: "5%",
