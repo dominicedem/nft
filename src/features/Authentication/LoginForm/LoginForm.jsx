@@ -150,6 +150,12 @@ const LoadingBox = styled.div`
   background: var(--overlay_background);
   z-index: 10000;
 `;
+const Flex = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+`;
 const IconStyle = {
   fontSize: "2rem",
   color: "var(--input_Icon_color)",
@@ -236,6 +242,15 @@ function LoginForm({ setToggleSigin }) {
               ? "Incorrect email or password"
               : ""}
           </ErrorText>
+          <Span
+            style={{
+              fontSize: "1.3rem",
+              alignSelf: "start",
+              marginTop: "-1rem",
+            }}
+          >
+            Forgot Password
+          </Span>
           <BtnBox style={{ marginTop: "1rem" }}>
             <Button
               background="var(--blue_btn)"
@@ -247,10 +262,12 @@ function LoginForm({ setToggleSigin }) {
               Sign up
             </Button>
           </BtnBox>
+          {/* <Flex> */}
           <ResetTextBox type="signup">
             Already have an account?
             <Span onClick={() => setToggleSigin(false)}>SignUp</Span>
           </ResetTextBox>
+          {/* </Flex> */}
         </Form>
       </SignUpPage>
       <CloseMenu onClick={() => navigate("/")}>

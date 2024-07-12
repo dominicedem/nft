@@ -3,12 +3,15 @@ import toast from "react-hot-toast";
 // import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import FetchResetPassword from "../services/FetchResetPassword";
+import { useNavigate } from "react-router-dom";
 
 export default function useResetPassword() {
   const [isBlur, setIsBlur] = useState(false);
   const [feedBackError, setFeedBackError] = useState(false);
   const [revealLoginPassword, setRevealLoginPassword] = useState(false);
   const [revealConfirmPassowrd, setRevealConfirmPassowrd] = useState(false);
+
+  const navigate = useNavigate();
 
   const {
     formState: { errors },
@@ -19,7 +22,7 @@ export default function useResetPassword() {
   } = useForm();
 
   async function handleResetPasswordSubmit(formdata) {
-    // console.log(formdata);
+    console.log(formdata);
     setIsBlur(true);
     let blur = true;
     setTimeout(() => {
@@ -38,13 +41,19 @@ export default function useResetPassword() {
         setIsBlur(false);
         blur = false;
         setFeedBackError(true);
-        toast.error(result.message);
       } else if (result.status === "success") {
         reset();
         setIsBlur(false);
         blur = false;
         setFeedBackError(false);
-        toast.success(result.message);
+        toast.success("Password Changed Successfully");
+        localStorage.clear();
+        navigate("/signin", { replace: true });
+      } else if (result.status === "error") {
+        reset();
+        setIsBlur(false);
+        blur = false;
+        toast.error(result.message);
       }
     } catch (error) {
       setTimeout(() => {

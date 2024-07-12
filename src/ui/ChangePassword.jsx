@@ -90,6 +90,10 @@ const ErrorText = styled.span`
   width: 100%;
   height: 1.5rem;
 `;
+const Text = styled.div`
+  font-size: 1.5rem;
+  color: var(--faint_text_black);
+`;
 const LoadingBox = styled.div`
   display: flex;
   justify-content: center;
@@ -127,18 +131,19 @@ function ChangePassword() {
 
   return (
     <ChangePasswordBox>
-      <Label style={{ fontSize: "2rem", fontWeight: "700" }}>
+      <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
         Change Password
-      </Label>
+      </Text>
       <ChangePasswordStyle>
         <Form onSubmit={handleSubmit(handleResetPasswordSubmit, handleError)}>
           <Box>
-            <Label htmlFor="oldPassowrd">Old Password</Label>
+            <Label htmlFor="currentPassword">Old Password</Label>
             <InputField>
               <Input
-                id="oldPassowrd"
+                id="currentPassword"
                 type="text"
-                {...register("oldPassowrd", {
+                placeholder="Current password"
+                {...register("currentPassword", {
                   required: "This field is required",
                   minLength: {
                     value: 8,
@@ -149,15 +154,16 @@ function ChangePassword() {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors.oldPassowrd && errors.oldPassowrd.message}
+            {errors.currentPassword && errors.currentPassword.message}
           </ErrorText>
           <Box>
-            <Label htmlFor="newPassword">New Password</Label>
+            <Label htmlFor="password">New Password</Label>
             <InputField>
               <Input
-                id="newPassword"
+                id="password"
+                placeholder="New password"
                 type={!revealLoginPassword ? "password" : "text"}
-                {...register("newPassword", {
+                {...register("password", {
                   required: "This field is required",
                   minLength: {
                     value: 8,
@@ -179,20 +185,20 @@ function ChangePassword() {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors.newPassword && errors?.newPassword.message}
+            {errors.password && errors?.password.message}
           </ErrorText>
           <Box>
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Label htmlFor="passwordConfirm">Confirm Password</Label>
             <InputField>
               <Input
-                id="confirmPassword"
+                id="passwordConfirm"
+                placeholder="Confirm password"
                 type={!revealConfirmPassowrd ? "password" : "text"}
-                {...register("confirmPassword", {
+                {...register("passwordConfirm", {
                   required: "This field is required",
                   validate: () =>
-                    getValues()?.confirmPassword?.length ===
-                      getValues()?.newPassword?.length ||
-                    "Password doesn't match",
+                    getValues()?.passwordConfirm?.length ===
+                      getValues()?.password?.length || "Password doesn't match",
                 })}
               />
               {!revealConfirmPassowrd ? (
@@ -209,8 +215,8 @@ function ChangePassword() {
             </InputField>
           </Box>
           <ErrorText style={{ marginTop: "-1.5rem" }}>
-            {errors.confirmPassword
-              ? errors?.confirmPassword.message
+            {errors.passwordConfirm
+              ? errors?.passwordConfirm.message
               : feedBackError
               ? "Incorrect password"
               : ""}
@@ -220,9 +226,7 @@ function ChangePassword() {
               background="var(--blue_btn)"
               color="var(--white_text)"
               width="100%"
-              onSubmit={(e) =>
-                handleSubmit(handleResetPasswordSubmit, handleError)
-              }
+              onSubmit={handleSubmit(handleResetPasswordSubmit, handleError)}
             >
               Change Password
             </Button>
