@@ -7,12 +7,7 @@ import { useForm } from "react-hook-form";
 export default function useCreateExhibition() {
   const [isBlur, setIsBlur] = useState(false);
   let nftList = [];
-  //   const [overlay, setOverlay] = useState(false);
 
-  //   const { userData } = useSelector((state) => state.authData);
-
-  //   const navigate = useNavigate();
-  //   const dispatch = useDispatch();
   const {
     formState: { errors },
     register,
@@ -27,17 +22,18 @@ export default function useCreateExhibition() {
     nftList.includes(id)
       ? nftList.splice(nftList.indexOf(id), 1)
       : nftList.push(id);
-    console.log(nftList);
   }
 
   async function handleCreateExhibitionSubmit(formdata) {
-    // const exhibitionNft = {
-    //   ...formdata,
-    //   photo: formdata.file[0],
-    //   exhibitionNft: nftList,
-    // };
-    // delete exhibitionNft.file;
-    // console.log(exhibitionNft);
+    if (nftList?.length < 5) {
+      setIsBlur(true);
+      setTimeout(() => {
+        toast.error("Minimum of five arts is required");
+        setIsBlur(false);
+        nftList = [];
+      }, [500]);
+      return;
+    }
 
     const formData = new FormData();
     formData.append("photo", formdata.file[0]);

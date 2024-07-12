@@ -118,7 +118,6 @@ function UserProfile({
   rawData,
 }) {
   const navigate = useNavigate();
-  console.log(userProfileData);
   return (
     <NftProfileStyle>
       <ImageBox>

@@ -5,15 +5,15 @@ export default function Autotype() {
     <>
       <TypeAnimation
         sequence={[
-          "Discover create and sell your nft with easy...",
+          "Discover! create! and sell your nft with ease...",
           5000,
-          "Discover network without any delay",
+          "Discover swift network without delays",
           5000,
         ]}
         wrapper="span"
         speed={10}
         style={{
-          fontSize: "7rem",
+          fontSize: "6.5rem",
           height: "100%",
           fontWeight: "700",
           padding: "5rem 0 0 0",

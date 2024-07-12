@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -17,21 +18,26 @@ const Check = styled.div`
   border-radius: 50%;
   cursor: pointer;
 `;
-function CheckBox({ data, handleNftList, reset }) {
+function CheckInput({ data, handleNftList, reset }) {
   const [check, setCheck] = useState(false);
+
+  function handlePushId() {
+    handleNftList(data?.id);
+    setCheck((el) => !el);
+  }
 
   useEffect(() => {
     reset && setCheck(false);
   }, [reset]);
   return (
-    <Label htmlFor="check" onClick={() => handleNftList(data?.id)}>
+    <Label htmlFor="check">
       <InputCheck id="check" type="checkbox" />
       <Check
-        onClick={() => setCheck((el) => !el)}
+        onClick={() => handlePushId()}
         className={check ? "checked" : "unChecked"}
       ></Check>
     </Label>
   );
 }
 
-export default CheckBox;
+export default CheckInput;

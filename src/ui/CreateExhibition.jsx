@@ -3,8 +3,9 @@ import { CiFileOn } from "react-icons/ci";
 import Button from "../ui/Button";
 import { useSelector } from "react-redux";
 import Loading from "./Loading";
-import CheckBox from "./CheckBox";
 import useCreateExhibition from "../hooks/useCreateExhibition";
+import { memo } from "react";
+import CheckInput from "./CheckBox";
 
 const CreateExhibitionBox = styled.div`
   display: flex;
@@ -127,7 +128,7 @@ const iconStyle = {
   color: "var(--sideBar_text)",
   cursor: "pointer",
 };
-function CreateExhibition() {
+const CreateExhibition = memo(function CreateExhibition() {
   const { userData } = useSelector((state) => state.authData);
 
   const {
@@ -256,10 +257,9 @@ function CreateExhibition() {
                     </Text>
                   </Column>
                 </Row>
-                <CheckBox
+                <CheckInput
                   handleNftList={handleNftList}
                   data={val}
-                  key={val?.id}
                   reset={isBlur}
                 />
               </Row>
@@ -347,6 +347,6 @@ function CreateExhibition() {
       )}
     </CreateExhibitionBox>
   );
-}
+});
 
 export default CreateExhibition;

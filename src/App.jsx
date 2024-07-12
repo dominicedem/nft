@@ -23,6 +23,7 @@ import SignIn from "./pages/SignIn";
 import Loading from "./ui/Loading";
 import Validation from "./ui/Validation";
 import CreateExhibition from "./ui/CreateExhibition";
+import ChangePassword from "./ui/ChangePassword";
 
 const ProtectRoute = lazy(() => import("./ui/ProtectRoute"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
@@ -96,6 +97,10 @@ function App() {
                     <Route
                       path="/dashboard/createExhibition"
                       element={<CreateExhibition />}
+                    />
+                    <Route
+                      path="/dashboard/resetpassword"
+                      element={<ChangePassword />}
                     />
                   </Route>
                   <Route index element={<Home />} />

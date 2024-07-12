@@ -30,7 +30,13 @@ export default function useJoinExhibition() {
 
   async function handleJoinExhibitionSubmit(formdata) {
     if (nftList?.length < 1) {
-      toast.error("Please select atleast one art");
+      setIsBlur(true);
+      setTimeout(() => {
+        setIsBlur(false);
+        nftList = [];
+        toast.error("Please select atleast one art");
+        return;
+      }, [10]);
       return;
     }
     const data = { nft: nftList };

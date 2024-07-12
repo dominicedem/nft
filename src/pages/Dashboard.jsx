@@ -56,7 +56,7 @@ function Dashboard() {
   const { userData } = useSelector((state) => state.authData);
   const { isLoading } = useReloadPage();
 
-  console.log(userData);
+  // console.log(userData);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&

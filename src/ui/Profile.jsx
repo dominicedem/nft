@@ -138,7 +138,7 @@ function Profile() {
             Edit Profile
           </Button>
         </Link>
-        <Link style={linkStyle}>
+        <Link style={linkStyle} to="/dashboard/resetpassword">
           <Button
             border="1px solid var(--inputField_border)"
             padding="1rem 1.5rem"
