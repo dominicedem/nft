@@ -37,7 +37,7 @@ const iconStyle = {
   height: "7rem",
   color: "var(--blue_btn)",
 };
-function WithdrawStatus({ status, handlePayCommission }) {
+function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.authData);
 
@@ -117,7 +117,7 @@ function WithdrawStatus({ status, handlePayCommission }) {
               font="1.6rem"
               color="var(--white_text)"
             >
-              Pay sales commission
+              {isLoadingPay ? "Loading..." : "Pay sales commission"}
             </Button>
           </BtnBox>
         </Status>

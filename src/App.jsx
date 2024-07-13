@@ -24,6 +24,7 @@ import Loading from "./ui/Loading";
 import Validation from "./ui/Validation";
 import CreateExhibition from "./ui/CreateExhibition";
 import ChangePassword from "./ui/ChangePassword";
+import RecoverPassword from "./pages/RecoverPassword";
 
 const ProtectRoute = lazy(() => import("./ui/ProtectRoute"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
@@ -109,6 +110,10 @@ function App() {
                   <Route
                     path="/ownNftProfile/:userId"
                     element={<UserNftProfile />}
+                  />
+                  <Route
+                    path="/recoverpassword"
+                    element={<RecoverPassword />}
                   />
                   <Route path="/exhibition" element={<Exhibtion />} />
                   {/* <Route path="/profile" element={<Profile />} /> */}

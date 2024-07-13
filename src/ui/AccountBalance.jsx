@@ -81,8 +81,8 @@ function AccountBalance() {
         </Text>
       </BalanceOverview>
       <BalanceOverview>
-        <Flex style={{ alignItems: "start" }}>
-          <Img src="/img1.webp" alt="profileImage" />
+        <Flex style={{ alignItems: "start", gap: "1rem" }}>
+          <Img src="/ethLogo.png" alt="profileImage" />
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
@@ -107,8 +107,8 @@ function AccountBalance() {
             </Flex>
           </Flex>
         </Flex>
-        <Flex style={{ alignItems: "start" }}>
-          <Img src="/img1.webp" alt="profileImage" />
+        <Flex style={{ alignItems: "start", gap: "1rem" }}>
+          <Img src="/weth.png" alt="profileImage" />
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>

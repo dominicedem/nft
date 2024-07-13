@@ -128,6 +128,7 @@ const ErrorText = styled.span`
 function Withdrawal() {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
+  const [isLoadingPay, setIsLoadingPay] = useState();
 
   const {
     register,
@@ -165,6 +166,7 @@ function Withdrawal() {
   }
 
   function setPaymentFailState() {
+    setIsLoadingPay(false);
     setCommissionOverlay(false);
     setValidateOverlay(false);
     setSuccessOverlay(false);
@@ -172,6 +174,7 @@ function Withdrawal() {
   }
 
   function setPaymentSuccessState() {
+    setIsLoadingPay(false);
     setCommissionOverlay(false);
     setValidateOverlay(false);
     setOverlay(false);
@@ -179,6 +182,7 @@ function Withdrawal() {
   }
 
   async function handlePayCommission() {
+    setIsLoadingPay(true);
     const result = await FetchCommission();
     result.status === "error"
       ? setPaymentFailState()
@@ -379,6 +383,7 @@ function Withdrawal() {
         >
           <WithdrawStatus
             handlePayCommission={handlePayCommission}
+            isLoadingPay={isLoadingPay}
             status="pay"
           />
         </Overlay>

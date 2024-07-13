@@ -56,7 +56,7 @@ function Dashboard() {
   const { userData } = useSelector((state) => state.authData);
   const { isLoading } = useReloadPage();
 
-  // console.log(userData);
+  console.log(userData);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
@@ -115,10 +115,7 @@ function Dashboard() {
         />
       </DashCardBox>
       <TableBox id="transaction">
-        <Table
-          tableHead="Transaction"
-          header={["Type", "Amount", "Date", "Status"]}
-        />
+        <Table tableHead="Transaction" headers="true" tableData={userData} />
       </TableBox>
       <DashCardBox>
         <DashCards

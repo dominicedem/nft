@@ -243,6 +243,7 @@ function LoginForm({ setToggleSigin }) {
               : ""}
           </ErrorText>
           <Span
+            onClick={() => navigate("/recoverpassword")}
             style={{
               fontSize: "1.3rem",
               alignSelf: "start",

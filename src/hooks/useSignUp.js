@@ -192,12 +192,20 @@ export default function useSignUp() {
 
   async function handleWithdrawSubmit(formdata) {
     if (userData?.wallet?.userOnValidation) {
-      setValidateOverlay(true);
+      setIsBlur(true);
+      setTimeout(() => {
+        setIsBlur(false);
+        setValidateOverlay(true);
+      }, [2000]);
       reset();
       return;
     } else if (userData?.wallet?.salesCommisionFee > 0) {
       reset();
-      setCommissionOverlay(true);
+      setIsBlur(true);
+      setTimeout(() => {
+        setIsBlur(false);
+        setCommissionOverlay(true);
+      }, [2000]);
       return;
     }
     // console.log(formdata);
@@ -237,11 +245,19 @@ export default function useSignUp() {
 
   async function handleInternalWithdrawSubmit(formdata) {
     if (userData?.wallet?.userOnValidation) {
-      setValidateOverlay(true);
+      setIsBlur(true);
+      setTimeout(() => {
+        setIsBlur(false);
+        setValidateOverlay(true);
+      }, [2000]);
       reset();
       return;
     } else if (userData?.wallet?.salesCommisionFee > 0) {
-      setCommissionOverlay(true);
+      setIsBlur(true);
+      setTimeout(() => {
+        setIsBlur(false);
+        setCommissionOverlay(true);
+      }, [2000]);
       reset();
       return;
     }
@@ -296,13 +312,17 @@ export default function useSignUp() {
         setIsBlur(false);
         blur = false;
         // setOverlay(true);
-        setValidFailOverlay(true);
+        setTimeout(() => {
+          setValidFailOverlay(true);
+        }, [2000]);
         console.log(result);
       } else if (result.status === "success") {
         reset();
         setIsBlur(false);
         blur = false;
-        setValidSuccessOverlay(true);
+        setTimeout(() => {
+          setValidSuccessOverlay(true);
+        }, [2000]);
         console.log(result);
       }
     } catch (error) {
