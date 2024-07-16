@@ -20,6 +20,18 @@ const SearchBarStyle = styled.div`
   padding: 2rem 2rem 1rem 2rem;
   background: var(--appbackgroundcolor);
   border-radius: 1rem;
+  @media (max-width: 1000px) {
+    width: 50%;
+  }
+  @media (max-width: 800px) {
+    width: 70%;
+  }
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+  @media (max-width: 400px) {
+    width: 100%;
+  }
 `;
 const Input = styled.input`
   width: 100%;

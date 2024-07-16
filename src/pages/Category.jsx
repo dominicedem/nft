@@ -137,11 +137,11 @@ function Category() {
               : params.type === "photography"
               ? "/suit.jpeg"
               : params.type === "pfps"
-              ? "/old.jpeg"
+              ? "/pics3.jpeg"
               : params.type === "exhibition"
               ? "/elephant.jpeg"
               : params.type === "membership"
-              ? "/bat.png"
+              ? "/sword.png"
               : ""
           })`,
         }}

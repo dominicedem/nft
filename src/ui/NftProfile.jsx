@@ -19,16 +19,19 @@ const ColumnBox = styled.div`
   align-items: ${(props) => (props.type === "card" ? "center" : "start")};
   width: ${(props) => props.type !== "card" && "50rem"};
   @media (max-width: 800px) {
+    width: 50%;
+  }
+  @media (max-width: 750px) {
     width: 100%;
   }
 `;
 const RowBox = styled.div`
   display: flex;
   align-items: start;
-  gap: 5rem;
+  gap: 4.5rem;
   width: 100%;
   height: fit-content;
-  @media (max-width: 800px) {
+  @media (max-width: 750px) {
     flex-direction: ${(props) => props.type === "outer" && "column"};
   }
 `;
@@ -42,8 +45,9 @@ const ImgBox = styled.div`
   width: 45.5rem;
   height: 42rem;
   border-radius: 1.5rem;
-  @media (max-width: 800px) {
+  @media (max-width: 750px) {
     width: 100%;
+    height: 50rem;
   }
 `;
 const Img = styled.img`
@@ -77,7 +81,7 @@ const Contianer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  padding: 9rem 0 2rem 1rem;
+  padding: 9rem 1rem 2rem 1rem;
   gap: 2rem;
 `;
 const PayBox = styled.div`
@@ -187,7 +191,7 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
               </Box>
             </>
           ) : (
-            <Skeleton width={400} height={30} />
+            <Skeleton width={300} height={30} />
           )}
 
           {data ? (
@@ -219,7 +223,7 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
               <Text style={{ fontSize: "1.65rem" }}>{data?.description}</Text>
             </ColumnBox>
           ) : (
-            <Skeleton width={600} height={145} />
+            <Skeleton width={400} height={145} />
           )}
           {data ? (
             <PayBox>
@@ -273,7 +277,7 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
               </Buy>
             </PayBox>
           ) : (
-            <Skeleton width={600} height={100} />
+            <Skeleton width={500} height={100} />
           )}
         </ColumnBox>
       </RowBox>
