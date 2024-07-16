@@ -84,6 +84,7 @@ function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
                     all={type && "true"}
                     key={ind}
                     dummyData="true"
+                    width="26rem"
                   />
                 </SwiperSlide>
               ))}

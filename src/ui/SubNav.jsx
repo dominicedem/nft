@@ -12,6 +12,9 @@ const SubNavStyle = styled.div`
       overflow-x: scroll;
     }
   }
+  @media (max-width: 340px) {
+    overflow-x: scroll;
+  }
 `;
 const List = styled.span`
   display: flex;

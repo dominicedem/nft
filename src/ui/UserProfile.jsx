@@ -368,7 +368,6 @@ function UserProfile({
                     all="true"
                     key={val}
                     width="29rem"
-                    // 28.7
                   />
                 ))}
             </AllCards>

@@ -47,7 +47,7 @@ const ImgBox = styled.div`
   overflow: hidden;
   height: 21rem;
   @media (max-width: 370px) {
-    height: 17.5rem;
+    height: 19rem;
   }
 `;
 const Img = styled.img`
