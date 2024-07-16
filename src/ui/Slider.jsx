@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Cards from "./Cards";
 import { Navigation, Autoplay } from "swiper/modules";
 import { useState } from "react";
-import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const DescriptionBox = styled.div`
@@ -22,12 +21,6 @@ const InnerBox = styled.div`
     width: 90%;
   }
 `;
-const Img = styled.img`
-  width: 40rem;
-  height: 40rem;
-`;
-
-const dummyData = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}];
 
 function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
   const [enter, setEnter] = useState(false);
