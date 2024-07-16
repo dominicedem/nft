@@ -63,7 +63,7 @@ function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
         >
           {data
             ? data?.map((val, _) => (
-                <SwiperSlide key={val.id}>
+                <SwiperSlide key={val._id}>
                   <Cards
                     Exhibition={Exhibition}
                     category={category}
@@ -71,6 +71,7 @@ function Slider({ type, defaultCard, data, category, isLoading, Exhibition }) {
                     all={type && "true"}
                     key={val._id}
                     data={val}
+                    cardType="home"
                   />
                 </SwiperSlide>
               ))

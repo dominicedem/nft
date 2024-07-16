@@ -17,7 +17,10 @@ const NftProfileStyle = styled.div`
 const ImageBox = styled.div`
   position: relative;
   width: 100%;
-  height: 35vh;
+  height: 25rem;
+  @media (max-width: 500px) {
+    height: 20rem;
+  }
 `;
 const DpbBox = styled.div`
   position: absolute;
@@ -28,6 +31,9 @@ const DpbBox = styled.div`
   padding: 0.2rem;
   height: 12rem;
   background: var(--appbackgroundcolor);
+  @media (max-width: 500px) {
+    height: 10rem;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -77,7 +83,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 4rem;
-  padding: 0 2rem;
+  /* padding: 0 2rem; */
 `;
 const Text = styled.span`
   font-size: 2.2rem;
@@ -101,20 +107,22 @@ const AllCards = styled.div`
   column-gap: 2rem;
   row-gap: 4rem;
   padding: 0 1rem;
+  width: 97.5vw;
   @media (max-width: 1290px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-  @media (max-width: 1000px) {
+  @media (max-width: 975px) {
     grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1.5rem;
   }
-  @media (max-width: 740px) {
+  @media (max-width: 700px) {
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: 520px) {
-    column-gap: 0.8rem;
-    padding: 0;
+  @media (max-width: 465px) {
+    column-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: 480px) {
+  @media (max-width: 340px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -123,6 +131,7 @@ const NftBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 2rem;
+  margin: 0 auto;
 `;
 const Back = styled.div`
   display: flex;
@@ -186,7 +195,7 @@ function UserProfile({
         </Back>
       </ImageBox>
       <Container>
-        <Row style={{ alignItems: "start" }}>
+        <Row style={{ alignItems: "start", padding: "0 2rem" }}>
           <Column style={{ width: "fit-content" }}>
             <Text style={{ fontWeight: "700", textTransform: "capitalize" }}>
               {rawData?.data?.name}
@@ -247,12 +256,14 @@ function UserProfile({
           )}
         </Row>
         {isExhibition && (
-          <RowMobile type="mobile">
+          <RowMobile type="mobile" style={{ padding: "0 2rem" }}>
             <Text>{rawData?.data?.totalNft} NFTs</Text>
             <Text>Sales bonus:{rawData?.data?.salesBonus}%</Text>
           </RowMobile>
         )}
-        <Row style={{ alignItems: "stretch", height: "15rem" }}>
+        <Row
+          style={{ alignItems: "stretch", height: "15rem", padding: "0 2rem" }}
+        >
           {!isExhibition ? (
             <Column style={{ width: "40%" }}>
               <Text style={{ fontWeight: "700" }}>Bio</Text>
@@ -309,6 +320,7 @@ function UserProfile({
                         key={val?.id}
                         data={val}
                         profile=""
+                        cardType=""
                       />
                     ))
                   : userProfileData?.data?.myNft.map((val, ind) => (
@@ -318,6 +330,7 @@ function UserProfile({
                         data={val}
                         profile=""
                         key={val?.id}
+                        cardType=""
                       />
                     ))
                 : Array.from({ length: 10 }).map((val) => (
@@ -344,6 +357,7 @@ function UserProfile({
                     all="true"
                     key={val?.id}
                     data={val}
+                    cardType=""
                   />
                 ))}
               {!userProfileData &&

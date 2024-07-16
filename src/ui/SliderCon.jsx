@@ -29,21 +29,26 @@ const Text = styled.div`
   @media (max-width: 980px) {
     padding-right: 0;
     transform: translateX(4%);
+    width: 94%;
   }
 `;
 const Span = styled.span`
-  font-size: 3rem;
+  font-size: ${(props) => (props.type === "buy" ? "2.2rem" : "3rem")};
   color: var(--black_text);
   font-weight: 700;
   text-transform: capitalize;
   @media (max-width: 600px) {
-    font-size: 2.5rem;
+    font-size: ${(props) => (props.type === "buy" ? "2.1rem" : "2.5rem")};
+  }
+  @media (max-width: 350px) {
+    font-size: ${(props) => props.type === "buy" && "1.85rem"};
   }
 `;
 
 const linkStyle = {
   color: "inherit",
   textDecoration: "none",
+  // transform: "translateX(12%)",
 };
 
 function SliderCon({
@@ -54,6 +59,7 @@ function SliderCon({
   isLoading,
   Exhibition,
   defaultCard,
+  description,
 }) {
   const [searchParams, _] = useSearchParams();
   let paramCategory = searchParams?.get("category");
@@ -63,11 +69,7 @@ function SliderCon({
       <Text
         style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
       >
-        <Span
-          style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
-        >
-          {title}
-        </Span>
+        <Span type={`${description}`}>{title}</Span>
         {right?.text && (
           <Link style={linkStyle} to={`/category/${paramCategory || category}`}>
             <Button

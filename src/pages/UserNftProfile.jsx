@@ -5,6 +5,7 @@ import SearchBar from "../ui/SearchBar";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import { useParams } from "react-router-dom";
+import Footer from "../ui/Footer";
 
 const UserNftProfile1Style = styled.div`
   width: 100%;
@@ -40,6 +41,7 @@ function UserNftProfile() {
         displayNft="true"
         userProfileData={userProfileData}
       />
+      <Footer />
       {searchModal && (
         <Overlay
           tabIndex="-1"

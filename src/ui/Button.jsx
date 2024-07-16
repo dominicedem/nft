@@ -15,6 +15,10 @@ const ButtonStyle = styled.button`
   font-size: 1.8rem;
   border: ${(props) =>
     props.type === "nav" ? "1px solid var(--inputField_border)" : "none"};
+  @media (max-width: 360px) {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
 `;
 
 const iconStyle = {

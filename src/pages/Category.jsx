@@ -16,7 +16,7 @@ import Footer from "../ui/Footer";
 
 const ViewallStyle = styled.div`
   width: 99.5vw;
-  padding-bottom: 5rem;
+  /* padding-bottom: 5rem; */
 `;
 const NavStyle = styled.div`
   width: 99.5vw;
@@ -27,9 +27,12 @@ const Header = styled.div`
   width: 100%;
   background-size: cover;
   background-position: 50% 30%;
-  height: 43vh;
+  height: 25rem;
   padding: 8.7rem 1.3rem;
   position: relative;
+  @media (max-width: 500px) {
+    height: 23rem;
+  }
 `;
 const NftProImg = styled.div`
   position: absolute;
@@ -40,6 +43,10 @@ const NftProImg = styled.div`
   border-radius: 1rem;
   padding: 0.4rem;
   background: var(--appbackgroundcolor);
+  @media (max-width: 725px) {
+    width: 10.5rem;
+    height: 10.6rem;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -59,6 +66,7 @@ const AllCards = styled.div`
   column-gap: 1.5rem;
   row-gap: 4rem;
   padding: 0 1rem;
+  width: 100%;
   @media (max-width: 1290px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
@@ -72,7 +80,7 @@ const AllCards = styled.div`
     column-gap: 0.5rem;
     grid-template-columns: 1fr 1fr;
   }
-  @media (max-width: 451px) {
+  @media (max-width: 340px) {
     grid-template-columns: 1fr;
   }
 `;

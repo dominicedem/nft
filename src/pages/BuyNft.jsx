@@ -85,6 +85,7 @@ function BuyNft() {
           right={{ text: "view all" }}
           font={{ size: "2.1rem", weight: "300" }}
           defaultCard="true"
+          description="buy"
         />
       </More>
       <Footer />

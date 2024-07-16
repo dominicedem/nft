@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import CardProfile from "./CardProfile";
 import { HashLink } from "react-router-hash-link";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
-
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -20,7 +19,19 @@ const CardsStyle = styled.div`
   &:hover {
     transform: translateY(1.1%) scale(1.01);
   }
-  width: 26rem;
+  width: ${(props) => (props.type === "home" ? "26rem" : "100%")};
+  @media (max-width: 440px) {
+    width: ${(props) => (props.type === "home" ? "26rem" : "21rem")};
+  }
+  @media (max-width: 410px) {
+    width: ${(props) => (props.type === "home" ? "26rem" : "19rem")};
+  }
+  @media (max-width: 370px) {
+    width: ${(props) => (props.type === "home" ? "26rem" : "17.5rem")};
+  }
+  @media (max-width: 340px) {
+    width: ${(props) => (props.type === "home" ? "26rem" : "100%")};
+  }
 `;
 
 const CardDetailBox = styled.div`
@@ -35,9 +46,13 @@ const CardDetailBox = styled.div`
 const ImgBox = styled.div`
   overflow: hidden;
   height: 21rem;
+  @media (max-width: 370px) {
+    height: 17.5rem;
+  }
 `;
 const Img = styled.img`
   width: 100%;
+  height: 21rem;
   aspect-ratio: 1/1;
   object-fit: cover;
   border-top-right-radius: 1.5rem;
@@ -92,19 +107,18 @@ function Cards({
   Edit,
   category,
   width,
+  cardType,
 }) {
   const { data: ethPrice } = useFetchEthPrice();
   const params = useParams();
   function handleBuy() {}
+  console.log(cardType);
   let ethToUsdPrice =
     Number(ethPrice?.ethereum?.usd) * Number(data?.priceInEtherium);
   return (
     <>
       {data ? (
-        <CardsStyle
-          onClick={() => handleBuy()}
-          style={all && { width: "100%" }}
-        >
+        <CardsStyle onClick={() => handleBuy()} type={`${cardType}`}>
           <HashLink
             smooth
             style={linkStyle}

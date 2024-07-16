@@ -48,6 +48,10 @@ const GlobalStyle = createGlobalStyle`
 }
 html {
     font-size: 62.5%;
+    @media (max-width: 455px) {
+    font-size: 58%;
+
+  }
 }
 body {
     font-family: "IBM PLe?x Sans", sans-serif;
