@@ -4,9 +4,7 @@ import SliderCon from "../ui/SliderCon";
 import Autotype from "../ui/Autotype";
 import VerticalSlider from "../ui/VerticalSlider";
 import SubNav from "../ui/SubNav";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setAll } from "../Slices/navSlice";
 import useFetchLanding from "../hooks/useFetchLanding";
 import SearchBar from "../ui/SearchBar";
 import { setSearchModal } from "../Slices/SearchSlice";
@@ -47,7 +45,7 @@ const SubNavBox = styled.div`
   align-items: center;
   justify-content: center;
   justify-self: start;
-  width: fit-content;
+  width: 100%;
   padding-left: 2.5%;
 `;
 const VerticalBox = styled.div`
@@ -67,6 +65,8 @@ const AutoBox = styled.div`
   align-items: center;
   width: 48%;
   height: 100%;
+  @media (max-width: 1060px) {
+  }
 `;
 
 const AnimationBox = styled.div`
@@ -84,6 +84,15 @@ const AnimationBox = styled.div`
   border-radius: 1rem;
   @media (max-width: 1290px) {
     width: 95%;
+  }
+  @media (max-width: 1060px) {
+    width: 97%;
+    padding: 0 1% 1% 2%;
+  }
+  @media (max-width: 1000px) {
+    gap: 7rem;
+    width: 97%;
+    padding: 0 1% 1% 2%;
   }
 `;
 const DesktopBox = styled.div`

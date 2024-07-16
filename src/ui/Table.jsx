@@ -123,7 +123,7 @@ const datass = [
     seller: "Anything",
   },
 ];
-function Table({ tableHead, transaction, data, headers, tableData }) {
+function Table({ tableHead, transaction, headers, tableData }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
 
@@ -131,7 +131,6 @@ function Table({ tableHead, transaction, data, headers, tableData }) {
   const header = sold
     ? ["Nft Name", "Amount", "Buyer", "Sales Commission"]
     : ["Nft Name", "Amount", "Seller"];
-  console.log(header1);
   return (
     <TableStyle>
       <HeadBox>

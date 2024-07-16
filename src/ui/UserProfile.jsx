@@ -48,6 +48,28 @@ const Row = styled.div`
   align-items: center;
   gap: 10rem;
   width: 100%;
+  @media (max-width: 690px) {
+    gap: 5rem;
+  }
+  @media (max-width: 690px) {
+    gap: 2rem;
+  }
+`;
+const RowMobile = styled.div`
+  display: ${(props) => (props.type === "mobile" ? "none" : "flex")};
+  gap: ${(props) => (props.type !== "mobile" ? "10rem" : "")};
+  @media (max-width: 690px) {
+    gap: ${(props) => (props.type !== "mobile" ? "5rem" : "")};
+  }
+  @media (max-width: 690px) {
+    gap: ${(props) => (props.type !== "mobile" ? "2rem" : "")};
+  }
+  @media (max-width: 520px) {
+    display: ${(props) => (props.type === "mobile" ? "flex" : "none")};
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+  }
 `;
 const Container = styled.div`
   width: 100%;
@@ -81,6 +103,19 @@ const AllCards = styled.div`
   padding: 0 1rem;
   @media (max-width: 1290px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 1000px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 740px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 520px) {
+    column-gap: 0.8rem;
+    padding: 0;
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
   }
 `;
 const NftBox = styled.div`
@@ -205,12 +240,18 @@ function UserProfile({
             )}
           </Column>
           {isExhibition && (
-            <>
+            <RowMobile>
               <Text>{rawData?.data?.totalNft} NFTs</Text>
-              <Text>Sales bonus: {rawData?.data?.salesBonus}%</Text>
-            </>
+              <Text>Sales bonus:{rawData?.data?.salesBonus}%</Text>
+            </RowMobile>
           )}
         </Row>
+        {isExhibition && (
+          <RowMobile type="mobile">
+            <Text>{rawData?.data?.totalNft} NFTs</Text>
+            <Text>Sales bonus:{rawData?.data?.salesBonus}%</Text>
+          </RowMobile>
+        )}
         <Row style={{ alignItems: "stretch", height: "15rem" }}>
           {!isExhibition ? (
             <Column style={{ width: "40%" }}>
@@ -233,7 +274,7 @@ function UserProfile({
               </Text> */}
             </Column>
           ) : (
-            <Column style={{ width: "45%" }}>
+            <Column style={{ width: "60%" }}>
               <Text style={{ fontWeight: "700" }}>About Exhibition</Text>
               <Text style={{ fontSize: "1.6rem" }}>
                 {rawData?.data?.description}

@@ -9,6 +9,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import JoinExhibitionModal from "../ui/JoinExhibitionModal";
 import { setJoinOverLay } from "../Slices/overLaySlice";
 import useAuthenticate from "../hooks/useAuthenticate";
+import Footer from "../ui/Footer";
 
 const ExhibtionStyle = styled.div`
   width: 100%;
@@ -23,7 +24,7 @@ const BtnBox = styled.div`
   bottom: 10%;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: fit-content;
 `;
 const Text = styled.span`
   font-size: 1.4rem;
@@ -82,13 +83,14 @@ function Exhibtion() {
           background="true"
           font="1.8rem"
           color="var(--white_text)"
-          width="20%"
+          width="fit-content"
           padding="var(--padding_btn_big)"
         >
           Join Exhibition
         </Button>
         <Text>Fee: {exhNfts?.data?.joinFee} ETH</Text>
       </BtnBox>
+      <Footer />
       {searchModal && (
         <Overlay
           tabIndex="-1"

@@ -15,7 +15,7 @@ const SliderBoxStyle = styled.div`
   width: 98%;
   margin: 3.5rem auto;
 `;
-const Text = styled.span`
+const Text = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +31,16 @@ const Text = styled.span`
     transform: translateX(4%);
   }
 `;
+const Span = styled.span`
+  font-size: 3rem;
+  color: var(--black_text);
+  font-weight: 700;
+  text-transform: capitalize;
+  @media (max-width: 600px) {
+    font-size: 2.5rem;
+  }
+`;
+
 const linkStyle = {
   color: "inherit",
   textDecoration: "none",
@@ -53,7 +63,11 @@ function SliderCon({
       <Text
         style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
       >
-        {title}
+        <Span
+          style={{ fontSize: `${font?.size}`, fontWeight: `${font?.weight}` }}
+        >
+          {title}
+        </Span>
         {right?.text && (
           <Link style={linkStyle} to={`/category/${paramCategory || category}`}>
             <Button

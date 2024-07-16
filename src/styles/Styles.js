@@ -67,6 +67,9 @@ body {
 ::-webkit-scrollbar {
     background-color:transparent;
     width: 0.5vw;
+    @media (max-width: 900px) {
+        
+    }
 }
 
 .swiper {
@@ -278,6 +281,17 @@ body {
 }
 .unChecked {
     border: 4px solid var(--sideBar_text);
+}
+.autoTypeText {
+    font-size: 6.5rem;
+    height: 100%;
+    font-weight: 700;
+    padding: 5rem 0 0 0;
+    display: inline-block;
+    color: var(sideBar_text);
+    @media (max-width: 1060px) {
+       font-size: 5.5rem;
+    }
 }
 
 `;

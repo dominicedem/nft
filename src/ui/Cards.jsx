@@ -118,6 +118,7 @@ function Cards({
           >
             <ImgBox>
               <Img
+                loading="lazy"
                 crossOrigin="anonymous"
                 src={`https://artcity.site/${data?.photo}`}
               />

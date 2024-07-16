@@ -12,6 +12,7 @@ import useFetchExhibition from "../hooks/useFetchExhibition";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import SearchBar from "../ui/SearchBar";
+import Footer from "../ui/Footer";
 
 const ViewallStyle = styled.div`
   width: 99.5vw;
@@ -55,11 +56,24 @@ const DetailsBox = styled.div`
 const AllCards = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  column-gap: 2rem;
+  column-gap: 1.5rem;
   row-gap: 4rem;
   padding: 0 1rem;
-  @media (max-width: 1280px) {
+  @media (max-width: 1290px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  @media (max-width: 975px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 465px) {
+    column-gap: 0.5rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 451px) {
+    grid-template-columns: 1fr;
   }
 `;
 const PagBox = styled.div`
@@ -164,6 +178,7 @@ function Category() {
           dataLenght={categoryData?.data?.length}
         />
       </PagBox>
+      <Footer />
       {searchModal && (
         <Overlay
           tabIndex="-1"

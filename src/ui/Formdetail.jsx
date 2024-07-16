@@ -5,6 +5,9 @@ const Formbox = styled.form`
   display: flex;
   align-items: center;
   gap: 1rem;
+  @media (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const Formdetails = styled.div`
@@ -12,6 +15,9 @@ const Formdetails = styled.div`
   flex-direction: column;
   gap: 1rem;
   color: #e6e6e6ec;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
   @media (max-width: 459px) {
     order: -1;
   }
@@ -30,8 +36,14 @@ const Form = styled.input`
   color: #d1d1d1ec;
   font-size: 1.6rem;
   transition: all 0.1s;
+  @media (max-width: 700px) {
+    width: 90%;
+  }
   @media (max-width: 459px) {
-    width: 45%;
+    max-width: 100vw;
+  }
+  @media (max-width: 500px) {
+    align-self: start;
   }
   &::placeholder {
     font-size: 1.4rem;
@@ -54,6 +66,9 @@ const Submitform = styled.button`
   background: -webkit-linear-gradient(var(--appbackgroundcolor), #b4b4b4);
   &:hover {
     background: -webkit-linear-gradient(#d8d8d8, #969595);
+  }
+  @media (max-width: 500px) {
+    align-self: start;
   }
 `;
 const Contacthead = styled.h4`

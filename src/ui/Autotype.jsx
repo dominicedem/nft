@@ -12,14 +12,7 @@ export default function Autotype() {
         ]}
         wrapper="span"
         speed={10}
-        style={{
-          fontSize: "6.5rem",
-          height: "100%",
-          fontWeight: "700",
-          padding: "5rem 0 0 0",
-          display: "inline-block",
-          color: "#var(sideBar_text)",
-        }}
+        className="autoTypeText"
         repeat={Infinity}
       />
     </>

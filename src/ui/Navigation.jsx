@@ -13,7 +13,10 @@ const NavigationStyle = styled.div`
   justify-content: space-between;
   width: 100%;
   padding: 1rem 2rem;
-  /* background: inherit; */
+
+  @media (max-width: 400px) {
+    padding: 1rem 1.2rem;
+  }
 `;
 const Logo = styled.div`
   display: flex;
@@ -26,11 +29,17 @@ const Logo = styled.div`
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  @media (max-width: 400px) {
+    font-size: 2.5rem;
+  }
 `;
 const CtaBox = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
+  @media (max-width: 400px) {
+    gap: 1.5rem;
+  }
 `;
 const Search = styled.div`
   display: flex;
@@ -43,6 +52,9 @@ const Search = styled.div`
 `;
 const Img = styled.img`
   width: 3rem;
+  @media (max-width: 400px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const Row = styled.div`
@@ -76,7 +88,7 @@ const linkStyle = {
 function Navigation({ scroll, home }) {
   const dispatch = useDispatch();
   const { userData } = useSelector((state) => state.authData);
-  const { storage, revistTime } = useAuthenticate();
+  const { storage } = useAuthenticate();
   const { isLoading } = useReloadPage();
   // console.log(userData);
 
@@ -144,8 +156,8 @@ function Navigation({ scroll, home }) {
                   <Text
                     style={
                       scroll
-                        ? { color: "var(--white_text)" }
-                        : { color: "var(--sideBar_text)" }
+                        ? { color: "var(--white_text)", padding: ".4.8rem" }
+                        : { color: "var(--sideBar_text)", padding: ".4.8rem" }
                     }
                   >
                     Loading...

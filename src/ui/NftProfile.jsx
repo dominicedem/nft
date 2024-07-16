@@ -6,7 +6,6 @@ import { HiOutlineArrowLongRight } from "react-icons/hi2";
 import Skeleton from "react-loading-skeleton";
 import useFetchEthPrice from "../hooks/useFetchEthPrice";
 import useAuthenticate from "../hooks/useAuthenticate";
-// import Loading from "./Loading";
 
 const ColumnBox = styled.div`
   display: flex;
@@ -18,6 +17,10 @@ const ColumnBox = styled.div`
   padding: ${(props) =>
     props.type === "card" ? "4.2rem 2.5rem 2.5rem 2.5rem" : ""};
   align-items: ${(props) => (props.type === "card" ? "center" : "start")};
+  width: ${(props) => props.type !== "card" && "50rem"};
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 const RowBox = styled.div`
   display: flex;
@@ -25,6 +28,9 @@ const RowBox = styled.div`
   gap: 5rem;
   width: 100%;
   height: fit-content;
+  @media (max-width: 800px) {
+    flex-direction: ${(props) => props.type === "outer" && "column"};
+  }
 `;
 const Text = styled.span`
   font-size: ${(props) => (props.type === "head" ? "1.65rem" : "1.8rem")};
@@ -33,9 +39,12 @@ const Text = styled.span`
   font-family: "IBM Plex Sans", sans-serif;
 `;
 const ImgBox = styled.div`
-  width: 30%;
+  width: 45.5rem;
   height: 42rem;
   border-radius: 1.5rem;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 const Img = styled.img`
   width: 100%;
@@ -92,10 +101,6 @@ const Box = styled.div`
   }
 `;
 
-// const linkStyle = {
-//   color: "inherit",
-//   textDecoration: "none",
-// };
 const iconStyle = {
   width: "1.6rem",
   height: "1.6rem",
@@ -118,12 +123,10 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
   }
   return (
     <Contianer>
-      {/* <Link style={linkStyle} to="/"> */}
       <BtnBox onClick={() => navigate(-1)}>
         <Button padding="var(--padding_btn_small)">Back</Button>
       </BtnBox>
-      {/* </Link> */}
-      <RowBox>
+      <RowBox type="outer">
         <ImgBox>
           {data ? (
             <Img
@@ -134,7 +137,7 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
             <Skeleton className="buyImage" />
           )}
         </ImgBox>
-        <ColumnBox style={{ width: "50%" }}>
+        <ColumnBox>
           {data ? (
             <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
               {data?.name}
@@ -152,7 +155,15 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
                 >
                   Owned by:{" "}
                 </Text>
-                <Text style={{ fontSize: "2rem", fontWeight: "500" }}>
+                <Text
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "1rem",
+                    fontSize: "2rem",
+                    fontWeight: "500",
+                  }}
+                >
                   {data?.nftOwner.username}{" "}
                   {data?.nftOwner?.userVerified && (
                     <RiVerifiedBadgeFill style={iconStyle} />

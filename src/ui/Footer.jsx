@@ -1,5 +1,5 @@
-import { RiTwitterXLine } from "react-icons/ri";
-import { FaMedium } from "react-icons/fa6";
+// import { RiTwitterXLine } from "react-icons/ri";
+// import { FaMedium } from "react-icons/fa6";
 import styled from "styled-components";
 import Formdetail from "./Formdetail";
 import { Link } from "react-router-dom";
@@ -18,11 +18,14 @@ const Footerbox = styled.div`
     gap: 18%;
   }
   @media (max-width: 700px) {
+    padding: 8rem 2rem;
     display: flex;
     flex-direction: column;
+    height: fit-content;
   }
   @media (max-width: 400px) {
-    padding: 5rem 0.5rem;
+    height: fit-content;
+    padding: 8rem 0.5rem;
   }
 `;
 
@@ -32,14 +35,17 @@ const Footers = styled.div`
   gap: 13%;
   width: 60vw;
   @media (max-width: 700px) {
+    flex-direction: column;
     justify-content: space-between;
+    gap: 5rem;
     width: 80vw;
     margin-top: 5rem;
     order: 1;
   }
   @media (max-width: 390px) {
+    flex-direction: column;
     padding-left: 1rem;
-    gap: 11%;
+    gap: 5rem;
   }
 `;
 
@@ -66,33 +72,16 @@ const List = styled.span`
   }
 `;
 
-const Span = styled.span``;
-const Contacts = styled.a`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  gap: 0.5rem;
-  font-size: 1.6rem;
-  text-decoration: none;
-  color: var(--white_text);
-  &:hover {
-    color: #d3d3d39a;
-    text-decoration: underline;
-  }
-`;
-
 const Copyright = styled.p`
-  padding: 1rem 5rem;
+  padding: 1rem 5rem 5rem 5rem;
   font-size: 1.4rem;
   color: var(--light_faint);
   background: var(--blue_background_hover);
+  @media (max-width: 700px) {
+    padding: 1rem 1rem 5rem 2rem;
+  }
 `;
 
-const Iconstyle = {
-  color: "var(--white_text)",
-  width: "2rem",
-  height: "2.25rem",
-};
 const linkStyle = {
   textDecoration: "none",
 };
@@ -103,10 +92,7 @@ function Footer() {
       <Footerbox>
         <Footers>
           <Headbox>
-            <Head>Platform</Head>
-            <Link style={linkStyle} to="/">
-              <List>All</List>
-            </Link>
+            <Head>Categories</Head>
             <Link style={linkStyle} to="/category/arts">
               <List>Arts</List>
             </Link>
@@ -127,7 +113,7 @@ function Footer() {
             </Link>
           </Headbox>
           <Headbox>
-            <Head>Resources</Head>
+            <Head>Company</Head>
             <HashLink style={linkStyle} to="/termsCondition#About">
               <List>About Us</List>
             </HashLink>
@@ -141,23 +127,6 @@ function Footer() {
             <HashLink style={linkStyle} to="/termsCondition#Support">
               <List>Support</List>
             </HashLink>
-          </Headbox>
-          <Headbox>
-            <Head>Follow Us</Head>
-            <Contacts
-              onClick={() =>
-                window.open(import.meta.env.VITE_TwitterPage, "_blank")
-              }
-            >
-              <RiTwitterXLine style={Iconstyle} /> <Span>Twitter</Span>
-            </Contacts>
-            <Contacts
-              onClick={() =>
-                window.open(import.meta.env.VITE_MediumPage, "_blank")
-              }
-            >
-              <FaMedium style={Iconstyle} /> <Span>Medium</Span>
-            </Contacts>
           </Headbox>
         </Footers>
         <Formdetail />

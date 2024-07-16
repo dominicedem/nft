@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchModal } from "../Slices/SearchSlice";
 import SearchBar from "../ui/SearchBar";
 import Loading from "../ui/Loading";
+import Footer from "../ui/Footer";
 
 const BuyNftStyle = styled.div`
   width: 99.5vw;
@@ -80,12 +81,13 @@ function BuyNft() {
       <More>
         <SliderCon
           data={landingData?.data[`${category}`]}
-          title="More from this category"
-          right={{ text: "See Entire Category" }}
-          font={{ size: "2.2rem", weight: "300" }}
+          title={`More from ${category}`}
+          right={{ text: "view all" }}
+          font={{ size: "2.1rem", weight: "300" }}
           defaultCard="true"
         />
       </More>
+      <Footer />
       {searchModal && (
         <Overlay
           tabIndex="-1"
