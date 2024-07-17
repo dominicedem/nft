@@ -67,13 +67,12 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: var(--nav_background);
     border-radius: 1rem;
+    cursor: pointer;
 }        
 ::-webkit-scrollbar {
     background-color:transparent;
     width: 0.5vw;
-    @media (max-width: 900px) {
-        
-    }
+    cursor: pointer;
 }
 
 .swiper {
@@ -140,6 +139,9 @@ body {
 .verticalSlide .swiper-wrapper {
     width: fit-content !important;
     height: 50rem !important;
+    @media (max-width: 890px) {
+        width: 100% !important;
+    }
 }
 .verticalSlide {
     display: inline !important;
@@ -151,6 +153,9 @@ body {
     }
     @media (min-width: 1400px) {
         width: fit-content !important;
+    }
+    @media (max-width: 890px) {
+        width: 100% !important;
     }
 }
 
@@ -290,11 +295,19 @@ body {
     font-size: 6.5rem;
     height: 100%;
     font-weight: 700;
-    padding: 5rem 0 0 0;
+    padding: 3.5rem 0 0 0;
     display: inline-block;
     color: var(sideBar_text);
     @media (max-width: 1060px) {
        font-size: 5.5rem;
+    }
+    @media (max-width: 890px) {
+       font-size: 5.5rem;
+       color: var(--bios_background);
+    }
+    @media (max-width: 590px) {
+       font-size: 5rem;
+       color: var(--bios_background);
     }
 }
 

@@ -6,14 +6,11 @@ const SubNavStyle = styled.div`
   align-items: center;
   width: 100%;
   gap: 2rem;
-  overflow-x: hidden;
-  @media (max-width: 900px) {
-    &:hover {
-      overflow-x: scroll;
-    }
-  }
-  @media (max-width: 340px) {
-    overflow-x: scroll;
+  overflow-x: scroll;
+  &::-webkit-scrollbar {
+    background-color: transparent;
+    width: auto;
+    height: auto;
   }
 `;
 const List = styled.span`
