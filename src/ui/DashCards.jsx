@@ -49,7 +49,7 @@ function DashCards({
           style={linkStyle}
           to={header === "NFT" ? "allUserNft" : "allUserExhibition"}
         >
-          {data?.length > 3 && (
+          {data?.length > 2 && (
             <Button padding={"var(--padding_btn_small)"}>view all</Button>
           )}
         </Link>
@@ -65,6 +65,7 @@ function DashCards({
                 profile={profile}
                 Exhibition={Exhibition}
                 Edit={Edit}
+                cardType="home"
               />
             ))
           : Array.from({ length: 4 }).map((val, ind) => (

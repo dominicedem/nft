@@ -24,7 +24,7 @@ const SignUpPage = styled.div`
   align-items: center;
   gap: 1.5rem;
   align-self: center;
-  width: 100%;
+  width: 60%;
   @media (min-width: 600px) {
     margin: 10rem auto;
     background: var(--nav_background_color);
@@ -33,8 +33,10 @@ const SignUpPage = styled.div`
     align-items: center;
     gap: 1.5rem;
     align-self: center;
-    width: 60%;
     position: relative;
+  }
+  @media (max-width: 500px) {
+    width: 80%;
   }
 `;
 const Header = styled.span`
@@ -170,7 +172,7 @@ const closeIcon = {
   width: "2.5rem",
   height: "2.5rem",
 };
-function LoginForm({ setToggleSigin }) {
+function LoginForm({ setToggleSigin, mobile }) {
   const {
     revealLoginPassword,
     setRevealLoginPassword,
@@ -260,13 +262,19 @@ function LoginForm({ setToggleSigin }) {
               onClick={(e) => handleSubmit(e)}
               onSubmit={(e) => handleSubmit(e)}
             >
-              Sign up
+              Sign In
             </Button>
           </BtnBox>
           {/* <Flex> */}
           <ResetTextBox type="signup">
             Already have an account?
-            <Span onClick={() => setToggleSigin(false)}>SignUp</Span>
+            <Span
+              onClick={() => {
+                mobile ? setToggleSigin((el) => !el) : setToggleSigin(false);
+              }}
+            >
+              SignUp
+            </Span>
           </ResetTextBox>
           {/* </Flex> */}
         </Form>

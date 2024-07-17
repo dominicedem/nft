@@ -268,6 +268,25 @@ body {
     z-index: 10;
 }
 
+.activeMobileSignIn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+.inActiveMobileSignIn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
 .errorField {
     border: 1.34px solid var(--error_text);
 }

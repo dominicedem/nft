@@ -40,6 +40,13 @@ const Text = styled.span`
   font-weight: ${(props) => (props.type === "head" ? "600" : "none")};
   color: var(--black_text);
   font-family: "IBM Plex Sans", sans-serif;
+  @media (max-width: 750px) {
+    display: inline-block;
+    max-width: 95%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 const ImgBox = styled.div`
   width: 45.5rem;

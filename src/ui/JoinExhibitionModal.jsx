@@ -104,7 +104,7 @@ function JoinExhibitionModal() {
       </Text>
       <CreateExhibitionStyle>
         <Form onSubmit={handleSubmit(handleJoinExhibitionSubmit, handleError)}>
-          <Label>Select nft [MIN: 5]</Label>
+          <Label>Select nft [MIN: 1]</Label>
           <Column
             style={{
               marginTop: "-1.8rem",

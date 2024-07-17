@@ -16,8 +16,6 @@ const SignUpFormStyle = styled.div`
   width: 100%;
   height: 100vh;
   position: relative;
-  /* border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem; */
 `;
 
 const SignUpPage = styled.div`
@@ -27,7 +25,7 @@ const SignUpPage = styled.div`
   align-items: center;
   gap: 1rem;
   align-self: center;
-  width: 100%;
+  width: 60%;
   @media (min-width: 600px) {
     margin: 10rem auto;
     background: var(--nav_background_color);
@@ -36,8 +34,10 @@ const SignUpPage = styled.div`
     align-items: center;
     gap: 1.5rem;
     align-self: center;
-    width: 60%;
     position: relative;
+  }
+  @media (max-width: 500px) {
+    width: 80%;
   }
 `;
 const Header = styled.span`
@@ -154,16 +154,12 @@ const IconStyle = {
   cursor: "pointer",
 };
 
-// const linkStyle = {
-//   textDecoration: "none",
-//   color: "var(--sideBar_text)",
-// };
 const closeIcon = {
   color: "var(--primary_text_color)",
   width: "2.5rem",
   height: "2.5rem",
 };
-function SignUpForm({ setToggleSigin }) {
+function SignUpForm({ setToggleSigin, mobile }) {
   const {
     reveal,
     setReveal,
@@ -328,7 +324,13 @@ function SignUpForm({ setToggleSigin }) {
           </BtnBox>
           <ResetTextBox type="signup">
             Already have an account?
-            <Span onClick={() => setToggleSigin(true)}>SignIn</Span>
+            <Span
+              onClick={() => {
+                mobile ? setToggleSigin((el) => !el) : setToggleSigin(true);
+              }}
+            >
+              SignIn
+            </Span>
           </ResetTextBox>
         </Form>
       </SignUpPage>
