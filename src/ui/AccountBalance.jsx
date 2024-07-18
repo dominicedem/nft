@@ -14,12 +14,22 @@ const BalanceOverview = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: center;
   gap: 3.5rem;
-  padding: 4rem;
   background: var(--balance_background);
   border: 1px solid rgb(217, 217, 217, 50%);
   border-radius: 1rem;
-  width: 100%;
+  width: ${(props) => (props.type === "bal" ? "50%" : "100%")};
+  padding: ${(props) => (props.type === "bal" ? "1rem 0 3rem 4rem" : "4rem")};
+  @media (max-width: 575px) {
+    padding: ${(props) => (props.type === "bal" ? "2rem" : "2rem 1rem")};
+  }
+  @media (max-width: 525px) {
+    padding: ${(props) => (props.type === "bal" ? "2rem" : "1rem")};
+  }
+  @media (max-width: 430px) {
+    width: ${(props) => (props.type === "bal" ? "80%" : "100%")};
+  }
 `;
 const Text = styled.span`
   display: flex;
@@ -50,6 +60,9 @@ const Line = styled.div`
   background: var(--tertiary_text_faint);
   width: 68%;
   border-bottom: 1px dashed var(--tertiary_text_faint);
+  @media (max-width: 525px) {
+    width: 50%;
+  }
 `;
 function AccountBalance() {
   const { userData } = useSelector((state) => state.authData);
@@ -72,9 +85,7 @@ function AccountBalance() {
       >
         Account Overview
       </Text>
-      <BalanceOverview
-        style={{ width: "50%", gap: "1rem", padding: "1rem 0 3rem 4rem" }}
-      >
+      <BalanceOverview type="bal" style={{ gap: "1rem" }}>
         <Text style={{ fontSize: "2rem" }}>Account Balance</Text>
         <Text style={{ fontSize: "3rem", fontWeight: "600" }}>
           ${userData ? balancePrice : <Skeleton width={200} />}

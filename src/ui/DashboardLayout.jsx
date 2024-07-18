@@ -3,6 +3,10 @@ import { Outlet } from "react-router-dom";
 import MenuBar from "../ui/MenuBar";
 import SideBar from "./SideBar";
 import Profile from "./Profile";
+import { SlMenu } from "react-icons/sl";
+import { AiOutlineClose } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { setIsOpenMenu } from "../Slices/MenuBar";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
@@ -21,32 +25,12 @@ const DashboardLayoutStyle = styled.div`
   }
 `;
 
-const OverlayBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: none;
-  position: absolute;
-  z-index: 1000;
-  top: 54%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+const MenuBarStyle = styled.div`
+  z-index: 10;
+  transition: all 0.5s;
+  height: 100vh;
+  width: 99.5vw;
 `;
-// const MenuBarStyle = styled.div`
-//   display: none;
-//   position: absolute;
-//   left: 0;
-//   top: 0;
-//   background: var(--background_color);
-//   z-index: 10;
-//   transition: all 0.3s ease-in;
-//   @media (max-width: 800px) {
-//     display: block;
-//     height: 100vh;
-//   }
-// `;
 const SideBarStyle = styled.div`
   background: var(--balance_background);
   padding-right: 1rem;
@@ -79,22 +63,54 @@ const ProfileStyle = styled.div`
     display: none;
   }
 `;
-
+const MenuBtn = styled.div`
+  display: none;
+  @media (max-width: 1100px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 2%;
+    right: 4%;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    border-radius: 0.5rem;
+    z-index: 100;
+    background: var(--light_faint);
+  }
+`;
+const menuStyle = {
+  width: "2.4rem",
+  height: "2.4rem",
+  color: "var(--sideBar_text)",
+};
 function DashboardLayout() {
+  const { isOpenMenu } = useSelector((state) => state.menuData);
+  const dispatch = useDispatch();
   return (
     <DashboardLayoutStyle>
       <SideBarStyle>
         <SideBar />
       </SideBarStyle>
-      {/* <MenuBarStyle>
+      <MenuBarStyle
+        className={isOpenMenu ? "activeMobileSignIn" : "inActiveMobileSignIn"}
+      >
         <MenuBar />
-      </MenuBarStyle> */}
+      </MenuBarStyle>
       <MainStyle>
         <Outlet />
       </MainStyle>
       <ProfileStyle>
         <Profile />
       </ProfileStyle>
+      <MenuBtn onClick={() => dispatch(setIsOpenMenu())}>
+        {isOpenMenu ? (
+          <AiOutlineClose style={menuStyle} />
+        ) : (
+          <SlMenu style={menuStyle} />
+        )}
+      </MenuBtn>
     </DashboardLayoutStyle>
   );
 }

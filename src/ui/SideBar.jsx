@@ -4,7 +4,7 @@ import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { PiNotePencilLight } from "react-icons/pi";
 import { MdOutlineStore } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-import { BsCollection } from "react-icons/bs";
+// import { BsCollection } from "react-icons/bs";
 import { GiCardExchange } from "react-icons/gi";
 import { HashLink } from "react-router-hash-link";
 import { useSelector } from "react-redux";
@@ -108,12 +108,6 @@ function SideBar() {
               Nft transactions
             </HashLink>
           </List>
-          {/* <List>
-            <BsCollection style={iconStyle} />
-            <Link style={linkStyle} to="/category/exhibition">
-              Exhibition
-            </Link>
-          </List> */}
         </ListBox>
       </ListBox>
     </SideBarStyle>

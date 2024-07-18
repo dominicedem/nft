@@ -16,6 +16,9 @@ const DashboardStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6rem;
+  @media (max-width: 860px) {
+    padding: 0 3rem 8rem 3rem;
+  }
 `;
 const DashCardBox = styled.div`
   display: flex;
@@ -25,10 +28,9 @@ const DashCardBox = styled.div`
 const TableBox = styled.div`
   width: 100%;
 `;
-const Column = styled.div`
+const Row = styled.div`
   display: flex;
-  align-items: start;
-  gap: 1rem;
+  align-items: center;
   width: 100%;
   margin-top: -5rem;
 `;
@@ -66,11 +68,11 @@ function Dashboard() {
   return (
     <DashboardStyle>
       <AccountBalance />
-      <Column style={{ alignItems: "center", gap: "1.5rem" }}>
+      <Row>
         <Link style={linkStyle} to="Deposit">
           <Button
             padding="1.2rem 1.5rem"
-            width="90%"
+            width="95%"
             background="true"
             font="1.6rem"
             color="var(--white_text)"
@@ -82,7 +84,7 @@ function Dashboard() {
           <Button
             border="1px solid var(--inputField_border)"
             padding="1.2rem 1.5rem"
-            width="90%"
+            width="95%"
             font="1.6rem"
             color="var(--black_text)"
           >
@@ -93,15 +95,15 @@ function Dashboard() {
           <Button
             border="1px solid var(--inputField_border)"
             padding="1.2rem 1.5rem"
-            width="90%"
+            width="95%"
             font="1.6rem"
             color="var(--black_text)"
           >
             Withdraw
           </Button>
         </Link>
-      </Column>
-      <DashCardBox style={{ marginTop: "" }}>
+      </Row>
+      <DashCardBox>
         <DashCards
           data={userData?.myNft?.slice(0, 4)}
           header="NFT"

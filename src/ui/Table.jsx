@@ -5,6 +5,7 @@ import Skeleton from "react-loading-skeleton";
 
 const TableStyle = styled.div`
   width: 100%;
+  overflow-x: scroll;
 `;
 const TableBox = styled.div`
   display: flex;
@@ -14,6 +15,9 @@ const TableBox = styled.div`
   overflow-y: scroll;
   background: var(--balance_background);
   border-radius: 0.5rem;
+  @media (max-width: 660px) {
+    width: 70rem;
+  }
 `;
 const HeadBox = styled.div`
   display: flex;
@@ -29,11 +33,17 @@ const Row = styled.div`
   width: 100%;
   padding: 1.5rem 0 1.5rem 4rem;
   border-bottom: 0.1rem solid var(--tertiary_text_faint);
+  @media (max-width: 660px) {
+    width: ${(props) => props.type === "headRow" && "70rem"};
+  }
 `;
 const Text = styled.span`
   font-size: 2rem;
   color: var(--black_text);
   font-weight: 600;
+  @media (max-width: 941px) {
+    font-size: ${(props) => props.type === "dash" && "1.8rem"};
+  }
 `;
 const List = styled.span`
   font-size: 1.55rem;
@@ -42,87 +52,6 @@ const List = styled.span`
   width: ${(props) => (props.type === "sold" ? "25%" : "30%")};
 `;
 
-const data = [
-  {
-    Nftname: "Deposit",
-    amount: "2 ETH",
-    date: "02/21/24",
-    status: "completed",
-  },
-  {
-    Nftname: "Withdrawal",
-    amount: "4 ETH",
-    date: "02/21/24",
-    status: "notCompleted",
-  },
-  {
-    Nftname: "Withdrawal",
-    amount: "6 ETH",
-    date: "02/21/24",
-    status: "completed",
-  },
-  {
-    Nftname: "Deposit",
-    amount: "5 ETH",
-    date: "02/21/24",
-    status: "notCompleted",
-  },
-  {
-    Nftname: "withdrawal",
-    amount: "1 ETH",
-    date: "02/21/24",
-    status: "completed",
-  },
-  {
-    Nftname: "Deposit",
-    amount: "9 ETH",
-    date: "02/21/24",
-    status: "completed",
-  },
-  {
-    Nftname: "withdrawal",
-    amount: "8 ETH",
-    date: "02/21/24",
-    status: "notCompleted",
-  },
-];
-const datass = [
-  {
-    Nftname: "Deposit",
-    amount: "2 ETH",
-    seller: "D Dom 😎",
-  },
-  {
-    Nftname: "Withdrawal",
-    amount: "4 ETH",
-    seller: "Agbara",
-  },
-  {
-    Nftname: "Withdrawal",
-    amount: "6 ETH",
-    seller: "Augustin",
-  },
-  {
-    Nftname: "Deposit",
-    amount: "5 ETH",
-    seller: "Izundu",
-  },
-  {
-    Nftname: "withdrawal",
-    amount: "1 ETH",
-    seller: "Okomodu",
-  },
-  {
-    Nftname: "Deposit",
-    amount: "9 ETH",
-    seller: "Chukwueze",
-  },
-  {
-    Nftname: "withdrawal",
-    amount: "8 ETH",
-    seller: "Anything",
-  },
-];
 function Table({ tableHead, transaction, headers, tableData }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
@@ -132,65 +61,69 @@ function Table({ tableHead, transaction, headers, tableData }) {
     ? ["Nft Name", "Amount", "Buyer", "Sales Commission"]
     : ["Nft Name", "Amount", "Seller"];
   return (
-    <TableStyle>
+    <>
       <HeadBox>
-        <Text>{tableHead}</Text>
+        <Text type="dash">{tableHead}</Text>
         {transaction && (
           <TransactionStatus
             sold={sold}
             setSold={setSold}
             bought={bought}
             setBought={setBought}
-            width="20%"
+            width="30%"
+            transDetails="trans"
             text={{ first: "Sold", second: "Bought" }}
           />
         )}
       </HeadBox>
-      {tableData ? (
-        <>
-          <Row
-            style={{
-              background: "var(--bios_background)",
-              borderBottom: "none",
-              borderRadius: ".5rem",
-            }}
-          >
-            {!headers
-              ? header.map((val, ind) => (
-                  <List
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "1.8rem",
-                      width: `${ind === 3 && "40%"}`,
-                    }}
-                    key={ind}
-                  >
-                    {val}
-                  </List>
-                ))
-              : header1.map((val, ind) => (
-                  <List
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "1.8rem",
-                    }}
-                    key={ind}
-                  >
-                    {val}
-                  </List>
-                ))}
-          </Row>
-          <TableRow
-            datas={tableData}
-            Transaction={tableHead}
-            sold={sold}
-            bought={bought}
-          />
-        </>
-      ) : (
-        <Skeleton height={260} />
-      )}
-    </TableStyle>
+      <TableStyle>
+        {tableData ? (
+          <>
+            <Row
+              type="headRow"
+              style={{
+                background: "var(--bios_background)",
+                borderBottom: "none",
+                borderRadius: ".5rem",
+              }}
+            >
+              {!headers
+                ? header.map((val, ind) => (
+                    <List
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "1.8rem",
+                        width: `${ind === 3 && "40%"}`,
+                      }}
+                      key={ind}
+                    >
+                      {val}
+                    </List>
+                  ))
+                : header1.map((val, ind) => (
+                    <List
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "1.8rem",
+                      }}
+                      key={ind}
+                    >
+                      {val}
+                    </List>
+                  ))}
+            </Row>
+            <TableRow
+              datas={tableData}
+              Transaction={tableHead}
+              sold={sold}
+              bought={bought}
+            />
+          </>
+        ) : (
+          <Skeleton height={260} />
+        )}
+      </TableStyle>
+    </>
   );
 }
 

@@ -2,64 +2,6 @@ import styled from "styled-components";
 import Cards from "./Cards";
 import { useSelector } from "react-redux";
 
-const data = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 3,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 5,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 6,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 6,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 7,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/hero.jpg`,
-    id: 8,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 9,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 10,
-    sub: "Plutonics",
-  },
-];
-
 const AllUserNftsStyle = styled.div`
   width: 100%;
   background: var(--subtle_background);
@@ -67,6 +9,9 @@ const AllUserNftsStyle = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 0 1rem 3rem 1rem;
+  @media (max-width: 495px) {
+    padding: 0 0.5rem 3rem 0.5rem;
+  }
 `;
 const Text = styled.span`
   font-size: 2rem;
@@ -82,6 +27,13 @@ const Grid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   @media (max-width: 1290px) {
     grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 495px) {
+    column-gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  @media (max-width: 340px) {
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 

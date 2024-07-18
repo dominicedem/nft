@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SkeletonTheme } from "react-loading-skeleton";
 import authReducer from "./Slices/AuthUserSlice";
+import menuReducer from "./Slices/MenuBar";
 import overlayReducer from "./Slices/overLaySlice";
 import navigationReducer from "./Slices/navSlice";
 import searchReducer from "./Slices/SearchSlice";
@@ -43,6 +44,7 @@ const store = configureStore({
     navData: navigationReducer,
     searchData: searchReducer,
     AllEmailNameData: AllEmailNameReducer,
+    menuData: menuReducer,
   },
 });
 

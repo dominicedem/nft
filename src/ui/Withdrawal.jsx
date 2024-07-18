@@ -8,7 +8,7 @@ import PasteToClip from "../ui/PasteToClip";
 import { useSelector } from "react-redux";
 import useSignUp from "../hooks/useSignUp";
 import Loading from "./Loading";
-import useFetchCommission from "../hooks/useFetchCommission";
+// import useFetchCommission from "../hooks/useFetchCommission";
 import FetchCommission from "../services/FetchCommission";
 
 const WithdrawalStyle = styled.div`
@@ -16,7 +16,7 @@ const WithdrawalStyle = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 50rem;
+  max-width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const WithdrawalBox = styled.div`

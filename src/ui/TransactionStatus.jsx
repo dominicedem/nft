@@ -6,7 +6,9 @@ const TransactionStatusStyle = styled.div`
   padding: 0.4rem;
   border-radius: 0.5rem;
   background: var(--btn_hover);
-  width: 100%;
+  @media (max-width: 500px) {
+    width: ${(props) => props.type === "trans" && "45%"};
+  }
 `;
 const Box = styled.div`
   display: flex;
@@ -29,6 +31,7 @@ function TransactionStatus({
   text,
   padding,
   font,
+  transDetails,
 }) {
   function handleSold() {
     setSold(true);
@@ -39,7 +42,7 @@ function TransactionStatus({
     setSold(false);
   }
   return (
-    <TransactionStatusStyle style={{ width: `${width}` }}>
+    <TransactionStatusStyle type={`${transDetails}`}>
       <Box
         style={
           padding && font && { padding: `${padding}`, fontWeight: `${font}` }

@@ -4,64 +4,6 @@ import { IoMdAdd } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const data = [
-  {
-    image_url: `/degods.webp`,
-    id: 1,
-    sub: "Space-star",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 2,
-    sub: "Boom",
-  },
-  {
-    image_url: `/img1.webp`,
-    id: 3,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 4,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 5,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 6,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 6,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/fly.webp`,
-    id: 7,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/hero.jpg`,
-    id: 8,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/light.webp`,
-    id: 9,
-    sub: "Plutonics",
-  },
-  {
-    image_url: `/degods.webp`,
-    id: 10,
-    sub: "Plutonics",
-  },
-];
-
 const AllUserExhibitionStyle = styled.div`
   width: 100%;
   background: var(--subtle_background);
