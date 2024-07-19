@@ -27,8 +27,8 @@ const Landing = styled.div`
   align-items: start;
   justify-content: start;
   width: 99.5vw;
-  height: 82vh;
-  gap: 4rem;
+  height: 75vh;
+  gap: 3rem;
   background: linear-gradient(#0001 60%, #ffff), url("/hero.jpg");
   background-size: cover;
   background-position: 50% 40%;
