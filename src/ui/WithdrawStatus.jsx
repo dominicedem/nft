@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { MdOutlinePending } from "react-icons/md";
-import useFetchCommission from "../hooks/useFetchCommission";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const WithdrawStatusStyle = styled.div`
@@ -11,6 +9,18 @@ const WithdrawStatusStyle = styled.div`
   background-color: var(--appbackgroundcolor);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  @media (max-width: 1000px) {
+    width: 45%;
+  }
+  @media (max-width: 731px) {
+    width: 55%;
+  }
+  @media (max-width: 650px) {
+    width: 70%;
+  }
+  @media (max-width: 490px) {
+    width: 90%;
+  }
 `;
 const Status = styled.div`
   display: flex;
@@ -19,11 +29,12 @@ const Status = styled.div`
   width: 100%;
   background-color: var(--appbackgroundcolor);
   border-radius: 1rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem 2rem;
 `;
 const Text = styled.span`
   font-size: 1.4rem;
   color: var(--sideBar_text);
+  width: 100%;
 `;
 const BtnBox = styled.div`
   display: flex;
@@ -53,7 +64,7 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
           >
             Sales commission
           </Text>
-          <Text>
+          <Text type="content">
             you don’t have sufficient ETH in your wallet ( fee wallet ) to pay
             for your outstanding sales commission
           </Text>
@@ -75,24 +86,19 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
       )}
       {status === "false" && (
         <Status
-          style={{ alignItems: "center", gap: "2rem", padding: "1rem 3rem" }}
+          style={{ alignItems: "center", gap: "2rem", padding: "1rem 2rem" }}
         >
           <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
             Sales commission
           </Text>
           <FaRegCheckCircle style={iconStyle} />
           <Text style={{ fontSize: "1.6rem", fontWeight: "600" }}>
-            Successfull
+            Successful
           </Text>
-          {/* <Text style={{ fontSize: "1.3rem" }}>
-            This might take a while before completion
-          </Text> */}
         </Status>
       )}
       {status === "pay" && (
-        <Status
-          style={{ alignItems: "center", gap: "2rem", padding: "1rem 3rem" }}
-        >
+        <Status style={{ alignItems: "center", gap: "2rem" }}>
           <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
             Sales commission
           </Text>

@@ -30,6 +30,9 @@ const WithdrawalBox = styled.div`
   background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
+  @media (max-width: 420px) {
+    padding: 2rem 2rem 5rem 2rem;
+  }
 `;
 const Overlay = styled.div`
   display: flex;
@@ -132,7 +135,6 @@ function Withdrawal() {
 
   const {
     register,
-    getValues,
     errors,
     isBlur,
     successOverlay,
@@ -150,7 +152,6 @@ function Withdrawal() {
     setValidateOverlay,
     handleInternalWithdrawSubmit,
   } = useSignUp();
-  const { userData } = useSelector((state) => state.authData);
   let isPayCommision = "";
 
   // console.log(errors);
@@ -187,7 +188,6 @@ function Withdrawal() {
     result.status === "error"
       ? setPaymentFailState()
       : setPaymentSuccessState();
-    console.log(result);
   }
 
   console.log(isPayCommision);
@@ -297,6 +297,7 @@ function Withdrawal() {
                     style={{ fontWeight: "700" }}
                     id="amount"
                     type="number"
+                    step={0.1}
                     {...register("amount", {
                       required: "This field is required",
                       min: {
@@ -315,7 +316,7 @@ function Withdrawal() {
                     style={{ fontWeight: "700" }}
                     id={category}
                     type="number"
-                    step={0.01}
+                    step={0.1}
                     {...register(`${category}`, {
                       required: "This field is required",
                       min: {

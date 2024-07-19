@@ -26,6 +26,9 @@ const MintModalStyle = styled.div`
   background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
+  @media (max-width: 420px) {
+    padding: 2rem;
+  }
 `;
 const ImageBox = styled.div`
   display: flex;

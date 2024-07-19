@@ -13,7 +13,7 @@ const EditProfileBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 50rem;
+  max-width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const EditProfileStyle = styled.div`
@@ -27,6 +27,9 @@ const EditProfileStyle = styled.div`
   border-radius: 1rem;
   background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
+  @media (max-width: 420px) {
+    padding: 2rem;
+  }
 `;
 const ImageBox = styled.div`
   display: flex;

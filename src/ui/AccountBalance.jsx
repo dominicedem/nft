@@ -28,7 +28,7 @@ const BalanceOverview = styled.div`
     padding: ${(props) => (props.type === "bal" ? "2rem" : "1rem")};
   }
   @media (max-width: 430px) {
-    width: ${(props) => (props.type === "bal" ? "80%" : "100%")};
+    width: ${(props) => (props.type === "bal" ? "70%" : "100%")};
   }
 `;
 const Text = styled.span`
@@ -97,7 +97,7 @@ function AccountBalance() {
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
-                ETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
+                ETH <Span style={{ fontWeight: "300" }}>(Fee wallet)</Span>
               </Text>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
                 {userData ? (
@@ -123,7 +123,7 @@ function AccountBalance() {
           <Flex style={{ flexDirection: "column", alignItems: "start" }}>
             <Flex>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
-                WETH <Span style={{ fontWeight: "300" }}>(Free wallet)</Span>
+                WETH <Span style={{ fontWeight: "300" }}>(Profit wallet)</Span>
               </Text>
               <Text style={{ fontWeight: "900", fontSize: "2rem" }}>
                 {userData ? (

@@ -10,7 +10,6 @@ import { setIsOpenMenu } from "../Slices/MenuBar";
 
 const DashboardLayoutStyle = styled.div`
   display: grid;
-  /* grid-template-columns: 18vw 63vw auto; */
   grid-template-columns: 23vw auto 20vw;
   height: 100vh;
   position: relative;
@@ -50,6 +49,7 @@ const MainStyle = styled.div`
   margin-top: 2.4rem;
   @media (max-width: 500px) {
     height: 100vh;
+    padding: 0 1rem;
   }
 `;
 const ProfileStyle = styled.div`
@@ -94,7 +94,7 @@ function DashboardLayout() {
         <SideBar />
       </SideBarStyle>
       <MenuBarStyle
-        className={isOpenMenu ? "activeMobileSignIn" : "inActiveMobileSignIn"}
+        className={isOpenMenu ? "activeMobileMenu" : "inActiveMobileMenu"}
       >
         <MenuBar />
       </MenuBarStyle>

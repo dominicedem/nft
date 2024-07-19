@@ -17,7 +17,7 @@ const ButtonStyle = styled.button`
     props.type === "nav" ? "1px solid var(--inputField_border)" : "none"};
   @media (max-width: 360px) {
     font-size: 1.5rem;
-    padding: 0.5rem;
+    /* padding: ${(props) => props.type !== "form" && "0.6rem"}; */
   }
 `;
 
@@ -41,6 +41,7 @@ function Button({
     <>
       {!type ? (
         <ButtonStyle
+          type={`${type}`}
           style={{
             width: `${width}`,
             padding: `${padding}`,
@@ -56,6 +57,7 @@ function Button({
         </ButtonStyle>
       ) : (
         <ButtonStyle
+          type={`${type}`}
           style={{
             width: `${width}`,
             padding: `${padding}`,

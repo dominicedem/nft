@@ -286,6 +286,24 @@ body {
   opacity: 0;
   visibility: hidden;
 }
+.activeMobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(0);
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+.inActiveMobileMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
 
 .errorField {
     border: 1.34px solid var(--error_text);
@@ -327,6 +345,9 @@ body {
     @media (max-width: 590px) {
        font-size: 5rem;
        color: var(--bios_background);
+    }
+    @media (max-width: 590px) {
+        padding: 3rem 0 0 0;
     }
 }
 

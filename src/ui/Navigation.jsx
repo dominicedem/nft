@@ -73,6 +73,11 @@ const UserImage = styled.img`
 const Text = styled.span`
   font-size: 1.8rem;
   text-transform: capitalize;
+  display: inline-block;
+  max-width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const iconStyle = {

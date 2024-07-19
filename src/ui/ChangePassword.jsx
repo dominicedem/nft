@@ -11,7 +11,7 @@ const ChangePasswordBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 50rem;
+  max-width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const ChangePasswordStyle = styled.div`
@@ -25,6 +25,9 @@ const ChangePasswordStyle = styled.div`
   background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
+  @media (max-width: 350px) {
+    padding: 2rem;
+  }
 `;
 
 const Form = styled.form`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "./Button";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const ValidationStatusStyle = styled.div`
@@ -9,6 +9,18 @@ const ValidationStatusStyle = styled.div`
   background-color: var(--appbackgroundcolor);
   border-radius: 1rem;
   padding: 1rem 1.5rem;
+  @media (max-width: 1000px) {
+    width: 45%;
+  }
+  @media (max-width: 731px) {
+    width: 55%;
+  }
+  @media (max-width: 650px) {
+    width: 70%;
+  }
+  @media (max-width: 490px) {
+    width: 90%;
+  }
 `;
 const Status = styled.div`
   display: flex;
