@@ -14,7 +14,7 @@ import { MdLogout } from "react-icons/md";
 
 const MenuBarStyle = styled.div`
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   width: 100%;
   height: 100vh;
@@ -27,6 +27,7 @@ const ListBox = styled.div`
   align-items: start;
   gap: 0.5rem;
   width: 35rem;
+  margin-top: 8rem;
 `;
 
 const List = styled.span`
@@ -65,6 +66,12 @@ const Img = styled.img`
     font-size: 2.5rem;
   }
 `;
+const Column = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 const linkStyleNav = {
   color: "inherit",
   textDecoration: "none",
@@ -101,61 +108,63 @@ function MenuBar() {
   }
   return (
     <MenuBarStyle>
-      <Link style={linkStyleNav} to="/">
-        <Logo>
-          <Img src="/logo.png" alt="Logo" />
-          ZigmaNft
-        </Logo>
-      </Link>
-      <ListBox>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <MdOutlineAccountBalanceWallet style={iconStyle} />
-          <Link style={linkStyle} to="/dashboard">
-            Account overview
-          </Link>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <PiNotePencilLight style={iconStyle} />
-          <Link style={linkStyle} to="mint">
-            Mint Nft
-          </Link>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <CgProfile style={iconStyle} />
-          <Link style={linkStyle} to={`/ownNftProfile/${userData?.id}`}>
-            My Nft profile
-          </Link>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <GiCardExchange style={iconStyle} />
-          <HashLink smooth style={linkStyle} to="/dashboard#transaction">
-            Transaction
-          </HashLink>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <MdOutlineStore style={iconStyle} />
-          <Link style={linkStyle} to="/">
-            Market-place
-          </Link>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <GiCardExchange style={iconStyle} />
-          <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
-            Nft transactions
-          </HashLink>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <CiEdit style={iconStyle} />
-          <HashLink smooth style={linkStyle} to="/dashboard/editProfile">
-            Edit Profile
-          </HashLink>
-        </List>
-        <List onClick={() => dispatch(setIsOpenMenu())}>
-          <RiLockPasswordFill style={iconStyle} />
-          <HashLink smooth style={linkStyle} to="/dashboard/resetpassword">
-            Change Password
-          </HashLink>
-        </List>
+      <Column>
+        <Link style={linkStyleNav} to="/">
+          <Logo>
+            <Img src="/logo.png" alt="Logo" />
+            ZigmaNft
+          </Logo>
+        </Link>
+        <ListBox>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <MdOutlineAccountBalanceWallet style={iconStyle} />
+            <Link style={linkStyle} to="/dashboard">
+              Account overview
+            </Link>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <PiNotePencilLight style={iconStyle} />
+            <Link style={linkStyle} to="/dashboard/mint">
+              Mint Nft
+            </Link>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <CgProfile style={iconStyle} />
+            <Link style={linkStyle} to={`/ownNftProfile/${userData?.id}`}>
+              My Nft profile
+            </Link>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <GiCardExchange style={iconStyle} />
+            <HashLink smooth style={linkStyle} to="/dashboard#transaction">
+              Transaction
+            </HashLink>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <MdOutlineStore style={iconStyle} />
+            <Link style={linkStyle} to="/">
+              Market-place
+            </Link>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <GiCardExchange style={iconStyle} />
+            <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
+              Nft transactions
+            </HashLink>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <CiEdit style={iconStyle} />
+            <HashLink smooth style={linkStyle} to="/dashboard/editProfile">
+              Edit Profile
+            </HashLink>
+          </List>
+          <List onClick={() => dispatch(setIsOpenMenu())}>
+            <RiLockPasswordFill style={iconStyle} />
+            <HashLink smooth style={linkStyle} to="/dashboard/resetpassword">
+              Change Password
+            </HashLink>
+          </List>
+        </ListBox>
         <List
           style={{ color: "var(--error_text)" }}
           onClick={() => handleLogout()}
@@ -163,7 +172,7 @@ function MenuBar() {
           <MdLogout style={iconStyleOut} fill="var(--error_text)" />
           Sign Out
         </List>
-      </ListBox>
+      </Column>
     </MenuBarStyle>
   );
 }

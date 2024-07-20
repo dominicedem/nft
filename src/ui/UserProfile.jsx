@@ -47,7 +47,13 @@ const Column = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 0.8rem;
-  width: 100%;
+  width: ${(props) => (props.type === "bioColumn" ? "40%" : "100%")};
+  @media (max-width: 700px) {
+    width: ${(props) => (props.type === "bioColumn" ? "60%" : "100%")};
+  }
+  @media (max-width: 500px) {
+    width: ${(props) => (props.type === "bioColumn" ? "80%" : "100%")};
+  }
 `;
 const Row = styled.div`
   display: flex;
@@ -59,6 +65,12 @@ const Row = styled.div`
   }
   @media (max-width: 690px) {
     gap: 2rem;
+  }
+  @media (max-width: 700px) {
+    flex-direction: ${(props) => props.type === "biodescription" && "column"};
+    align-items: ${(props) => props.type === "biodescription" && "start"};
+    gap: ${(props) => props.type === "biodescription" && "3rem"};
+    margin-bottom: ${(props) => props.type === "biodescription" && "15rem"};
   }
 `;
 const RowMobile = styled.div`
@@ -83,7 +95,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 4rem;
-  /* padding: 0 2rem; */
 `;
 const Text = styled.span`
   font-size: 2.2rem;
@@ -92,9 +103,19 @@ const Text = styled.span`
   align-items: center;
   gap: 1rem;
 `;
+const Box = styled.div`
+  height: 9rem;
+  overflow-y: scroll;
+  padding: 1rem 1.5rem;
+  border-radius: 0.7rem;
+  background: var(--balance_background);
+  /* @media (max-width: 700px) {
+    width: 100%;
+  } */
+`;
 const SocialBox = styled.div`
   height: 100%;
-  margin-top: 1.5rem;
+  transform: translateY(20%);
 `;
 const iconStyle = {
   width: "1.5rem",
@@ -262,43 +283,30 @@ function UserProfile({
           </RowMobile>
         )}
         <Row
+          type={!isExhibition && "biodescription"}
           style={{ alignItems: "stretch", height: "15rem", padding: "0 2rem" }}
         >
           {!isExhibition ? (
-            <Column style={{ width: "40%" }}>
+            <Column type="bioColumn">
               <Text style={{ fontWeight: "700" }}>Bio</Text>
-              <Text style={{ fontSize: "1.6rem" }}>
-                {userProfileData ? (
-                  userProfileData?.data?.bio
-                ) : (
-                  <Skeleton count={3} width={300} />
-                )}
-              </Text>
-              {/* <Text
-                style={{
-                  fontSize: "1.6rem",
-                  textDecoration: "underline",
-                  marginTop: "-1rem",
-                }}
-              >
-                learn more
-              </Text> */}
+              <Box>
+                <Text type="bio" style={{ fontSize: "1.6rem" }}>
+                  {userProfileData ? (
+                    userProfileData?.data?.bio
+                  ) : (
+                    <Skeleton count={3} width={300} />
+                  )}
+                </Text>
+              </Box>
             </Column>
           ) : (
             <Column style={{ width: "60%" }}>
               <Text style={{ fontWeight: "700" }}>About Exhibition</Text>
-              <Text style={{ fontSize: "1.6rem" }}>
-                {rawData?.data?.description}
-              </Text>
-              {/* <Text
-                style={{
-                  fontSize: "1.6rem",
-                  textDecoration: "underline",
-                  marginTop: "-1rem",
-                }}
-              >
-                learn more
-              </Text> */}
+              <Box>
+                <Text type="bio" style={{ fontSize: "1.6rem" }}>
+                  {rawData?.data?.description}
+                </Text>
+              </Box>
             </Column>
           )}
           {!isExhibition && (
@@ -308,7 +316,7 @@ function UserProfile({
           )}
         </Row>
         {displayNft && (
-          <NftBox style={{ marginTop: "-2rem" }}>
+          <NftBox type="profile" style={{ marginTop: "-2rem" }}>
             <Text style={{ fontWeight: "600" }}>NFT</Text>
             <AllCards>
               {data || userProfileData

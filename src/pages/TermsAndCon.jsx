@@ -41,7 +41,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 3rem;
-  width: 70%;
+  width: 75%;
   margin: 0 auto;
   padding: 6rem 0;
 `;
