@@ -108,7 +108,7 @@ function Navigation({ scroll, home }) {
           <Link style={linkStyle} to="/">
             <Logo>
               <Img src="/logo.png" alt="Logo" />
-              ZigmaNft
+              ZIGMANFT
             </Logo>
           </Link>
           <CtaBox>

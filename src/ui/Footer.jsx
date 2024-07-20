@@ -117,21 +117,23 @@ function Footer() {
             <HashLink style={linkStyle} to="/termsCondition#About">
               <List>About Us</List>
             </HashLink>
-            <Link style={linkStyle} to="/">
+            {/* <Link style={linkStyle} to="/">
               <List>Github</List>
-            </Link>
+            </Link> */}
             <HashLink style={linkStyle} to="/termsandcondition#top">
               <List>Terms and condition</List>
             </HashLink>
 
-            <HashLink style={linkStyle} to="/termsCondition#Support">
+            {/* <HashLink style={linkStyle} to="/termsCondition#Support">
               <List>Support</List>
-            </HashLink>
+            </HashLink> */}
           </Headbox>
         </Footers>
         <Formdetail />
       </Footerbox>
-      <Copyright>&copy; Copyright 2023 CrypDom. All rights reserved.</Copyright>
+      <Copyright>
+        &copy; Copyright 2024 ZIGMANFT. All rights reserved.
+      </Copyright>
     </>
   );
 }

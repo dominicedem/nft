@@ -5,6 +5,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenMenu } from "../Slices/MenuBar";
 import MenuBar from "../ui/MenuBar";
+import useReloadPage from "../hooks/useReloadPage";
+import useAuthenticate from "../hooks/useAuthenticate";
 const TermsAndConStyle = styled.div`
   width: 99.5vw;
   background: var(--subtle_background);
@@ -41,7 +43,7 @@ const Content = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 3rem;
-  width: 75%;
+  width: 90%;
   margin: 0 auto;
   padding: 6rem 0;
 `;
@@ -113,7 +115,11 @@ const menuStyle = {
 function TermsAndCon() {
   const { isOpenMenu } = useSelector((state) => state.menuData);
   const dispatch = useDispatch();
+  const { userData } = useSelector((state) => state.authData);
+  const { isLoading } = useReloadPage();
+  const { storage } = useAuthenticate();
   const companyName = "Companyname";
+  console.log(userData);
   return (
     <TermsAndConStyle id="top">
       <NavStyle>
@@ -156,12 +162,14 @@ function TermsAndCon() {
           <List>2.1. Users may buy, sell, and trade NFTs on the Website.</List>
           <List>2.2. The Website charges the following fees:</List>
           <List style={{ marginTop: "-1rem" }}>
-            a. Fees and Payments: {companyName} imposes a minting fee of 0.1ETH
-            per new art piece or item listed. Additionally, a 5% commission in
-            ETH is levied on all NFT sales. It's the seller's responsibility to
-            comprehend the fees linked to each transaction. Secure payment
-            processing for NFT purchases is facilitated through our designated
-            payment processor
+            a. Fees and Payments: {companyName} imposes a minting fee of{" "}
+            {storage?.isAuthenticated ? userData?.wallet?.mintFee : "0.1"}ETH
+            per new art piece or item listed. Additionally, a{" "}
+            {storage?.isAuthenticated ? userData?.wallet?.salesFee : "5"}%
+            commission in ETH is levied on all NFT sales. It's the seller's
+            responsibility to comprehend the fees linked to each transaction.
+            Secure payment processing for NFT purchases is facilitated through
+            our designated payment processor
           </List>
           <List>
             b. Tax Fee: Depending on your jurisdiction, you may be subject to
