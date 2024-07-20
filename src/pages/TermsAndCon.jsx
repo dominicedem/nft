@@ -113,6 +113,7 @@ const menuStyle = {
 function TermsAndCon() {
   const { isOpenMenu } = useSelector((state) => state.menuData);
   const dispatch = useDispatch();
+  const companyName = "Companyname";
   return (
     <TermsAndConStyle id="top">
       <NavStyle>
@@ -131,8 +132,8 @@ function TermsAndCon() {
       </Header>
       <Content>
         <List>
-          Welcome to Artmetavault. These Terms and Conditions govern your use of
-          the Website, including the purchase, sale, and trading of NFTs. By
+          Welcome to {companyName}. These Terms and Conditions govern your use
+          of the Website, including the purchase, sale, and trading of NFTs. By
           using the website, you agree to these terms. Please read them
           carefully.
         </List>
@@ -155,7 +156,7 @@ function TermsAndCon() {
           <List>2.1. Users may buy, sell, and trade NFTs on the Website.</List>
           <List>2.2. The Website charges the following fees:</List>
           <List style={{ marginTop: "-1rem" }}>
-            a. Fees and Payments: Artmetavault imposes a minting fee of 0.1ETH
+            a. Fees and Payments: {companyName} imposes a minting fee of 0.1ETH
             per new art piece or item listed. Additionally, a 5% commission in
             ETH is levied on all NFT sales. It's the seller's responsibility to
             comprehend the fees linked to each transaction. Secure payment
