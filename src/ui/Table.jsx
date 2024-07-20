@@ -176,19 +176,36 @@ function TableRow({ sold, bought, datas, Transaction }) {
                       : val?.transaction === "withdraw"
                       ? "var(--error_text)"
                       : val?.transaction === "mint"
+                      ? "var(--error_text)"
+                      : val?.transaction === "sales-bonus"
                       ? "var(--paid_text)"
                       : "var(--error_text)"
                   }`,
                 }}
                 type="sold"
               >
-                {val?.transaction}
+                {val?.transaction === "deposite" ? "deposit" : val?.transaction}
               </List>
               <List type="sold">{val?.amount}</List>
               <List type="sold">
                 {val?.date?.split("").splice(0, 10).join("")}
               </List>
-              <List type="sold">{val?.status}</List>
+              <List
+                style={{
+                  color: `${
+                    val?.status === "completed"
+                      ? "var(--paid_text)"
+                      : val?.status === "pending"
+                      ? "#e69d00"
+                      : val?.status === "failed"
+                      ? "var(--error_text)"
+                      : "var(--error_text)"
+                  }`,
+                }}
+                type="sold"
+              >
+                {val?.status}
+              </List>
             </Row>
           ))}
         </TableBox>

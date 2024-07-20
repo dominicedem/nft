@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { PiNotePencilLight } from "react-icons/pi";
 import { MdOutlineStore } from "react-icons/md";
@@ -10,6 +10,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { HashLink } from "react-router-hash-link";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsOpenMenu } from "../Slices/MenuBar";
+import { MdLogout } from "react-icons/md";
 
 const MenuBarStyle = styled.div`
   display: flex;
@@ -18,12 +19,13 @@ const MenuBarStyle = styled.div`
   width: 100%;
   height: 100vh;
   background-color: var(--appbackgroundcolor);
+  position: relative;
 `;
 const ListBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 1rem;
+  gap: 0.5rem;
   width: 35rem;
 `;
 
@@ -36,11 +38,41 @@ const List = styled.span`
   width: 100%;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  cursor: pointer;
   color: var(--sideBar_text);
   &:hover {
     color: #5555559a;
   }
 `;
+const Logo = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 3rem;
+  background-clip: text;
+  background: -webkit-linear-gradient(60deg, #087279, #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  @media (max-width: 400px) {
+    font-size: 2.5rem;
+  }
+`;
+const Img = styled.img`
+  width: 3rem;
+  @media (max-width: 400px) {
+    font-size: 2.5rem;
+  }
+`;
+const linkStyleNav = {
+  color: "inherit",
+  textDecoration: "none",
+  position: "absolute",
+  top: "2%",
+  left: "5%",
+};
+
 const linkStyle = {
   color: "inherit",
   textDecoration: "none",
@@ -52,12 +84,29 @@ const iconStyle = {
   height: "3rem",
   color: "var(--black_text)",
 };
+const iconStyleOut = {
+  width: "3rem",
+  height: "3rem",
+  color: "var(--error_text)",
+  transform: "rotate(180deg)",
+};
 
 function MenuBar() {
   const { userData } = useSelector((state) => state.authData);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.clear();
+    navigate("/");
+  }
   return (
     <MenuBarStyle>
+      <Link style={linkStyleNav} to="/">
+        <Logo>
+          <Img src="/logo.png" alt="Logo" />
+          ZigmaNft
+        </Logo>
+      </Link>
       <ListBox>
         <List onClick={() => dispatch(setIsOpenMenu())}>
           <MdOutlineAccountBalanceWallet style={iconStyle} />
@@ -106,6 +155,13 @@ function MenuBar() {
           <HashLink smooth style={linkStyle} to="/dashboard/resetpassword">
             Change Password
           </HashLink>
+        </List>
+        <List
+          style={{ color: "var(--error_text)" }}
+          onClick={() => handleLogout()}
+        >
+          <MdLogout style={iconStyleOut} fill="var(--error_text)" />
+          Sign Out
         </List>
       </ListBox>
     </MenuBarStyle>

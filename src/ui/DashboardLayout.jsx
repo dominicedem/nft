@@ -77,6 +77,7 @@ const MenuBtn = styled.div`
     border-radius: 50%;
     border-radius: 0.5rem;
     z-index: 100;
+    cursor: pointer;
     background: var(--light_faint);
   }
 `;

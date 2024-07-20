@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import styled from "styled-components";
 
 const Formbox = styled.form`
@@ -82,14 +84,21 @@ const Contacttext = styled.p`
 `;
 
 function Formdetail() {
-  const [input, setInput] = useState();
-  const [submitted, setSubmitted] = useState(false);
-  function handlesubmit(e) {
-    e.preventDefault();
-    if (!input) return;
-    setInput("");
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+  const [Submitting, setSubmitting] = useState();
+  const { register, reset, handleSubmit } = useForm();
+
+  function handlesubmit() {
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      toast.success("Submitted successfully");
+      reset();
+    }, 3000);
+  }
+  function handleError(error) {
+    if (error?.email?.message) {
+      toast.error(error?.email?.message);
+    }
   }
   return (
     <Formdetails>
@@ -97,19 +106,24 @@ function Formdetail() {
       <Contacttext>
         Don't miss anything, Stay in touch with us and get real time update.
       </Contacttext>
-      <Formbox onSubmit={(e) => handlesubmit(e)}>
+      <Formbox onSubmit={handleSubmit(handlesubmit, handleError)}>
         <Form
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          disabled={Submitting}
           type="email"
+          {...register("email", {
+            required: "Enter an email",
+          })}
           placeholder="Email Address"
         />
-        {submitted ? (
-          <Submitform>Submitted</Submitform>
-        ) : (
-          <Submitform type="submit" onClick={() => handlesubmit()}>
+        {!Submitting ? (
+          <Submitform
+            type="submit"
+            onSubmit={handleSubmit(handlesubmit, handleError)}
+          >
             Submit
           </Submitform>
+        ) : (
+          <Submitform>Loading...</Submitform>
         )}
       </Formbox>
     </Formdetails>

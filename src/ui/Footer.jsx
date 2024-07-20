@@ -13,7 +13,7 @@ const Footerbox = styled.div`
   padding: 8rem 5rem;
   height: 60vh;
   margin-top: 10rem;
-  background: var(--blue_background_hover);
+  background: var(--blue_footer);
   @media (max-width: 950px) {
     gap: 18%;
   }
@@ -76,7 +76,7 @@ const Copyright = styled.p`
   padding: 1rem 5rem 5rem 5rem;
   font-size: 1.4rem;
   color: var(--light_faint);
-  background: var(--blue_background_hover);
+  background: var(--blue_footer);
   @media (max-width: 700px) {
     padding: 1rem 1rem 5rem 2rem;
   }
@@ -120,8 +120,8 @@ function Footer() {
             <Link style={linkStyle} to="/">
               <List>Github</List>
             </Link>
-            <HashLink style={linkStyle} to="/termsCondition#Copyright">
-              <List>Copyright Policy</List>
+            <HashLink style={linkStyle} to="/termsandcondition#top">
+              <List>Terms and condition</List>
             </HashLink>
 
             <HashLink style={linkStyle} to="/termsCondition#Support">

@@ -19,6 +19,9 @@ const DashboardStyle = styled.div`
   @media (max-width: 860px) {
     padding: 0 3rem 8rem 3rem;
   }
+  @media (max-width: 500px) {
+    padding: 0 0 8rem 0;
+  }
 `;
 const DashCardBox = styled.div`
   display: flex;

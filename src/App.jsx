@@ -26,6 +26,7 @@ import Validation from "./ui/Validation";
 import CreateExhibition from "./ui/CreateExhibition";
 import ChangePassword from "./ui/ChangePassword";
 import RecoverPassword from "./pages/RecoverPassword";
+import TermsAndCon from "./pages/TermsAndCon";
 
 const ProtectRoute = lazy(() => import("./ui/ProtectRoute"));
 const Exhibtion = lazy(() => import("./pages/Exhibition"));
@@ -117,8 +118,8 @@ function App() {
                     path="/recoverpassword"
                     element={<RecoverPassword />}
                   />
+                  <Route path="/termsandcondition" element={<TermsAndCon />} />
                   <Route path="/exhibition" element={<Exhibtion />} />
-                  {/* <Route path="/profile" element={<Profile />} /> */}
                   <Route path="/verifyemail" element={<VerifyEmail />} />
                   <Route path="/signIn" element={<SignIn />} />
                   <Route path="*" element={<ErrorRoute />} />

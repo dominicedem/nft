@@ -109,7 +109,6 @@ function Cards({
   const { data: ethPrice } = useFetchEthPrice();
   const params = useParams();
   function handleBuy() {}
-  console.log(cardType);
   let ethToUsdPrice =
     Number(ethPrice?.ethereum?.usd) * Number(data?.priceInEtherium);
   return (

@@ -73,11 +73,13 @@ const UserImage = styled.img`
 const Text = styled.span`
   font-size: 1.8rem;
   text-transform: capitalize;
-  display: inline-block;
-  max-width: 50px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @media (max-width: 500px) {
+    display: inline-block;
+    max-width: 50px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 `;
 
 const iconStyle = {
@@ -95,7 +97,6 @@ function Navigation({ scroll, home }) {
   const { userData } = useSelector((state) => state.authData);
   const { storage } = useAuthenticate();
   const { isLoading } = useReloadPage();
-  // console.log(userData);
 
   function handleSearch() {
     dispatch(setSearchModal(true));

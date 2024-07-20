@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { PiNotePencilLight } from "react-icons/pi";
 import { MdOutlineStore } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
-// import { BsCollection } from "react-icons/bs";
+import { MdLogout } from "react-icons/md";
 import { GiCardExchange } from "react-icons/gi";
 import { HashLink } from "react-router-hash-link";
 import { useSelector } from "react-redux";
@@ -59,9 +59,19 @@ const iconStyle = {
   height: "2.5rem",
   color: "var(--black_text)",
 };
+const iconStyleOut = {
+  width: "2.5rem",
+  height: "2.5rem",
+  transform: "rotate(180deg)",
+};
 
 function SideBar() {
   const { userData } = useSelector((state) => state.authData);
+  const navigate = useNavigate();
+  function handleLogout() {
+    localStorage.clear();
+    navigate("/");
+  }
   return (
     <SideBarStyle>
       <ListBox>
@@ -107,6 +117,13 @@ function SideBar() {
             <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
               Nft transactions
             </HashLink>
+          </List>
+          <List
+            style={{ color: "var(--error_text)" }}
+            onClick={() => handleLogout()}
+          >
+            <MdLogout style={iconStyleOut} fill="var(--error_text)" />
+            Sign Out
           </List>
         </ListBox>
       </ListBox>
