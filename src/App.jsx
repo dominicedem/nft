@@ -133,12 +133,16 @@ function App() {
               toastOptions={{
                 success: {
                   duration: 3000,
+                  iconTheme: {
+                    primary: "var(--blue_btn)",
+                    secondary: "var(--white_text)",
+                  },
                 },
                 error: {
                   duration: 4000,
                 },
                 style: {
-                  fontSize: "16px",
+                  fontSize: "17px",
                   color: "var(--sideBar_text)",
                   padding: "16px 24px",
                   background: "var(--bios_background)",
