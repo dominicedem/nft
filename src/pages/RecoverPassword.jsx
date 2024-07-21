@@ -3,6 +3,8 @@ import useForgotPassword from "../hooks/useForgotPassword";
 import { MdOutlineEmail } from "react-icons/md";
 import Button from "../ui/Button";
 import Loading from "../ui/Loading";
+import { RxCross1 } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 const RecoverPasswordStyle = styled.div`
   display: flex;
@@ -21,6 +23,9 @@ const Description = styled.div`
   font-size: 1.6rem;
   background: var(--blue_btn);
   color: var(--white_text);
+  @media (max-width: 870px) {
+    display: none;
+  }
 `;
 const FormBox = styled.div`
   display: flex;
@@ -37,6 +42,12 @@ const Form = styled.form`
   justify-content: center;
   gap: 2rem;
   width: 60%;
+  @media (max-width: 500px) {
+    width: 80%;
+  }
+  @media (max-width: 350px) {
+    width: 90%;
+  }
 `;
 const Label = styled.label`
   font-size: 1.5rem;
@@ -127,6 +138,18 @@ const List = styled.li`
   font-size: 1.7rem;
   color: var(--white_text);
 `;
+const CloseMenu = styled.div`
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+`;
+
+const closeIcon = {
+  color: "var(--primary_text_color)",
+  width: "2.5rem",
+  height: "2.5rem",
+};
 const IconStyle = {
   fontSize: "2rem",
   color: "var(--input_Icon_color)",
@@ -143,6 +166,7 @@ function RecoverPassword() {
     isBlur,
     success,
   } = useForgotPassword();
+  const navigate = useNavigate();
   return (
     <RecoverPasswordStyle>
       <Description>
@@ -192,6 +216,9 @@ function RecoverPassword() {
           <Loading />
         </LoadingBox>
       )}
+      <CloseMenu onClick={() => navigate(-1)}>
+        <RxCross1 style={closeIcon} />
+      </CloseMenu>
     </RecoverPasswordStyle>
   );
 }

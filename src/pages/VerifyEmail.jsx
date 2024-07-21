@@ -3,8 +3,9 @@ import Button from "../ui/Button";
 import useCountDown from "../hooks/useCountDown";
 import { useSelector } from "react-redux";
 import useResendEmailLink from "../hooks/useResendEmailLink";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../ui/Loading";
+import { RxCross1 } from "react-icons/rx";
 
 const VerifyEmailStyle = styled.div`
   display: flex;
@@ -22,6 +23,9 @@ const Column = styled.div`
   gap: 2rem;
   height: 100%;
   width: 100%;
+  @media (max-width: 870px) {
+    display: ${(props) => props.type === "description" && "none"};
+  }
 `;
 const Img = styled.img`
   width: 20rem;
@@ -38,13 +42,18 @@ const Row = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  width: 80%;
+  width: 70%;
+  @media (max-width: 480px) {
+    width: 80%;
+  }
+  @media (max-width: 350px) {
+    width: 90%;
+  }
 `;
 const BtnBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25%;
 `;
 const LoadingBox = styled.div`
   display: flex;
@@ -58,6 +67,18 @@ const LoadingBox = styled.div`
   background: var(--overlay_background);
   z-index: 100;
 `;
+const CloseMenu = styled.div`
+  position: fixed;
+  top: 3%;
+  right: 3%;
+  cursor: pointer;
+`;
+
+const closeIcon = {
+  color: "var(--primary_text_color)",
+  width: "2.5rem",
+  height: "2.5rem",
+};
 const linkStyle = {
   textDecoration: "none",
   width: "20%",
@@ -66,7 +87,8 @@ const linkStyle = {
 function VerifyEmail() {
   const { time, startTimer } = useCountDown();
   const { userEmail, token } = useSelector((state) => state.AllEmailNameData);
-  const { data, mutate, isLoading } = useResendEmailLink(token);
+  const { mutate, isLoading } = useResendEmailLink(token);
+  const navigate = useNavigate();
 
   function handleResendLink() {
     time === 0 && mutate();
@@ -74,7 +96,10 @@ function VerifyEmail() {
   }
   return (
     <VerifyEmailStyle>
-      <Column style={{ background: "var(--blue_btn)", fontWeight: "600" }}>
+      <Column
+        type="description"
+        style={{ background: "var(--blue_btn)", fontWeight: "600" }}
+      >
         <Text style={{ fontSize: "3rem", color: "var(--white_text)" }}>
           Verify your email
         </Text>
@@ -130,6 +155,9 @@ function VerifyEmail() {
           </LoadingBox>
         )}
       </Column>
+      <CloseMenu onClick={() => navigate(-1)}>
+        <RxCross1 style={closeIcon} />
+      </CloseMenu>
     </VerifyEmailStyle>
   );
 }
