@@ -5,9 +5,11 @@ export default function Autotype() {
     <>
       <TypeAnimation
         sequence={[
+          "Welcome to the best nft platform in the world",
+          5000,
           "Discover! create! and sell your nft with ease...",
           5000,
-          "Discover swift network without delays",
+          "Join exhibitions and earn sales commission",
           5000,
         ]}
         wrapper="span"

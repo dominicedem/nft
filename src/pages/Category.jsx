@@ -118,6 +118,8 @@ function Category() {
     params.type !== "exhibition" ? categoryData?.data : exhibitionData?.data
   );
 
+  console.log(categoryData);
+
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") &&
       dispatch(setSearchModal(false));
@@ -157,7 +159,7 @@ function Category() {
         </NftProImg>
       </Header>
       <DetailsBox>
-        <ViewAllDetails category={params?.type} />
+        <ViewAllDetails data={categoryData} category={params?.type} />
       </DetailsBox>
       <AllCards className={`${params.type}`} ref={reftop}>
         {paginatedData

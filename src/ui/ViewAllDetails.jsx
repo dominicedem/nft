@@ -42,19 +42,43 @@ const Text = styled.span`
   overflow: ${(props) => (props.type === "expand" ? "visible" : "hidden")};
   text-overflow: ${(props) => (props.type === "expand" ? "none" : "ellipsis")};
 `;
-function ViewAllDetails({ category }) {
+function ViewAllDetails({ category, data }) {
   const [isSeeMore, setIsSeeMore] = useState(false);
+  const listed =
+    category === "arts"
+      ? "87"
+      : category === "gaming"
+      ? "89"
+      : category === "pfps"
+      ? "86"
+      : category === "photography"
+      ? "88"
+      : category === "membership"
+      ? "89"
+      : category === "exhibition" && "58";
+  const categoryOwner =
+    category === "arts"
+      ? "60"
+      : category === "gaming"
+      ? "62"
+      : category === "pfps"
+      ? "59"
+      : category === "photography"
+      ? "60"
+      : category === "membership"
+      ? "61"
+      : category === "exhibition" && "58";
   const categoryText =
     category === "arts"
-      ? "Welcome to our NFT art platform, where creativity meets blockchain technology. Explore, buy, and sell unique digital artworks that redefine ownership and expression. Join us in shaping the future of art collecting today!"
+      ? "Welcome to our NFT art category, where creativity meets blockchain technology. Explore, buy, and sell unique digital artworks that redefine ownership and expression. Join us in shaping the future of art collecting today!"
       : category === "gaming"
-      ? "Welcome to our NFT gaming platform, where virtual worlds come to life through blockchain technology. Dive into a universe of unique game assets, from characters to items, each tokenized for ownership and authenticity. Whether you're a gamer, collector, or creator, explore, trade, and unleash your gaming passion with us. Welcome to the next level of gaming innovation with NFTs!"
+      ? "Welcome to our NFT gaming category, where virtual worlds come to life through blockchain technology. Dive into a universe of unique game assets, from characters to items, each tokenized for ownership and authenticity. Whether you're a gamer, collector, or creator, explore, trade, and unleash your gaming passion with us. Welcome to the next level of gaming innovation with NFTs!"
       : category === "pfps"
-      ? "Welcome to our NFT PFP platform, where profile pictures become collectible digital art. Explore a gallery of unique avatars, each tokenized for ownership and individuality. Find your perfect PFP or create one to express your identity in the digital world."
+      ? "Welcome to our NFT PFP category, where profile pictures become collectible digital art. Explore a gallery of unique avatars, each tokenized for ownership and individuality. Find your perfect PFP or create one to express your identity in the digital world."
       : category === "photography"
-      ? "Explore our NFT photography gallery, where snapshots become timeless digital assets. Discover a collection of unique photographs, each tokenized to preserve authenticity and value. Collect, trade, and own moments captured in pixels on our innovative platform."
+      ? "Explore our NFT photography gallery, where snapshots become timeless digital assets. Discover a collection of unique photographs, each tokenized to preserve authenticity and value. Collect, trade, and own moments captured in pixels on our innovative category."
       : category === "membership"
-      ? "Step into our NFT membership platform, where exclusive digital access meets blockchain security. Discover a realm where memberships are tokenized for authenticity and perks are encoded with unique benefits. Join a community redefining membership experiences with NFTs."
+      ? "Step into our NFT membership category, where exclusive digital access meets blockchain security. Discover a realm where memberships are tokenized for authenticity and perks are encoded with unique benefits. Join a community redefining membership experiences with NFTs."
       : category === "exhibition" &&
         "Step into our virtual NFT exhibition hall, where digital art takes center stage. Immerse yourself in curated collections of NFT artworks, from paintings to sculptures, each imbued with blockchain-backed authenticity. Experience art in a new dimension with our digital exhibition platform.";
   return (
@@ -71,7 +95,7 @@ function ViewAllDetails({ category }) {
         </Text>
         <RowBox style={{ marginTop: "-1.5rem" }}>
           <Span>
-            Items <Text type="head">2346</Text>
+            Items <Text type="head">{data?.results * 9}</Text>
           </Span>
           <Span>
             Chain <Text type="head">Ethereum</Text>
@@ -88,19 +112,19 @@ function ViewAllDetails({ category }) {
       </Text>
       <RowBox>
         <ColumnBox>
-          <Text type="head">6265 ETH</Text>
+          <Text type="head">{data?.results * 27} ETH</Text>
           <Text style={{ marginTop: "-2rem" }}>Total volume</Text>
         </ColumnBox>
         <ColumnBox>
-          <Text type="head">87%</Text>
+          <Text type="head">{listed}%</Text>
           <Text style={{ marginTop: "-2rem" }}>Listed</Text>
         </ColumnBox>
         <ColumnBox>
-          <Text type="head">626</Text>
+          <Text type="head">{Math.ceil(data?.results / 2)}</Text>
           <Text style={{ marginTop: "-2rem" }}>Owners</Text>
         </ColumnBox>
         <ColumnBox>
-          <Text type="head">60%</Text>
+          <Text type="head">{categoryOwner}%</Text>
           <Text style={{ marginTop: "-2rem" }}>Unique owners</Text>
         </ColumnBox>
       </RowBox>
