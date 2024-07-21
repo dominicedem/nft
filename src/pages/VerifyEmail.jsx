@@ -110,10 +110,8 @@ function VerifyEmail() {
             width: "80%",
           }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Non dolores
-          doloremque maxime omnis adipisci quasi ullam nostrum in ut, rerum
-          mollitia nihil expedita magnam cum esse quisquam assumenda inventore
-          similique.
+          A verification link has been sent to your email , click the link to
+          verify your account.
         </Text>
       </Column>
       <Column style={{ position: "relative" }}>

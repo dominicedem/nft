@@ -49,8 +49,14 @@ function DashCards({
           style={linkStyle}
           to={header === "NFT" ? "allUserNft" : "allUserExhibition"}
         >
-          {data?.length > 2 && (
+          {data?.length > 2 ? (
             <Button padding={"var(--padding_btn_small)"}>view all</Button>
+          ) : (
+            <Button padding={"var(--padding_btn_small)"}>
+              {header === "Exhibition" && data?.length < 3
+                ? "Add More"
+                : "view all"}
+            </Button>
           )}
         </Link>
       </Flex>
