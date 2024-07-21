@@ -41,11 +41,11 @@ const Text = styled.span`
   color: var(--black_text);
   font-family: "IBM Plex Sans", sans-serif;
   @media (max-width: 750px) {
-    display: inline-block;
-    max-width: 95%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: ${(props) => props.type === "name" && "inline-block"};
+    max-width: ${(props) => props.type === "name" && "95%"};
+    white-space: ${(props) => props.type === "name" && "nowrap"};
+    overflow: ${(props) => props.type === "name" && "hidden"};
+    text-overflow: ${(props) => props.type === "name" && "ellipsis"};
   }
 `;
 const ImgBox = styled.div`
@@ -150,7 +150,7 @@ function NftProfile({ data, id, mutate, setIsBlur }) {
         </ImgBox>
         <ColumnBox>
           {data ? (
-            <Text style={{ fontSize: "3.4rem", fontWeight: "500" }}>
+            <Text type="name" style={{ fontSize: "3.4rem", fontWeight: "500" }}>
               {data?.name}
             </Text>
           ) : (

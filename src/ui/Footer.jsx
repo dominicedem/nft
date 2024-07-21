@@ -114,19 +114,12 @@ function Footer() {
           </Headbox>
           <Headbox>
             <Head>Company</Head>
-            <HashLink style={linkStyle} to="/termsCondition#About">
+            <HashLink style={linkStyle} to="/aboutus#top">
               <List>About Us</List>
             </HashLink>
-            {/* <Link style={linkStyle} to="/">
-              <List>Github</List>
-            </Link> */}
             <HashLink style={linkStyle} to="/termsandcondition#top">
               <List>Terms and condition</List>
             </HashLink>
-
-            {/* <HashLink style={linkStyle} to="/termsCondition#Support">
-              <List>Support</List>
-            </HashLink> */}
           </Headbox>
         </Footers>
         <Formdetail />
