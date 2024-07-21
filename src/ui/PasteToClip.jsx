@@ -19,11 +19,12 @@ const iconStyle = {
   fontSize: "1.6rem",
   color: "var(--input_Icon_color)",
 };
-function PasteToClip({ setAddress }) {
+function PasteToClip({ setValue, type }) {
   const handlePasteClick = async () => {
     try {
       const pasteText = await navigator.clipboard.readText();
-      setAddress(pasteText);
+      type === "onChain" && setValue("address", pasteText);
+      type === "internal" && setValue("internalAddress", pasteText);
     } catch (err) {
       console.error("Unable to copy to clipboard", err);
     }

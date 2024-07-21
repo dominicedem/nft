@@ -119,7 +119,11 @@ function SideBar() {
             </HashLink>
           </List>
           <List
-            style={{ color: "var(--error_text)" }}
+            style={{
+              color: "var(--error_text)",
+              marginTop: "5rem",
+              cursor: "pointer",
+            }}
             onClick={() => handleLogout()}
           >
             <MdLogout style={iconStyleOut} fill="var(--error_text)" />

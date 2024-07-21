@@ -36,8 +36,7 @@ const IconStyle = {
   color: "var(--input_Icon_color)",
   cursor: "pointer",
 };
-function Internal({ register }) {
-  const [address, setAddress] = useState();
+function Internal({ register, setValue }) {
   const [sold, setSold] = useState(true);
   const [bought, setBought] = useState(false);
   return (
@@ -53,25 +52,36 @@ function Internal({ register }) {
           text={{ first: "Address", second: "Email" }}
         />
       </TransactionStatusBox>
-      <Label htmlFor={sold ? "address" : "email"}>
+      <Label htmlFor={sold ? "internalAddress" : "email"}>
         {sold ? "User deposit Address" : "Email address"}
       </Label>
-      <Row style={{ marginTop: "-1rem" }}>
-        <Input
-          id={sold ? "address" : "email"}
-          type={sold ? "text" : "email"}
-          {...register(sold ? "address" : "email", {
-            required: "This field is required",
-          })}
-        />
-        {sold ? (
-          <PasteToClip setAddress={setAddress} />
-        ) : (
+      {sold ? (
+        <Row style={{ marginTop: "-1rem" }}>
+          <Input
+            key="internalKey"
+            id="internalAddress"
+            type="text"
+            {...register("internalAddress", {
+              required: "This field is required",
+            })}
+          />
+          <PasteToClip type="internal" setValue={setValue} />
+        </Row>
+      ) : (
+        <Row style={{ marginTop: "-1rem" }}>
+          <Input
+            id="email"
+            type="email"
+            {...register("email", {
+              required: "This field is required",
+            })}
+          />
+
           <IconBox>
             <MdOutlineEmail style={IconStyle} />
           </IconBox>
-        )}
-      </Row>
+        </Row>
+      )}
     </>
   );
 }

@@ -41,6 +41,7 @@ export default function useSignUp() {
     getValues,
     watch,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -124,7 +125,6 @@ export default function useSignUp() {
         dispatch(setIsAuthenticated(true));
         dispatch(setUser(result.data.userDetails));
         dispatch(setUserToken(result.token));
-        // console.log(result);
         localStorage.setItem("userData", JSON.stringify(user));
         navigate("/dashboard", { replace: true });
       } else if (
@@ -156,9 +156,6 @@ export default function useSignUp() {
       blur && setIsBlur(false);
       reset();
     }, [20000]);
-
-    // const newFormData = { ...formdata, photo: formdata.file[0] };
-    // delete newFormData.file;
 
     const mintData = new FormData();
     mintData.append("photo", formdata.file[0]);
@@ -208,7 +205,6 @@ export default function useSignUp() {
       }, [2000]);
       return;
     }
-    // console.log(formdata);
     setIsBlur(true);
     let blur = true;
     setTimeout(() => {
@@ -218,20 +214,16 @@ export default function useSignUp() {
     }, [20000]);
     try {
       const result = await FetchWithdraw(formdata);
-      // console.log(result);
       if (result.status === "error") {
         reset();
         setIsBlur(false);
         blur = false;
-        // setOverlay(true);
         toast.error(result.message);
-        // console.log(result);
       } else if (result.status === "success") {
         reset();
         setIsBlur(false);
         blur = false;
         toast.success("Withdraw succefull please wait for 30mins");
-        // console.log(result);
       }
     } catch (error) {
       setTimeout(() => {
@@ -244,6 +236,8 @@ export default function useSignUp() {
   }
 
   async function handleInternalWithdrawSubmit(formdata) {
+    const newFormData = { ...formdata, address: formdata.internalAddress };
+    delete newFormData.internalAddress;
     if (userData?.wallet?.userOnValidation) {
       setIsBlur(true);
       setTimeout(() => {
@@ -261,7 +255,6 @@ export default function useSignUp() {
       reset();
       return;
     }
-    console.log(formdata);
     setIsBlur(true);
     setCategory("weth");
     let blur = true;
@@ -271,15 +264,13 @@ export default function useSignUp() {
       reset();
     }, [20000]);
     try {
-      const result = await FetchInternalWithdraw(formdata);
-      console.log(result);
+      const result = await FetchInternalWithdraw(newFormData);
       reset();
 
       if (result.status === "error") {
         reset();
         setIsBlur(false);
         blur = false;
-        // setOverlay(true);
         toast.error(result.message);
       } else if (result.status === "success") {
         reset();
@@ -295,6 +286,7 @@ export default function useSignUp() {
       }, [5000]);
     }
   }
+
   async function handleValidateSubmit(formdata) {
     setIsBlur(true);
     let blur = true;
@@ -311,11 +303,9 @@ export default function useSignUp() {
         reset();
         setIsBlur(false);
         blur = false;
-        // setOverlay(true);
         setTimeout(() => {
           setValidFailOverlay(true);
         }, [2000]);
-        console.log(result);
       } else if (result.status === "success") {
         reset();
         setIsBlur(false);
@@ -323,41 +313,6 @@ export default function useSignUp() {
         setTimeout(() => {
           setValidSuccessOverlay(true);
         }, [2000]);
-        console.log(result);
-      }
-    } catch (error) {
-      setTimeout(() => {
-        setIsBlur(false);
-        blur = false;
-        error.message && toast.error(error.message);
-      }, [5000]);
-    }
-  }
-  async function handleCreateExhibitionSubmit(formdata) {
-    setIsBlur(true);
-    let blur = true;
-    setTimeout(() => {
-      blur && toast.error("Check your network connection");
-      blur && setIsBlur(false);
-      reset();
-    }, [20000]);
-    try {
-      const result = await FetchValidate();
-      reset();
-
-      if (result.status === "error") {
-        reset();
-        setIsBlur(false);
-        blur = false;
-        // setOverlay(true);
-        setValidFailOverlay(true);
-        console.log(result);
-      } else if (result.status === "success") {
-        reset();
-        setIsBlur(false);
-        blur = false;
-        setValidSuccessOverlay(true);
-        console.log(result);
       }
     } catch (error) {
       setTimeout(() => {
@@ -368,9 +323,7 @@ export default function useSignUp() {
     }
   }
 
-  function handleError(errors) {
-    // console.log(errors);
-  }
+  function handleError(errors) {}
 
   return {
     reveal,
@@ -411,5 +364,6 @@ export default function useSignUp() {
     setValidFailOverlay,
     validSuccessOverlay,
     validFailOverlay,
+    setValue,
   };
 }

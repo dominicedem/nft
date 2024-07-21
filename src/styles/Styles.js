@@ -349,7 +349,7 @@ body {
        color: var(--bios_background);
     }
     @media (max-width: 590px) {
-        padding: 2.5rem 0 0 0;
+        padding: 3rem 0 0 0;
     }
 }
 

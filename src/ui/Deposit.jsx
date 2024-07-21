@@ -26,18 +26,7 @@ const MintModalStyle = styled.div`
     padding: 2rem 2rem 5rem 2rem;
   }
 `;
-const ImageBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-self: center;
-  gap: 1rem;
-  border-radius: 0.5rem;
-  background: var(--balance_background);
-  width: 55%;
-  height: 35vh;
-  border: 1px solid var(--border);
-`;
+
 const Text = styled.span`
   display: flex;
   align-items: end;
@@ -64,8 +53,6 @@ const Row = styled.span`
   border-radius: 0.8rem;
 `;
 const Img = styled.img`
-  /* width: 100%;
-  height: 100%; */
   width: 22rem;
   height: 24rem;
   object-fit: cover;
@@ -80,7 +67,6 @@ const warningStyle = {
 };
 function Deposit() {
   const { userData } = useSelector((state) => state.authData);
-  console.log(userData);
   return (
     <MintBox>
       <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Deposit</Text>

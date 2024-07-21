@@ -151,10 +151,8 @@ function Withdrawal() {
     validateOverlay,
     setValidateOverlay,
     handleInternalWithdrawSubmit,
+    setValue,
   } = useSignUp();
-  let isPayCommision = "";
-
-  // console.log(errors);
 
   function handleOverlay(e) {
     e.target.className.split(" ").includes("overlay") && setOverlay(false);
@@ -190,7 +188,6 @@ function Withdrawal() {
       : setPaymentSuccessState();
   }
 
-  console.log(isPayCommision);
   return (
     <WithdrawalStyle>
       <Text style={{ fontSize: "2rem", fontWeight: "700" }}>Withdrawal</Text>
@@ -253,22 +250,37 @@ function Withdrawal() {
                 <Label htmlFor="address">Withdrawal Address</Label>
                 <Row style={{ marginTop: "-1rem", padding: "0" }}>
                   <Input
+                    key="onChainKey"
                     id="addrees"
                     type="text"
                     {...register("address", {
                       required: "This field is required",
                     })}
                   />
-                  <PasteToClip />
+                  <PasteToClip type="onChain" setValue={setValue} />
                 </Row>
               </>
             ) : (
-              <Internal register={register} />
+              <Internal setValue={setValue} register={register} />
             )}
           </Column>
-          <ErrorText style={{ marginTop: "-1.5rem", alignSelf: "start" }}>
-            {errors?.address?.message && errors?.address.message}
-          </ErrorText>
+          {sold && (
+            <ErrorText
+              key="onChainKey"
+              style={{ marginTop: "-1.5rem", alignSelf: "start" }}
+            >
+              {errors?.address?.message && errors?.address.message}
+            </ErrorText>
+          )}
+          {bought && (
+            <ErrorText
+              key="internalKey"
+              style={{ marginTop: "-1.5rem", alignSelf: "start" }}
+            >
+              {errors?.internalAddress?.message &&
+                errors?.internalAddress.message}
+            </ErrorText>
+          )}
           <Column>
             <Label>Network</Label>
             {sold ? (
@@ -294,6 +306,7 @@ function Withdrawal() {
                 <Label htmlFor="amount">Withdrawal Amount</Label>
                 <Row style={{ marginTop: "-1rem" }}>
                   <Input
+                    key="onChainKey"
                     style={{ fontWeight: "700" }}
                     id="amount"
                     type="number"
@@ -313,6 +326,7 @@ function Withdrawal() {
                 <Label htmlFor={category}>Withdrawal Amount</Label>
                 <Row style={{ marginTop: "-1rem" }}>
                   <Input
+                    key="internalKey"
                     style={{ fontWeight: "700" }}
                     id={category}
                     type="number"
@@ -329,12 +343,18 @@ function Withdrawal() {
               </>
             )}
             {sold && (
-              <ErrorText style={{ marginTop: "-1.5rem", textAlign: "start" }}>
+              <ErrorText
+                key="onChianKey"
+                style={{ marginTop: "-1.5rem", textAlign: "start" }}
+              >
                 {errors?.amount?.message && errors?.amount.message}
               </ErrorText>
             )}
             {bought && (
-              <ErrorText style={{ marginTop: "-1.5rem", textAlign: "start" }}>
+              <ErrorText
+                key="internalKey"
+                style={{ marginTop: "-1.5rem", textAlign: "start" }}
+              >
                 {errors && errors[category]?.message}
               </ErrorText>
             )}

@@ -1,9 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 import Button from "./Button";
-import TransactionStatus from "./TransactionStatus";
 import ToggleBtn from "./ToggleBtn";
 import useEditNft from "../hooks/useEditNft";
+import { RxCross1 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { setOverlay } from "../Slices/overLaySlice";
 
 const EditNftStyle = styled.div`
   display: flex;
@@ -11,7 +12,7 @@ const EditNftStyle = styled.div`
   align-items: start;
   gap: 2rem;
   width: 40rem;
-  padding: 2rem 4rem;
+  padding: 3rem 4rem;
   border-radius: 1rem;
   border: 1px solid var(--inputField_border);
   position: relative;
@@ -76,8 +77,19 @@ const Row = styled.span`
   padding: 0 1rem 0 0;
   border: 1px solid var(--light_faint);
 `;
+const CloseMenu = styled.div`
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  cursor: pointer;
+`;
+const closeIcon = {
+  color: "var(--primary_text_color)",
+  width: "2.5rem",
+  height: "2.5rem",
+};
 
-function EditNft() {
+function EditNft({ closePage }) {
   const {
     register,
     handleSubmit,
@@ -87,6 +99,7 @@ function EditNft() {
     on,
     setOn,
   } = useEditNft();
+  const dispatch = useDispatch();
 
   return (
     <EditNftStyle>
@@ -159,6 +172,9 @@ function EditNft() {
           {isLoading ? "Loading..." : "Edit"}
         </Button>
       </Form>
+      <CloseMenu onClick={() => dispatch(setOverlay(false))}>
+        <RxCross1 style={closeIcon} />
+      </CloseMenu>
     </EditNftStyle>
   );
 }

@@ -26,16 +26,14 @@ const Page = styled.button`
   font-size: 1.6rem;
   border: none;
 `;
-const linkStyle = {
-  textDecoration: "none",
-};
+
 function Pagination({ dataLenght, reftop }) {
   const [searchParam, setSearchParam] = useSearchParams();
 
   const current_page = !searchParam.get("page")
     ? 1
     : Number(searchParam.get("page"));
-  const totalPages = Math.ceil(dataLenght / PAGE_SIZE);
+  const totalPages = dataLenght ? Math.ceil(dataLenght / PAGE_SIZE) : 1;
 
   function handleNext() {
     const next = current_page !== totalPages ? current_page + 1 : current_page;
@@ -50,7 +48,7 @@ function Pagination({ dataLenght, reftop }) {
     setSearchParam(searchParam);
     reftop.current.scrollIntoView({ behavior: "smooth" });
   }
-
+  console.log(dataLenght);
   return (
     <PaginationStyle>
       <PaginationBox>
