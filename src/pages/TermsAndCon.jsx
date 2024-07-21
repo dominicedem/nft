@@ -21,7 +21,7 @@ const Header = styled.div`
   background-size: cover;
   background-position: 50% 30%;
   width: 100%;
-  height: 30rem;
+  height: 27rem;
   padding-top: 5rem;
   @media (max-width: 1100px) {
     background-position: 50% 42%;
@@ -243,7 +243,7 @@ function TermsAndCon() {
             after such changes constitutes acceptance of the revised terms.
           </List>
         </Column>
-        <List>
+        <List style={{ marginTop: "5rem" }}>
           For any questions or concerns, please contact our support team.
         </List>
       </Content>

@@ -95,7 +95,7 @@ function ViewAllDetails({ category, data }) {
         </Text>
         <RowBox style={{ marginTop: "-1.5rem" }}>
           <Span>
-            Items <Text type="head">{data?.results * 9}</Text>
+            Items <Text type="head">{data ? data?.results * 9 : "..."}</Text>
           </Span>
           <Span>
             Chain <Text type="head">Ethereum</Text>
@@ -112,7 +112,7 @@ function ViewAllDetails({ category, data }) {
       </Text>
       <RowBox>
         <ColumnBox>
-          <Text type="head">{data?.results * 27} ETH</Text>
+          <Text type="head">{data ? data?.results * 27 : "..."} ETH</Text>
           <Text style={{ marginTop: "-2rem" }}>Total volume</Text>
         </ColumnBox>
         <ColumnBox>
@@ -120,7 +120,7 @@ function ViewAllDetails({ category, data }) {
           <Text style={{ marginTop: "-2rem" }}>Listed</Text>
         </ColumnBox>
         <ColumnBox>
-          <Text type="head">{Math.ceil(data?.results / 2)}</Text>
+          <Text type="head">{data ? Math.ceil(data?.results / 2) : "..."}</Text>
           <Text style={{ marginTop: "-2rem" }}>Owners</Text>
         </ColumnBox>
         <ColumnBox>

@@ -2,22 +2,23 @@
 // import { FaMedium } from "react-icons/fa6";
 import styled from "styled-components";
 import Formdetail from "./Formdetail";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import useAuthenticate from "../hooks/useAuthenticate";
 
 const Footerbox = styled.div`
   display: flex;
   align-items: start;
-  gap: 5rem;
+  gap: 3rem;
   border-top: 0.1rem solid #bbbbbb36;
-  padding: 8rem 5rem;
+  padding: 8rem 2rem;
   height: 60vh;
   margin-top: 10rem;
   background: var(--blue_footer);
   @media (max-width: 950px) {
-    gap: 18%;
+    gap: 5%;
   }
-  @media (max-width: 700px) {
+  @media (max-width: 850px) {
     padding: 8rem 2rem;
     display: flex;
     flex-direction: column;
@@ -34,7 +35,11 @@ const Footers = styled.div`
   align-items: start;
   gap: 13%;
   width: 60vw;
-  @media (max-width: 700px) {
+  @media (max-width: 950px) {
+    width: 68vw;
+    gap: 8%;
+  }
+  @media (max-width: 850px) {
     flex-direction: column;
     justify-content: space-between;
     gap: 5rem;
@@ -73,7 +78,7 @@ const List = styled.span`
 `;
 
 const Copyright = styled.p`
-  padding: 1rem 5rem 5rem 5rem;
+  padding: 1rem 5rem 5rem 2rem;
   font-size: 1.4rem;
   color: var(--light_faint);
   background: var(--blue_footer);
@@ -87,6 +92,9 @@ const linkStyle = {
 };
 
 function Footer() {
+  const { storage } = useAuthenticate();
+  const navigate = useNavigate();
+  console.log(storage);
   return (
     <>
       <Footerbox>
@@ -114,11 +122,40 @@ function Footer() {
           </Headbox>
           <Headbox>
             <Head>Company</Head>
-            <HashLink style={linkStyle} to="/aboutus#top">
-              <List>About Us</List>
+            <HashLink style={linkStyle} to="/Privacy#top">
+              <List>Privacy Policy</List>
             </HashLink>
             <HashLink style={linkStyle} to="/termsandcondition#top">
-              <List>Terms and condition</List>
+              <List>Terms of service</List>
+            </HashLink>
+          </Headbox>
+          <Headbox>
+            <Head>Account</Head>
+            <HashLink
+              style={linkStyle}
+              to={storage && storage.isAuthenticated ? "/dashboard" : "/signin"}
+            >
+              <List>Account Overview</List>
+            </HashLink>
+            <HashLink
+              style={linkStyle}
+              to={
+                storage && storage.isAuthenticated
+                  ? "/dashboard/mint"
+                  : "/signin"
+              }
+            >
+              <List>Mint Nft</List>
+            </HashLink>
+            <HashLink
+              style={linkStyle}
+              to={
+                storage && storage.isAuthenticated
+                  ? "/dashboard#nftTransaction"
+                  : "/signin"
+              }
+            >
+              <List>Transaction</List>
             </HashLink>
           </Headbox>
         </Footers>
