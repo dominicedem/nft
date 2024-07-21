@@ -84,6 +84,7 @@ const List = styled.span`
       ? "var(--appbackgroundcolor)"
       : "var(--sideBar_text)"};
   letter-spacing: 0.07rem;
+  text-align: justify;
   @media (max-width: 525px) {
     font-size: ${(props) =>
       props.type === "subhead"

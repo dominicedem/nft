@@ -71,8 +71,9 @@ const MenuBtn = styled.div`
     background: var(--light_faint);
   }
 `;
-const List = styled.span`
+const List = styled.p`
   line-height: 1.38;
+  text-align: justify;
   font-size: ${(props) =>
     props.type === "subhead"
       ? "2.8rem"

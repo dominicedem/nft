@@ -70,15 +70,9 @@ const Bio = styled.span`
   margin-top: -0.5rem;
   line-height: 1.4;
   color: var(--sideBar_text);
-  width: 100%;
   height: 12rem;
   overflow-y: scroll;
   text-align: justify;
-  &::after {
-    content: "";
-    display: inline-block;
-    width: 100%;
-  }
 `;
 const linkStyle = {
   color: "inherit",
