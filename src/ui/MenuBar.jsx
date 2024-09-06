@@ -61,17 +61,12 @@ const Logo = styled.div`
   }
 `;
 const Img = styled.img`
-  width: 3rem;
+  width: 18rem;
   @media (max-width: 400px) {
-    font-size: 2.5rem;
+    width: 17rem;
   }
 `;
-const Column = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
+
 const linkStyleNav = {
   color: "inherit",
   textDecoration: "none",
@@ -110,8 +105,7 @@ function MenuBar() {
     <MenuBarStyle>
       <Link style={linkStyleNav} to="/">
         <Logo>
-          <Img src="/logo.png" alt="Logo" />
-          ZigmaNft
+          <Img src="/artmintlogo.png" alt="Logo" />
         </Logo>
       </Link>
       <ListBox>
@@ -124,13 +118,13 @@ function MenuBar() {
         <List onClick={() => dispatch(setIsOpenMenu())}>
           <PiNotePencilLight style={iconStyle} />
           <Link style={linkStyle} to="/dashboard/mint">
-            Mint Nft
+            Mint NFT
           </Link>
         </List>
         <List onClick={() => dispatch(setIsOpenMenu())}>
           <CgProfile style={iconStyle} />
           <Link style={linkStyle} to={`/ownNftProfile/${userData?.id}`}>
-            My Nft profile
+            My NFT profile
           </Link>
         </List>
         <List onClick={() => dispatch(setIsOpenMenu())}>
@@ -148,7 +142,7 @@ function MenuBar() {
         <List onClick={() => dispatch(setIsOpenMenu())}>
           <GiCardExchange style={iconStyle} />
           <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
-            Nft transactions
+            NFT transactions
           </HashLink>
         </List>
         <List onClick={() => dispatch(setIsOpenMenu())}>

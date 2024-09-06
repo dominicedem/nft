@@ -109,9 +109,6 @@ const Box = styled.div`
   padding: 1rem 1.5rem;
   border-radius: 0.7rem;
   background: var(--balance_background);
-  /* @media (max-width: 700px) {
-    width: 100%;
-  } */
 `;
 const SocialBox = styled.div`
   height: 100%;
@@ -183,6 +180,7 @@ function UserProfile({
   rawData,
 }) {
   const navigate = useNavigate();
+  console.log(!rawData?.data?.description);
   return (
     <NftProfileStyle>
       <ImageBox>
@@ -289,7 +287,11 @@ function UserProfile({
           {!isExhibition ? (
             <Column type="bioColumn">
               <Text style={{ fontWeight: "700" }}>Bio</Text>
-              <Box>
+              <Box
+                style={{
+                  display: `${!userProfileData?.data?.bio && "none"}`,
+                }}
+              >
                 <Text type="bio" style={{ fontSize: "1.6rem" }}>
                   {userProfileData ? (
                     userProfileData?.data?.bio
@@ -302,7 +304,11 @@ function UserProfile({
           ) : (
             <Column style={{ width: "60%" }}>
               <Text style={{ fontWeight: "700" }}>About Exhibition</Text>
-              <Box>
+              <Box
+                style={{
+                  display: `${!rawData?.data?.description && "none"}`,
+                }}
+              >
                 <Text type="bio" style={{ fontSize: "1.6rem" }}>
                   {rawData?.data?.description}
                 </Text>

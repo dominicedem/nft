@@ -32,7 +32,7 @@ const Logo = styled.div`
   -webkit-text-fill-color: transparent;
 `;
 const Img = styled.img`
-  width: 3rem;
+  width: 18rem;
 `;
 const List = styled.span`
   display: flex;
@@ -77,8 +77,7 @@ function SideBar() {
       <ListBox>
         <Link style={linkStyle} to="/">
           <Logo>
-            <Img src="/logo.png" alt="Logo" />
-            SigmaNft
+            <Img src="/artmintlogo.png" alt="Logo" />
           </Logo>
         </Link>
         <ListBox style={{ gap: "1.5rem" }}>
@@ -91,13 +90,13 @@ function SideBar() {
           <List>
             <PiNotePencilLight style={iconStyle} />
             <Link style={linkStyle} to="mint">
-              Mint Nft
+              Mint NFT
             </Link>
           </List>
           <List>
             <CgProfile style={iconStyle} />
             <Link style={linkStyle} to={`/ownNftProfile/${userData?.id}`}>
-              My Nft profile
+              My NFT profile
             </Link>
           </List>
           <List>
@@ -115,7 +114,7 @@ function SideBar() {
           <List>
             <GiCardExchange style={iconStyle} fill="" />
             <HashLink smooth style={linkStyle} to="/dashboard#nftTransaction">
-              Nft transactions
+              NFT transactions
             </HashLink>
           </List>
           <List

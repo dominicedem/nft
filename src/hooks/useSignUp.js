@@ -79,7 +79,7 @@ export default function useSignUp() {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
 
     try {
       const result = await FetchSignup(formData);
@@ -100,6 +100,7 @@ export default function useSignUp() {
     }
   }
   async function handleLoginSubmit(formData) {
+    console.log(formData);
     JSON.parse(localStorage.getItem("userData"))?.token && localStorage.clear();
     setIsBlur(true);
     let blur = true;
@@ -107,7 +108,7 @@ export default function useSignUp() {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
     try {
       const result = await FetchLogin(formData);
       if (
@@ -150,12 +151,13 @@ export default function useSignUp() {
 
   async function handleMintSubmit(formdata) {
     setIsBlur(true);
+
     let blur = true;
     setTimeout(() => {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
 
     const mintData = new FormData();
     mintData.append("photo", formdata.file[0]);
@@ -169,20 +171,17 @@ export default function useSignUp() {
       if (response.status === "error") {
         toast.error(response.message);
         setIsBlur(false);
-        blur = false;
       } else if (response.status === "success") {
         toast.success(response.message);
         setIsBlur(false);
-        blur = false;
         reset();
         let newData = await FetchNewUserData(token);
-        dispatch(setUser(newData.data));
       }
     } catch (error) {
       setTimeout(() => {
-        setIsBlur(false);
         blur = false;
-        error.message && toast.error("Check your network connection");
+        setIsBlur(false);
+        // error.message && toast.error("faild");
       }, [5000]);
     }
   }
@@ -211,7 +210,7 @@ export default function useSignUp() {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
     try {
       const result = await FetchWithdraw(formdata);
       if (result.status === "error") {
@@ -262,7 +261,7 @@ export default function useSignUp() {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
     try {
       const result = await FetchInternalWithdraw(newFormData);
       reset();
@@ -294,7 +293,7 @@ export default function useSignUp() {
       blur && toast.error("Check your network connection");
       blur && setIsBlur(false);
       reset();
-    }, [20000]);
+    }, [60000]);
     try {
       const result = await FetchValidate();
       reset();

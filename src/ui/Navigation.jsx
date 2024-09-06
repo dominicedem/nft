@@ -51,9 +51,9 @@ const Search = styled.div`
   backdrop-filter: blur(5px);
 `;
 const Img = styled.img`
-  width: 3rem;
+  width: 18rem;
   @media (max-width: 400px) {
-    font-size: 2.5rem;
+    width: 17rem;
   }
 `;
 
@@ -107,8 +107,7 @@ function Navigation({ scroll, home }) {
         <>
           <Link style={linkStyle} to="/">
             <Logo>
-              <Img src="/logo.png" alt="Logo" />
-              ZIGMANFT
+              <Img src="/artmintlogo.png" alt="Logo" />
             </Logo>
           </Link>
           <CtaBox>
@@ -178,8 +177,7 @@ function Navigation({ scroll, home }) {
         <>
           <Link style={linkStyle} to="/">
             <Logo>
-              <Img src="/logo.png" alt="Logo" />
-              ZIGMANFT
+              <Img src="/artmintlogo.png" alt="Logo" />
             </Logo>
           </Link>
           <CtaBox>

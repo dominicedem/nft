@@ -310,7 +310,7 @@ function Withdrawal() {
                     style={{ fontWeight: "700" }}
                     id="amount"
                     type="number"
-                    step={0.1}
+                    step={0.0000000000000000001}
                     {...register("amount", {
                       required: "This field is required",
                       min: {
@@ -330,7 +330,7 @@ function Withdrawal() {
                     style={{ fontWeight: "700" }}
                     id={category}
                     type="number"
-                    step={0.1}
+                    step={0.0000000000000000001}
                     {...register(`${category}`, {
                       required: "This field is required",
                       min: {

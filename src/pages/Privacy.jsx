@@ -7,6 +7,7 @@ import { setIsOpenMenu } from "../Slices/MenuBar";
 import MenuBar from "../ui/MenuBar";
 import useReloadPage from "../hooks/useReloadPage";
 import useAuthenticate from "../hooks/useAuthenticate";
+import Footer from "../ui/Footer";
 const AboutUsStyle = styled.div`
   width: 99.5vw;
   background: var(--subtle_background);
@@ -21,9 +22,10 @@ const Header = styled.div`
   background-size: cover;
   background-position: 50% 30%;
   width: 100%;
-  height: 27rem;
+  height: 30rem;
   padding-top: 5rem;
   @media (max-width: 1100px) {
+    height: 27rem;
     background-position: 50% 42%;
   }
 `;
@@ -119,7 +121,7 @@ function Privacy() {
   // const { userData } = useSelector((state) => state.authData);
   // const { isLoading } = useReloadPage();
   // const { storage } = useAuthenticate();
-  const companyName = "Companyname";
+  const companyName = "ARTIVAULT";
   return (
     <AboutUsStyle id="top">
       <NavStyle>
@@ -138,11 +140,11 @@ function Privacy() {
       </Header>
       <Content>
         <List>
-          This Privacy Policy explains how companyName ("we," "us," or "our")
+          This Privacy Policy explains how {companyName} ("we," "us," or "our")
           collects, uses, shares, and safeguards your personal information when
-          you use our NFT marketplace platform, companyName (the "Platform"). We
-          are dedicated to protecting your privacy and ensuring the security of
-          your personal information. By using the Platform, you agree to the
+          you use our NFT marketplace platform, {companyName} (the "Platform").
+          We are dedicated to protecting your privacy and ensuring the security
+          of your personal information. By using the Platform, you agree to the
           collection, use, and disclosure of your personal information as
           described in this Privacy Policy.
         </List>
@@ -180,11 +182,11 @@ function Privacy() {
           </List>
           <List>2.2 Prohibited Content</List>
           <List style={{ marginTop: "-1rem" }}>
-            companyName strictly prohibits the listing or trading of NFTs that
+            {companyName} strictly prohibits the listing or trading of NFTs that
             are illegal, fraudulent, offensive, infringe on intellectual
             property rights, or violate these Terms and Conditions. You may not
             list NFTs that contain explicit or adult content, promote hate
-            speech, or engage in any form of illegal activity. companyName
+            speech, or engage in any form of illegal activity. {companyName}
             reserves the right to remove any content that violates these
             guidelines and may take appropriate action, including suspending or
             terminating the accounts of users who repeatedly violate these
@@ -256,8 +258,8 @@ function Privacy() {
           </List>
         </Column>
         <List style={{ marginTop: "5rem" }}>
-          By using the companyName platform, you acknowledge that you have read,
-          understood, and agree to the terms and conditions of
+          By using the {companyName} platform, you acknowledge that you have
+          read, understood, and agree to the terms and conditions of
           this Privacy Policy.
         </List>
       </Content>
@@ -268,6 +270,7 @@ function Privacy() {
           <SlMenu style={menuStyle} />
         )}
       </MenuBtn>
+      <Footer />
     </AboutUsStyle>
   );
 }

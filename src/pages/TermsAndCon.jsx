@@ -7,6 +7,7 @@ import { setIsOpenMenu } from "../Slices/MenuBar";
 import MenuBar from "../ui/MenuBar";
 import useReloadPage from "../hooks/useReloadPage";
 import useAuthenticate from "../hooks/useAuthenticate";
+import Footer from "../ui/Footer";
 const TermsAndConStyle = styled.div`
   width: 99.5vw;
   background: var(--subtle_background);
@@ -19,11 +20,12 @@ const Header = styled.div`
   justify-content: center;
   background: linear-gradient(#0007, #0007), url("/hero.jpg");
   background-size: cover;
-  background-position: 50% 30%;
+  background-position: 50% 50%;
   width: 100%;
-  height: 27rem;
+  height: 30rem;
   padding-top: 5rem;
   @media (max-width: 1100px) {
+    height: 27rem;
     background-position: 50% 42%;
   }
 `;
@@ -119,7 +121,7 @@ function TermsAndCon() {
   const { userData } = useSelector((state) => state.authData);
   const { isLoading } = useReloadPage();
   const { storage } = useAuthenticate();
-  const companyName = "Companyname";
+  const companyName = "ARTIVAULT";
   console.log(userData);
   return (
     <TermsAndConStyle id="top">
@@ -255,6 +257,7 @@ function TermsAndCon() {
           <SlMenu style={menuStyle} />
         )}
       </MenuBtn>
+      <Footer />
     </TermsAndConStyle>
   );
 }

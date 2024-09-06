@@ -60,11 +60,12 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
             style={{
               fontSize: "2rem",
               fontWeight: "700",
+              width: "fit-content",
             }}
           >
             Sales commission
           </Text>
-          <Text type="content">
+          <Text type="content" style={{ textAlign: "justify" }}>
             you don’t have sufficient ETH in your wallet ( fee wallet ) to pay
             for your outstanding sales commission
           </Text>
@@ -88,7 +89,13 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
         <Status
           style={{ alignItems: "center", gap: "2rem", padding: "1rem 2rem" }}
         >
-          <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
+          <Text
+            style={{
+              fontSize: "2rem",
+              fontWeight: "700",
+              width: "fit-content",
+            }}
+          >
             Sales commission
           </Text>
           <FaRegCheckCircle style={iconStyle} />
@@ -99,7 +106,13 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
       )}
       {status === "pay" && (
         <Status style={{ alignItems: "center", gap: "2rem" }}>
-          <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
+          <Text
+            style={{
+              fontSize: "2rem",
+              fontWeight: "700",
+              width: "fit-content",
+            }}
+          >
             Sales commission
           </Text>
           <Text
@@ -107,9 +120,10 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
               fontSize: "1.6rem",
               fontWeight: "500",
               color: "var(--sideBar_text)",
+              textAlign: "justify",
             }}
           >
-            you need to pay your outstanding sales commission on soled artworks
+            You need to pay your outstanding sales commission on sold artworks
             before any withdrawal would be processed
           </Text>
           <Text style={{ fontSize: "1.3rem", alignSelf: "start" }}>
@@ -132,7 +146,13 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
         <Status
           style={{ alignItems: "center", gap: "2rem", padding: "1rem 3rem" }}
         >
-          <Text style={{ fontSize: "2rem", fontWeight: "700" }}>
+          <Text
+            style={{
+              fontSize: "2rem",
+              fontWeight: "700",
+              width: "fit-content",
+            }}
+          >
             Validate Nft
           </Text>
           <Text
@@ -141,6 +161,7 @@ function WithdrawStatus({ status, handlePayCommission, isLoadingPay }) {
               fontWeight: "500",
               color: "var(--sideBar_text)",
               marginBottom: "1rem",
+              textAlign: "justify",
             }}
           >
             one of your Nft has been flagged due to copy rights and requires to

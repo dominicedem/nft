@@ -94,9 +94,13 @@ function ViewAllDetails({ category, data }) {
           {category}
         </Text>
         <RowBox style={{ marginTop: "-1.5rem" }}>
-          <Span>
-            Items <Text type="head">{data ? data?.results * 9 : "..."}</Text>
-          </Span>
+          {data?.results ? (
+            <Span>
+              Items <Text type="head">{data ? data?.results * 9 : "..."}</Text>
+            </Span>
+          ) : (
+            ""
+          )}
           <Span>
             Chain <Text type="head">Ethereum</Text>
           </Span>
@@ -111,18 +115,28 @@ function ViewAllDetails({ category, data }) {
         {isSeeMore ? "See Less" : "See more"}
       </Text>
       <RowBox>
-        <ColumnBox>
-          <Text type="head">{data ? data?.results * 27 : "..."} ETH</Text>
-          <Text style={{ marginTop: "-2rem" }}>Total volume</Text>
-        </ColumnBox>
+        {data?.results ? (
+          <ColumnBox>
+            <Text type="head">{data ? data?.results * 27 : "..."} ETH</Text>
+            <Text style={{ marginTop: "-2rem" }}>Total volume</Text>
+          </ColumnBox>
+        ) : (
+          ""
+        )}
         <ColumnBox>
           <Text type="head">{listed}%</Text>
           <Text style={{ marginTop: "-2rem" }}>Listed</Text>
         </ColumnBox>
-        <ColumnBox>
-          <Text type="head">{data ? Math.ceil(data?.results / 2) : "..."}</Text>
-          <Text style={{ marginTop: "-2rem" }}>Owners</Text>
-        </ColumnBox>
+        {data?.results ? (
+          <ColumnBox>
+            <Text type="head">
+              {data ? Math.ceil(data?.results / 2) : "..."}
+            </Text>
+            <Text style={{ marginTop: "-2rem" }}>Owners</Text>
+          </ColumnBox>
+        ) : (
+          ""
+        )}
         <ColumnBox>
           <Text type="head">{categoryOwner}%</Text>
           <Text style={{ marginTop: "-2rem" }}>Unique owners</Text>

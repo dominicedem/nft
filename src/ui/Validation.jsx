@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { CiFileOn } from "react-icons/ci";
 import Button from "../ui/Button";
-import { useState } from "react";
-import MintStatus from "../ui/MintStatus";
 import { useSelector } from "react-redux";
 import useSignUp from "../hooks/useSignUp";
 import Loading from "./Loading";
@@ -13,7 +11,7 @@ const MintBox = styled.div`
   flex-direction: column;
   align-items: start;
   gap: 1rem;
-  width: 50rem;
+  max-width: 50rem;
   margin: 0 auto 2rem auto;
 `;
 const MintModalStyle = styled.div`
@@ -27,6 +25,9 @@ const MintModalStyle = styled.div`
   background: var(--subtle_background);
   border: 1px solid var(--inputField_border);
   position: relative;
+  @media (max-width: 420px) {
+    padding: 2rem;
+  }
 `;
 const ImageBox = styled.div`
   display: flex;
@@ -46,12 +47,6 @@ const Text = styled.span`
   letter-spacing: ${(props) => (props.type === "description" ? ".07rem" : "")};
   width: ${(props) => (props.type === "description" ? "100%" : "")};
   text-align: ${(props) => (props.type === "description" ? "justify" : "")};
-  &::after {
-    content: "";
-    display: ${(props) =>
-      props.type === "description" ? "inline-block" : "block"};
-    width: ${(props) => (props.type === "description" ? "100%" : "")};
-  }
 `;
 const Form = styled.form`
   width: 100%;
@@ -87,27 +82,6 @@ const Textarea = styled.textarea`
   padding: 2rem;
   color: var(--sideBar_text);
   font-size: 1.6rem;
-`;
-const Select = styled.select`
-  width: 30%;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 1.6rem;
-  color: var(--sideBar_text);
-`;
-const Option = styled.option`
-  font-size: 1.6rem;
-  color: var(--sideBar_text);
-`;
-const Row = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--light_faint);
-  width: 100%;
-  border-radius: 0.5rem;
-  padding: 0 1rem 0 0;
-  border: 1px solid var(--light_faint);
 `;
 const Overlay = styled.div`
   display: flex;
@@ -156,8 +130,6 @@ const iconStyle = {
   cursor: "pointer",
 };
 function Validation() {
-  const [overlay, setOverlay] = useState(false);
-
   const {
     handleError,
     errors,

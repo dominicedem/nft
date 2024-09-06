@@ -108,7 +108,7 @@ function Footer() {
               <List>Gaming</List>
             </Link>
             <Link style={linkStyle} to="/category/pfps">
-              <List>Pfps</List>
+              <List>PFPS</List>
             </Link>
             <Link style={linkStyle} to="/category/membership">
               <List>Membership</List>
@@ -162,7 +162,7 @@ function Footer() {
         <Formdetail />
       </Footerbox>
       <Copyright>
-        &copy; Copyright 2024 ZIGMANFT. All rights reserved.
+        &copy; Copyright 2024 ARTIVAULT. All rights reserved.
       </Copyright>
     </>
   );

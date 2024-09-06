@@ -89,7 +89,7 @@ const closeIcon = {
   height: "2.5rem",
 };
 
-function EditNft({ closePage }) {
+function EditNft() {
   const {
     register,
     handleSubmit,
@@ -136,7 +136,7 @@ function EditNft({ closePage }) {
             <Option value="arts">Arts</Option>
             <Option value="exhibition">Exhibition</Option>
             <Option value="membership">Membership</Option>
-            <Option value="pfps">Pfps</Option>
+            <Option value="PFPS">PFPS</Option>
           </Select>
         </Column>
         <Column>

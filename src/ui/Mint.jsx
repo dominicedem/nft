@@ -226,7 +226,7 @@ function Mint() {
               <Option value="Membership">Membership</Option>
               <Option value="Arts">Arts</Option>
               <Option value="Photography">Photography</Option>
-              <Option value="Pfps">Pfps</Option>
+              <Option value="PFPS">PFPS</Option>
             </Select>
           </Column>
           <Column>

@@ -54,7 +54,7 @@ function SubNav() {
         </List>
       </Link>
       <Link style={linkStyle} to="/category/pfps">
-        <List className={params?.type === "pfps" && "activeSubNav"}>PFPs</List>
+        <List className={params?.type === "pfps" && "activeSubNav"}>PFPS</List>
       </Link>
       <Link style={linkStyle} to="/category/photography">
         <List className={params?.type === "photography" && "activeSubNav"}>

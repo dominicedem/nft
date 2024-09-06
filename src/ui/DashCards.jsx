@@ -20,13 +20,14 @@ const Flex = styled.div`
   padding-bottom: 1.2rem;
 `;
 
-const Text = styled.div`
+const Text = styled.span`
   font-size: 2rem;
   color: var(--black_text);
   font-weight: 600;
+  align-self: center;
+  width: fit-content;
 `;
 const linkStyle = {
-  // color: "var(--)",
   textDecoration: "none",
 };
 
@@ -39,7 +40,6 @@ function DashCards({
   Edit,
   data,
   textdata,
-  move,
 }) {
   return (
     <DashCardsStyle>
@@ -84,19 +84,18 @@ function DashCards({
                 Edit={Edit}
               />
             ))}
-        {textdata && (
-          <Text
-            style={{
-              fontSize: "1.8rem",
-              transform: `${move}`,
-              fontStyle: "italic",
-              fontWeight: "500",
-            }}
-          >
-            {textdata}
-          </Text>
-        )}
       </Flex>
+      {textdata && (
+        <Text
+          style={{
+            fontSize: "1.8rem",
+            fontStyle: "italic",
+            fontWeight: "500",
+          }}
+        >
+          {textdata}
+        </Text>
+      )}
     </DashCardsStyle>
   );
 }

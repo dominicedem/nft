@@ -63,7 +63,7 @@ function ValidationStatus({ status }) {
           >
             Validation
           </Text>
-          <Text>
+          <Text style={{ textAlign: "justify" }}>
             you don’t have sufficient ETH in your wallet ( fee wallet ) to
             process the validation of the artwork
           </Text>
